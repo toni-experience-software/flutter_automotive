@@ -1,12 +1,6 @@
-// ignore_for_file: doc_directive_unknown
+// ignore_for_file: doc_directive_unknown, slash_for_doc_comments
 
 enum VehiclePropertyIds {
-    /**
-     * Undefined property.
-     *
-     * <p>This property should never be used/will never be supported.
-     */
-    INVALID(0),
     /**
      * VIN of vehicle
      *
