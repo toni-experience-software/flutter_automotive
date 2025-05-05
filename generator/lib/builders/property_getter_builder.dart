@@ -47,9 +47,10 @@ class VehiclePropertyGetterBuilder {
 
   Block buildGetterBlock() {
     final interface = PropertyTypeMethodInterfaceBuilder(type);
+    final propId = refer((VehicleProperty).toString()).property(prop.name).property("id");
     return Block(
       (b) => b..statements.addAll([
-        datasource.property(interface.getterName).call([literal(prop.id)]).returned.statement,
+        datasource.property(interface.getterName).call([propId]).returned.statement,
       ]),
     );
   }
