@@ -11,9 +11,10 @@ class VehiclePropertyGetterBuilder {
   final Reference datasource;
   final VehicleProperty prop;
 
-  VehiclePropertyType get type => VehiclePropertyType.forVehicleProperty(prop);
+  VehiclePropertyType get propType => VehiclePropertyType.forVehicleProperty(prop);
+  VehicleAreaType get areaType => VehicleAreaType.forVehicleProperty(prop);
 
-  Reference get _returnTypeForProperty => switch (type) {
+  Reference get _returnTypeForProperty => switch (propType) {
     VehiclePropertyType.STRING => refer("String"),
     VehiclePropertyType.BOOLEAN => refer("bool"),
     VehiclePropertyType.INT32 => refer("int"),
@@ -35,22 +36,50 @@ class VehiclePropertyGetterBuilder {
     ].join("");
   }
 
+  Reference? get _areaParameterRef => switch (areaType) {
+    VehicleAreaType.GLOBAL => null,
+    VehicleAreaType.VENDOR => null,
+    VehicleAreaType.WINDOW => refer((VehicleAreaWindow).toString()),
+    VehicleAreaType.MIRROR => refer((VehicleAreaMirror).toString()),
+    VehicleAreaType.SEAT => refer((VehicleAreaSeat).toString()),
+    VehicleAreaType.DOOR => refer((VehicleAreaDoor).toString()),
+    VehicleAreaType.WHEEL => refer((VehicleAreaWheel).toString()),
+  };
+
   Method buildGetter() {
     return Method(
       (m) => m
         ..name = _getterName
         ..modifier = MethodModifier.async
         ..returns = refer("Future<${_returnTypeForProperty.symbol}>")
+        ..requiredParameters.addAll([
+          if (_areaParameterRef case final ref?) Parameter(
+            (p) => p
+              ..name = "area"
+              ..type = ref,
+          ),
+        ])
         ..body = buildGetterBlock(),
     );
   }
 
   Block buildGetterBlock() {
-    final interface = PropertyTypeMethodInterfaceBuilder(type);
+    final interface = PropertyTypeMethodInterfaceBuilder(propType);
     final propId = refer((VehicleProperty).toString()).property(prop.name).property("id");
+    final areaId = switch (areaType) {
+      VehicleAreaType.GLOBAL || VehicleAreaType.VENDOR => literal(0),
+      VehicleAreaType.WINDOW
+      || VehicleAreaType.MIRROR
+      || VehicleAreaType.SEAT
+      || VehicleAreaType.DOOR
+      || VehicleAreaType.WHEEL => refer("area").property("value"),
+    };
     return Block(
       (b) => b..statements.addAll([
-        datasource.property(interface.getterName).call([propId]).returned.statement,
+        datasource.property(interface.getterName).call([
+          propId,
+          areaId,
+        ]).returned.statement,
       ]),
     );
   }

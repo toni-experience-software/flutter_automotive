@@ -33,7 +33,12 @@ class PropertyTypeMethodInterfaceBuilder {
             (p) => p
               ..name = "propertyId"
               ..type = refer("int"),
-          )
+          ),
+          Parameter(
+            (p) => p
+              ..name = "areaId"
+              ..type = refer("int"),
+          ),
         ]),
     );
   }
@@ -48,6 +53,11 @@ class PropertyTypeMethodInterfaceBuilder {
           Parameter(
             (p) => p
               ..name = "propertyId"
+              ..type = refer("int"),
+          ),
+          Parameter(
+            (p) => p
+              ..name = "areaId"
               ..type = refer("int"),
           ),
           Parameter(
