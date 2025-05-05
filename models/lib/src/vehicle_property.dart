@@ -7184,4 +7184,10 @@ enum VehicleProperty {
     const VehicleProperty(this.id);
 
     final int id;
+
+    static VehicleProperty forName(String name) {
+      return VehicleProperty.values.firstWhere(
+        (v) => v.name == name,
+      );
+    }
 }

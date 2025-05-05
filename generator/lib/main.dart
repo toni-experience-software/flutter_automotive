@@ -1,13 +1,18 @@
+import 'dart:io';
+
 import 'package:generator/builders/property_datasource_builder.dart';
 import 'package:generator/builders/property_repo_builder.dart';
 import 'package:generator/generators/file_generator.dart';
+import 'package:generator/parsers/vehicle_type_doc_parser.dart';
 
-Future<void> main() async {
+Future<void> generate(File modelFile) async {
+  final docParser = await VehicleTypeDocParser.init(modelFile);
+
   final dataGenerator = FileGenerator(path: "output/datasource.dart");
   final datasource = AndroidInterfaceBuilder().buildClass();
   await dataGenerator.generate(datasource);
 
   final repoGenerator = FileGenerator(path: "output/repository.dart");
-  final repo = PropertyRepoBuilder().buildLibrary();
+  final repo = PropertyRepoBuilder(docParser).buildLibrary();
   await repoGenerator.generate(repo);
 }

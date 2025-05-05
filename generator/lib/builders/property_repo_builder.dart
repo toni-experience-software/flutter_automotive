@@ -1,8 +1,14 @@
 import 'package:code_builder/code_builder.dart';
 import 'package:flutter_automotive_models/flutter_automotive_models.dart';
 import 'package:generator/builders/property_getter_builder.dart';
+import 'package:generator/builders/property_setter_builder.dart';
+import 'package:generator/parsers/vehicle_type_doc_parser.dart';
 
 class PropertyRepoBuilder {
+  PropertyRepoBuilder(this.parser);
+
+  final VehicleTypeDocParser parser;
+
   Library buildLibrary() {
     return Library(
       (l) => l
@@ -43,11 +49,20 @@ class PropertyRepoBuilder {
           ),
         ])
         ..methods.addAll([
-          for (final prop in VehicleProperty.values)
-            VehiclePropertyGetterBuilder(
-              datasource: datasourceNameRef,
-              prop: prop,
-            ).buildGetter(),
+          for (final prop in VehicleProperty.values) ...[
+            if (parser.needsGetter(prop)) ...[
+              VehiclePropertyGetterBuilder(
+                datasource: datasourceNameRef,
+                prop: prop,
+              ).buildGetter(),
+            ],
+            if (parser.needsSetter(prop)) ...[
+              VehiclePropertySetterBuilder(
+                datasource: datasourceNameRef,
+                prop: prop,
+              ).buildSetter(),
+            ],
+          ],
         ]),
     );
   }
