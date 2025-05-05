@@ -1,5 +1,5 @@
 import 'package:generator/main.dart' as generator;
 
-void main(List<String> arguments) {
+Future<void> main(List<String> arguments) async {
   generator.main();
 }
