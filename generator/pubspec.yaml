@@ -2,12 +2,16 @@ name: generator
 description: Generate interfaces and code for flutter_automotive
 version: 1.0.0
 
+publish_to: none # We don't want to publish this package
+
 environment:
   sdk: ^3.7.2
 
 dependencies:
   code_builder: ^4.10.1
   dart_style: ^3.0.1
+  flutter_automotive_models:
+    path: ../models # Replace with published model package
 
 dev_dependencies:
   lints: ^5.0.0

@@ -1,4 +1,4 @@
-import 'package:generator/model/vehicle_property.dart';
+import 'vehicle_property.dart';
 
 enum VehiclePropertyType {
   STRING(0x00100000),
