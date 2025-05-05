@@ -1,6 +1,6 @@
 // ignore_for_file: doc_directive_unknown, slash_for_doc_comments
 
-enum VehiclePropertyIds {
+enum VehicleProperty {
     /**
      * VIN of vehicle
      *
@@ -7181,7 +7181,7 @@ enum VehiclePropertyIds {
      */
     LOW_SPEED_AUTOMATIC_EMERGENCY_BRAKING_STATE(289411110);
 
-    const VehiclePropertyIds(this.id);
+    const VehicleProperty(this.id);
 
     final int id;
 }
