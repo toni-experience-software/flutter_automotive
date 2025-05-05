@@ -1,5 +1,5 @@
-import 'package:generator/generator.dart' as generator;
+import 'package:generator/main.dart' as generator;
 
 void main(List<String> arguments) {
-  print('Hello world: ${generator.calculate()}!');
+  generator.main();
 }
