@@ -1,6 +1,6 @@
 import 'package:flutter_automotive_models/flutter_automotive_models.dart';
 
-enum VehicleAreaTypes {
+enum VehicleAreaType {
   GLOBAL(0x01000000),
   WINDOW(0x03000000),
   MIRROR(0x04000000),
@@ -11,13 +11,13 @@ enum VehicleAreaTypes {
 
   static int MASK = 0x0f000000;
 
-  const VehicleAreaTypes(this.value);
+  const VehicleAreaType(this.value);
 
   final int value;
 
-  static VehicleAreaTypes forVehicleProperty(VehicleProperty prop) {
-    return VehicleAreaTypes.values.firstWhere(
-      (v) => VehicleAreaTypes.MASK & prop.id == v.value,
+  static VehicleAreaType forVehicleProperty(VehicleProperty prop) {
+    return VehicleAreaType.values.firstWhere(
+      (v) => VehicleAreaType.MASK & prop.id == v.value,
     );
   }
 }
