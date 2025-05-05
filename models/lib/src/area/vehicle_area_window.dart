@@ -1,0 +1,16 @@
+enum VehicleAreaWindow {
+  FRONT_WINDSHIELD(0x00000001),
+  REAR_WINDSHIELD(0x00000002),
+  ROW_1_LEFT(0x00000010),
+  ROW_1_RIGHT(0x00000040),
+  ROW_2_LEFT(0x00000100),
+  ROW_2_RIGHT(0x00000400),
+  ROW_3_LEFT(0x00001000),
+  ROW_3_RIGHT(0x00004000),
+  ROOF_TOP_1(0x00010000),
+  ROOF_TOP_2(0x00020000);
+
+  const VehicleAreaWindow(this.value);
+
+  final int value;
+}
