@@ -19,10 +19,13 @@ class PropertyTypeMethodInterfaceBuilder {
     VehiclePropertyType.MIXED => refer("dynamic"),
   };
 
+  String get getterName => "getProperty${type.name}";
+  String get setterName => "setProperty${type.name}";
+
   Method buildGetter() {
     return Method(
       (m) => m
-        ..name = "getProperty${type.name}"
+        ..name = getterName
         ..modifier = MethodModifier.async
         ..returns = refer("Future<${_returnTypeForProperty.symbol}>")
         ..requiredParameters.addAll([
@@ -38,7 +41,7 @@ class PropertyTypeMethodInterfaceBuilder {
   Method buildSetter() {
     return Method(
       (m) => m
-        ..name = "setProperty${type.name}"
+        ..name = setterName
         ..modifier = MethodModifier.async
         ..returns = refer("Future<void>")
         ..requiredParameters.addAll([

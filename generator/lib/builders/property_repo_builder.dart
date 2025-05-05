@@ -3,14 +3,50 @@ import 'package:generator/builders/property_getter_builder.dart';
 import 'package:generator/model/vehicle_property.dart';
 
 class PropertyRepoBuilder {
-  Class buildClass() {
+  Library buildLibrary() {
+    return Library(
+      (l) => l
+        ..directives.addAll([
+          Directive.import("./datasource.dart"),
+        ])
+        ..body.addAll([
+          _buildClass(),
+        ]),
+    );
+  }
+
+  Class _buildClass() {
+    final datasourceTypeRef = refer("VehiclePropertyDatasource");
+    final datasourceName = "datasource";
+    final datasourceNameRef = refer(datasourceName);
     return Class(
       (c) => c
         ..name = "VehiclePropertyRepository"
-        ..abstract = true
+        ..constructors.addAll([
+          Constructor(
+            (c) => c.requiredParameters.addAll([
+              Parameter(
+                (p) => p
+                  ..name = datasourceName
+                  ..toThis = true,
+              ),
+            ]),
+          ),
+        ])
+        ..fields.addAll([
+          Field(
+            (f) => f
+              ..name = datasourceName
+              ..type = datasourceTypeRef
+              ..modifier = FieldModifier.final$,
+          ),
+        ])
         ..methods.addAll([
           for (final prop in VehicleProperty.values)
-            VehiclePropertyGetterBuilder(prop).buildGetter(),
+            VehiclePropertyGetterBuilder(
+              datasource: datasourceNameRef,
+              prop: prop,
+            ).buildGetter(),
         ]),
     );
   }

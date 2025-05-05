@@ -8,6 +8,6 @@ Future<void> main() async {
   await dataGenerator.generate(datasource);
 
   final repoGenerator = FileGenerator(path: "output/repository.dart");
-  final repo = PropertyRepoBuilder().buildClass();
+  final repo = PropertyRepoBuilder().buildLibrary();
   await repoGenerator.generate(repo);
 }

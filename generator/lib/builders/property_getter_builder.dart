@@ -1,10 +1,15 @@
 import 'package:code_builder/code_builder.dart';
+import 'package:generator/builders/property_type_interface_builder.dart';
 import 'package:generator/model/vehicle_property.dart';
 import 'package:generator/model/vehicle_property_types.dart';
 
 class VehiclePropertyGetterBuilder {
-  const VehiclePropertyGetterBuilder(this.prop);
+  const VehiclePropertyGetterBuilder({
+    required this.datasource,
+    required this.prop,
+  });
 
+  final Reference datasource;
   final VehicleProperty prop;
 
   VehiclePropertyType get type => VehiclePropertyType.forVehicleProperty(prop);
@@ -35,7 +40,18 @@ class VehiclePropertyGetterBuilder {
     return Method(
       (m) => m
         ..name = _getterName
-        ..returns = _returnTypeForProperty,
+        ..modifier = MethodModifier.async
+        ..returns = refer("Future<${_returnTypeForProperty.symbol}>")
+        ..body = buildGetterBlock(),
+    );
+  }
+
+  Block buildGetterBlock() {
+    final interface = PropertyTypeMethodInterfaceBuilder(type);
+    return Block(
+      (b) => b..statements.addAll([
+        datasource.property(interface.getterName).call([literal(prop.id)]).returned.statement,
+      ]),
     );
   }
 }
