@@ -46,7 +46,7 @@ class VehiclePropertySetterBuilder {
     VehicleAreaType.WHEEL => refer((VehicleAreaWheel).toString()),
   };
 
-  Method buildSetter() {
+  Method buildSetter(String? docs) {
     return Method(
       (m) => m
         ..name = _setterName
@@ -64,7 +64,10 @@ class VehiclePropertySetterBuilder {
               ..type = _returnTypeForProperty,
           ),
         ])
-        ..body = buildGetterBlock(),
+        ..body = buildGetterBlock()
+        ..docs.addAll([
+          if (docs != null) docs,
+        ]),
     );
   }
 

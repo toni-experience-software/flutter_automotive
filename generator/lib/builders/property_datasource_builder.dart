@@ -3,7 +3,17 @@ import 'package:flutter_automotive_models/flutter_automotive_models.dart';
 import 'package:generator/builders/property_type_interface_builder.dart';
 
 class AndroidInterfaceBuilder {
-  Class buildClass() {
+  Library buildLibrary() {
+    return Library(
+      (l) => l
+        ..body.add(_buildClass())
+        ..docs.addAll([
+          "// ignore_for_file: non_constant_identifier_names",
+        ]),
+    );
+  }
+
+  Class _buildClass() {
     return Class(
       (c) => c
         ..name = "VehiclePropertyDatasource"

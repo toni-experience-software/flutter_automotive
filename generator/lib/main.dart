@@ -9,7 +9,7 @@ Future<void> generate(File modelFile) async {
   final docParser = await VehicleTypeDocParser.init(modelFile);
 
   final dataGenerator = FileGenerator(path: "output/datasource.dart");
-  final datasource = AndroidInterfaceBuilder().buildClass();
+  final datasource = AndroidInterfaceBuilder().buildLibrary();
   await dataGenerator.generate(datasource);
 
   final repoGenerator = FileGenerator(path: "output/repository.dart");

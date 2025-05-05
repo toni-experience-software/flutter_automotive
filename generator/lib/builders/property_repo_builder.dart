@@ -18,6 +18,9 @@ class PropertyRepoBuilder {
         ])
         ..body.addAll([
           _buildClass(),
+        ])
+        ..docs.addAll([
+          "// ignore_for_file: slash_for_doc_comments, doc_directive_unknown_prefixes, doc_directive_unknown",
         ]),
     );
   }
@@ -54,13 +57,13 @@ class PropertyRepoBuilder {
               VehiclePropertyGetterBuilder(
                 datasource: datasourceNameRef,
                 prop: prop,
-              ).buildGetter(),
+              ).buildGetter(parser.getDocs(prop)),
             ],
             if (parser.needsSetter(prop)) ...[
               VehiclePropertySetterBuilder(
                 datasource: datasourceNameRef,
                 prop: prop,
-              ).buildSetter(),
+              ).buildSetter(parser.getDocs(prop)),
             ],
           ],
         ]),

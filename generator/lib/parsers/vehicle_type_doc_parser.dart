@@ -8,10 +8,12 @@ class VehicleTypeProperties {
   VehicleTypeProperties({
     required this.read,
     required this.write,
+    required this.docs,
   });
 
   final bool read;
   final bool write;
+  final String docs;
 }
 
 class VehicleTypeDocParser {
@@ -35,6 +37,7 @@ class VehicleTypeDocParser {
             typeProps[type] = VehicleTypeProperties(
               read: comment.contains(kReadDoc) || comment.contains(kReadWriteDoc),
               write: comment.contains(kWriteDoc) || comment.contains(kReadWriteDoc),
+              docs: comment,
             );
           } catch (_) {
             print("Error parsing vehicle property type: ${val.displayName}");
@@ -53,5 +56,9 @@ class VehicleTypeDocParser {
 
   bool needsSetter(VehicleProperty type) {
     return _typeProps[type]?.write ?? false;
+  }
+
+  String? getDocs(VehicleProperty type) {
+    return _typeProps[type]?.docs;
   }
 }
