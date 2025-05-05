@@ -1,4 +1,6 @@
-enum VehiclePropertyTypes {
+import 'package:generator/model/vehicle_property.dart';
+
+enum VehiclePropertyType {
   STRING(0x00100000),
   BOOLEAN(0x00200000),
   INT32(0x00400000),
@@ -12,7 +14,13 @@ enum VehiclePropertyTypes {
 
   static int MASK = 0x00ff0000;
 
-  const VehiclePropertyTypes(this.value);
+  const VehiclePropertyType(this.value);
 
   final int value;
+
+  static VehiclePropertyType forVehicleProperty(VehicleProperty prop) {
+    return VehiclePropertyType.values.firstWhere(
+      (v) => VehiclePropertyType.MASK & prop.id == v.value,
+    );
+  }
 }

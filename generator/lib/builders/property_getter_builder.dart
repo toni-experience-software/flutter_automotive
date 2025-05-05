@@ -1,0 +1,41 @@
+import 'package:code_builder/code_builder.dart';
+import 'package:generator/model/vehicle_property.dart';
+import 'package:generator/model/vehicle_property_types.dart';
+
+class VehiclePropertyGetterBuilder {
+  const VehiclePropertyGetterBuilder(this.prop);
+
+  final VehicleProperty prop;
+
+  VehiclePropertyType get type => VehiclePropertyType.forVehicleProperty(prop);
+
+  Reference get _returnTypeForProperty => switch (type) {
+    VehiclePropertyType.STRING => refer("String"),
+    VehiclePropertyType.BOOLEAN => refer("bool"),
+    VehiclePropertyType.INT32 => refer("int"),
+    VehiclePropertyType.INT32_VEC => refer("List<int>"),
+    VehiclePropertyType.INT64 => refer("int"),
+    VehiclePropertyType.INT64_VEC => refer("List<int>"),
+    VehiclePropertyType.FLOAT => refer("double"),
+    VehiclePropertyType.FLOAT_VEC => refer("List<double>"),
+    VehiclePropertyType.BYTES => refer("List<int>"),
+    VehiclePropertyType.MIXED => refer("dynamic"),
+  };
+
+  String get _getterName {
+    return [
+      "get",
+      for (final p in prop.name.split("_")) ...[
+        "${p[0]}${p.substring(1).toLowerCase()}",
+      ],
+    ].join("");
+  }
+
+  Method buildGetter() {
+    return Method(
+      (m) => m
+        ..name = _getterName
+        ..returns = _returnTypeForProperty,
+    );
+  }
+}
