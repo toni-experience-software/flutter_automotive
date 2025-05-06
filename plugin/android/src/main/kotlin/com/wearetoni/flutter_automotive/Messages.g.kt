@@ -37,6 +37,36 @@ private object MessagesPigeonUtils {
       )
     }
   }
+  fun deepEquals(a: Any?, b: Any?): Boolean {
+    if (a is ByteArray && b is ByteArray) {
+        return a.contentEquals(b)
+    }
+    if (a is IntArray && b is IntArray) {
+        return a.contentEquals(b)
+    }
+    if (a is LongArray && b is LongArray) {
+        return a.contentEquals(b)
+    }
+    if (a is DoubleArray && b is DoubleArray) {
+        return a.contentEquals(b)
+    }
+    if (a is Array<*> && b is Array<*>) {
+      return a.size == b.size &&
+          a.indices.all{ deepEquals(a[it], b[it]) }
+    }
+    if (a is List<*> && b is List<*>) {
+      return a.size == b.size &&
+          a.indices.all{ deepEquals(a[it], b[it]) }
+    }
+    if (a is Map<*, *> && b is Map<*, *>) {
+      return a.size == b.size && a.all {
+          (b as Map<Any?, Any?>).containsKey(it.key) &&
+          deepEquals(it.value, b[it.key])
+      }
+    }
+    return a == b
+  }
+      
 }
 
 /**
@@ -78,12 +108,51 @@ enum class CarPermissions(val raw: Int) {
     }
   }
 }
+
+/** Generated class from Pigeon that represents data sent in messages. */
+data class PropertyUpdateEvent (
+  val value: Any? = null,
+  val propertyId: Long,
+  val areaId: Long
+)
+ {
+  companion object {
+    fun fromList(pigeonVar_list: List<Any?>): PropertyUpdateEvent {
+      val value = pigeonVar_list[0]
+      val propertyId = pigeonVar_list[1] as Long
+      val areaId = pigeonVar_list[2] as Long
+      return PropertyUpdateEvent(value, propertyId, areaId)
+    }
+  }
+  fun toList(): List<Any?> {
+    return listOf(
+      value,
+      propertyId,
+      areaId,
+    )
+  }
+  override fun equals(other: Any?): Boolean {
+    if (other !is PropertyUpdateEvent) {
+      return false
+    }
+    if (this === other) {
+      return true
+    }
+    return MessagesPigeonUtils.deepEquals(toList(), other.toList())  }
+
+  override fun hashCode(): Int = toList().hashCode()
+}
 private open class MessagesPigeonCodec : StandardMessageCodec() {
   override fun readValueOfType(type: Byte, buffer: ByteBuffer): Any? {
     return when (type) {
       129.toByte() -> {
         return (readValue(buffer) as Long?)?.let {
           CarPermissions.ofRaw(it.toInt())
+        }
+      }
+      130.toByte() -> {
+        return (readValue(buffer) as? List<Any?>)?.let {
+          PropertyUpdateEvent.fromList(it)
         }
       }
       else -> super.readValueOfType(type, buffer)
@@ -95,16 +164,24 @@ private open class MessagesPigeonCodec : StandardMessageCodec() {
         stream.write(129)
         writeValue(stream, value.raw)
       }
+      is PropertyUpdateEvent -> {
+        stream.write(130)
+        writeValue(stream, value.toList())
+      }
       else -> super.writeValue(stream, value)
     }
   }
 }
+
+val MessagesPigeonMethodCodec = StandardMethodCodec(MessagesPigeonCodec())
 
 
 /** Generated interface from Pigeon that represents a handler of messages from Flutter. */
 interface FlutterAutomotiveApi {
   fun getProperty(propertyId: Long, areaId: Long, callback: (Result<Any?>) -> Unit)
   fun setProperty(propertyId: Long, areaId: Long, value: Any?, callback: (Result<Unit>) -> Unit)
+  fun subscribeProperty(propertyId: Long, areaId: Long)
+  fun unsubscribeProperty(propertyId: Long, areaId: Long)
   fun isPermissionGranted(permission: CarPermissions): Boolean
   fun requestPermission(permission: CarPermissions)
 
@@ -160,6 +237,44 @@ interface FlutterAutomotiveApi {
         }
       }
       run {
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.subscribeProperty$separatedMessageChannelSuffix", codec)
+        if (api != null) {
+          channel.setMessageHandler { message, reply ->
+            val args = message as List<Any?>
+            val propertyIdArg = args[0] as Long
+            val areaIdArg = args[1] as Long
+            val wrapped: List<Any?> = try {
+              api.subscribeProperty(propertyIdArg, areaIdArg)
+              listOf(null)
+            } catch (exception: Throwable) {
+              MessagesPigeonUtils.wrapError(exception)
+            }
+            reply.reply(wrapped)
+          }
+        } else {
+          channel.setMessageHandler(null)
+        }
+      }
+      run {
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.unsubscribeProperty$separatedMessageChannelSuffix", codec)
+        if (api != null) {
+          channel.setMessageHandler { message, reply ->
+            val args = message as List<Any?>
+            val propertyIdArg = args[0] as Long
+            val areaIdArg = args[1] as Long
+            val wrapped: List<Any?> = try {
+              api.unsubscribeProperty(propertyIdArg, areaIdArg)
+              listOf(null)
+            } catch (exception: Throwable) {
+              MessagesPigeonUtils.wrapError(exception)
+            }
+            reply.reply(wrapped)
+          }
+        } else {
+          channel.setMessageHandler(null)
+        }
+      }
+      run {
         val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.isPermissionGranted$separatedMessageChannelSuffix", codec)
         if (api != null) {
           channel.setMessageHandler { message, reply ->
@@ -197,3 +312,53 @@ interface FlutterAutomotiveApi {
     }
   }
 }
+
+private class MessagesPigeonStreamHandler<T>(
+    val wrapper: MessagesPigeonEventChannelWrapper<T>
+) : EventChannel.StreamHandler {
+  var pigeonSink: PigeonEventSink<T>? = null
+
+  override fun onListen(p0: Any?, sink: EventChannel.EventSink) {
+    pigeonSink = PigeonEventSink<T>(sink)
+    wrapper.onListen(p0, pigeonSink!!)
+  }
+
+  override fun onCancel(p0: Any?) {
+    pigeonSink = null
+    wrapper.onCancel(p0)
+  }
+}
+
+interface MessagesPigeonEventChannelWrapper<T> {
+  open fun onListen(p0: Any?, sink: PigeonEventSink<T>) {}
+
+  open fun onCancel(p0: Any?) {}
+}
+
+class PigeonEventSink<T>(private val sink: EventChannel.EventSink) {
+  fun success(value: T) {
+    sink.success(value)
+  }
+
+  fun error(errorCode: String, errorMessage: String?, errorDetails: Any?) {
+    sink.error(errorCode, errorMessage, errorDetails)
+  }
+
+  fun endOfStream() {
+    sink.endOfStream()
+  }
+}
+      
+abstract class ReceiveEventsStreamHandler : MessagesPigeonEventChannelWrapper<PropertyUpdateEvent> {
+  companion object {
+    fun register(messenger: BinaryMessenger, streamHandler: ReceiveEventsStreamHandler, instanceName: String = "") {
+      var channelName: String = "dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveEventApi.receiveEvents"
+      if (instanceName.isNotEmpty()) {
+        channelName += ".$instanceName"
+      }
+      val internalStreamHandler = MessagesPigeonStreamHandler<PropertyUpdateEvent>(streamHandler)
+      EventChannel(messenger, channelName, MessagesPigeonMethodCodec).setStreamHandler(internalStreamHandler)
+    }
+  }
+}
+      

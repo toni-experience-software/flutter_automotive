@@ -2,7 +2,7 @@ package com.wearetoni.flutter_automotive
 
 import android.app.Activity
 import android.car.Car
-import android.car.hardware.CarPropertyValue.STATUS_AVAILABLE
+import android.car.hardware.CarPropertyValue
 import android.car.hardware.property.CarPropertyManager
 import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
@@ -12,13 +12,18 @@ import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 
 /** FlutterAutomotivePlugin */
 class FlutterAutomotivePlugin: FlutterPlugin, ActivityAware, FlutterAutomotiveApi {
-  private var activity: Activity? = null;
-  private lateinit var propertyManager: CarPropertyManager;
+  private var activity: Activity? = null
+  private lateinit var propertyManager: CarPropertyManager
+  private lateinit var eventListener: PropertyUpdateEventHandler
+
+  private val eventCallbacks: MutableMap<Pair<Long, Long>, CarPropertyManager.CarPropertyEventCallback> = mutableMapOf()
 
   // --- Setup ---
 
   override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     FlutterAutomotiveApi.setUp(flutterPluginBinding.binaryMessenger, this)
+    eventListener = PropertyUpdateEventHandler()
+    ReceiveEventsStreamHandler.register(flutterPluginBinding.binaryMessenger, eventListener)
     val car = Car.createCar(flutterPluginBinding.applicationContext)
     propertyManager = car.getCarManager(Car.PROPERTY_SERVICE) as CarPropertyManager
   }
@@ -65,6 +70,31 @@ class FlutterAutomotivePlugin: FlutterPlugin, ActivityAware, FlutterAutomotiveAp
     // TODO test if the class property works
     propertyManager.setProperty(value?.javaClass, propertyId.toInt(), areaId.toInt(), value)
     callback(Result.success(Unit))
+  }
+
+  override fun subscribeProperty(propertyId: Long, areaId: Long) {
+    val callback = object : CarPropertyManager.CarPropertyEventCallback {
+      override fun onChangeEvent(carPropertyValue: CarPropertyValue<*>) {
+        try {
+          eventListener.sendEvent(propertyId, areaId, carPropertyValue.value)
+        } catch (e: Exception) {
+          // TODO log error
+        }
+      }
+
+      override fun onErrorEvent(p0: Int, p1: Int) {
+        // TODO implement
+      }
+    }
+    eventCallbacks[Pair(propertyId, areaId)] = callback
+    propertyManager.subscribePropertyEvents(propertyId.toInt(), areaId.toInt(), callback)
+  }
+
+  override fun unsubscribeProperty(propertyId: Long, areaId: Long) {
+    val callback = eventCallbacks[Pair(propertyId, areaId)]
+    if (callback != null) {
+      propertyManager.unsubscribePropertyEvents(callback)
+    }
   }
 
   // Permissions

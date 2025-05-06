@@ -44,7 +44,28 @@ abstract class FlutterAutomotiveApi {
   @async
   void setProperty(int propertyId, int areaId, Object? value);
 
+  void subscribeProperty(int propertyId, int areaId);
+
+  void unsubscribeProperty(int propertyId, int areaId);
+
   bool isPermissionGranted(CarPermissions permission);
 
   void requestPermission(CarPermissions permission);
+}
+
+class PropertyUpdateEvent {
+  const PropertyUpdateEvent({
+    required this.value,
+    required this.propertyId,
+    required this.areaId,
+  });
+
+  final Object? value;
+  final int propertyId;
+  final int areaId;
+}
+
+@EventChannelApi()
+abstract class FlutterAutomotiveEventApi {
+  PropertyUpdateEvent receiveEvents();
 }

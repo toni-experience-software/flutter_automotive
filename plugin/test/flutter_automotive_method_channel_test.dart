@@ -25,6 +25,16 @@ class _TestApi implements TestHostFlutterAutomotiveApi {
   void requestPermission(CarPermissions permission) {
     // TODO: implement requestPermission
   }
+  
+  @override
+  void subscribeProperty(int propertyId, int areaId) {
+    // TODO: implement subscribeProperty
+  }
+  
+  @override
+  void unsubscribeProperty(int propertyId, int areaId) {
+    // TODO: implement unsubscribeProperty
+  }
 }
 
 void main() {

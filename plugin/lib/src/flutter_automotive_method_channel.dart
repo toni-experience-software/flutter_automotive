@@ -1,8 +1,26 @@
+import 'dart:async';
+
 import 'package:flutter_automotive/src/flutter_automotive_platform_interface.dart';
 import 'package:flutter_automotive/src/messages.g.dart';
+import 'package:flutter_automotive/src/property_stream.dart';
 
 class MethodChannelFlutterAutomotive extends FlutterAutomotivePlatform {
+  MethodChannelFlutterAutomotive() {
+    _handleEvent();
+  }
+
   final FlutterAutomotiveApi _api = FlutterAutomotiveApi();
+  final Map<(int, int), StreamController<dynamic>> _propertyStreams = {};
+
+  void _handleEvent() {
+    final events = receiveEvents();
+    events.listen(
+      (event) {
+        final controller = _propertyStreams[(event.propertyId, event.areaId)];
+        controller?.add(event.value);
+      }
+    );
+  }
   
   @override
   Future<dynamic> getProperty(int propertyId, int areaId) async {
@@ -12,6 +30,20 @@ class MethodChannelFlutterAutomotive extends FlutterAutomotivePlatform {
   @override
   Future<void> setProperty(int propertyId, int areaId, value) {
     return _api.setProperty(propertyId, areaId, value);
+  }
+
+  @override
+  PropertyStreamData<dynamic> subscribeProperty(int propertyId, int areaId) {
+    final controller = StreamController<dynamic>();
+    _propertyStreams[(propertyId, areaId)] = controller;
+    _api.subscribeProperty(propertyId, areaId);
+    return PropertyStreamData<dynamic>(
+      stream: controller.stream,
+      onUnsubscribe: () {
+        _api.unsubscribeProperty(propertyId, areaId);
+        _propertyStreams.remove((propertyId, areaId))?.close();
+      },
+    );
   }
   
   @override
