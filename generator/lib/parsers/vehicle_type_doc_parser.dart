@@ -76,11 +76,6 @@ class VehicleTypeDocParser {
               writePrivileged: writeLis.any(_needsPrivilegedPermission),
               docs: comment,
             );
-
-            if (type == VehicleProperty.INFO_VIN) {
-              print(readLis);
-              print(readLis.any(_needsPrivilegedPermission));
-            }
           } catch (_) {
             print("Error parsing vehicle property type: ${val.displayName}");
           }
