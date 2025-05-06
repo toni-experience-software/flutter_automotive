@@ -53,11 +53,7 @@ class FlutterAutomotivePlugin: FlutterPlugin, ActivityAware, FlutterAutomotiveAp
     callback: (kotlin.Result<Any?>) -> Unit
   ) {
     val prop = propertyManager.getProperty<Any>(propertyId.toInt(), areaId.toInt())
-    if (prop.propertyStatus == STATUS_AVAILABLE) {
-      callback(Result.success(prop.value));
-    } else {
-      callback(Result.failure(Exception("Property not available")))
-    }
+    callback(Result.success(prop.value));
   }
 
   override fun setProperty(
