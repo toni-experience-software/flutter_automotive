@@ -22,6 +22,7 @@ class PropertyTypeMethodInterfaceBuilder {
 
   String get getterName => "getProperty${type.name}";
   String get setterName => "setProperty${type.name}";
+  String get listenName => "listenProperty${type.name}";
 
   Method buildGetter() {
     return Method(
@@ -89,6 +90,34 @@ class PropertyTypeMethodInterfaceBuilder {
               refer("areaId"),
               refer("value"),
             ]).awaited.returned.statement,
+          ]),
+        ),
+    );
+  }
+
+  Method buildListen() {
+    return Method(
+      (m) => m
+        ..name = listenName
+        ..returns = refer("PropertyStreamData<${_returnTypeForProperty.symbol}>")
+        ..requiredParameters.addAll([
+          Parameter(
+            (p) => p
+              ..name = "propertyId"
+              ..type = refer("int"),
+          ),
+          Parameter(
+            (p) => p
+              ..name = "areaId"
+              ..type = refer("int"),
+          ),
+        ])
+        ..body = Block(
+          (b) => b..statements.addAll([
+            refer("listenProperty<${_returnTypeForProperty.symbol}>").call([
+              refer("propertyId"),
+              refer("areaId"),
+            ]).returned.statement,
           ]),
         ),
     );

@@ -49,4 +49,24 @@ class PropertyGeneralMethodInterfaceBuilder {
         ]),
     );
   }
+
+  Method buildListen() {
+    return Method(
+      (m) => m
+        ..name = "listenProperty<T>"
+        ..returns = refer("PropertyStreamData<T>")
+        ..requiredParameters.addAll([
+          Parameter(
+            (p) => p
+              ..name = "propertyId"
+              ..type = refer("int"),
+          ),
+          Parameter(
+            (p) => p
+              ..name = "areaId"
+              ..type = refer("int"),
+          ),
+        ]),
+    );
+  }
 }

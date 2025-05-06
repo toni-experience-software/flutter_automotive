@@ -22,8 +22,8 @@ class MockFlutterAutomotivePlatform
   Future<void> requestPermission(CarPermissions permission) async {}
 
   @override
-  PropertyStreamData subscribeProperty(int propertyId, int areaId) {
-    return PropertyStreamData<dynamic>(
+  PropertyStreamData<T> subscribeProperty<T>(int propertyId, int areaId) {
+    return PropertyStreamData(
       stream: Stream.empty(),
       onUnsubscribe: () {},
     );

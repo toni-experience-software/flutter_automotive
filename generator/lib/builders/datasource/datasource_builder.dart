@@ -22,9 +22,11 @@ class AndroidInterfaceBuilder {
         ..methods.addAll([
           PropertyGeneralMethodInterfaceBuilder().buildGetter(),
           PropertyGeneralMethodInterfaceBuilder().buildSetter(),
+          PropertyGeneralMethodInterfaceBuilder().buildListen(),
           for (final type in VehiclePropertyType.values) ...[
             PropertyTypeMethodInterfaceBuilder(type).buildGetter(),
             PropertyTypeMethodInterfaceBuilder(type).buildSetter(),
+            PropertyTypeMethodInterfaceBuilder(type).buildListen(),
           ],
         ]),
     );

@@ -33,11 +33,11 @@ class MethodChannelFlutterAutomotive extends FlutterAutomotivePlatform {
   }
 
   @override
-  PropertyStreamData<dynamic> subscribeProperty(int propertyId, int areaId) {
-    final controller = StreamController<dynamic>();
+  PropertyStreamData<T> subscribeProperty<T>(int propertyId, int areaId) {
+    final controller = StreamController<T>();
     _propertyStreams[(propertyId, areaId)] = controller;
     _api.subscribeProperty(propertyId, areaId);
-    return PropertyStreamData<dynamic>(
+    return PropertyStreamData<T>(
       stream: controller.stream,
       onUnsubscribe: () {
         _api.unsubscribeProperty(propertyId, areaId);

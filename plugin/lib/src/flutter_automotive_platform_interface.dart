@@ -30,7 +30,7 @@ abstract class FlutterAutomotivePlatform extends PlatformInterface {
 
   Future<void> setProperty(int propertyId, int areaId, dynamic value);
 
-  PropertyStreamData subscribeProperty(int propertyId, int areaId);
+  PropertyStreamData<T> subscribeProperty<T>(int propertyId, int areaId);
 
   Future<bool> isPermissionGranted(CarPermissions permission);
 
