@@ -1631,45 +1631,6 @@ class VehiclePropertyRepository {
   }
 
   /**
-     * Distance units for display.
-     *
-     * <p>Indicates which units the car is using to display distances to the user.
-     *
-     * <p>configArray represents the list of supported units for {@code
-     * DISTANCE_DISPLAY_UNITS}. Here is an example configArray:
-     * <ul>
-     *  <li>configArray[0] = {@link VehicleUnit#METER}
-     *  <li>configArray[1] = {@link VehicleUnit#KILOMETER}
-     *  <li>configArray[2] = {@link VehicleUnit#MILE}
-     * </ul>
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
-     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Integer} property type
-     * </ul>
-     *
-     * <p>Required Permissions:
-     * <ul>
-     *  <li>Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} to read property.
-     *  <li>Normal permission {@link Car#PERMISSION_CONTROL_DISPLAY_UNITS} and Signature|Privileged
-     *  permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
-     * </ul>
-     *
-     * @data_enum {@link VehicleUnit}
-     */
-  Future<void> setDistanceDisplayUnits(int value) async {
-    return datasource.setPropertyINT32(
-      VehicleProperty.DISTANCE_DISPLAY_UNITS.id,
-      0,
-      value,
-    );
-  }
-
-  /**
      * Fuel volume units for display.
      *
      * <p>Indicates which units the car is using to display fuel volume to the user.
@@ -1703,44 +1664,6 @@ class VehiclePropertyRepository {
     return datasource.getPropertyINT32(
       VehicleProperty.FUEL_VOLUME_DISPLAY_UNITS.id,
       0,
-    );
-  }
-
-  /**
-     * Fuel volume units for display.
-     *
-     * <p>Indicates which units the car is using to display fuel volume to the user.
-     *
-     * <p>configArray represents the list of supported units for {@code
-     * FUEL_VOLUME_DISPLAY_UNITS}. Here is an example configArray:
-     * <ul>
-     *  <li>configArray[0] = {@link VehicleUnit#LITER}
-     *  <li>configArray[1] = {@link VehicleUnit#US_GALLON}
-     * </ul>
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
-     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Integer} property type
-     * </ul>
-     *
-     * <p>Required Permissions:
-     * <ul>
-     *  <li>Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} to read property.
-     *  <li>Normal permission {@link Car#PERMISSION_CONTROL_DISPLAY_UNITS} and Signature|Privileged
-     *  permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
-     * </ul>
-     *
-     * @data_enum {@link VehicleUnit}
-     */
-  Future<void> setFuelVolumeDisplayUnits(int value) async {
-    return datasource.setPropertyINT32(
-      VehicleProperty.FUEL_VOLUME_DISPLAY_UNITS.id,
-      0,
-      value,
     );
   }
 
@@ -1783,45 +1706,6 @@ class VehiclePropertyRepository {
   }
 
   /**
-     * Tire pressure units for display.
-     *
-     * <p>Indicates which units the car is using to display tire pressure to the user.
-     *
-     * <p>configArray represents the list of supported units for {@code
-     * TIRE_PRESSURE_DISPLAY_UNITS}. Here is an example configArray:
-     * <ul>
-     *  <li>configArray[0] = {@link VehicleUnit#KILOPASCAL}
-     *  <li>configArray[1] = {@link VehicleUnit#PSI}
-     *  <li>configArray[2] = {@link VehicleUnit#BAR}
-     * </ul>
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
-     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Integer} property type
-     * </ul>
-     *
-     * <p>Required Permissions:
-     * <ul>
-     *  <li>Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} to read property.
-     *  <li>Normal permission {@link Car#PERMISSION_CONTROL_DISPLAY_UNITS} and Signature|Privileged
-     *  permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
-     * </ul>
-     *
-     * @data_enum {@link VehicleUnit}
-     */
-  Future<void> setTirePressureDisplayUnits(int value) async {
-    return datasource.setPropertyINT32(
-      VehicleProperty.TIRE_PRESSURE_DISPLAY_UNITS.id,
-      0,
-      value,
-    );
-  }
-
-  /**
      * EV battery units for display.
      *
      * <p>Indicates which units the vehicle is using to display EV battery information to the user.
@@ -1856,45 +1740,6 @@ class VehiclePropertyRepository {
     return datasource.getPropertyINT32(
       VehicleProperty.EV_BATTERY_DISPLAY_UNITS.id,
       0,
-    );
-  }
-
-  /**
-     * EV battery units for display.
-     *
-     * <p>Indicates which units the vehicle is using to display EV battery information to the user.
-     *
-     * <p>configArray represents the list of supported units for {@code
-     * EV_BATTERY_DISPLAY_UNITS}. Here is an example configArray:
-     * <ul>
-     *  <li>configArray[0] = {@link VehicleUnit#WATT_HOUR}
-     *  <li>configArray[1] = {@link VehicleUnit#AMPERE_HOURS}
-     *  <li>configArray[2] = {@link VehicleUnit#KILOWATT_HOUR}
-     * </ul>
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
-     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Integer} property type
-     * </ul>
-     *
-     * <p>Required Permissions:
-     * <ul>
-     *  <li>Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} to read property.
-     *  <li>Normal permission {@link Car#PERMISSION_CONTROL_DISPLAY_UNITS} and Signature|Privileged
-     *  permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
-     * </ul>
-     *
-     * @data_enum {@link VehicleUnit}
-     */
-  Future<void> setEvBatteryDisplayUnits(int value) async {
-    return datasource.setPropertyINT32(
-      VehicleProperty.EV_BATTERY_DISPLAY_UNITS.id,
-      0,
-      value,
     );
   }
 
@@ -1937,45 +1782,6 @@ class VehiclePropertyRepository {
   }
 
   /**
-     * Speed units for display.
-     *
-     * <p>Indicates type of units the vehicle is using to display speed to user.
-     *
-     * <p>configArray represents the list of supported units for {@code
-     * VEHICLE_SPEED_DISPLAY_UNITS}. Here is an example configArray:
-     * <ul>
-     *  <li>configArray[0] = {@link VehicleUnit#METER_PER_SEC}
-     *  <li>configArray[1] = {@link VehicleUnit#MILES_PER_HOUR}
-     *  <li>configArray[2] = {@link VehicleUnit#KILOMETERS_PER_HOUR}
-     * </ul>
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
-     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Integer} property type
-     * </ul>
-     *
-     * <p>Required Permissions:
-     * <ul>
-     *  <li>Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} to read property.
-     *  <li>Normal permission {@link Car#PERMISSION_CONTROL_DISPLAY_UNITS} and Signature|Privileged
-     *  permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
-     * </ul>
-     *
-     * @data_enum {@link VehicleUnit}
-     */
-  Future<void> setVehicleSpeedDisplayUnits(int value) async {
-    return datasource.setPropertyINT32(
-      VehicleProperty.VEHICLE_SPEED_DISPLAY_UNITS.id,
-      0,
-      value,
-    );
-  }
-
-  /**
      * Fuel consumption units for display.
      *
      * <p>Indicates type of units the car is using to display fuel consumption information to user.
@@ -2004,39 +1810,6 @@ class VehiclePropertyRepository {
     return datasource.getPropertyBOOLEAN(
       VehicleProperty.FUEL_CONSUMPTION_UNITS_DISTANCE_OVER_VOLUME.id,
       0,
-    );
-  }
-
-  /**
-     * Fuel consumption units for display.
-     *
-     * <p>Indicates type of units the car is using to display fuel consumption information to user.
-     *
-     * <p>{@code true} indicates units are distance over volume such as MPG.
-     *
-     * <p>{@code false} indicates units are volume over distance such as L/100KM.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
-     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Boolean} property type
-     * </ul>
-     *
-     * <p>Required Permissions:
-     * <ul>
-     *  <li>Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} to read property.
-     *  <li>Normal permission {@link Car#PERMISSION_CONTROL_DISPLAY_UNITS} and Signature|Privileged
-     *  permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
-     * </ul>
-     */
-  Future<void> setFuelConsumptionUnitsDistanceOverVolume(bool value) async {
-    return datasource.setPropertyBOOLEAN(
-      VehicleProperty.FUEL_CONSUMPTION_UNITS_DISTANCE_OVER_VOLUME.id,
-      0,
-      value,
     );
   }
 
@@ -4927,6 +4700,233 @@ class VehiclePrivilegedPropertyRepository {
     return datasource.setPropertyBOOLEAN(
       VehicleProperty.HVAC_ELECTRIC_DEFROSTER_ON.id,
       area.value,
+      value,
+    );
+  }
+
+  /**
+     * Distance units for display.
+     *
+     * <p>Indicates which units the car is using to display distances to the user.
+     *
+     * <p>configArray represents the list of supported units for {@code
+     * DISTANCE_DISPLAY_UNITS}. Here is an example configArray:
+     * <ul>
+     *  <li>configArray[0] = {@link VehicleUnit#METER}
+     *  <li>configArray[1] = {@link VehicleUnit#KILOMETER}
+     *  <li>configArray[2] = {@link VehicleUnit#MILE}
+     * </ul>
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
+     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Integer} property type
+     * </ul>
+     *
+     * <p>Required Permissions:
+     * <ul>
+     *  <li>Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} to read property.
+     *  <li>Normal permission {@link Car#PERMISSION_CONTROL_DISPLAY_UNITS} and Signature|Privileged
+     *  permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
+     * </ul>
+     *
+     * @data_enum {@link VehicleUnit}
+     */
+  Future<void> setDistanceDisplayUnits(int value) async {
+    return datasource.setPropertyINT32(
+      VehicleProperty.DISTANCE_DISPLAY_UNITS.id,
+      0,
+      value,
+    );
+  }
+
+  /**
+     * Fuel volume units for display.
+     *
+     * <p>Indicates which units the car is using to display fuel volume to the user.
+     *
+     * <p>configArray represents the list of supported units for {@code
+     * FUEL_VOLUME_DISPLAY_UNITS}. Here is an example configArray:
+     * <ul>
+     *  <li>configArray[0] = {@link VehicleUnit#LITER}
+     *  <li>configArray[1] = {@link VehicleUnit#US_GALLON}
+     * </ul>
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
+     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Integer} property type
+     * </ul>
+     *
+     * <p>Required Permissions:
+     * <ul>
+     *  <li>Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} to read property.
+     *  <li>Normal permission {@link Car#PERMISSION_CONTROL_DISPLAY_UNITS} and Signature|Privileged
+     *  permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
+     * </ul>
+     *
+     * @data_enum {@link VehicleUnit}
+     */
+  Future<void> setFuelVolumeDisplayUnits(int value) async {
+    return datasource.setPropertyINT32(
+      VehicleProperty.FUEL_VOLUME_DISPLAY_UNITS.id,
+      0,
+      value,
+    );
+  }
+
+  /**
+     * Tire pressure units for display.
+     *
+     * <p>Indicates which units the car is using to display tire pressure to the user.
+     *
+     * <p>configArray represents the list of supported units for {@code
+     * TIRE_PRESSURE_DISPLAY_UNITS}. Here is an example configArray:
+     * <ul>
+     *  <li>configArray[0] = {@link VehicleUnit#KILOPASCAL}
+     *  <li>configArray[1] = {@link VehicleUnit#PSI}
+     *  <li>configArray[2] = {@link VehicleUnit#BAR}
+     * </ul>
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
+     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Integer} property type
+     * </ul>
+     *
+     * <p>Required Permissions:
+     * <ul>
+     *  <li>Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} to read property.
+     *  <li>Normal permission {@link Car#PERMISSION_CONTROL_DISPLAY_UNITS} and Signature|Privileged
+     *  permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
+     * </ul>
+     *
+     * @data_enum {@link VehicleUnit}
+     */
+  Future<void> setTirePressureDisplayUnits(int value) async {
+    return datasource.setPropertyINT32(
+      VehicleProperty.TIRE_PRESSURE_DISPLAY_UNITS.id,
+      0,
+      value,
+    );
+  }
+
+  /**
+     * EV battery units for display.
+     *
+     * <p>Indicates which units the vehicle is using to display EV battery information to the user.
+     *
+     * <p>configArray represents the list of supported units for {@code
+     * EV_BATTERY_DISPLAY_UNITS}. Here is an example configArray:
+     * <ul>
+     *  <li>configArray[0] = {@link VehicleUnit#WATT_HOUR}
+     *  <li>configArray[1] = {@link VehicleUnit#AMPERE_HOURS}
+     *  <li>configArray[2] = {@link VehicleUnit#KILOWATT_HOUR}
+     * </ul>
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
+     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Integer} property type
+     * </ul>
+     *
+     * <p>Required Permissions:
+     * <ul>
+     *  <li>Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} to read property.
+     *  <li>Normal permission {@link Car#PERMISSION_CONTROL_DISPLAY_UNITS} and Signature|Privileged
+     *  permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
+     * </ul>
+     *
+     * @data_enum {@link VehicleUnit}
+     */
+  Future<void> setEvBatteryDisplayUnits(int value) async {
+    return datasource.setPropertyINT32(
+      VehicleProperty.EV_BATTERY_DISPLAY_UNITS.id,
+      0,
+      value,
+    );
+  }
+
+  /**
+     * Speed units for display.
+     *
+     * <p>Indicates type of units the vehicle is using to display speed to user.
+     *
+     * <p>configArray represents the list of supported units for {@code
+     * VEHICLE_SPEED_DISPLAY_UNITS}. Here is an example configArray:
+     * <ul>
+     *  <li>configArray[0] = {@link VehicleUnit#METER_PER_SEC}
+     *  <li>configArray[1] = {@link VehicleUnit#MILES_PER_HOUR}
+     *  <li>configArray[2] = {@link VehicleUnit#KILOMETERS_PER_HOUR}
+     * </ul>
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
+     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Integer} property type
+     * </ul>
+     *
+     * <p>Required Permissions:
+     * <ul>
+     *  <li>Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} to read property.
+     *  <li>Normal permission {@link Car#PERMISSION_CONTROL_DISPLAY_UNITS} and Signature|Privileged
+     *  permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
+     * </ul>
+     *
+     * @data_enum {@link VehicleUnit}
+     */
+  Future<void> setVehicleSpeedDisplayUnits(int value) async {
+    return datasource.setPropertyINT32(
+      VehicleProperty.VEHICLE_SPEED_DISPLAY_UNITS.id,
+      0,
+      value,
+    );
+  }
+
+  /**
+     * Fuel consumption units for display.
+     *
+     * <p>Indicates type of units the car is using to display fuel consumption information to user.
+     *
+     * <p>{@code true} indicates units are distance over volume such as MPG.
+     *
+     * <p>{@code false} indicates units are volume over distance such as L/100KM.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
+     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Boolean} property type
+     * </ul>
+     *
+     * <p>Required Permissions:
+     * <ul>
+     *  <li>Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} to read property.
+     *  <li>Normal permission {@link Car#PERMISSION_CONTROL_DISPLAY_UNITS} and Signature|Privileged
+     *  permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
+     * </ul>
+     */
+  Future<void> setFuelConsumptionUnitsDistanceOverVolume(bool value) async {
+    return datasource.setPropertyBOOLEAN(
+      VehicleProperty.FUEL_CONSUMPTION_UNITS_DISTANCE_OVER_VOLUME.id,
+      0,
       value,
     );
   }
