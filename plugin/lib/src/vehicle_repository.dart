@@ -5,31 +5,12 @@ import 'package:flutter_automotive_models/flutter_automotive_models.dart';
 import 'vehicle_datasource.dart';
 
 class VehiclePropertyRepository {
-  VehiclePropertyRepository(this.datasource);
+  VehiclePropertyRepository(this.datasource)
+    : privileged = VehiclePrivilegedPropertyRepository(datasource);
 
   final VehiclePropertyDatasource datasource;
 
-  /**
-     * VIN of vehicle
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_STATIC}
-     *  <li>{@code String} property type
-     * </ul>
-     *
-     * <p>Required Permission:
-     * <ul>
-     *  <li>Signature|Privileged permission {@link Car#PERMISSION_IDENTIFICATION} to read
-     *  property.
-     *  <li>Property is not writable.
-     * </ul>
-     */
-  Future<String> getInfoVin() async {
-    return datasource.getPropertySTRING(VehicleProperty.INFO_VIN.id, 0);
-  }
+  final VehiclePrivilegedPropertyRepository privileged;
 
   /**
      * Manufacturer of vehicle.
@@ -562,37 +543,6 @@ class VehiclePropertyRepository {
   }
 
   /**
-     * Rear bicycle model steering angle for vehicle in degrees.
-     *
-     * <p>Left is negative.
-     *
-     * <p>This property is independent of the angle of the steering wheel. This property
-     * communicates the angle of the rear wheels with respect to the vehicle, not the angle of the
-     * steering wheel.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_CONTINUOUS}
-     *  <li>{@code Float} property type
-     * </ul>
-     *
-     * <p>Required Permission:
-     * <ul>
-     *  <li>Signature|Privileged permission {@link Car#PERMISSION_READ_STEERING_STATE} to read
-     *  property.
-     *  <li>Property is not writable.
-     * </ul>
-     */
-  Future<double> getPerfRearSteeringAngle() async {
-    return datasource.getPropertyFLOAT(
-      VehicleProperty.PERF_REAR_STEERING_ANGLE.id,
-      0,
-    );
-  }
-
-  /**
      * Instantaneous Fuel Economy in L/100km.
      *
      * <p>This property communicates the instantaneous fuel economy of the vehicle in units of
@@ -658,80 +608,6 @@ class VehiclePropertyRepository {
   }
 
   /**
-     * Temperature of engine coolant in celsius.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_CONTINUOUS}
-     *  <li>{@code Float} property type
-     * </ul>
-     *
-     * <p>Required Permission:
-     * <ul>
-     *  <li>Signature|Privileged permission {@link Car#PERMISSION_CAR_ENGINE_DETAILED} to read
-     *  property.
-     *  <li>Property is not writable.
-     * </ul>
-     */
-  Future<double> getEngineCoolantTemp() async {
-    return datasource.getPropertyFLOAT(
-      VehicleProperty.ENGINE_COOLANT_TEMP.id,
-      0,
-    );
-  }
-
-  /**
-     * Engine oil level.
-     *
-     * <p>Returns the status of the oil level for the vehicle. See {@code VehicleOilLevel} for
-     * possible values for {@code ENGINE_OIL_LEVEL}.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Integer} property type
-     * </ul>
-     *
-     * <p>Required Permission:
-     * <ul>
-     *  <li>Signature|Privileged permission {@link Car#PERMISSION_CAR_ENGINE_DETAILED} to read
-     *  property.
-     *  <li>Property is not writable.
-     * </ul>
-     *
-     * @data_enum {@link VehicleOilLevel}
-     */
-  Future<int> getEngineOilLevel() async {
-    return datasource.getPropertyINT32(VehicleProperty.ENGINE_OIL_LEVEL.id, 0);
-  }
-
-  /**
-     * Temperature of engine oil in celsius.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_CONTINUOUS}
-     *  <li>{@code Float} property type
-     * </ul>
-     *
-     * <p>Required Permission:
-     * <ul>
-     *  <li>Signature|Privileged permission {@link Car#PERMISSION_CAR_ENGINE_DETAILED} to read
-     *  property.
-     *  <li>Property is not writable.
-     * </ul>
-     */
-  Future<double> getEngineOilTemp() async {
-    return datasource.getPropertyFLOAT(VehicleProperty.ENGINE_OIL_TEMP.id, 0);
-  }
-
-  /**
      * Engine rpm.
      *
      * <p>Property Config:
@@ -751,98 +627,6 @@ class VehiclePropertyRepository {
      */
   Future<double> getEngineRpm() async {
     return datasource.getPropertyFLOAT(VehicleProperty.ENGINE_RPM.id, 0);
-  }
-
-  /**
-     * Represents feature for engine idle automatic stop.
-     *
-     * <p>If true, the vehicle may automatically shut off the engine when it is not needed and then
-     * automatically restart it when needed.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
-     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Boolean} property type
-     * </ul>
-     *
-     * <p>Required Permission:
-     * <ul>
-     *  <li>Signature|Privileged permission {@link Car#PERMISSION_CAR_ENGINE_DETAILED} to read and
-     *  write property.
-     * </ul>
-     */
-  Future<bool> getEngineIdleAutoStopEnabled() async {
-    return datasource.getPropertyBOOLEAN(
-      VehicleProperty.ENGINE_IDLE_AUTO_STOP_ENABLED.id,
-      0,
-    );
-  }
-
-  /**
-     * Represents feature for engine idle automatic stop.
-     *
-     * <p>If true, the vehicle may automatically shut off the engine when it is not needed and then
-     * automatically restart it when needed.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
-     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Boolean} property type
-     * </ul>
-     *
-     * <p>Required Permission:
-     * <ul>
-     *  <li>Signature|Privileged permission {@link Car#PERMISSION_CAR_ENGINE_DETAILED} to read and
-     *  write property.
-     * </ul>
-     */
-  Future<void> setEngineIdleAutoStopEnabled(bool value) async {
-    return datasource.setPropertyBOOLEAN(
-      VehicleProperty.ENGINE_IDLE_AUTO_STOP_ENABLED.id,
-      0,
-      value,
-    );
-  }
-
-  /**
-     * Impact detected.
-     *
-     * <p>Bit flag property to relay information on whether an impact has occurred on a particular
-     * side of the vehicle as described through the {@link
-     * android.car.hardware.property.ImpactSensorLocation} enum. As a bit flag property, this
-     * property can be set to multiple ORed together values of the enum when necessary.
-     *
-     * <p>For the global area ID (0, the {@link
-     * android.car.hardware.property.AreaIdConfig#getSupportedEnumValues()} array obtained from
-     * {@link android.car.hardware.CarPropertyConfig#getAreaIdConfig(int)} specifies which bit flags
-     * from {@link android.car.hardware.property.ImpactSensorLocation} are supported.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Integer} property type
-     * </ul>
-     *
-     * <p>Required Permission:
-     * <ul>
-     *  <li>Signature|Privileged permission {@link Car#PERMISSION_READ_IMPACT_SENSORS} to read
-     *  property.
-     *  <li>Property is not writable.
-     * </ul>
-     *
-     * @data_enum {@link android.car.hardware.property.ImpactSensorLocation}
-     *
-     */
-  Future<int> getImpactDetected() async {
-    return datasource.getPropertyINT32(VehicleProperty.IMPACT_DETECTED.id, 0);
   }
 
   /**
@@ -1020,39 +804,6 @@ class VehiclePropertyRepository {
   }
 
   /**
-     * Fuel door open.
-     *
-     * <p>This property communicates whether the fuel door on the vehicle is open or not. This
-     * property will not be implemented for electric vehicles. That is, if {@link #INFO_FUEL_TYPE}
-     * only contains {@link FuelType#ELECTRIC}, this property will not be implemented. For EVs, see
-     * {@link #EV_CHARGE_PORT_OPEN}.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
-     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Boolean} property type
-     * </ul>
-     *
-     * <p>Required Permissions:
-     * <ul>
-     *  <li>Normal permission {@link Car#PERMISSION_ENERGY_PORTS} or Signature|Privileged permission
-     *  {@link Car#PERMISSION_CONTROL_ENERGY_PORTS} to read property.
-     *  <li>Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ENERGY_PORTS} to
-     *  write property.
-     * </ul>
-     */
-  Future<void> setFuelDoorOpen(bool value) async {
-    return datasource.setPropertyBOOLEAN(
-      VehicleProperty.FUEL_DOOR_OPEN.id,
-      0,
-      value,
-    );
-  }
-
-  /**
      * EV battery level.
      *
      * <p>Returns the current battery level in {@link android.car.VehicleUnit#WATT_HOUR}, if EV or
@@ -1139,37 +890,6 @@ class VehiclePropertyRepository {
   }
 
   /**
-     * EV charge port open.
-     *
-     * <p>If the vehicle has multiple charging ports, this property will return true if any of the
-     * charge ports are open.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
-     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Boolean} property type
-     * </ul>
-     *
-     * <p>Required Permissions:
-     * <ul>
-     *  <li>Normal permission {@link Car#PERMISSION_ENERGY_PORTS} or Signature|Privileged permission
-     *  {@link Car#PERMISSION_CONTROL_ENERGY_PORTS} to read property.
-     *  <li>Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ENERGY_PORTS} to
-     *  write property.
-     * </ul>
-     */
-  Future<void> setEvChargePortOpen(bool value) async {
-    return datasource.setPropertyBOOLEAN(
-      VehicleProperty.EV_CHARGE_PORT_OPEN.id,
-      0,
-      value,
-    );
-  }
-
-  /**
      * EV charge port connected.
      *
      * <p>If the vehicle has multiple charging ports, this property will return true if any of the
@@ -1251,37 +971,6 @@ class VehiclePropertyRepository {
   }
 
   /**
-     * Range remaining in meters.
-     *
-     * <p>Range remaining accounts for all energy sources in a vehicle.  For example, a hybrid car's
-     * range will be the sum of the ranges based on fuel and battery.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
-     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_CONTINUOUS}
-     *  <li>{@code Float} property type
-     * </ul>
-     *
-     * <p>Required Permissions:
-     * <ul>
-     *  <li>Dangerous permission {@link Car#PERMISSION_ENERGY} or Signature|Privileged permission
-     *  {@link Car#PERMISSION_ADJUST_RANGE_REMAINING} to read property.
-     *  <li>Signature|Privileged permission {@link Car#PERMISSION_ADJUST_RANGE_REMAINING} to write
-     *  property.
-     * </ul>
-     */
-  Future<void> setRangeRemaining(double value) async {
-    return datasource.setPropertyFLOAT(
-      VehicleProperty.RANGE_REMAINING.id,
-      0,
-      value,
-    );
-  }
-
-  /**
      * EV battery average temperature
      *
      * <p>Exposes the temperature of the battery in an EV. If multiple batteries exist in the EV, or
@@ -1335,35 +1024,6 @@ class VehiclePropertyRepository {
   Future<double> getTirePressure(VehicleAreaWheel area) async {
     return datasource.getPropertyFLOAT(
       VehicleProperty.TIRE_PRESSURE.id,
-      area.value,
-    );
-  }
-
-  /**
-     * Critically low tire pressure.
-     *
-     * <p>For each area ID listed in {@link android.car.hardware.CarPropertyConfig#getAreaIds}, the
-     * corresponding {@code CRITICALLY_LOW_TIRE_PRESSURE} will be less than or equal the {@link
-     * android.car.hardware.property.AreaIdConfig#getMinValue()} of {@link #TIRE_PRESSURE} for the
-     * same area ID.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_WHEEL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_STATIC}
-     *  <li>{@code Float} property type
-     * </ul>
-     *
-     * <p>Required Permission:
-     * <ul>
-     *  <li>Signature|Privileged permission {@link Car#PERMISSION_TIRES} to read property.
-     *  <li>Property is not writable.
-     * </ul>
-     */
-  Future<double> getCriticallyLowTirePressure(VehicleAreaWheel area) async {
-    return datasource.getPropertyFLOAT(
-      VehicleProperty.CRITICALLY_LOW_TIRE_PRESSURE.id,
       area.value,
     );
   }
@@ -1487,60 +1147,6 @@ class VehiclePropertyRepository {
     return datasource.getPropertyBOOLEAN(
       VehicleProperty.BRAKE_FLUID_LEVEL_LOW.id,
       0,
-    );
-  }
-
-  /**
-     * Vehicle Passive Suspension Height in mm.
-     *
-     * <p>This property communicates the real-time suspension displacement of the vehicle relative
-     * to its neutral position, given in mm. In other words, the displacement of the suspension at
-     * any given point in time relative to the suspension's position when the vehicle is on a flat
-     * surface with no passengers or cargo. When the suspension is compressed in comparison to the
-     * neutral position, the value should be negative. When the suspension is decompressed in
-     * comparison to the neutral position, the value should be positive.
-     *
-     * <p>Examples for further clarity:
-     * <ul>
-     *   <li>1) Suppose the user is driving on a smooth flat surface, and all wheels are currently
-     *   compressed by 2 cm in comparison to the default suspension height. In this scenario, this
-     *   property will be set to -20 for all wheels.
-     *   <li>2) Suppose the user drives over a pothole. While the front left wheel is over the
-     *   pothole, it's decompressed by 3 cm in comparison to the rest of the wheels, or 1 cm in
-     *   comparison to the default suspension height. All the others are still compressed by 2 cm.
-     *   In this scenario, this property will be set to -20 for all wheels except for the front
-     *   left, which will be set to 10.
-     * </ul>
-     *
-     * <p>{@link android.car.hardware.property.AreaIdConfig#hasMinSupportedValue()} and {@link
-     * android.car.hardware.property.AreaIdConfig#hasMaxSupportedValue()} will be {@code true} for
-     * all areas.
-     *
-     * <p>{@link android.car.hardware.property.MinMaxSupportedValue#getMinValue()} represents the
-     * lower bound of the suspension height for the wheel at the specified area ID.
-     *
-     * <p>{@link android.car.hardware.property.MinMaxSupportedValue#getMaxValue()} represents the
-     * upper bound of the suspension height for the wheel at the specified area ID.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_WHEEL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_CONTINUOUS}
-     *  <li>{@code Integer} property type
-     * </ul>
-     *
-     * <p>Required Permissions:
-     * <ul>
-     *  <li>Signature|Privileged permission {@link Car#PERMISSION_CAR_DYNAMICS_STATE} to read
-     *  property.
-     *  <li>Property is not writable
-     * </ul>
-     */
-  Future<int> getVehiclePassiveSuspensionHeight(VehicleAreaWheel area) async {
-    return datasource.getPropertyINT32(
-      VehicleProperty.VEHICLE_PASSIVE_SUSPENSION_HEIGHT.id,
-      area.value,
     );
   }
 
@@ -1755,6 +1361,2013 @@ class VehiclePropertyRepository {
   }
 
   /**
+     * Represents property for the current stopping mode of the vehicle.
+     *
+     * <p>For the global area ID, the {@link
+     * android.car.hardware.property.AreaIdConfig#getSupportedEnumValues()} obtained from {@link
+     * android.car.hardware.CarPropertyConfig#getAreaIdConfig(int)} specifies which enum values from
+     * {@code EvStoppingMode} are supported. {@code EvStoppingMode} may be extended to include more
+     * states in the future.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
+     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Integer} property type
+     * </ul>
+     *
+     * <p>Required Permissions:
+     * <ul>
+     *  <li>Normal permission {@link Car#PERMISSION_POWERTRAIN} or Signature|Privileged permission
+     *  {@link Car#PERMISSION_CONTROL_POWERTRAIN} to read property.
+     *  <li>Signature|Privileged permission {@link Car#PERMISSION_CONTROL_POWERTRAIN} to write
+     *  property.
+     * </ul>
+     *
+     * @data_enum {@link EvStoppingMode}
+     */
+  Future<int> getEvStoppingMode() async {
+    return datasource.getPropertyINT32(VehicleProperty.EV_STOPPING_MODE.id, 0);
+  }
+
+  /**
+     * Warning for fuel low level.
+     *
+     * <p>{@code FUEL_LEVEL_LOW} corresponds to the low fuel warning on the dashboard. Once {@code
+     * FUEL_LEVEL_LOW} is set, it should not be cleared until more fuel is added to the vehicle.
+     * This property may take into account all fuel sources for a vehicle - for example:
+     * <ul>
+     *  <li>For a gas powered vehicle, this property is based solely on gas level.
+     *  <li>For a battery powered vehicle, this property is based solely on battery level.
+     *  <li>For a hybrid vehicle, this property may be based on the combination of gas and
+     *  battery levels, at the OEM's discretion.
+     * </ul>
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Boolean} property type
+     * </ul>
+     *
+     * <p>Required Permission:
+     * <ul>
+     *  <li>Dangerous permission {@link Car#PERMISSION_ENERGY} to read property.
+     *  <li>Property is not writable.
+     * </ul>
+     */
+  Future<bool> getFuelLevelLow() async {
+    return datasource.getPropertyBOOLEAN(VehicleProperty.FUEL_LEVEL_LOW.id, 0);
+  }
+
+  /**
+     * Night mode.
+     *
+     * <p>True indicates that the night mode sensor has detected that the car cabin environment has
+     * low light.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Boolean} property type
+     * </ul>
+     *
+     * <p>Required Permission:
+     * <ul>
+     *  <li>Normal permission {@link Car#PERMISSION_EXTERIOR_ENVIRONMENT} to read property.
+     *  <li>Property is not writable.
+     * </ul>
+     */
+  Future<bool> getNightMode() async {
+    return datasource.getPropertyBOOLEAN(VehicleProperty.NIGHT_MODE.id, 0);
+  }
+
+  /**
+     * Vehicle's ignition state.
+     *
+     * <p>See {@link VehicleIgnitionState} for possible values for {@code IGNITION_STATE}.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Integer} property type
+     * </ul>
+     *
+     * <p>Required Permission:
+     * <ul>
+     *  <li>Normal permission {@link Car#PERMISSION_POWERTRAIN} to read property.
+     *  <li>Property is not writable.
+     * </ul>
+     *
+     * @data_enum {@link VehicleIgnitionState}
+     */
+  Future<int> getIgnitionState() async {
+    return datasource.getPropertyINT32(VehicleProperty.IGNITION_STATE.id, 0);
+  }
+
+  /**
+     * Turn signal light state.
+     *
+     * <p>This property communicates the actual state of the turn signal lights. It is independent
+     * from the actual turn signal switch state or the hazard lights button state.
+     *
+     * <p>Examples:
+     * <ul>
+     *   <li>1) Left turn signal light is currently pulsing, right turn signal light is currently
+     *   off. This property will return {@link VehicleTurnSignal#STATE_LEFT} while the light is on
+     *   during the pulse, and {@link VehicleTurnSignal#STATE_NONE} when it is off during the pulse.
+     *   <li>2) Right turn signal light is currently pulsing, left turn signal light is currently
+     *   off. This property will return {@link VehicleTurnSignal#STATE_RIGHT} while the light is on
+     *   during the pulse, and {@link VehicleTurnSignal#STATE_NONE} when it is off during the pulse.
+     *   <li>3) Both turn signal lights are currently pulsing (e.g. when hazard lights switch is
+     *   on). This property will return {@link VehicleTurnSignal#STATE_LEFT} | {@link
+     *   VehicleTurnSignal#STATE_RIGHT} while the lights are on during the pulse, and {@link
+     *   VehicleTurnSignal#STATE_NONE} when they are off during the pulse.
+     * </ul>
+     *
+     * <p>This is different from the function of {@link #TURN_SIGNAL_SWITCH}, which must communicate
+     * the state of the turn signal lever/switch.
+     *
+     * <p>Note that this property uses {@link VehicleTurnSignal} as a bit flag, unlike {@link
+     * #TURN_SIGNAL_SWITCH}, which uses it like a regular enum. This means this property supports
+     * ORed together values in {@link VehicleTurnSignal}.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Integer} property type
+     * </ul>
+     *
+     * <p>Required Permission:
+     * <ul>
+     *  <li>Dangerous permission {@link Car#PERMISSION_READ_EXTERIOR_LIGHTS} or Signature|Privileged
+     *  permission {@link Car#PERMISSION_CONTROL_EXTERIOR_LIGHTS} to read property.
+     *  <li>Property is not writable.
+     * </ul>
+     *
+     * @data_enum {@link VehicleTurnSignal}
+     */
+  Future<int> getTurnSignalLightState() async {
+    return datasource.getPropertyINT32(
+      VehicleProperty.TURN_SIGNAL_LIGHT_STATE.id,
+      0,
+    );
+  }
+
+  /**
+     * Turn signal switch.
+     *
+     * <p>This property communicates the state of the turn signal lever/switch. This is different
+     * from the function of {@link #TURN_SIGNAL_LIGHT_STATE}, which must communicate the actual
+     * state of the turn signal lights.
+     *
+     * <p>Note that this property uses {@link VehicleTurnSignal} as a regular enum, unlike {@link
+     * #TURN_SIGNAL_LIGHT_STATE}, which uses it like a bit flag. This means this property does not
+     * support ORed together values in {@link VehicleTurnSignal}.
+     *
+     * <p>This property is defined as read_write, but OEMs have the option to implement it as read
+     * only.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
+     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Integer} property type
+     * </ul>
+     *
+     * <p>Required Permission:
+     * <ul>
+     *  <li>Dangerous permission {@link Car#PERMISSION_READ_EXTERIOR_LIGHTS} or Signature|Privileged
+     *  permission {@link Car#PERMISSION_CONTROL_EXTERIOR_LIGHTS} to read property.
+     *  <li>Signature|Privileged permission {@link Car#PERMISSION_CONTROL_EXTERIOR_LIGHTS} to write
+     *  property.
+     * </ul>
+     *
+     * @data_enum {@link VehicleTurnSignal}
+     */
+  Future<int> getTurnSignalSwitch() async {
+    return datasource.getPropertyINT32(
+      VehicleProperty.TURN_SIGNAL_SWITCH.id,
+      0,
+    );
+  }
+
+  /**
+     * Temperature units for display.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
+     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Integer} property type
+     * </ul>
+     *
+     * <p>Required Permissions:
+     * <ul>
+     *  <li>Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} or Signature|Privileged
+     *  permission {@link Car#PERMISSION_CONTROL_CAR_CLIMATE} to read property.
+     *  <li>Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_CLIMATE} to write
+     *  property.
+     * </ul>
+     *
+     * @data_enum {@link VehicleUnit}
+     */
+  Future<int> getHvacTemperatureDisplayUnits() async {
+    return datasource.getPropertyINT32(
+      VehicleProperty.HVAC_TEMPERATURE_DISPLAY_UNITS.id,
+      0,
+    );
+  }
+
+  /**
+     * Distance units for display.
+     *
+     * <p>Indicates which units the car is using to display distances to the user.
+     *
+     * <p>configArray represents the list of supported units for {@code
+     * DISTANCE_DISPLAY_UNITS}. Here is an example configArray:
+     * <ul>
+     *  <li>configArray[0] = {@link VehicleUnit#METER}
+     *  <li>configArray[1] = {@link VehicleUnit#KILOMETER}
+     *  <li>configArray[2] = {@link VehicleUnit#MILE}
+     * </ul>
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
+     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Integer} property type
+     * </ul>
+     *
+     * <p>Required Permissions:
+     * <ul>
+     *  <li>Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} to read property.
+     *  <li>Normal permission {@link Car#PERMISSION_CONTROL_DISPLAY_UNITS} and Signature|Privileged
+     *  permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
+     * </ul>
+     *
+     * @data_enum {@link VehicleUnit}
+     */
+  Future<int> getDistanceDisplayUnits() async {
+    return datasource.getPropertyINT32(
+      VehicleProperty.DISTANCE_DISPLAY_UNITS.id,
+      0,
+    );
+  }
+
+  /**
+     * Distance units for display.
+     *
+     * <p>Indicates which units the car is using to display distances to the user.
+     *
+     * <p>configArray represents the list of supported units for {@code
+     * DISTANCE_DISPLAY_UNITS}. Here is an example configArray:
+     * <ul>
+     *  <li>configArray[0] = {@link VehicleUnit#METER}
+     *  <li>configArray[1] = {@link VehicleUnit#KILOMETER}
+     *  <li>configArray[2] = {@link VehicleUnit#MILE}
+     * </ul>
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
+     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Integer} property type
+     * </ul>
+     *
+     * <p>Required Permissions:
+     * <ul>
+     *  <li>Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} to read property.
+     *  <li>Normal permission {@link Car#PERMISSION_CONTROL_DISPLAY_UNITS} and Signature|Privileged
+     *  permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
+     * </ul>
+     *
+     * @data_enum {@link VehicleUnit}
+     */
+  Future<void> setDistanceDisplayUnits(int value) async {
+    return datasource.setPropertyINT32(
+      VehicleProperty.DISTANCE_DISPLAY_UNITS.id,
+      0,
+      value,
+    );
+  }
+
+  /**
+     * Fuel volume units for display.
+     *
+     * <p>Indicates which units the car is using to display fuel volume to the user.
+     *
+     * <p>configArray represents the list of supported units for {@code
+     * FUEL_VOLUME_DISPLAY_UNITS}. Here is an example configArray:
+     * <ul>
+     *  <li>configArray[0] = {@link VehicleUnit#LITER}
+     *  <li>configArray[1] = {@link VehicleUnit#US_GALLON}
+     * </ul>
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
+     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Integer} property type
+     * </ul>
+     *
+     * <p>Required Permissions:
+     * <ul>
+     *  <li>Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} to read property.
+     *  <li>Normal permission {@link Car#PERMISSION_CONTROL_DISPLAY_UNITS} and Signature|Privileged
+     *  permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
+     * </ul>
+     *
+     * @data_enum {@link VehicleUnit}
+     */
+  Future<int> getFuelVolumeDisplayUnits() async {
+    return datasource.getPropertyINT32(
+      VehicleProperty.FUEL_VOLUME_DISPLAY_UNITS.id,
+      0,
+    );
+  }
+
+  /**
+     * Fuel volume units for display.
+     *
+     * <p>Indicates which units the car is using to display fuel volume to the user.
+     *
+     * <p>configArray represents the list of supported units for {@code
+     * FUEL_VOLUME_DISPLAY_UNITS}. Here is an example configArray:
+     * <ul>
+     *  <li>configArray[0] = {@link VehicleUnit#LITER}
+     *  <li>configArray[1] = {@link VehicleUnit#US_GALLON}
+     * </ul>
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
+     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Integer} property type
+     * </ul>
+     *
+     * <p>Required Permissions:
+     * <ul>
+     *  <li>Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} to read property.
+     *  <li>Normal permission {@link Car#PERMISSION_CONTROL_DISPLAY_UNITS} and Signature|Privileged
+     *  permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
+     * </ul>
+     *
+     * @data_enum {@link VehicleUnit}
+     */
+  Future<void> setFuelVolumeDisplayUnits(int value) async {
+    return datasource.setPropertyINT32(
+      VehicleProperty.FUEL_VOLUME_DISPLAY_UNITS.id,
+      0,
+      value,
+    );
+  }
+
+  /**
+     * Tire pressure units for display.
+     *
+     * <p>Indicates which units the car is using to display tire pressure to the user.
+     *
+     * <p>configArray represents the list of supported units for {@code
+     * TIRE_PRESSURE_DISPLAY_UNITS}. Here is an example configArray:
+     * <ul>
+     *  <li>configArray[0] = {@link VehicleUnit#KILOPASCAL}
+     *  <li>configArray[1] = {@link VehicleUnit#PSI}
+     *  <li>configArray[2] = {@link VehicleUnit#BAR}
+     * </ul>
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
+     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Integer} property type
+     * </ul>
+     *
+     * <p>Required Permissions:
+     * <ul>
+     *  <li>Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} to read property.
+     *  <li>Normal permission {@link Car#PERMISSION_CONTROL_DISPLAY_UNITS} and Signature|Privileged
+     *  permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
+     * </ul>
+     *
+     * @data_enum {@link VehicleUnit}
+     */
+  Future<int> getTirePressureDisplayUnits() async {
+    return datasource.getPropertyINT32(
+      VehicleProperty.TIRE_PRESSURE_DISPLAY_UNITS.id,
+      0,
+    );
+  }
+
+  /**
+     * Tire pressure units for display.
+     *
+     * <p>Indicates which units the car is using to display tire pressure to the user.
+     *
+     * <p>configArray represents the list of supported units for {@code
+     * TIRE_PRESSURE_DISPLAY_UNITS}. Here is an example configArray:
+     * <ul>
+     *  <li>configArray[0] = {@link VehicleUnit#KILOPASCAL}
+     *  <li>configArray[1] = {@link VehicleUnit#PSI}
+     *  <li>configArray[2] = {@link VehicleUnit#BAR}
+     * </ul>
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
+     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Integer} property type
+     * </ul>
+     *
+     * <p>Required Permissions:
+     * <ul>
+     *  <li>Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} to read property.
+     *  <li>Normal permission {@link Car#PERMISSION_CONTROL_DISPLAY_UNITS} and Signature|Privileged
+     *  permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
+     * </ul>
+     *
+     * @data_enum {@link VehicleUnit}
+     */
+  Future<void> setTirePressureDisplayUnits(int value) async {
+    return datasource.setPropertyINT32(
+      VehicleProperty.TIRE_PRESSURE_DISPLAY_UNITS.id,
+      0,
+      value,
+    );
+  }
+
+  /**
+     * EV battery units for display.
+     *
+     * <p>Indicates which units the vehicle is using to display EV battery information to the user.
+     *
+     * <p>configArray represents the list of supported units for {@code
+     * EV_BATTERY_DISPLAY_UNITS}. Here is an example configArray:
+     * <ul>
+     *  <li>configArray[0] = {@link VehicleUnit#WATT_HOUR}
+     *  <li>configArray[1] = {@link VehicleUnit#AMPERE_HOURS}
+     *  <li>configArray[2] = {@link VehicleUnit#KILOWATT_HOUR}
+     * </ul>
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
+     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Integer} property type
+     * </ul>
+     *
+     * <p>Required Permissions:
+     * <ul>
+     *  <li>Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} to read property.
+     *  <li>Normal permission {@link Car#PERMISSION_CONTROL_DISPLAY_UNITS} and Signature|Privileged
+     *  permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
+     * </ul>
+     *
+     * @data_enum {@link VehicleUnit}
+     */
+  Future<int> getEvBatteryDisplayUnits() async {
+    return datasource.getPropertyINT32(
+      VehicleProperty.EV_BATTERY_DISPLAY_UNITS.id,
+      0,
+    );
+  }
+
+  /**
+     * EV battery units for display.
+     *
+     * <p>Indicates which units the vehicle is using to display EV battery information to the user.
+     *
+     * <p>configArray represents the list of supported units for {@code
+     * EV_BATTERY_DISPLAY_UNITS}. Here is an example configArray:
+     * <ul>
+     *  <li>configArray[0] = {@link VehicleUnit#WATT_HOUR}
+     *  <li>configArray[1] = {@link VehicleUnit#AMPERE_HOURS}
+     *  <li>configArray[2] = {@link VehicleUnit#KILOWATT_HOUR}
+     * </ul>
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
+     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Integer} property type
+     * </ul>
+     *
+     * <p>Required Permissions:
+     * <ul>
+     *  <li>Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} to read property.
+     *  <li>Normal permission {@link Car#PERMISSION_CONTROL_DISPLAY_UNITS} and Signature|Privileged
+     *  permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
+     * </ul>
+     *
+     * @data_enum {@link VehicleUnit}
+     */
+  Future<void> setEvBatteryDisplayUnits(int value) async {
+    return datasource.setPropertyINT32(
+      VehicleProperty.EV_BATTERY_DISPLAY_UNITS.id,
+      0,
+      value,
+    );
+  }
+
+  /**
+     * Speed units for display.
+     *
+     * <p>Indicates type of units the vehicle is using to display speed to user.
+     *
+     * <p>configArray represents the list of supported units for {@code
+     * VEHICLE_SPEED_DISPLAY_UNITS}. Here is an example configArray:
+     * <ul>
+     *  <li>configArray[0] = {@link VehicleUnit#METER_PER_SEC}
+     *  <li>configArray[1] = {@link VehicleUnit#MILES_PER_HOUR}
+     *  <li>configArray[2] = {@link VehicleUnit#KILOMETERS_PER_HOUR}
+     * </ul>
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
+     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Integer} property type
+     * </ul>
+     *
+     * <p>Required Permissions:
+     * <ul>
+     *  <li>Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} to read property.
+     *  <li>Normal permission {@link Car#PERMISSION_CONTROL_DISPLAY_UNITS} and Signature|Privileged
+     *  permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
+     * </ul>
+     *
+     * @data_enum {@link VehicleUnit}
+     */
+  Future<int> getVehicleSpeedDisplayUnits() async {
+    return datasource.getPropertyINT32(
+      VehicleProperty.VEHICLE_SPEED_DISPLAY_UNITS.id,
+      0,
+    );
+  }
+
+  /**
+     * Speed units for display.
+     *
+     * <p>Indicates type of units the vehicle is using to display speed to user.
+     *
+     * <p>configArray represents the list of supported units for {@code
+     * VEHICLE_SPEED_DISPLAY_UNITS}. Here is an example configArray:
+     * <ul>
+     *  <li>configArray[0] = {@link VehicleUnit#METER_PER_SEC}
+     *  <li>configArray[1] = {@link VehicleUnit#MILES_PER_HOUR}
+     *  <li>configArray[2] = {@link VehicleUnit#KILOMETERS_PER_HOUR}
+     * </ul>
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
+     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Integer} property type
+     * </ul>
+     *
+     * <p>Required Permissions:
+     * <ul>
+     *  <li>Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} to read property.
+     *  <li>Normal permission {@link Car#PERMISSION_CONTROL_DISPLAY_UNITS} and Signature|Privileged
+     *  permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
+     * </ul>
+     *
+     * @data_enum {@link VehicleUnit}
+     */
+  Future<void> setVehicleSpeedDisplayUnits(int value) async {
+    return datasource.setPropertyINT32(
+      VehicleProperty.VEHICLE_SPEED_DISPLAY_UNITS.id,
+      0,
+      value,
+    );
+  }
+
+  /**
+     * Fuel consumption units for display.
+     *
+     * <p>Indicates type of units the car is using to display fuel consumption information to user.
+     *
+     * <p>{@code true} indicates units are distance over volume such as MPG.
+     *
+     * <p>{@code false} indicates units are volume over distance such as L/100KM.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
+     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Boolean} property type
+     * </ul>
+     *
+     * <p>Required Permissions:
+     * <ul>
+     *  <li>Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} to read property.
+     *  <li>Normal permission {@link Car#PERMISSION_CONTROL_DISPLAY_UNITS} and Signature|Privileged
+     *  permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
+     * </ul>
+     */
+  Future<bool> getFuelConsumptionUnitsDistanceOverVolume() async {
+    return datasource.getPropertyBOOLEAN(
+      VehicleProperty.FUEL_CONSUMPTION_UNITS_DISTANCE_OVER_VOLUME.id,
+      0,
+    );
+  }
+
+  /**
+     * Fuel consumption units for display.
+     *
+     * <p>Indicates type of units the car is using to display fuel consumption information to user.
+     *
+     * <p>{@code true} indicates units are distance over volume such as MPG.
+     *
+     * <p>{@code false} indicates units are volume over distance such as L/100KM.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
+     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Boolean} property type
+     * </ul>
+     *
+     * <p>Required Permissions:
+     * <ul>
+     *  <li>Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} to read property.
+     *  <li>Normal permission {@link Car#PERMISSION_CONTROL_DISPLAY_UNITS} and Signature|Privileged
+     *  permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
+     * </ul>
+     */
+  Future<void> setFuelConsumptionUnitsDistanceOverVolume(bool value) async {
+    return datasource.setPropertyBOOLEAN(
+      VehicleProperty.FUEL_CONSUMPTION_UNITS_DISTANCE_OVER_VOLUME.id,
+      0,
+      value,
+    );
+  }
+
+  /**
+     * Outside temperature in celsius.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_CONTINUOUS}
+     *  <li>{@code Float} property type
+     * </ul>
+     *
+     * <p>Required Permission:
+     * <ul>
+     *  <li>Normal permission {@link Car#PERMISSION_EXTERIOR_ENVIRONMENT} to read property.
+     *  <li>Property is not writable.
+     * </ul>
+     */
+  Future<double> getEnvOutsideTemperature() async {
+    return datasource.getPropertyFLOAT(
+      VehicleProperty.ENV_OUTSIDE_TEMPERATURE.id,
+      0,
+    );
+  }
+
+  /**
+     * Seat Occupancy.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_SEAT}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Integer} property type
+     * </ul>
+     *
+     * <p>Required Permission:
+     * <ul>
+     *  <li>Dangerous permission {@link Car#PERMISSION_READ_CAR_SEATS} or Signature|Privileged
+     *  permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read property.
+     *  <li>Property is not writable.
+     * </ul>
+     *
+     * @data_enum {@link VehicleSeatOccupancyState}
+     */
+  Future<int> getSeatOccupancy(VehicleAreaSeat area) async {
+    return datasource.getPropertyINT32(
+      VehicleProperty.SEAT_OCCUPANCY.id,
+      area.value,
+    );
+  }
+
+  /**
+     * Windshield wipers state.
+     *
+     * <p>Returns the current state of the windshield wipers. The value of {@code
+     * WINDSHIELD_WIPERS_STATE} may not match the value of {@link #WINDSHIELD_WIPERS_SWITCH}. (e.g.
+     * {@code #WINDSHIELD_WIPERS_STATE} = {@link
+     * android.car.hardware.property.WindshieldWipersState#ON} and {@link
+     * #WINDSHIELD_WIPERS_SWITCH} = {@link
+     * android.car.hardware.property.WindshieldWipersSwitch#AUTO}).
+     *
+     * <p>If {@code #WINDSHIELD_WIPERS_STATE} = {@link
+     * android.car.hardware.property.WindshieldWipersState#ON} and {@link #WINDSHIELD_WIPERS_PERIOD}
+     * is implemented, then {@link #WINDSHIELD_WIPERS_PERIOD} will reflect the time period of 1
+     * full cycle of the wipers.
+     *
+     * <p>For each supported area ID, the {@link
+     * android.car.hardware.property.AreaIdConfig#getSupportedEnumValues()} array obtained from
+     * {@link android.car.hardware.CarPropertyConfig#getAreaIdConfig(int)} specifies which states
+     * from {@link android.car.hardware.property.WindshieldWipersState} are supported.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_WINDOW}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Integer} property type
+     * </ul>
+     *
+     * <p>Required Permission:
+     * <ul>
+     *  <li>Dangerous permission {@link Car#PERMISSION_READ_WINDSHIELD_WIPERS_3P} or
+     *  Signature|Privileged permission {@link Car#PERMISSION_READ_WINDSHIELD_WIPERS} to read
+     *  property.
+     *  <li>Property is not writable.
+     * </ul>
+     *
+     * @data_enum {@link WindshieldWipersState}
+     */
+  Future<int> getWindshieldWipersState(VehicleAreaWindow area) async {
+    return datasource.getPropertyINT32(
+      VehicleProperty.WINDSHIELD_WIPERS_STATE.id,
+      area.value,
+    );
+  }
+
+  /**
+     * Characterization of inputs used for computing location.
+     *
+     * <p>This property indicates what (if any) data and sensor inputs are considered by the system
+     * when computing the vehicle's location that is shared with Android through {@link
+     * android.location.LocationManager#GPS_PROVIDER}.
+     *
+     * <p>The value returned is a collection of bit flags. The bit flags are defined in {@link
+     * LocationCharacterization}. The value will also include exactly
+     * one of {@link LocationCharacterization#DEAD_RECKONED} or {@link
+     * LocationCharacterization#RAW_GNSS_ONLY} among its collection of
+     * bit flags.
+     *
+     * <p>When this property is not supported, it is assumed that no additional sensor inputs are
+     * fused into the GNSS updates provided through {@link
+     * android.location.LocationManager#GPS_PROVIDER}. That is unless otherwise specified through
+     * other {@link android.location.LocationManager} APIs.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_STATIC}
+     *  <li>{@code Integer} property type
+     * </ul>
+     *
+     * <p>Required Permission:
+     * <ul>
+     *  <li>Dangerous permission {@link android.Manifest.permission#ACCESS_FINE_LOCATION} to read
+     *  property.
+     *  <li>Property is not writable.
+     * </ul>
+     *
+     * @data_flag {@link LocationCharacterization}
+     */
+  Future<int> getLocationCharacterization() async {
+    return datasource.getPropertyINT32(
+      VehicleProperty.LOCATION_CHARACTERIZATION.id,
+      0,
+    );
+  }
+
+  /**
+     * Property to get the initial settings for multi-user management (such as initial user).
+     *
+     * <p>Doesn't require permission because it's not exposed through
+     * {@link android.car.hardware.property.CarPropertyManager}.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Object[]} property type
+     * </ul>
+     *
+     * @hide
+     */
+  Future<dynamic> getInitialUserInfo() async {
+    return datasource.getPropertyMIXED(VehicleProperty.INITIAL_USER_INFO.id, 0);
+  }
+
+  /**
+     * Property to get the initial settings for multi-user management (such as initial user).
+     *
+     * <p>Doesn't require permission because it's not exposed through
+     * {@link android.car.hardware.property.CarPropertyManager}.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Object[]} property type
+     * </ul>
+     *
+     * @hide
+     */
+  Future<void> setInitialUserInfo(dynamic value) async {
+    return datasource.setPropertyMIXED(
+      VehicleProperty.INITIAL_USER_INFO.id,
+      0,
+      value,
+    );
+  }
+
+  /**
+     * Property to switch user for multi-user management.
+     *
+     * <p>Doesn't require permission because it's not exposed through
+     * {@link android.car.hardware.property.CarPropertyManager}.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Object[]} property type
+     * </ul>
+     *
+     * @hide
+     */
+  Future<dynamic> getSwitchUser() async {
+    return datasource.getPropertyMIXED(VehicleProperty.SWITCH_USER.id, 0);
+  }
+
+  /**
+     * Property to switch user for multi-user management.
+     *
+     * <p>Doesn't require permission because it's not exposed through
+     * {@link android.car.hardware.property.CarPropertyManager}.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Object[]} property type
+     * </ul>
+     *
+     * @hide
+     */
+  Future<void> setSwitchUser(dynamic value) async {
+    return datasource.setPropertyMIXED(
+      VehicleProperty.SWITCH_USER.id,
+      0,
+      value,
+    );
+  }
+
+  /**
+     * Property to create a new user for multi-user management.
+     *
+     * <p>Doesn't require permission because it's not exposed through
+     * {@link android.car.hardware.property.CarPropertyManager}.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Object[]} property type
+     * </ul>
+     *
+     * @hide
+     */
+  Future<dynamic> getCreateUser() async {
+    return datasource.getPropertyMIXED(VehicleProperty.CREATE_USER.id, 0);
+  }
+
+  /**
+     * Property to create a new user for multi-user management.
+     *
+     * <p>Doesn't require permission because it's not exposed through
+     * {@link android.car.hardware.property.CarPropertyManager}.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Object[]} property type
+     * </ul>
+     *
+     * @hide
+     */
+  Future<void> setCreateUser(dynamic value) async {
+    return datasource.setPropertyMIXED(
+      VehicleProperty.CREATE_USER.id,
+      0,
+      value,
+    );
+  }
+
+  /**
+     * Property to remove a new user for multi-user management.
+     *
+     * <p>Doesn't require permission because it's not exposed through
+     * {@link android.car.hardware.property.CarPropertyManager}.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_WRITE}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_STATIC}
+     *  <li>{@code Object[]} property type
+     * </ul>
+     *
+     * @hide
+     */
+  Future<void> setRemoveUser(dynamic value) async {
+    return datasource.setPropertyMIXED(
+      VehicleProperty.REMOVE_USER.id,
+      0,
+      value,
+    );
+  }
+
+  /**
+     * Property to get / set the user authentication types associated with an Android user.
+     *
+     * <p>Doesn't require permission because it's not exposed through
+     * {@link android.car.hardware.property.CarPropertyManager}.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Object[]} property type
+     * </ul>
+     *
+     * @hide
+     */
+  Future<dynamic> getUserIdentificationAssociation() async {
+    return datasource.getPropertyMIXED(
+      VehicleProperty.USER_IDENTIFICATION_ASSOCIATION.id,
+      0,
+    );
+  }
+
+  /**
+     * Property to get / set the user authentication types associated with an Android user.
+     *
+     * <p>Doesn't require permission because it's not exposed through
+     * {@link android.car.hardware.property.CarPropertyManager}.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Object[]} property type
+     * </ul>
+     *
+     * @hide
+     */
+  Future<void> setUserIdentificationAssociation(dynamic value) async {
+    return datasource.setPropertyMIXED(
+      VehicleProperty.USER_IDENTIFICATION_ASSOCIATION.id,
+      0,
+      value,
+    );
+  }
+
+  /**
+     * Property for VHAL to apply power policy.
+     *
+     * <p>Doesn't require permission because it's not exposed through
+     * {@link android.car.hardware.property.CarPropertyManager}.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code String} property type
+     * </ul>
+     *
+     * @hide
+     */
+  Future<String> getPowerPolicyReq() async {
+    return datasource.getPropertySTRING(VehicleProperty.POWER_POLICY_REQ.id, 0);
+  }
+
+  /**
+     * Property for VHAL to set the default power policies per power status transition.
+     *
+     * <p>Doesn't require permission because it's not exposed through
+     * {@link android.car.hardware.property.CarPropertyManager}.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code String} property type
+     * </ul>
+     *
+     * @hide
+     */
+  Future<String> getPowerPolicyGroupReq() async {
+    return datasource.getPropertySTRING(
+      VehicleProperty.POWER_POLICY_GROUP_REQ.id,
+      0,
+    );
+  }
+
+  /**
+     * Property to report a new current power policy to VHAL.
+     *
+     * <p>Doesn't require permission because it's not exposed through
+     * {@link android.car.hardware.property.CarPropertyManager}.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code String} property type
+     * </ul>
+     *
+     * @hide
+     */
+  Future<String> getCurrentPowerPolicy() async {
+    return datasource.getPropertySTRING(
+      VehicleProperty.CURRENT_POWER_POLICY.id,
+      0,
+    );
+  }
+
+  /**
+     * Property to report a new current power policy to VHAL.
+     *
+     * <p>Doesn't require permission because it's not exposed through
+     * {@link android.car.hardware.property.CarPropertyManager}.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code String} property type
+     * </ul>
+     *
+     * @hide
+     */
+  Future<void> setCurrentPowerPolicy(String value) async {
+    return datasource.setPropertySTRING(
+      VehicleProperty.CURRENT_POWER_POLICY.id,
+      0,
+      value,
+    );
+  }
+
+  /**
+     * Property to report that car watchdog is alive.
+     *
+     * <p>Doesn't require permission because it's not exposed through
+     * {@link android.car.hardware.property.CarPropertyManager}.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_WRITE}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Long} property type
+     * </ul>
+     *
+     * @hide
+     */
+  Future<void> setWatchdogAlive(int value) async {
+    return datasource.setPropertyINT64(
+      VehicleProperty.WATCHDOG_ALIVE.id,
+      0,
+      value,
+    );
+  }
+
+  /**
+     * Property to report a process terminated by car watchdog.
+     *
+     * <p>Doesn't require permission because it's not exposed through
+     * {@link android.car.hardware.property.CarPropertyManager}.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_WRITE}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Object[]} property type
+     * </ul>
+     *
+     * @hide
+     */
+  Future<void> setWatchdogTerminatedProcess(dynamic value) async {
+    return datasource.setPropertyMIXED(
+      VehicleProperty.WATCHDOG_TERMINATED_PROCESS.id,
+      0,
+      value,
+    );
+  }
+
+  /**
+     * Property to signal a heartbeat from VHAL.
+     *
+     * <p>Doesn't require permission because it's not exposed through
+     * {@link android.car.hardware.property.CarPropertyManager}.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Long} property type
+     * </ul>
+     *
+     * @hide
+     */
+  Future<int> getVhalHeartbeat() async {
+    return datasource.getPropertyINT64(VehicleProperty.VHAL_HEARTBEAT.id, 0);
+  }
+
+  /**
+     * Property to start the ClusterUI in cluster display.
+     *
+     * <p>Doesn't require permission because it's not exposed through
+     * {@link android.car.hardware.property.CarPropertyManager}.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Integer} property type
+     * </ul>
+     *
+     * @hide
+     */
+  Future<int> getClusterSwitchUi() async {
+    return datasource.getPropertyINT32(VehicleProperty.CLUSTER_SWITCH_UI.id, 0);
+  }
+
+  /**
+     * Property to change the state of the cluster display.
+     *
+     * <p>Doesn't require permission because it's not exposed through
+     * {@link android.car.hardware.property.CarPropertyManager}.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Integer[]} property type
+     * </ul>
+     *
+     * @hide
+     */
+  Future<List<int>> getClusterDisplayState() async {
+    return datasource.getPropertyINT32_VEC(
+      VehicleProperty.CLUSTER_DISPLAY_STATE.id,
+      0,
+    );
+  }
+
+  /**
+     * Property to reports the current display and ClusterUI statue.
+     *
+     * <p>Doesn't require permission because it's not exposed through
+     * {@link android.car.hardware.property.CarPropertyManager}.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_WRITE}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Object[]} property type
+     * </ul>
+     *
+     * @hide
+     */
+  Future<void> setClusterReportState(dynamic value) async {
+    return datasource.setPropertyMIXED(
+      VehicleProperty.CLUSTER_REPORT_STATE.id,
+      0,
+      value,
+    );
+  }
+
+  /**
+     * Property to request to change the cluster display state to show some ClusterUI.
+     *
+     * <p>Doesn't require permission because it's not exposed through
+     * {@link android.car.hardware.property.CarPropertyManager}.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_WRITE}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Integer} property type
+     * </ul>
+     *
+     * @hide
+     */
+  Future<void> setClusterRequestDisplay(int value) async {
+    return datasource.setPropertyINT32(
+      VehicleProperty.CLUSTER_REQUEST_DISPLAY.id,
+      0,
+      value,
+    );
+  }
+
+  /**
+     * Property to inform the current navigation state.
+     *
+     * <p>Doesn't require permission because it's not exposed through
+     * {@link android.car.hardware.property.CarPropertyManager}.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_WRITE}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code bytes[]} property type
+     * </ul>
+     *
+     * @hide
+     */
+  Future<void> setClusterNavigationState(List<int> value) async {
+    return datasource.setPropertyBYTES(
+      VehicleProperty.CLUSTER_NAVIGATION_STATE.id,
+      0,
+      value,
+    );
+  }
+
+  /**
+     * Property to send the heartbeat signal to ClusterOS.
+     *
+     * <p>Doesn't require permission because it's not exposed through
+     * {@link android.car.hardware.property.CarPropertyManager}.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_WRITE}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Object[]} property type
+     * </ul>
+     *
+     * @hide
+     */
+  Future<void> setClusterHeartbeat(dynamic value) async {
+    return datasource.setPropertyMIXED(
+      VehicleProperty.CLUSTER_HEARTBEAT.id,
+      0,
+      value,
+    );
+  }
+
+  /**
+     * Electronic Toll Collection card type.
+     *
+     * <p>This property indicates the type of ETC(Electronic Toll Collection) card in the vehicle.
+     * If the head unit is aware of an ETC card attached to the vehicle, this property should return
+     * the type of card attached; otherwise, this property should be UNAVAILABLE. The property value
+     * should be one of {@link VehicleElectronicTollCollectionCardType}.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Integer} property type
+     * </ul>
+     *
+     * <p>Required Permission:
+     * <ul>
+     *  <li>Normal permission {@link Car#PERMISSION_CAR_INFO} to read property.
+     *  <li>Property is not writable.
+     * </ul>
+     *
+     * @data_enum {@link VehicleElectronicTollCollectionCardType}
+     */
+  Future<int> getElectronicTollCollectionCardType() async {
+    return datasource.getPropertyINT32(
+      VehicleProperty.ELECTRONIC_TOLL_COLLECTION_CARD_TYPE.id,
+      0,
+    );
+  }
+
+  /**
+     * Electronic Toll Collection card status.
+     *
+     * <p>This property indicates the status of ETC(Electronic Toll Collection) card in the vehicle.
+     * If the head unit is aware of an ETC card attached to the vehicle, ETC_CARD_STATUS gives that
+     * status of the card; otherwise, this property should be UNAVAILABLE. The property value should
+     * be one of {@link VehicleElectronicTollCollectionCardStatus}.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Integer} property type
+     * </ul>
+     *
+     * <p>Required Permission:
+     * <ul>
+     *  <li>Normal permission {@link Car#PERMISSION_CAR_INFO} to read property.
+     *  <li>Property is not writable.
+     * </ul>
+     *
+     * @data_enum {@link VehicleElectronicTollCollectionCardStatus}
+     */
+  Future<int> getElectronicTollCollectionCardStatus() async {
+    return datasource.getPropertyINT32(
+      VehicleProperty.ELECTRONIC_TOLL_COLLECTION_CARD_STATUS.id,
+      0,
+    );
+  }
+
+  /**
+     * EV charge current draw limit.
+     *
+     * <p>Indicates the maximum current draw threshold for charging set by the user. {@code
+     * configArray[0]} contains the max current draw allowed by the vehicle in Amperes.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
+     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Float} property type
+     * </ul>
+     *
+     * <p>Required Permissions:
+     * <ul>
+     *  <li>Dangerous permission {@link Car#PERMISSION_ENERGY} or Signature|Privileged permission
+     *  {@link Car#PERMISSION_CONTROL_CAR_ENERGY} to read property.
+     *  <li>Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_ENERGY} to write
+     *  property.
+     * </ul>
+     */
+  Future<double> getEvChargeCurrentDrawLimit() async {
+    return datasource.getPropertyFLOAT(
+      VehicleProperty.EV_CHARGE_CURRENT_DRAW_LIMIT.id,
+      0,
+    );
+  }
+
+  /**
+     * EV charge percent limit.
+     *
+     * <p>Indicates the maximum charge percent threshold set by the user. Returns a float value
+     * from 0 to 100.
+     *
+     * <p>configArray is optional. If it is populated, it represents the valid charge percent limit
+     * values for the vehicle. Here is an example configArray:
+     * <ul>
+     *  <li>configArray[0] = 20
+     *  <li>configArray[1] = 40
+     *  <li>configArray[2] = 60
+     *  <li>configArray[3] = 80
+     * </ul>
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
+     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Float} property type
+     * </ul>
+     *
+     * <p>Required Permissions:
+     * <ul>
+     *  <li>Dangerous permission {@link Car#PERMISSION_ENERGY} or Signature|Privileged permission
+     *  {@link Car#PERMISSION_CONTROL_CAR_ENERGY} to read property.
+     *  <li>Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_ENERGY} to write
+     *  property.
+     * </ul>
+     */
+  Future<double> getEvChargePercentLimit() async {
+    return datasource.getPropertyFLOAT(
+      VehicleProperty.EV_CHARGE_PERCENT_LIMIT.id,
+      0,
+    );
+  }
+
+  /**
+     * Charging state of the car.
+     *
+     * <p>Returns the current charging state of the car. See {@link
+     * android.car.hardware.property.EvChargeState} for possible values for {@code EV_CHARGE_STATE}.
+     *
+     * <p>If the vehicle has a target charge percentage other than 100, this property will return
+     * {@link EvChargeState#STATE_FULLY_CHARGED} when the battery charge level has reached the
+     * target level. See {@link #EV_CHARGE_PERCENT_LIMIT} for more context.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Integer} property type
+     * </ul>
+     *
+     * <p>Required Permission:
+     * <ul>
+     *  <li>Dangerous permission {@link Car#PERMISSION_ENERGY} to read property.
+     *  <li>Property is not writable.
+     * </ul>
+     *
+     * @data_enum {@link EvChargeState}
+     */
+  Future<int> getEvChargeState() async {
+    return datasource.getPropertyINT32(VehicleProperty.EV_CHARGE_STATE.id, 0);
+  }
+
+  /**
+     * Estimated charge time remaining in seconds.
+     *
+     * <p>Returns 0 if the vehicle is not charging.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_CONTINUOUS}
+     *  <li>{@code Integer} property type
+     * </ul>
+     *
+     * <p>Required Permission:
+     * <ul>
+     *  <li>Dangerous permission {@link Car#PERMISSION_ENERGY} to read property.
+     *  <li>Property is not writable.
+     * </ul>
+     */
+  Future<int> getEvChargeTimeRemaining() async {
+    return datasource.getPropertyINT32(
+      VehicleProperty.EV_CHARGE_TIME_REMAINING.id,
+      0,
+    );
+  }
+
+  /**
+     * Regenerative braking or one-pedal drive setting on the car.
+     *
+     * <p>Returns the current state associated with the regenerative braking
+     * setting in the car. See {@link android.car.hardware.property.EvRegenerativeBrakingState} for
+     * possible values for {@code EV_REGENERATIVE_BRAKING_STATE}.
+     *
+     * <p>If the {@link #EV_BRAKE_REGENERATION_LEVEL} property has been implemented, it is likely
+     * that the OEM supports a more granular set of regeneration levels than those provided by this
+     * property through {@link EvRegenerativeBrakingState}.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Integer} property type
+     * </ul>
+     *
+     * <p>Required Permission:
+     * <ul>
+     *  <li>Dangerous permission {@link Car#PERMISSION_ENERGY} to read property.
+     *  <li>Property is not writable.
+     * </ul>
+     *
+     * @data_enum {@link EvRegenerativeBrakingState}
+     */
+  Future<int> getEvRegenerativeBrakingState() async {
+    return datasource.getPropertyINT32(
+      VehicleProperty.EV_REGENERATIVE_BRAKING_STATE.id,
+      0,
+    );
+  }
+
+  /**
+     * EU's General security regulation compliance requirement.
+     *
+     * <p>Returns whether general security regulation compliance is required, if
+     * so, what type of requirement. See {@link GsrComplianceType} for possible enums.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_STATIC}
+     *  <li>{@code Integer} property type
+     * </ul>
+     *
+     * <p>Required Permission:
+     * <ul>
+     *  <li>Normal permission {@link Car#PERMISSION_CAR_INFO} to read property.
+     *  <li>Property is not writable.
+     * </ul>
+     *
+     * @data_enum {@link GsrComplianceType}
+     */
+  Future<int> getGeneralSafetyRegulationCompliance() async {
+    return datasource.getPropertyINT32(
+      VehicleProperty.GENERAL_SAFETY_REGULATION_COMPLIANCE.id,
+      0,
+    );
+  }
+
+  /**
+     * Current state of vehicle autonomy.
+     *
+     * <p>Defines the level of autonomy currently engaged in the vehicle from the J3016_202104
+     * revision of the SAE standard levels 0-5, with 0 representing no autonomy and 5 representing
+     * full driving automation.
+     *
+     * <p>For the global area ID (0), the {@link
+     * android.car.hardware.property.AreaIdConfig#getSupportedEnumValues()} array obtained from
+     * {@link android.car.hardware.CarPropertyConfig#getAreaIdConfig(int)} specifies which states
+     * from {@link android.car.hardware.property.VehicleAutonomousState} are supported.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Integer} property type
+     * </ul>
+     *
+     * <p>Required Permission:
+     * <ul>
+     *  <li>Dangerous permission {@link Car#PERMISSION_CAR_DRIVING_STATE_3P} or Signature|Privileged
+     *  permission {@link Car#PERMISSION_CAR_DRIVING_STATE} to read property.
+     *  <li>Property is not writable.
+     * </ul>
+     *
+     * @data_enum {@link android.car.hardware.property.VehicleAutonomousState}
+     */
+  Future<int> getVehicleDrivingAutomationCurrentLevel() async {
+    return datasource.getPropertyINT32(
+      VehicleProperty.VEHICLE_DRIVING_AUTOMATION_CURRENT_LEVEL.id,
+      0,
+    );
+  }
+}
+
+class VehiclePrivilegedPropertyRepository {
+  VehiclePrivilegedPropertyRepository(this.datasource);
+
+  final VehiclePropertyDatasource datasource;
+
+  /**
+     * VIN of vehicle
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_STATIC}
+     *  <li>{@code String} property type
+     * </ul>
+     *
+     * <p>Required Permission:
+     * <ul>
+     *  <li>Signature|Privileged permission {@link Car#PERMISSION_IDENTIFICATION} to read
+     *  property.
+     *  <li>Property is not writable.
+     * </ul>
+     */
+  Future<String> getInfoVin() async {
+    return datasource.getPropertySTRING(VehicleProperty.INFO_VIN.id, 0);
+  }
+
+  /**
+     * Rear bicycle model steering angle for vehicle in degrees.
+     *
+     * <p>Left is negative.
+     *
+     * <p>This property is independent of the angle of the steering wheel. This property
+     * communicates the angle of the rear wheels with respect to the vehicle, not the angle of the
+     * steering wheel.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_CONTINUOUS}
+     *  <li>{@code Float} property type
+     * </ul>
+     *
+     * <p>Required Permission:
+     * <ul>
+     *  <li>Signature|Privileged permission {@link Car#PERMISSION_READ_STEERING_STATE} to read
+     *  property.
+     *  <li>Property is not writable.
+     * </ul>
+     */
+  Future<double> getPerfRearSteeringAngle() async {
+    return datasource.getPropertyFLOAT(
+      VehicleProperty.PERF_REAR_STEERING_ANGLE.id,
+      0,
+    );
+  }
+
+  /**
+     * Temperature of engine coolant in celsius.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_CONTINUOUS}
+     *  <li>{@code Float} property type
+     * </ul>
+     *
+     * <p>Required Permission:
+     * <ul>
+     *  <li>Signature|Privileged permission {@link Car#PERMISSION_CAR_ENGINE_DETAILED} to read
+     *  property.
+     *  <li>Property is not writable.
+     * </ul>
+     */
+  Future<double> getEngineCoolantTemp() async {
+    return datasource.getPropertyFLOAT(
+      VehicleProperty.ENGINE_COOLANT_TEMP.id,
+      0,
+    );
+  }
+
+  /**
+     * Engine oil level.
+     *
+     * <p>Returns the status of the oil level for the vehicle. See {@code VehicleOilLevel} for
+     * possible values for {@code ENGINE_OIL_LEVEL}.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Integer} property type
+     * </ul>
+     *
+     * <p>Required Permission:
+     * <ul>
+     *  <li>Signature|Privileged permission {@link Car#PERMISSION_CAR_ENGINE_DETAILED} to read
+     *  property.
+     *  <li>Property is not writable.
+     * </ul>
+     *
+     * @data_enum {@link VehicleOilLevel}
+     */
+  Future<int> getEngineOilLevel() async {
+    return datasource.getPropertyINT32(VehicleProperty.ENGINE_OIL_LEVEL.id, 0);
+  }
+
+  /**
+     * Temperature of engine oil in celsius.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_CONTINUOUS}
+     *  <li>{@code Float} property type
+     * </ul>
+     *
+     * <p>Required Permission:
+     * <ul>
+     *  <li>Signature|Privileged permission {@link Car#PERMISSION_CAR_ENGINE_DETAILED} to read
+     *  property.
+     *  <li>Property is not writable.
+     * </ul>
+     */
+  Future<double> getEngineOilTemp() async {
+    return datasource.getPropertyFLOAT(VehicleProperty.ENGINE_OIL_TEMP.id, 0);
+  }
+
+  /**
+     * Represents feature for engine idle automatic stop.
+     *
+     * <p>If true, the vehicle may automatically shut off the engine when it is not needed and then
+     * automatically restart it when needed.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
+     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Boolean} property type
+     * </ul>
+     *
+     * <p>Required Permission:
+     * <ul>
+     *  <li>Signature|Privileged permission {@link Car#PERMISSION_CAR_ENGINE_DETAILED} to read and
+     *  write property.
+     * </ul>
+     */
+  Future<bool> getEngineIdleAutoStopEnabled() async {
+    return datasource.getPropertyBOOLEAN(
+      VehicleProperty.ENGINE_IDLE_AUTO_STOP_ENABLED.id,
+      0,
+    );
+  }
+
+  /**
+     * Represents feature for engine idle automatic stop.
+     *
+     * <p>If true, the vehicle may automatically shut off the engine when it is not needed and then
+     * automatically restart it when needed.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
+     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Boolean} property type
+     * </ul>
+     *
+     * <p>Required Permission:
+     * <ul>
+     *  <li>Signature|Privileged permission {@link Car#PERMISSION_CAR_ENGINE_DETAILED} to read and
+     *  write property.
+     * </ul>
+     */
+  Future<void> setEngineIdleAutoStopEnabled(bool value) async {
+    return datasource.setPropertyBOOLEAN(
+      VehicleProperty.ENGINE_IDLE_AUTO_STOP_ENABLED.id,
+      0,
+      value,
+    );
+  }
+
+  /**
+     * Impact detected.
+     *
+     * <p>Bit flag property to relay information on whether an impact has occurred on a particular
+     * side of the vehicle as described through the {@link
+     * android.car.hardware.property.ImpactSensorLocation} enum. As a bit flag property, this
+     * property can be set to multiple ORed together values of the enum when necessary.
+     *
+     * <p>For the global area ID (0, the {@link
+     * android.car.hardware.property.AreaIdConfig#getSupportedEnumValues()} array obtained from
+     * {@link android.car.hardware.CarPropertyConfig#getAreaIdConfig(int)} specifies which bit flags
+     * from {@link android.car.hardware.property.ImpactSensorLocation} are supported.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Integer} property type
+     * </ul>
+     *
+     * <p>Required Permission:
+     * <ul>
+     *  <li>Signature|Privileged permission {@link Car#PERMISSION_READ_IMPACT_SENSORS} to read
+     *  property.
+     *  <li>Property is not writable.
+     * </ul>
+     *
+     * @data_enum {@link android.car.hardware.property.ImpactSensorLocation}
+     *
+     */
+  Future<int> getImpactDetected() async {
+    return datasource.getPropertyINT32(VehicleProperty.IMPACT_DETECTED.id, 0);
+  }
+
+  /**
+     * Fuel door open.
+     *
+     * <p>This property communicates whether the fuel door on the vehicle is open or not. This
+     * property will not be implemented for electric vehicles. That is, if {@link #INFO_FUEL_TYPE}
+     * only contains {@link FuelType#ELECTRIC}, this property will not be implemented. For EVs, see
+     * {@link #EV_CHARGE_PORT_OPEN}.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
+     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Boolean} property type
+     * </ul>
+     *
+     * <p>Required Permissions:
+     * <ul>
+     *  <li>Normal permission {@link Car#PERMISSION_ENERGY_PORTS} or Signature|Privileged permission
+     *  {@link Car#PERMISSION_CONTROL_ENERGY_PORTS} to read property.
+     *  <li>Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ENERGY_PORTS} to
+     *  write property.
+     * </ul>
+     */
+  Future<void> setFuelDoorOpen(bool value) async {
+    return datasource.setPropertyBOOLEAN(
+      VehicleProperty.FUEL_DOOR_OPEN.id,
+      0,
+      value,
+    );
+  }
+
+  /**
+     * EV charge port open.
+     *
+     * <p>If the vehicle has multiple charging ports, this property will return true if any of the
+     * charge ports are open.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
+     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
+     *  <li>{@code Boolean} property type
+     * </ul>
+     *
+     * <p>Required Permissions:
+     * <ul>
+     *  <li>Normal permission {@link Car#PERMISSION_ENERGY_PORTS} or Signature|Privileged permission
+     *  {@link Car#PERMISSION_CONTROL_ENERGY_PORTS} to read property.
+     *  <li>Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ENERGY_PORTS} to
+     *  write property.
+     * </ul>
+     */
+  Future<void> setEvChargePortOpen(bool value) async {
+    return datasource.setPropertyBOOLEAN(
+      VehicleProperty.EV_CHARGE_PORT_OPEN.id,
+      0,
+      value,
+    );
+  }
+
+  /**
+     * Range remaining in meters.
+     *
+     * <p>Range remaining accounts for all energy sources in a vehicle.  For example, a hybrid car's
+     * range will be the sum of the ranges based on fuel and battery.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
+     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_CONTINUOUS}
+     *  <li>{@code Float} property type
+     * </ul>
+     *
+     * <p>Required Permissions:
+     * <ul>
+     *  <li>Dangerous permission {@link Car#PERMISSION_ENERGY} or Signature|Privileged permission
+     *  {@link Car#PERMISSION_ADJUST_RANGE_REMAINING} to read property.
+     *  <li>Signature|Privileged permission {@link Car#PERMISSION_ADJUST_RANGE_REMAINING} to write
+     *  property.
+     * </ul>
+     */
+  Future<void> setRangeRemaining(double value) async {
+    return datasource.setPropertyFLOAT(
+      VehicleProperty.RANGE_REMAINING.id,
+      0,
+      value,
+    );
+  }
+
+  /**
+     * Critically low tire pressure.
+     *
+     * <p>For each area ID listed in {@link android.car.hardware.CarPropertyConfig#getAreaIds}, the
+     * corresponding {@code CRITICALLY_LOW_TIRE_PRESSURE} will be less than or equal the {@link
+     * android.car.hardware.property.AreaIdConfig#getMinValue()} of {@link #TIRE_PRESSURE} for the
+     * same area ID.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_WHEEL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_STATIC}
+     *  <li>{@code Float} property type
+     * </ul>
+     *
+     * <p>Required Permission:
+     * <ul>
+     *  <li>Signature|Privileged permission {@link Car#PERMISSION_TIRES} to read property.
+     *  <li>Property is not writable.
+     * </ul>
+     */
+  Future<double> getCriticallyLowTirePressure(VehicleAreaWheel area) async {
+    return datasource.getPropertyFLOAT(
+      VehicleProperty.CRITICALLY_LOW_TIRE_PRESSURE.id,
+      area.value,
+    );
+  }
+
+  /**
+     * Vehicle Passive Suspension Height in mm.
+     *
+     * <p>This property communicates the real-time suspension displacement of the vehicle relative
+     * to its neutral position, given in mm. In other words, the displacement of the suspension at
+     * any given point in time relative to the suspension's position when the vehicle is on a flat
+     * surface with no passengers or cargo. When the suspension is compressed in comparison to the
+     * neutral position, the value should be negative. When the suspension is decompressed in
+     * comparison to the neutral position, the value should be positive.
+     *
+     * <p>Examples for further clarity:
+     * <ul>
+     *   <li>1) Suppose the user is driving on a smooth flat surface, and all wheels are currently
+     *   compressed by 2 cm in comparison to the default suspension height. In this scenario, this
+     *   property will be set to -20 for all wheels.
+     *   <li>2) Suppose the user drives over a pothole. While the front left wheel is over the
+     *   pothole, it's decompressed by 3 cm in comparison to the rest of the wheels, or 1 cm in
+     *   comparison to the default suspension height. All the others are still compressed by 2 cm.
+     *   In this scenario, this property will be set to -20 for all wheels except for the front
+     *   left, which will be set to 10.
+     * </ul>
+     *
+     * <p>{@link android.car.hardware.property.AreaIdConfig#hasMinSupportedValue()} and {@link
+     * android.car.hardware.property.AreaIdConfig#hasMaxSupportedValue()} will be {@code true} for
+     * all areas.
+     *
+     * <p>{@link android.car.hardware.property.MinMaxSupportedValue#getMinValue()} represents the
+     * lower bound of the suspension height for the wheel at the specified area ID.
+     *
+     * <p>{@link android.car.hardware.property.MinMaxSupportedValue#getMaxValue()} represents the
+     * upper bound of the suspension height for the wheel at the specified area ID.
+     *
+     * <p>Property Config:
+     * <ul>
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
+     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_WHEEL}
+     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_CONTINUOUS}
+     *  <li>{@code Integer} property type
+     * </ul>
+     *
+     * <p>Required Permissions:
+     * <ul>
+     *  <li>Signature|Privileged permission {@link Car#PERMISSION_CAR_DYNAMICS_STATE} to read
+     *  property.
+     *  <li>Property is not writable
+     * </ul>
+     */
+  Future<int> getVehiclePassiveSuspensionHeight(VehicleAreaWheel area) async {
+    return datasource.getPropertyINT32(
+      VehicleProperty.VEHICLE_PASSIVE_SUSPENSION_HEIGHT.id,
+      area.value,
+    );
+  }
+
+  /**
      * Regenerative braking level of an electronic vehicle.
      *
      * <p>Returns the current setting for the regenerative braking level. Larger setting values mean
@@ -1816,99 +3429,12 @@ class VehiclePropertyRepository {
      *
      * @data_enum {@link EvStoppingMode}
      */
-  Future<int> getEvStoppingMode() async {
-    return datasource.getPropertyINT32(VehicleProperty.EV_STOPPING_MODE.id, 0);
-  }
-
-  /**
-     * Represents property for the current stopping mode of the vehicle.
-     *
-     * <p>For the global area ID, the {@link
-     * android.car.hardware.property.AreaIdConfig#getSupportedEnumValues()} obtained from {@link
-     * android.car.hardware.CarPropertyConfig#getAreaIdConfig(int)} specifies which enum values from
-     * {@code EvStoppingMode} are supported. {@code EvStoppingMode} may be extended to include more
-     * states in the future.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
-     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Integer} property type
-     * </ul>
-     *
-     * <p>Required Permissions:
-     * <ul>
-     *  <li>Normal permission {@link Car#PERMISSION_POWERTRAIN} or Signature|Privileged permission
-     *  {@link Car#PERMISSION_CONTROL_POWERTRAIN} to read property.
-     *  <li>Signature|Privileged permission {@link Car#PERMISSION_CONTROL_POWERTRAIN} to write
-     *  property.
-     * </ul>
-     *
-     * @data_enum {@link EvStoppingMode}
-     */
   Future<void> setEvStoppingMode(int value) async {
     return datasource.setPropertyINT32(
       VehicleProperty.EV_STOPPING_MODE.id,
       0,
       value,
     );
-  }
-
-  /**
-     * Warning for fuel low level.
-     *
-     * <p>{@code FUEL_LEVEL_LOW} corresponds to the low fuel warning on the dashboard. Once {@code
-     * FUEL_LEVEL_LOW} is set, it should not be cleared until more fuel is added to the vehicle.
-     * This property may take into account all fuel sources for a vehicle - for example:
-     * <ul>
-     *  <li>For a gas powered vehicle, this property is based solely on gas level.
-     *  <li>For a battery powered vehicle, this property is based solely on battery level.
-     *  <li>For a hybrid vehicle, this property may be based on the combination of gas and
-     *  battery levels, at the OEM's discretion.
-     * </ul>
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Boolean} property type
-     * </ul>
-     *
-     * <p>Required Permission:
-     * <ul>
-     *  <li>Dangerous permission {@link Car#PERMISSION_ENERGY} to read property.
-     *  <li>Property is not writable.
-     * </ul>
-     */
-  Future<bool> getFuelLevelLow() async {
-    return datasource.getPropertyBOOLEAN(VehicleProperty.FUEL_LEVEL_LOW.id, 0);
-  }
-
-  /**
-     * Night mode.
-     *
-     * <p>True indicates that the night mode sensor has detected that the car cabin environment has
-     * low light.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Boolean} property type
-     * </ul>
-     *
-     * <p>Required Permission:
-     * <ul>
-     *  <li>Normal permission {@link Car#PERMISSION_EXTERIOR_ENVIRONMENT} to read property.
-     *  <li>Property is not writable.
-     * </ul>
-     */
-  Future<bool> getNightMode() async {
-    return datasource.getPropertyBOOLEAN(VehicleProperty.NIGHT_MODE.id, 0);
   }
 
   /**
@@ -1940,31 +3466,6 @@ class VehiclePropertyRepository {
      */
   Future<int> getTurnSignalState() async {
     return datasource.getPropertyINT32(VehicleProperty.TURN_SIGNAL_STATE.id, 0);
-  }
-
-  /**
-     * Vehicle's ignition state.
-     *
-     * <p>See {@link VehicleIgnitionState} for possible values for {@code IGNITION_STATE}.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Integer} property type
-     * </ul>
-     *
-     * <p>Required Permission:
-     * <ul>
-     *  <li>Normal permission {@link Car#PERMISSION_POWERTRAIN} to read property.
-     *  <li>Property is not writable.
-     * </ul>
-     *
-     * @data_enum {@link VehicleIgnitionState}
-     */
-  Future<int> getIgnitionState() async {
-    return datasource.getPropertyINT32(VehicleProperty.IGNITION_STATE.id, 0);
   }
 
   /**
@@ -2119,97 +3620,6 @@ class VehiclePropertyRepository {
   Future<int> getElectronicStabilityControlState() async {
     return datasource.getPropertyINT32(
       VehicleProperty.ELECTRONIC_STABILITY_CONTROL_STATE.id,
-      0,
-    );
-  }
-
-  /**
-     * Turn signal light state.
-     *
-     * <p>This property communicates the actual state of the turn signal lights. It is independent
-     * from the actual turn signal switch state or the hazard lights button state.
-     *
-     * <p>Examples:
-     * <ul>
-     *   <li>1) Left turn signal light is currently pulsing, right turn signal light is currently
-     *   off. This property will return {@link VehicleTurnSignal#STATE_LEFT} while the light is on
-     *   during the pulse, and {@link VehicleTurnSignal#STATE_NONE} when it is off during the pulse.
-     *   <li>2) Right turn signal light is currently pulsing, left turn signal light is currently
-     *   off. This property will return {@link VehicleTurnSignal#STATE_RIGHT} while the light is on
-     *   during the pulse, and {@link VehicleTurnSignal#STATE_NONE} when it is off during the pulse.
-     *   <li>3) Both turn signal lights are currently pulsing (e.g. when hazard lights switch is
-     *   on). This property will return {@link VehicleTurnSignal#STATE_LEFT} | {@link
-     *   VehicleTurnSignal#STATE_RIGHT} while the lights are on during the pulse, and {@link
-     *   VehicleTurnSignal#STATE_NONE} when they are off during the pulse.
-     * </ul>
-     *
-     * <p>This is different from the function of {@link #TURN_SIGNAL_SWITCH}, which must communicate
-     * the state of the turn signal lever/switch.
-     *
-     * <p>Note that this property uses {@link VehicleTurnSignal} as a bit flag, unlike {@link
-     * #TURN_SIGNAL_SWITCH}, which uses it like a regular enum. This means this property supports
-     * ORed together values in {@link VehicleTurnSignal}.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Integer} property type
-     * </ul>
-     *
-     * <p>Required Permission:
-     * <ul>
-     *  <li>Dangerous permission {@link Car#PERMISSION_READ_EXTERIOR_LIGHTS} or Signature|Privileged
-     *  permission {@link Car#PERMISSION_CONTROL_EXTERIOR_LIGHTS} to read property.
-     *  <li>Property is not writable.
-     * </ul>
-     *
-     * @data_enum {@link VehicleTurnSignal}
-     */
-  Future<int> getTurnSignalLightState() async {
-    return datasource.getPropertyINT32(
-      VehicleProperty.TURN_SIGNAL_LIGHT_STATE.id,
-      0,
-    );
-  }
-
-  /**
-     * Turn signal switch.
-     *
-     * <p>This property communicates the state of the turn signal lever/switch. This is different
-     * from the function of {@link #TURN_SIGNAL_LIGHT_STATE}, which must communicate the actual
-     * state of the turn signal lights.
-     *
-     * <p>Note that this property uses {@link VehicleTurnSignal} as a regular enum, unlike {@link
-     * #TURN_SIGNAL_LIGHT_STATE}, which uses it like a bit flag. This means this property does not
-     * support ORed together values in {@link VehicleTurnSignal}.
-     *
-     * <p>This property is defined as read_write, but OEMs have the option to implement it as read
-     * only.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
-     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Integer} property type
-     * </ul>
-     *
-     * <p>Required Permission:
-     * <ul>
-     *  <li>Dangerous permission {@link Car#PERMISSION_READ_EXTERIOR_LIGHTS} or Signature|Privileged
-     *  permission {@link Car#PERMISSION_CONTROL_EXTERIOR_LIGHTS} to read property.
-     *  <li>Signature|Privileged permission {@link Car#PERMISSION_CONTROL_EXTERIOR_LIGHTS} to write
-     *  property.
-     * </ul>
-     *
-     * @data_enum {@link VehicleTurnSignal}
-     */
-  Future<int> getTurnSignalSwitch() async {
-    return datasource.getPropertyINT32(
-      VehicleProperty.TURN_SIGNAL_SWITCH.id,
       0,
     );
   }
@@ -3244,35 +4654,6 @@ class VehiclePropertyRepository {
      *
      * @data_enum {@link VehicleUnit}
      */
-  Future<int> getHvacTemperatureDisplayUnits() async {
-    return datasource.getPropertyINT32(
-      VehicleProperty.HVAC_TEMPERATURE_DISPLAY_UNITS.id,
-      0,
-    );
-  }
-
-  /**
-     * Temperature units for display.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
-     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Integer} property type
-     * </ul>
-     *
-     * <p>Required Permissions:
-     * <ul>
-     *  <li>Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} or Signature|Privileged
-     *  permission {@link Car#PERMISSION_CONTROL_CAR_CLIMATE} to read property.
-     *  <li>Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_CLIMATE} to write
-     *  property.
-     * </ul>
-     *
-     * @data_enum {@link VehicleUnit}
-     */
   Future<void> setHvacTemperatureDisplayUnits(int value) async {
     return datasource.setPropertyINT32(
       VehicleProperty.HVAC_TEMPERATURE_DISPLAY_UNITS.id,
@@ -3547,478 +4928,6 @@ class VehiclePropertyRepository {
       VehicleProperty.HVAC_ELECTRIC_DEFROSTER_ON.id,
       area.value,
       value,
-    );
-  }
-
-  /**
-     * Distance units for display.
-     *
-     * <p>Indicates which units the car is using to display distances to the user.
-     *
-     * <p>configArray represents the list of supported units for {@code
-     * DISTANCE_DISPLAY_UNITS}. Here is an example configArray:
-     * <ul>
-     *  <li>configArray[0] = {@link VehicleUnit#METER}
-     *  <li>configArray[1] = {@link VehicleUnit#KILOMETER}
-     *  <li>configArray[2] = {@link VehicleUnit#MILE}
-     * </ul>
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
-     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Integer} property type
-     * </ul>
-     *
-     * <p>Required Permissions:
-     * <ul>
-     *  <li>Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} to read property.
-     *  <li>Normal permission {@link Car#PERMISSION_CONTROL_DISPLAY_UNITS} and Signature|Privileged
-     *  permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
-     * </ul>
-     *
-     * @data_enum {@link VehicleUnit}
-     */
-  Future<int> getDistanceDisplayUnits() async {
-    return datasource.getPropertyINT32(
-      VehicleProperty.DISTANCE_DISPLAY_UNITS.id,
-      0,
-    );
-  }
-
-  /**
-     * Distance units for display.
-     *
-     * <p>Indicates which units the car is using to display distances to the user.
-     *
-     * <p>configArray represents the list of supported units for {@code
-     * DISTANCE_DISPLAY_UNITS}. Here is an example configArray:
-     * <ul>
-     *  <li>configArray[0] = {@link VehicleUnit#METER}
-     *  <li>configArray[1] = {@link VehicleUnit#KILOMETER}
-     *  <li>configArray[2] = {@link VehicleUnit#MILE}
-     * </ul>
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
-     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Integer} property type
-     * </ul>
-     *
-     * <p>Required Permissions:
-     * <ul>
-     *  <li>Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} to read property.
-     *  <li>Normal permission {@link Car#PERMISSION_CONTROL_DISPLAY_UNITS} and Signature|Privileged
-     *  permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
-     * </ul>
-     *
-     * @data_enum {@link VehicleUnit}
-     */
-  Future<void> setDistanceDisplayUnits(int value) async {
-    return datasource.setPropertyINT32(
-      VehicleProperty.DISTANCE_DISPLAY_UNITS.id,
-      0,
-      value,
-    );
-  }
-
-  /**
-     * Fuel volume units for display.
-     *
-     * <p>Indicates which units the car is using to display fuel volume to the user.
-     *
-     * <p>configArray represents the list of supported units for {@code
-     * FUEL_VOLUME_DISPLAY_UNITS}. Here is an example configArray:
-     * <ul>
-     *  <li>configArray[0] = {@link VehicleUnit#LITER}
-     *  <li>configArray[1] = {@link VehicleUnit#US_GALLON}
-     * </ul>
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
-     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Integer} property type
-     * </ul>
-     *
-     * <p>Required Permissions:
-     * <ul>
-     *  <li>Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} to read property.
-     *  <li>Normal permission {@link Car#PERMISSION_CONTROL_DISPLAY_UNITS} and Signature|Privileged
-     *  permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
-     * </ul>
-     *
-     * @data_enum {@link VehicleUnit}
-     */
-  Future<int> getFuelVolumeDisplayUnits() async {
-    return datasource.getPropertyINT32(
-      VehicleProperty.FUEL_VOLUME_DISPLAY_UNITS.id,
-      0,
-    );
-  }
-
-  /**
-     * Fuel volume units for display.
-     *
-     * <p>Indicates which units the car is using to display fuel volume to the user.
-     *
-     * <p>configArray represents the list of supported units for {@code
-     * FUEL_VOLUME_DISPLAY_UNITS}. Here is an example configArray:
-     * <ul>
-     *  <li>configArray[0] = {@link VehicleUnit#LITER}
-     *  <li>configArray[1] = {@link VehicleUnit#US_GALLON}
-     * </ul>
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
-     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Integer} property type
-     * </ul>
-     *
-     * <p>Required Permissions:
-     * <ul>
-     *  <li>Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} to read property.
-     *  <li>Normal permission {@link Car#PERMISSION_CONTROL_DISPLAY_UNITS} and Signature|Privileged
-     *  permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
-     * </ul>
-     *
-     * @data_enum {@link VehicleUnit}
-     */
-  Future<void> setFuelVolumeDisplayUnits(int value) async {
-    return datasource.setPropertyINT32(
-      VehicleProperty.FUEL_VOLUME_DISPLAY_UNITS.id,
-      0,
-      value,
-    );
-  }
-
-  /**
-     * Tire pressure units for display.
-     *
-     * <p>Indicates which units the car is using to display tire pressure to the user.
-     *
-     * <p>configArray represents the list of supported units for {@code
-     * TIRE_PRESSURE_DISPLAY_UNITS}. Here is an example configArray:
-     * <ul>
-     *  <li>configArray[0] = {@link VehicleUnit#KILOPASCAL}
-     *  <li>configArray[1] = {@link VehicleUnit#PSI}
-     *  <li>configArray[2] = {@link VehicleUnit#BAR}
-     * </ul>
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
-     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Integer} property type
-     * </ul>
-     *
-     * <p>Required Permissions:
-     * <ul>
-     *  <li>Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} to read property.
-     *  <li>Normal permission {@link Car#PERMISSION_CONTROL_DISPLAY_UNITS} and Signature|Privileged
-     *  permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
-     * </ul>
-     *
-     * @data_enum {@link VehicleUnit}
-     */
-  Future<int> getTirePressureDisplayUnits() async {
-    return datasource.getPropertyINT32(
-      VehicleProperty.TIRE_PRESSURE_DISPLAY_UNITS.id,
-      0,
-    );
-  }
-
-  /**
-     * Tire pressure units for display.
-     *
-     * <p>Indicates which units the car is using to display tire pressure to the user.
-     *
-     * <p>configArray represents the list of supported units for {@code
-     * TIRE_PRESSURE_DISPLAY_UNITS}. Here is an example configArray:
-     * <ul>
-     *  <li>configArray[0] = {@link VehicleUnit#KILOPASCAL}
-     *  <li>configArray[1] = {@link VehicleUnit#PSI}
-     *  <li>configArray[2] = {@link VehicleUnit#BAR}
-     * </ul>
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
-     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Integer} property type
-     * </ul>
-     *
-     * <p>Required Permissions:
-     * <ul>
-     *  <li>Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} to read property.
-     *  <li>Normal permission {@link Car#PERMISSION_CONTROL_DISPLAY_UNITS} and Signature|Privileged
-     *  permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
-     * </ul>
-     *
-     * @data_enum {@link VehicleUnit}
-     */
-  Future<void> setTirePressureDisplayUnits(int value) async {
-    return datasource.setPropertyINT32(
-      VehicleProperty.TIRE_PRESSURE_DISPLAY_UNITS.id,
-      0,
-      value,
-    );
-  }
-
-  /**
-     * EV battery units for display.
-     *
-     * <p>Indicates which units the vehicle is using to display EV battery information to the user.
-     *
-     * <p>configArray represents the list of supported units for {@code
-     * EV_BATTERY_DISPLAY_UNITS}. Here is an example configArray:
-     * <ul>
-     *  <li>configArray[0] = {@link VehicleUnit#WATT_HOUR}
-     *  <li>configArray[1] = {@link VehicleUnit#AMPERE_HOURS}
-     *  <li>configArray[2] = {@link VehicleUnit#KILOWATT_HOUR}
-     * </ul>
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
-     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Integer} property type
-     * </ul>
-     *
-     * <p>Required Permissions:
-     * <ul>
-     *  <li>Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} to read property.
-     *  <li>Normal permission {@link Car#PERMISSION_CONTROL_DISPLAY_UNITS} and Signature|Privileged
-     *  permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
-     * </ul>
-     *
-     * @data_enum {@link VehicleUnit}
-     */
-  Future<int> getEvBatteryDisplayUnits() async {
-    return datasource.getPropertyINT32(
-      VehicleProperty.EV_BATTERY_DISPLAY_UNITS.id,
-      0,
-    );
-  }
-
-  /**
-     * EV battery units for display.
-     *
-     * <p>Indicates which units the vehicle is using to display EV battery information to the user.
-     *
-     * <p>configArray represents the list of supported units for {@code
-     * EV_BATTERY_DISPLAY_UNITS}. Here is an example configArray:
-     * <ul>
-     *  <li>configArray[0] = {@link VehicleUnit#WATT_HOUR}
-     *  <li>configArray[1] = {@link VehicleUnit#AMPERE_HOURS}
-     *  <li>configArray[2] = {@link VehicleUnit#KILOWATT_HOUR}
-     * </ul>
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
-     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Integer} property type
-     * </ul>
-     *
-     * <p>Required Permissions:
-     * <ul>
-     *  <li>Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} to read property.
-     *  <li>Normal permission {@link Car#PERMISSION_CONTROL_DISPLAY_UNITS} and Signature|Privileged
-     *  permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
-     * </ul>
-     *
-     * @data_enum {@link VehicleUnit}
-     */
-  Future<void> setEvBatteryDisplayUnits(int value) async {
-    return datasource.setPropertyINT32(
-      VehicleProperty.EV_BATTERY_DISPLAY_UNITS.id,
-      0,
-      value,
-    );
-  }
-
-  /**
-     * Speed units for display.
-     *
-     * <p>Indicates type of units the vehicle is using to display speed to user.
-     *
-     * <p>configArray represents the list of supported units for {@code
-     * VEHICLE_SPEED_DISPLAY_UNITS}. Here is an example configArray:
-     * <ul>
-     *  <li>configArray[0] = {@link VehicleUnit#METER_PER_SEC}
-     *  <li>configArray[1] = {@link VehicleUnit#MILES_PER_HOUR}
-     *  <li>configArray[2] = {@link VehicleUnit#KILOMETERS_PER_HOUR}
-     * </ul>
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
-     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Integer} property type
-     * </ul>
-     *
-     * <p>Required Permissions:
-     * <ul>
-     *  <li>Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} to read property.
-     *  <li>Normal permission {@link Car#PERMISSION_CONTROL_DISPLAY_UNITS} and Signature|Privileged
-     *  permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
-     * </ul>
-     *
-     * @data_enum {@link VehicleUnit}
-     */
-  Future<int> getVehicleSpeedDisplayUnits() async {
-    return datasource.getPropertyINT32(
-      VehicleProperty.VEHICLE_SPEED_DISPLAY_UNITS.id,
-      0,
-    );
-  }
-
-  /**
-     * Speed units for display.
-     *
-     * <p>Indicates type of units the vehicle is using to display speed to user.
-     *
-     * <p>configArray represents the list of supported units for {@code
-     * VEHICLE_SPEED_DISPLAY_UNITS}. Here is an example configArray:
-     * <ul>
-     *  <li>configArray[0] = {@link VehicleUnit#METER_PER_SEC}
-     *  <li>configArray[1] = {@link VehicleUnit#MILES_PER_HOUR}
-     *  <li>configArray[2] = {@link VehicleUnit#KILOMETERS_PER_HOUR}
-     * </ul>
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
-     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Integer} property type
-     * </ul>
-     *
-     * <p>Required Permissions:
-     * <ul>
-     *  <li>Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} to read property.
-     *  <li>Normal permission {@link Car#PERMISSION_CONTROL_DISPLAY_UNITS} and Signature|Privileged
-     *  permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
-     * </ul>
-     *
-     * @data_enum {@link VehicleUnit}
-     */
-  Future<void> setVehicleSpeedDisplayUnits(int value) async {
-    return datasource.setPropertyINT32(
-      VehicleProperty.VEHICLE_SPEED_DISPLAY_UNITS.id,
-      0,
-      value,
-    );
-  }
-
-  /**
-     * Fuel consumption units for display.
-     *
-     * <p>Indicates type of units the car is using to display fuel consumption information to user.
-     *
-     * <p>{@code true} indicates units are distance over volume such as MPG.
-     *
-     * <p>{@code false} indicates units are volume over distance such as L/100KM.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
-     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Boolean} property type
-     * </ul>
-     *
-     * <p>Required Permissions:
-     * <ul>
-     *  <li>Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} to read property.
-     *  <li>Normal permission {@link Car#PERMISSION_CONTROL_DISPLAY_UNITS} and Signature|Privileged
-     *  permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
-     * </ul>
-     */
-  Future<bool> getFuelConsumptionUnitsDistanceOverVolume() async {
-    return datasource.getPropertyBOOLEAN(
-      VehicleProperty.FUEL_CONSUMPTION_UNITS_DISTANCE_OVER_VOLUME.id,
-      0,
-    );
-  }
-
-  /**
-     * Fuel consumption units for display.
-     *
-     * <p>Indicates type of units the car is using to display fuel consumption information to user.
-     *
-     * <p>{@code true} indicates units are distance over volume such as MPG.
-     *
-     * <p>{@code false} indicates units are volume over distance such as L/100KM.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
-     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Boolean} property type
-     * </ul>
-     *
-     * <p>Required Permissions:
-     * <ul>
-     *  <li>Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} to read property.
-     *  <li>Normal permission {@link Car#PERMISSION_CONTROL_DISPLAY_UNITS} and Signature|Privileged
-     *  permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
-     * </ul>
-     */
-  Future<void> setFuelConsumptionUnitsDistanceOverVolume(bool value) async {
-    return datasource.setPropertyBOOLEAN(
-      VehicleProperty.FUEL_CONSUMPTION_UNITS_DISTANCE_OVER_VOLUME.id,
-      0,
-      value,
-    );
-  }
-
-  /**
-     * Outside temperature in celsius.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_CONTINUOUS}
-     *  <li>{@code Float} property type
-     * </ul>
-     *
-     * <p>Required Permission:
-     * <ul>
-     *  <li>Normal permission {@link Car#PERMISSION_EXTERIOR_ENVIRONMENT} to read property.
-     *  <li>Property is not writable.
-     * </ul>
-     */
-  Future<double> getEnvOutsideTemperature() async {
-    return datasource.getPropertyFLOAT(
-      VehicleProperty.ENV_OUTSIDE_TEMPERATURE.id,
-      0,
     );
   }
 
@@ -7776,33 +8685,6 @@ class VehiclePropertyRepository {
   }
 
   /**
-     * Seat Occupancy.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_SEAT}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Integer} property type
-     * </ul>
-     *
-     * <p>Required Permission:
-     * <ul>
-     *  <li>Dangerous permission {@link Car#PERMISSION_READ_CAR_SEATS} or Signature|Privileged
-     *  permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read property.
-     *  <li>Property is not writable.
-     * </ul>
-     *
-     * @data_enum {@link VehicleSeatOccupancyState}
-     */
-  Future<int> getSeatOccupancy(VehicleAreaSeat area) async {
-    return datasource.getPropertyINT32(
-      VehicleProperty.SEAT_OCCUPANCY.id,
-      area.value,
-    );
-  }
-
-  /**
      * Window Position.
      *
      * <p>This property is not in any particular unit but in a specified range of relative
@@ -8046,51 +8928,6 @@ class VehiclePropertyRepository {
   Future<int> getWindshieldWipersPeriod(VehicleAreaWindow area) async {
     return datasource.getPropertyINT32(
       VehicleProperty.WINDSHIELD_WIPERS_PERIOD.id,
-      area.value,
-    );
-  }
-
-  /**
-     * Windshield wipers state.
-     *
-     * <p>Returns the current state of the windshield wipers. The value of {@code
-     * WINDSHIELD_WIPERS_STATE} may not match the value of {@link #WINDSHIELD_WIPERS_SWITCH}. (e.g.
-     * {@code #WINDSHIELD_WIPERS_STATE} = {@link
-     * android.car.hardware.property.WindshieldWipersState#ON} and {@link
-     * #WINDSHIELD_WIPERS_SWITCH} = {@link
-     * android.car.hardware.property.WindshieldWipersSwitch#AUTO}).
-     *
-     * <p>If {@code #WINDSHIELD_WIPERS_STATE} = {@link
-     * android.car.hardware.property.WindshieldWipersState#ON} and {@link #WINDSHIELD_WIPERS_PERIOD}
-     * is implemented, then {@link #WINDSHIELD_WIPERS_PERIOD} will reflect the time period of 1
-     * full cycle of the wipers.
-     *
-     * <p>For each supported area ID, the {@link
-     * android.car.hardware.property.AreaIdConfig#getSupportedEnumValues()} array obtained from
-     * {@link android.car.hardware.CarPropertyConfig#getAreaIdConfig(int)} specifies which states
-     * from {@link android.car.hardware.property.WindshieldWipersState} are supported.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_WINDOW}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Integer} property type
-     * </ul>
-     *
-     * <p>Required Permission:
-     * <ul>
-     *  <li>Dangerous permission {@link Car#PERMISSION_READ_WINDSHIELD_WIPERS_3P} or
-     *  Signature|Privileged permission {@link Car#PERMISSION_READ_WINDSHIELD_WIPERS} to read
-     *  property.
-     *  <li>Property is not writable.
-     * </ul>
-     *
-     * @data_enum {@link WindshieldWipersState}
-     */
-  Future<int> getWindshieldWipersState(VehicleAreaWindow area) async {
-    return datasource.getPropertyINT32(
-      VehicleProperty.WINDSHIELD_WIPERS_STATE.id,
       area.value,
     );
   }
@@ -8661,48 +9498,6 @@ class VehiclePropertyRepository {
       VehicleProperty.STEERING_WHEEL_EASY_ACCESS_ENABLED.id,
       0,
       value,
-    );
-  }
-
-  /**
-     * Characterization of inputs used for computing location.
-     *
-     * <p>This property indicates what (if any) data and sensor inputs are considered by the system
-     * when computing the vehicle's location that is shared with Android through {@link
-     * android.location.LocationManager#GPS_PROVIDER}.
-     *
-     * <p>The value returned is a collection of bit flags. The bit flags are defined in {@link
-     * LocationCharacterization}. The value will also include exactly
-     * one of {@link LocationCharacterization#DEAD_RECKONED} or {@link
-     * LocationCharacterization#RAW_GNSS_ONLY} among its collection of
-     * bit flags.
-     *
-     * <p>When this property is not supported, it is assumed that no additional sensor inputs are
-     * fused into the GNSS updates provided through {@link
-     * android.location.LocationManager#GPS_PROVIDER}. That is unless otherwise specified through
-     * other {@link android.location.LocationManager} APIs.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_STATIC}
-     *  <li>{@code Integer} property type
-     * </ul>
-     *
-     * <p>Required Permission:
-     * <ul>
-     *  <li>Dangerous permission {@link android.Manifest.permission#ACCESS_FINE_LOCATION} to read
-     *  property.
-     *  <li>Property is not writable.
-     * </ul>
-     *
-     * @data_flag {@link LocationCharacterization}
-     */
-  Future<int> getLocationCharacterization() async {
-    return datasource.getPropertyINT32(
-      VehicleProperty.LOCATION_CHARACTERIZATION.id,
-      0,
     );
   }
 
@@ -9626,506 +10421,6 @@ class VehiclePropertyRepository {
   }
 
   /**
-     * Property to get the initial settings for multi-user management (such as initial user).
-     *
-     * <p>Doesn't require permission because it's not exposed through
-     * {@link android.car.hardware.property.CarPropertyManager}.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Object[]} property type
-     * </ul>
-     *
-     * @hide
-     */
-  Future<dynamic> getInitialUserInfo() async {
-    return datasource.getPropertyMIXED(VehicleProperty.INITIAL_USER_INFO.id, 0);
-  }
-
-  /**
-     * Property to get the initial settings for multi-user management (such as initial user).
-     *
-     * <p>Doesn't require permission because it's not exposed through
-     * {@link android.car.hardware.property.CarPropertyManager}.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Object[]} property type
-     * </ul>
-     *
-     * @hide
-     */
-  Future<void> setInitialUserInfo(dynamic value) async {
-    return datasource.setPropertyMIXED(
-      VehicleProperty.INITIAL_USER_INFO.id,
-      0,
-      value,
-    );
-  }
-
-  /**
-     * Property to switch user for multi-user management.
-     *
-     * <p>Doesn't require permission because it's not exposed through
-     * {@link android.car.hardware.property.CarPropertyManager}.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Object[]} property type
-     * </ul>
-     *
-     * @hide
-     */
-  Future<dynamic> getSwitchUser() async {
-    return datasource.getPropertyMIXED(VehicleProperty.SWITCH_USER.id, 0);
-  }
-
-  /**
-     * Property to switch user for multi-user management.
-     *
-     * <p>Doesn't require permission because it's not exposed through
-     * {@link android.car.hardware.property.CarPropertyManager}.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Object[]} property type
-     * </ul>
-     *
-     * @hide
-     */
-  Future<void> setSwitchUser(dynamic value) async {
-    return datasource.setPropertyMIXED(
-      VehicleProperty.SWITCH_USER.id,
-      0,
-      value,
-    );
-  }
-
-  /**
-     * Property to create a new user for multi-user management.
-     *
-     * <p>Doesn't require permission because it's not exposed through
-     * {@link android.car.hardware.property.CarPropertyManager}.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Object[]} property type
-     * </ul>
-     *
-     * @hide
-     */
-  Future<dynamic> getCreateUser() async {
-    return datasource.getPropertyMIXED(VehicleProperty.CREATE_USER.id, 0);
-  }
-
-  /**
-     * Property to create a new user for multi-user management.
-     *
-     * <p>Doesn't require permission because it's not exposed through
-     * {@link android.car.hardware.property.CarPropertyManager}.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Object[]} property type
-     * </ul>
-     *
-     * @hide
-     */
-  Future<void> setCreateUser(dynamic value) async {
-    return datasource.setPropertyMIXED(
-      VehicleProperty.CREATE_USER.id,
-      0,
-      value,
-    );
-  }
-
-  /**
-     * Property to remove a new user for multi-user management.
-     *
-     * <p>Doesn't require permission because it's not exposed through
-     * {@link android.car.hardware.property.CarPropertyManager}.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_WRITE}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_STATIC}
-     *  <li>{@code Object[]} property type
-     * </ul>
-     *
-     * @hide
-     */
-  Future<void> setRemoveUser(dynamic value) async {
-    return datasource.setPropertyMIXED(
-      VehicleProperty.REMOVE_USER.id,
-      0,
-      value,
-    );
-  }
-
-  /**
-     * Property to get / set the user authentication types associated with an Android user.
-     *
-     * <p>Doesn't require permission because it's not exposed through
-     * {@link android.car.hardware.property.CarPropertyManager}.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Object[]} property type
-     * </ul>
-     *
-     * @hide
-     */
-  Future<dynamic> getUserIdentificationAssociation() async {
-    return datasource.getPropertyMIXED(
-      VehicleProperty.USER_IDENTIFICATION_ASSOCIATION.id,
-      0,
-    );
-  }
-
-  /**
-     * Property to get / set the user authentication types associated with an Android user.
-     *
-     * <p>Doesn't require permission because it's not exposed through
-     * {@link android.car.hardware.property.CarPropertyManager}.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Object[]} property type
-     * </ul>
-     *
-     * @hide
-     */
-  Future<void> setUserIdentificationAssociation(dynamic value) async {
-    return datasource.setPropertyMIXED(
-      VehicleProperty.USER_IDENTIFICATION_ASSOCIATION.id,
-      0,
-      value,
-    );
-  }
-
-  /**
-     * Property for VHAL to apply power policy.
-     *
-     * <p>Doesn't require permission because it's not exposed through
-     * {@link android.car.hardware.property.CarPropertyManager}.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code String} property type
-     * </ul>
-     *
-     * @hide
-     */
-  Future<String> getPowerPolicyReq() async {
-    return datasource.getPropertySTRING(VehicleProperty.POWER_POLICY_REQ.id, 0);
-  }
-
-  /**
-     * Property for VHAL to set the default power policies per power status transition.
-     *
-     * <p>Doesn't require permission because it's not exposed through
-     * {@link android.car.hardware.property.CarPropertyManager}.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code String} property type
-     * </ul>
-     *
-     * @hide
-     */
-  Future<String> getPowerPolicyGroupReq() async {
-    return datasource.getPropertySTRING(
-      VehicleProperty.POWER_POLICY_GROUP_REQ.id,
-      0,
-    );
-  }
-
-  /**
-     * Property to report a new current power policy to VHAL.
-     *
-     * <p>Doesn't require permission because it's not exposed through
-     * {@link android.car.hardware.property.CarPropertyManager}.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code String} property type
-     * </ul>
-     *
-     * @hide
-     */
-  Future<String> getCurrentPowerPolicy() async {
-    return datasource.getPropertySTRING(
-      VehicleProperty.CURRENT_POWER_POLICY.id,
-      0,
-    );
-  }
-
-  /**
-     * Property to report a new current power policy to VHAL.
-     *
-     * <p>Doesn't require permission because it's not exposed through
-     * {@link android.car.hardware.property.CarPropertyManager}.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code String} property type
-     * </ul>
-     *
-     * @hide
-     */
-  Future<void> setCurrentPowerPolicy(String value) async {
-    return datasource.setPropertySTRING(
-      VehicleProperty.CURRENT_POWER_POLICY.id,
-      0,
-      value,
-    );
-  }
-
-  /**
-     * Property to report that car watchdog is alive.
-     *
-     * <p>Doesn't require permission because it's not exposed through
-     * {@link android.car.hardware.property.CarPropertyManager}.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_WRITE}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Long} property type
-     * </ul>
-     *
-     * @hide
-     */
-  Future<void> setWatchdogAlive(int value) async {
-    return datasource.setPropertyINT64(
-      VehicleProperty.WATCHDOG_ALIVE.id,
-      0,
-      value,
-    );
-  }
-
-  /**
-     * Property to report a process terminated by car watchdog.
-     *
-     * <p>Doesn't require permission because it's not exposed through
-     * {@link android.car.hardware.property.CarPropertyManager}.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_WRITE}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Object[]} property type
-     * </ul>
-     *
-     * @hide
-     */
-  Future<void> setWatchdogTerminatedProcess(dynamic value) async {
-    return datasource.setPropertyMIXED(
-      VehicleProperty.WATCHDOG_TERMINATED_PROCESS.id,
-      0,
-      value,
-    );
-  }
-
-  /**
-     * Property to signal a heartbeat from VHAL.
-     *
-     * <p>Doesn't require permission because it's not exposed through
-     * {@link android.car.hardware.property.CarPropertyManager}.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Long} property type
-     * </ul>
-     *
-     * @hide
-     */
-  Future<int> getVhalHeartbeat() async {
-    return datasource.getPropertyINT64(VehicleProperty.VHAL_HEARTBEAT.id, 0);
-  }
-
-  /**
-     * Property to start the ClusterUI in cluster display.
-     *
-     * <p>Doesn't require permission because it's not exposed through
-     * {@link android.car.hardware.property.CarPropertyManager}.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Integer} property type
-     * </ul>
-     *
-     * @hide
-     */
-  Future<int> getClusterSwitchUi() async {
-    return datasource.getPropertyINT32(VehicleProperty.CLUSTER_SWITCH_UI.id, 0);
-  }
-
-  /**
-     * Property to change the state of the cluster display.
-     *
-     * <p>Doesn't require permission because it's not exposed through
-     * {@link android.car.hardware.property.CarPropertyManager}.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Integer[]} property type
-     * </ul>
-     *
-     * @hide
-     */
-  Future<List<int>> getClusterDisplayState() async {
-    return datasource.getPropertyINT32_VEC(
-      VehicleProperty.CLUSTER_DISPLAY_STATE.id,
-      0,
-    );
-  }
-
-  /**
-     * Property to reports the current display and ClusterUI statue.
-     *
-     * <p>Doesn't require permission because it's not exposed through
-     * {@link android.car.hardware.property.CarPropertyManager}.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_WRITE}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Object[]} property type
-     * </ul>
-     *
-     * @hide
-     */
-  Future<void> setClusterReportState(dynamic value) async {
-    return datasource.setPropertyMIXED(
-      VehicleProperty.CLUSTER_REPORT_STATE.id,
-      0,
-      value,
-    );
-  }
-
-  /**
-     * Property to request to change the cluster display state to show some ClusterUI.
-     *
-     * <p>Doesn't require permission because it's not exposed through
-     * {@link android.car.hardware.property.CarPropertyManager}.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_WRITE}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Integer} property type
-     * </ul>
-     *
-     * @hide
-     */
-  Future<void> setClusterRequestDisplay(int value) async {
-    return datasource.setPropertyINT32(
-      VehicleProperty.CLUSTER_REQUEST_DISPLAY.id,
-      0,
-      value,
-    );
-  }
-
-  /**
-     * Property to inform the current navigation state.
-     *
-     * <p>Doesn't require permission because it's not exposed through
-     * {@link android.car.hardware.property.CarPropertyManager}.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_WRITE}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code bytes[]} property type
-     * </ul>
-     *
-     * @hide
-     */
-  Future<void> setClusterNavigationState(List<int> value) async {
-    return datasource.setPropertyBYTES(
-      VehicleProperty.CLUSTER_NAVIGATION_STATE.id,
-      0,
-      value,
-    );
-  }
-
-  /**
-     * Property to send the heartbeat signal to ClusterOS.
-     *
-     * <p>Doesn't require permission because it's not exposed through
-     * {@link android.car.hardware.property.CarPropertyManager}.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_WRITE}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Object[]} property type
-     * </ul>
-     *
-     * @hide
-     */
-  Future<void> setClusterHeartbeat(dynamic value) async {
-    return datasource.setPropertyMIXED(
-      VehicleProperty.CLUSTER_HEARTBEAT.id,
-      0,
-      value,
-    );
-  }
-
-  /**
      * Current date and time, encoded as Unix time.
      *
      * <p>This value denotes the number of milliseconds that have elapsed since 1/1/1970 UTC.
@@ -10147,68 +10442,6 @@ class VehiclePropertyRepository {
      */
   Future<void> setEpochTime(int value) async {
     return datasource.setPropertyINT64(VehicleProperty.EPOCH_TIME.id, 0, value);
-  }
-
-  /**
-     * Electronic Toll Collection card type.
-     *
-     * <p>This property indicates the type of ETC(Electronic Toll Collection) card in the vehicle.
-     * If the head unit is aware of an ETC card attached to the vehicle, this property should return
-     * the type of card attached; otherwise, this property should be UNAVAILABLE. The property value
-     * should be one of {@link VehicleElectronicTollCollectionCardType}.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Integer} property type
-     * </ul>
-     *
-     * <p>Required Permission:
-     * <ul>
-     *  <li>Normal permission {@link Car#PERMISSION_CAR_INFO} to read property.
-     *  <li>Property is not writable.
-     * </ul>
-     *
-     * @data_enum {@link VehicleElectronicTollCollectionCardType}
-     */
-  Future<int> getElectronicTollCollectionCardType() async {
-    return datasource.getPropertyINT32(
-      VehicleProperty.ELECTRONIC_TOLL_COLLECTION_CARD_TYPE.id,
-      0,
-    );
-  }
-
-  /**
-     * Electronic Toll Collection card status.
-     *
-     * <p>This property indicates the status of ETC(Electronic Toll Collection) card in the vehicle.
-     * If the head unit is aware of an ETC card attached to the vehicle, ETC_CARD_STATUS gives that
-     * status of the card; otherwise, this property should be UNAVAILABLE. The property value should
-     * be one of {@link VehicleElectronicTollCollectionCardStatus}.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Integer} property type
-     * </ul>
-     *
-     * <p>Required Permission:
-     * <ul>
-     *  <li>Normal permission {@link Car#PERMISSION_CAR_INFO} to read property.
-     *  <li>Property is not writable.
-     * </ul>
-     *
-     * @data_enum {@link VehicleElectronicTollCollectionCardStatus}
-     */
-  Future<int> getElectronicTollCollectionCardStatus() async {
-    return datasource.getPropertyINT32(
-      VehicleProperty.ELECTRONIC_TOLL_COLLECTION_CARD_STATUS.id,
-      0,
-    );
   }
 
   /**
@@ -10410,80 +10643,11 @@ class VehiclePropertyRepository {
      *  property.
      * </ul>
      */
-  Future<double> getEvChargeCurrentDrawLimit() async {
-    return datasource.getPropertyFLOAT(
-      VehicleProperty.EV_CHARGE_CURRENT_DRAW_LIMIT.id,
-      0,
-    );
-  }
-
-  /**
-     * EV charge current draw limit.
-     *
-     * <p>Indicates the maximum current draw threshold for charging set by the user. {@code
-     * configArray[0]} contains the max current draw allowed by the vehicle in Amperes.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
-     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Float} property type
-     * </ul>
-     *
-     * <p>Required Permissions:
-     * <ul>
-     *  <li>Dangerous permission {@link Car#PERMISSION_ENERGY} or Signature|Privileged permission
-     *  {@link Car#PERMISSION_CONTROL_CAR_ENERGY} to read property.
-     *  <li>Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_ENERGY} to write
-     *  property.
-     * </ul>
-     */
   Future<void> setEvChargeCurrentDrawLimit(double value) async {
     return datasource.setPropertyFLOAT(
       VehicleProperty.EV_CHARGE_CURRENT_DRAW_LIMIT.id,
       0,
       value,
-    );
-  }
-
-  /**
-     * EV charge percent limit.
-     *
-     * <p>Indicates the maximum charge percent threshold set by the user. Returns a float value
-     * from 0 to 100.
-     *
-     * <p>configArray is optional. If it is populated, it represents the valid charge percent limit
-     * values for the vehicle. Here is an example configArray:
-     * <ul>
-     *  <li>configArray[0] = 20
-     *  <li>configArray[1] = 40
-     *  <li>configArray[2] = 60
-     *  <li>configArray[3] = 80
-     * </ul>
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ_WRITE} or
-     *  {@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Float} property type
-     * </ul>
-     *
-     * <p>Required Permissions:
-     * <ul>
-     *  <li>Dangerous permission {@link Car#PERMISSION_ENERGY} or Signature|Privileged permission
-     *  {@link Car#PERMISSION_CONTROL_CAR_ENERGY} to read property.
-     *  <li>Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_ENERGY} to write
-     *  property.
-     * </ul>
-     */
-  Future<double> getEvChargePercentLimit() async {
-    return datasource.getPropertyFLOAT(
-      VehicleProperty.EV_CHARGE_PERCENT_LIMIT.id,
-      0,
     );
   }
 
@@ -10525,36 +10689,6 @@ class VehiclePropertyRepository {
       0,
       value,
     );
-  }
-
-  /**
-     * Charging state of the car.
-     *
-     * <p>Returns the current charging state of the car. See {@link
-     * android.car.hardware.property.EvChargeState} for possible values for {@code EV_CHARGE_STATE}.
-     *
-     * <p>If the vehicle has a target charge percentage other than 100, this property will return
-     * {@link EvChargeState#STATE_FULLY_CHARGED} when the battery charge level has reached the
-     * target level. See {@link #EV_CHARGE_PERCENT_LIMIT} for more context.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Integer} property type
-     * </ul>
-     *
-     * <p>Required Permission:
-     * <ul>
-     *  <li>Dangerous permission {@link Car#PERMISSION_ENERGY} to read property.
-     *  <li>Property is not writable.
-     * </ul>
-     *
-     * @data_enum {@link EvChargeState}
-     */
-  Future<int> getEvChargeState() async {
-    return datasource.getPropertyINT32(VehicleProperty.EV_CHARGE_STATE.id, 0);
   }
 
   /**
@@ -10619,66 +10753,6 @@ class VehiclePropertyRepository {
   }
 
   /**
-     * Estimated charge time remaining in seconds.
-     *
-     * <p>Returns 0 if the vehicle is not charging.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_CONTINUOUS}
-     *  <li>{@code Integer} property type
-     * </ul>
-     *
-     * <p>Required Permission:
-     * <ul>
-     *  <li>Dangerous permission {@link Car#PERMISSION_ENERGY} to read property.
-     *  <li>Property is not writable.
-     * </ul>
-     */
-  Future<int> getEvChargeTimeRemaining() async {
-    return datasource.getPropertyINT32(
-      VehicleProperty.EV_CHARGE_TIME_REMAINING.id,
-      0,
-    );
-  }
-
-  /**
-     * Regenerative braking or one-pedal drive setting on the car.
-     *
-     * <p>Returns the current state associated with the regenerative braking
-     * setting in the car. See {@link android.car.hardware.property.EvRegenerativeBrakingState} for
-     * possible values for {@code EV_REGENERATIVE_BRAKING_STATE}.
-     *
-     * <p>If the {@link #EV_BRAKE_REGENERATION_LEVEL} property has been implemented, it is likely
-     * that the OEM supports a more granular set of regeneration levels than those provided by this
-     * property through {@link EvRegenerativeBrakingState}.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Integer} property type
-     * </ul>
-     *
-     * <p>Required Permission:
-     * <ul>
-     *  <li>Dangerous permission {@link Car#PERMISSION_ENERGY} to read property.
-     *  <li>Property is not writable.
-     * </ul>
-     *
-     * @data_enum {@link EvRegenerativeBrakingState}
-     */
-  Future<int> getEvRegenerativeBrakingState() async {
-    return datasource.getPropertyINT32(
-      VehicleProperty.EV_REGENERATIVE_BRAKING_STATE.id,
-      0,
-    );
-  }
-
-  /**
      * Vehicle’s curb weight in kilograms.
      *
      * <p>Returns the vehicle's curb weight in kilograms. This is the total weight of a vehicle,
@@ -10734,71 +10808,6 @@ class VehiclePropertyRepository {
      */
   Future<int> getTrailerPresent() async {
     return datasource.getPropertyINT32(VehicleProperty.TRAILER_PRESENT.id, 0);
-  }
-
-  /**
-     * EU's General security regulation compliance requirement.
-     *
-     * <p>Returns whether general security regulation compliance is required, if
-     * so, what type of requirement. See {@link GsrComplianceType} for possible enums.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_STATIC}
-     *  <li>{@code Integer} property type
-     * </ul>
-     *
-     * <p>Required Permission:
-     * <ul>
-     *  <li>Normal permission {@link Car#PERMISSION_CAR_INFO} to read property.
-     *  <li>Property is not writable.
-     * </ul>
-     *
-     * @data_enum {@link GsrComplianceType}
-     */
-  Future<int> getGeneralSafetyRegulationCompliance() async {
-    return datasource.getPropertyINT32(
-      VehicleProperty.GENERAL_SAFETY_REGULATION_COMPLIANCE.id,
-      0,
-    );
-  }
-
-  /**
-     * Current state of vehicle autonomy.
-     *
-     * <p>Defines the level of autonomy currently engaged in the vehicle from the J3016_202104
-     * revision of the SAE standard levels 0-5, with 0 representing no autonomy and 5 representing
-     * full driving automation.
-     *
-     * <p>For the global area ID (0), the {@link
-     * android.car.hardware.property.AreaIdConfig#getSupportedEnumValues()} array obtained from
-     * {@link android.car.hardware.CarPropertyConfig#getAreaIdConfig(int)} specifies which states
-     * from {@link android.car.hardware.property.VehicleAutonomousState} are supported.
-     *
-     * <p>Property Config:
-     * <ul>
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_ACCESS_READ}
-     *  <li>{@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}
-     *  <li>{@link android.car.hardware.CarPropertyConfig#VEHICLE_PROPERTY_CHANGE_MODE_ONCHANGE}
-     *  <li>{@code Integer} property type
-     * </ul>
-     *
-     * <p>Required Permission:
-     * <ul>
-     *  <li>Dangerous permission {@link Car#PERMISSION_CAR_DRIVING_STATE_3P} or Signature|Privileged
-     *  permission {@link Car#PERMISSION_CAR_DRIVING_STATE} to read property.
-     *  <li>Property is not writable.
-     * </ul>
-     *
-     * @data_enum {@link android.car.hardware.property.VehicleAutonomousState}
-     */
-  Future<int> getVehicleDrivingAutomationCurrentLevel() async {
-    return datasource.getPropertyINT32(
-      VehicleProperty.VEHICLE_DRIVING_AUTOMATION_CURRENT_LEVEL.id,
-      0,
-    );
   }
 
   /**

@@ -34,6 +34,7 @@ class VehicleTypeDocParser {
 
   final Map<VehicleProperty, VehicleTypeProperties> _typeProps;
 
+  // TODO this does not work for all cases!
   static bool _needsPrivilegedPermission(String part) =>
       part.contains("Normal") == false &&
       part.contains("Dangerous") == false &&
