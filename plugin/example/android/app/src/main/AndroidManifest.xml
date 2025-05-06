@@ -1,4 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.car.permission.CONTROL_CAR_CLIMATE" />
+
     <application
         android:label="flutter_automotive_example"
         android:name="${applicationName}"
