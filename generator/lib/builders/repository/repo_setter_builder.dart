@@ -1,6 +1,6 @@
 import 'package:code_builder/code_builder.dart';
 import 'package:flutter_automotive_models/flutter_automotive_models.dart';
-import 'package:generator/builders/property_type_interface_builder.dart';
+import 'package:generator/builders/datasource/datasource_type_method_builder.dart';
 
 class VehiclePropertySetterBuilder {
   const VehiclePropertySetterBuilder({

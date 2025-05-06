@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:generator/builders/property_datasource_builder.dart';
-import 'package:generator/builders/property_repo_builder.dart';
+import 'package:generator/builders/datasource/datasource_builder.dart';
+import 'package:generator/builders/repository/repo_builder.dart';
 import 'package:generator/generators/file_generator.dart';
 import 'package:generator/parsers/vehicle_type_doc_parser.dart';
 
