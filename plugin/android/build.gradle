@@ -27,6 +27,8 @@ apply plugin: "kotlin-android"
 android {
     namespace = "com.wearetoni.flutter_automotive"
 
+    useLibrary 'android.car'
+
     compileSdk = 35
 
     compileOptions {

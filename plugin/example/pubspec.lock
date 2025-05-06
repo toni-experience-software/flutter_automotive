@@ -77,6 +77,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  flutter_automotive_models:
+    dependency: transitive
+    description:
+      path: "../../models"
+      relative: true
+    source: path
+    version: "0.1.0"
   flutter_driver:
     dependency: transitive
     description: flutter
