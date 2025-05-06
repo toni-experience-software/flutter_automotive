@@ -62,8 +62,8 @@ private open class MessagesPigeonCodec : StandardMessageCodec() {
 
 /** Generated interface from Pigeon that represents a handler of messages from Flutter. */
 interface FlutterAutomotiveApi {
-  fun getProperty(propertyId: Long, areaId: Long, callback: (Result<dynamic>) -> Unit)
-  fun setProperty(propertyId: Long, areaId: Long, value: dynamic, callback: (Result<Unit>) -> Unit)
+  fun getProperty(propertyId: Long, areaId: Long, callback: (Result<Any?>) -> Unit)
+  fun setProperty(propertyId: Long, areaId: Long, value: Any?, callback: (Result<Unit>) -> Unit)
 
   companion object {
     /** The codec used by FlutterAutomotiveApi. */
@@ -81,7 +81,7 @@ interface FlutterAutomotiveApi {
             val args = message as List<Any?>
             val propertyIdArg = args[0] as Long
             val areaIdArg = args[1] as Long
-            api.getProperty(propertyIdArg, areaIdArg) { result: Result<dynamic> ->
+            api.getProperty(propertyIdArg, areaIdArg) { result: Result<Any?> ->
               val error = result.exceptionOrNull()
               if (error != null) {
                 reply.reply(MessagesPigeonUtils.wrapError(error))
@@ -102,7 +102,7 @@ interface FlutterAutomotiveApi {
             val args = message as List<Any?>
             val propertyIdArg = args[0] as Long
             val areaIdArg = args[1] as Long
-            val valueArg = args[2] as dynamic
+            val valueArg = args[2]
             api.setProperty(propertyIdArg, areaIdArg, valueArg) { result: Result<Unit> ->
               val error = result.exceptionOrNull()
               if (error != null) {

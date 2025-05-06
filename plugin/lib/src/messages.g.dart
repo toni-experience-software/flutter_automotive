@@ -63,7 +63,7 @@ class FlutterAutomotiveApi {
 
   final String pigeonVar_messageChannelSuffix;
 
-  Future<dynamic> getProperty(int propertyId, int areaId) async {
+  Future<Object?> getProperty(int propertyId, int areaId) async {
     final String pigeonVar_channelName = 'dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.getProperty$pigeonVar_messageChannelSuffix';
     final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
       pigeonVar_channelName,
@@ -81,17 +81,12 @@ class FlutterAutomotiveApi {
         message: pigeonVar_replyList[1] as String?,
         details: pigeonVar_replyList[2],
       );
-    } else if (pigeonVar_replyList[0] == null) {
-      throw PlatformException(
-        code: 'null-error',
-        message: 'Host platform returned null value for non-null return value.',
-      );
     } else {
-      return (pigeonVar_replyList[0] as dynamic?)!;
+      return pigeonVar_replyList[0];
     }
   }
 
-  Future<void> setProperty(int propertyId, int areaId, dynamic value) async {
+  Future<void> setProperty(int propertyId, int areaId, Object? value) async {
     final String pigeonVar_channelName = 'dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.setProperty$pigeonVar_messageChannelSuffix';
     final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
       pigeonVar_channelName,

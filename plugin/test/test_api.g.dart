@@ -39,9 +39,9 @@ abstract class TestHostFlutterAutomotiveApi {
   static TestDefaultBinaryMessengerBinding? get _testBinaryMessengerBinding => TestDefaultBinaryMessengerBinding.instance;
   static const MessageCodec<Object?> pigeonChannelCodec = _PigeonCodec();
 
-  Future<dynamic> getProperty(int propertyId, int areaId);
+  Future<Object?> getProperty(int propertyId, int areaId);
 
-  Future<void> setProperty(int propertyId, int areaId, dynamic value);
+  Future<void> setProperty(int propertyId, int areaId, Object? value);
 
   static void setUp(TestHostFlutterAutomotiveApi? api, {BinaryMessenger? binaryMessenger, String messageChannelSuffix = '',}) {
     messageChannelSuffix = messageChannelSuffix.isNotEmpty ? '.$messageChannelSuffix' : '';
@@ -63,7 +63,7 @@ abstract class TestHostFlutterAutomotiveApi {
           assert(arg_areaId != null,
               'Argument for dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.getProperty was null, expected non-null int.');
           try {
-            final dynamic output = await api.getProperty(arg_propertyId!, arg_areaId!);
+            final Object? output = await api.getProperty(arg_propertyId!, arg_areaId!);
             return <Object?>[output];
           } on PlatformException catch (e) {
             return wrapResponse(error: e);
@@ -90,11 +90,9 @@ abstract class TestHostFlutterAutomotiveApi {
           final int? arg_areaId = (args[1] as int?);
           assert(arg_areaId != null,
               'Argument for dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.setProperty was null, expected non-null int.');
-          final dynamic? arg_value = (args[2] as dynamic?);
-          assert(arg_value != null,
-              'Argument for dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.setProperty was null, expected non-null dynamic.');
+          final Object? arg_value = (args[2] as Object?);
           try {
-            await api.setProperty(arg_propertyId!, arg_areaId!, arg_value!);
+            await api.setProperty(arg_propertyId!, arg_areaId!, arg_value);
             return wrapResponse(empty: true);
           } on PlatformException catch (e) {
             return wrapResponse(error: e);

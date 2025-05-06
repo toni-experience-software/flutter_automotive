@@ -15,8 +15,8 @@ import 'package:pigeon/pigeon.dart';
 @HostApi(dartHostTestHandler: 'TestHostFlutterAutomotiveApi')
 abstract class FlutterAutomotiveApi {
   @async
-  dynamic getProperty(int propertyId, int areaId);
+  Object? getProperty(int propertyId, int areaId);
 
   @async
-  void setProperty(int propertyId, int areaId, dynamic value);
+  void setProperty(int propertyId, int areaId, Object? value);
 }
