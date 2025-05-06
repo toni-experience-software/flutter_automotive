@@ -4,6 +4,7 @@ import android.app.Activity
 import android.car.Car
 import android.car.hardware.CarPropertyValue
 import android.car.hardware.property.CarPropertyManager
+import android.car.hardware.property.CarPropertyManager.SENSOR_RATE_NORMAL
 import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
 import io.flutter.embedding.engine.plugins.FlutterPlugin
@@ -76,7 +77,9 @@ class FlutterAutomotivePlugin: FlutterPlugin, ActivityAware, FlutterAutomotiveAp
     val callback = object : CarPropertyManager.CarPropertyEventCallback {
       override fun onChangeEvent(carPropertyValue: CarPropertyValue<*>) {
         try {
-          eventListener.sendEvent(propertyId, areaId, carPropertyValue.value)
+          if (carPropertyValue.areaId == areaId.toInt()) {
+            eventListener.sendEvent(propertyId, areaId, carPropertyValue.value)
+          }
         } catch (e: Exception) {
           // TODO log error
         }
@@ -87,13 +90,17 @@ class FlutterAutomotivePlugin: FlutterPlugin, ActivityAware, FlutterAutomotiveAp
       }
     }
     eventCallbacks[Pair(propertyId, areaId)] = callback
-    propertyManager.subscribePropertyEvents(propertyId.toInt(), areaId.toInt(), callback)
+    propertyManager.registerCallback(callback, propertyId.toInt(), SENSOR_RATE_NORMAL)
+    // This would be preferred, but it does not work
+    // propertyManager.subscribePropertyEvents(propertyId.toInt(), areaId.toInt(), callback)
   }
 
   override fun unsubscribeProperty(propertyId: Long, areaId: Long) {
     val callback = eventCallbacks[Pair(propertyId, areaId)]
     if (callback != null) {
-      propertyManager.unsubscribePropertyEvents(callback)
+      propertyManager.unregisterCallback(callback)
+      // This would be preferred, but it does not work
+      // propertyManager.unsubscribePropertyEvents(callback)
     }
   }
 
