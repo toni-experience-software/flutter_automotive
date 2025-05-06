@@ -16,6 +16,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   double? _speed;
+  double? get _kmphSpeed => _speed != null ? (_speed! * 3.6) : null;
   bool? _permissionGranted;
   final _plugin = FlutterAutomotive();
 
@@ -55,7 +56,8 @@ class _MyAppState extends State<MyApp> {
           child: Column(
             spacing: 16,
             children: [
-              Text('Current speed: $_speed'),
+              Text('Current speed: ${_speed?.toStringAsFixed(4)} mps'),
+              Text('Current speed: ${_kmphSpeed?.toStringAsFixed(4)} kmph'),
               ElevatedButton(
                 onPressed: getSpeed,
                 child: const Text('Get current speed'),
