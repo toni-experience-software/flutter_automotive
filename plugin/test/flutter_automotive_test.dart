@@ -1,5 +1,6 @@
 import 'package:flutter_automotive/src/flutter_automotive_method_channel.dart';
 import 'package:flutter_automotive/src/flutter_automotive_platform_interface.dart';
+import 'package:flutter_automotive/src/messages.g.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
@@ -12,6 +13,12 @@ class MockFlutterAutomotivePlatform
   
   @override
   Future<void> setProperty(int propertyId, int areaId, value) async {}
+
+  @override
+  Future<bool> isPermissionGranted(CarPermissions permission) async => false;
+
+  @override
+  Future<void> requestPermission(CarPermissions permission) async {}
 }
 
 void main() {

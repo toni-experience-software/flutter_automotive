@@ -1,4 +1,5 @@
 import 'package:flutter_automotive/src/flutter_automotive_method_channel.dart';
+import 'package:flutter_automotive/src/messages.g.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'test_api.g.dart';
 
@@ -12,6 +13,17 @@ class _TestApi implements TestHostFlutterAutomotiveApi {
   Future<void> setProperty(int propertyId, int areaId, value) {
     // TODO: implement setProperty
     throw UnimplementedError();
+  }
+
+  @override
+  bool isPermissionGranted(CarPermissions permission) {
+    // TODO: implement isPermissionGranted
+    throw UnimplementedError();
+  }
+
+  @override
+  void requestPermission(CarPermissions permission) {
+    // TODO: implement requestPermission
   }
 }
 

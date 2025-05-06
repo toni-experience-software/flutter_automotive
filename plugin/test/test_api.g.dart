@@ -21,6 +21,9 @@ class _PigeonCodec extends StandardMessageCodec {
     if (value is int) {
       buffer.putUint8(4);
       buffer.putInt64(value);
+    }    else if (value is CarPermissions) {
+      buffer.putUint8(129);
+      writeValue(buffer, value.index);
     } else {
       super.writeValue(buffer, value);
     }
@@ -29,6 +32,9 @@ class _PigeonCodec extends StandardMessageCodec {
   @override
   Object? readValueOfType(int type, ReadBuffer buffer) {
     switch (type) {
+      case 129: 
+        final int? value = readValue(buffer) as int?;
+        return value == null ? null : CarPermissions.values[value];
       default:
         return super.readValueOfType(type, buffer);
     }
@@ -42,6 +48,10 @@ abstract class TestHostFlutterAutomotiveApi {
   Future<Object?> getProperty(int propertyId, int areaId);
 
   Future<void> setProperty(int propertyId, int areaId, Object? value);
+
+  bool isPermissionGranted(CarPermissions permission);
+
+  void requestPermission(CarPermissions permission);
 
   static void setUp(TestHostFlutterAutomotiveApi? api, {BinaryMessenger? binaryMessenger, String messageChannelSuffix = '',}) {
     messageChannelSuffix = messageChannelSuffix.isNotEmpty ? '.$messageChannelSuffix' : '';
@@ -93,6 +103,56 @@ abstract class TestHostFlutterAutomotiveApi {
           final Object? arg_value = (args[2] as Object?);
           try {
             await api.setProperty(arg_propertyId!, arg_areaId!, arg_value);
+            return wrapResponse(empty: true);
+          } on PlatformException catch (e) {
+            return wrapResponse(error: e);
+          }          catch (e) {
+            return wrapResponse(error: PlatformException(code: 'error', message: e.toString()));
+          }
+        });
+      }
+    }
+    {
+      final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
+          'dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.isPermissionGranted$messageChannelSuffix', pigeonChannelCodec,
+          binaryMessenger: binaryMessenger);
+      if (api == null) {
+        _testBinaryMessengerBinding!.defaultBinaryMessenger.setMockDecodedMessageHandler<Object?>(pigeonVar_channel, null);
+      } else {
+        _testBinaryMessengerBinding!.defaultBinaryMessenger.setMockDecodedMessageHandler<Object?>(pigeonVar_channel, (Object? message) async {
+          assert(message != null,
+          'Argument for dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.isPermissionGranted was null.');
+          final List<Object?> args = (message as List<Object?>?)!;
+          final CarPermissions? arg_permission = (args[0] as CarPermissions?);
+          assert(arg_permission != null,
+              'Argument for dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.isPermissionGranted was null, expected non-null CarPermissions.');
+          try {
+            final bool output = api.isPermissionGranted(arg_permission!);
+            return <Object?>[output];
+          } on PlatformException catch (e) {
+            return wrapResponse(error: e);
+          }          catch (e) {
+            return wrapResponse(error: PlatformException(code: 'error', message: e.toString()));
+          }
+        });
+      }
+    }
+    {
+      final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
+          'dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.requestPermission$messageChannelSuffix', pigeonChannelCodec,
+          binaryMessenger: binaryMessenger);
+      if (api == null) {
+        _testBinaryMessengerBinding!.defaultBinaryMessenger.setMockDecodedMessageHandler<Object?>(pigeonVar_channel, null);
+      } else {
+        _testBinaryMessengerBinding!.defaultBinaryMessenger.setMockDecodedMessageHandler<Object?>(pigeonVar_channel, (Object? message) async {
+          assert(message != null,
+          'Argument for dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.requestPermission was null.');
+          final List<Object?> args = (message as List<Object?>?)!;
+          final CarPermissions? arg_permission = (args[0] as CarPermissions?);
+          assert(arg_permission != null,
+              'Argument for dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.requestPermission was null, expected non-null CarPermissions.');
+          try {
+            api.requestPermission(arg_permission!);
             return wrapResponse(empty: true);
           } on PlatformException catch (e) {
             return wrapResponse(error: e);

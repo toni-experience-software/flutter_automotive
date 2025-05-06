@@ -50,12 +50,53 @@ class FlutterError (
   override val message: String? = null,
   val details: Any? = null
 ) : Throwable()
+
+enum class CarPermissions(val raw: Int) {
+  PERMISSION_CAR_CONTROL_AUDIO_SETTINGS(0),
+  PERMISSION_CAR_CONTROL_AUDIO_VOLUME(1),
+  PERMISSION_CAR_INFO(2),
+  PERMISSION_CAR_NAVIGATION_MANAGER(3),
+  PERMISSION_CONTROL_CAR_ENERGY(4),
+  PERMISSION_CONTROL_DISPLAY_UNITS(5),
+  PERMISSION_CONTROL_INTERIOR_LIGHTS(6),
+  PERMISSION_ENERGY(7),
+  PERMISSION_ENERGY_PORTS(8),
+  PERMISSION_EXTERIOR_ENVIRONMENT(9),
+  PERMISSION_IDENTIFICATION(10),
+  PERMISSION_POWERTRAIN(11),
+  PERMISSION_PRIVILEGED_CAR_INFO(12),
+  PERMISSION_READ_CAR_POWER_POLICY(13),
+  PERMISSION_READ_DISPLAY_UNITS(14),
+  PERMISSION_READ_INTERIOR_LIGHTS(15),
+  PERMISSION_READ_STEERING_STATE(16),
+  PERMISSION_SPEED(17),
+  PERMISSION_USE_REMOTE_ACCESS(18);
+
+  companion object {
+    fun ofRaw(raw: Int): CarPermissions? {
+      return values().firstOrNull { it.raw == raw }
+    }
+  }
+}
 private open class MessagesPigeonCodec : StandardMessageCodec() {
   override fun readValueOfType(type: Byte, buffer: ByteBuffer): Any? {
-    return     super.readValueOfType(type, buffer)
+    return when (type) {
+      129.toByte() -> {
+        return (readValue(buffer) as Long?)?.let {
+          CarPermissions.ofRaw(it.toInt())
+        }
+      }
+      else -> super.readValueOfType(type, buffer)
+    }
   }
   override fun writeValue(stream: ByteArrayOutputStream, value: Any?)   {
-    super.writeValue(stream, value)
+    when (value) {
+      is CarPermissions -> {
+        stream.write(129)
+        writeValue(stream, value.raw)
+      }
+      else -> super.writeValue(stream, value)
+    }
   }
 }
 
@@ -64,6 +105,8 @@ private open class MessagesPigeonCodec : StandardMessageCodec() {
 interface FlutterAutomotiveApi {
   fun getProperty(propertyId: Long, areaId: Long, callback: (Result<Any?>) -> Unit)
   fun setProperty(propertyId: Long, areaId: Long, value: Any?, callback: (Result<Unit>) -> Unit)
+  fun isPermissionGranted(permission: CarPermissions): Boolean
+  fun requestPermission(permission: CarPermissions)
 
   companion object {
     /** The codec used by FlutterAutomotiveApi. */
@@ -111,6 +154,41 @@ interface FlutterAutomotiveApi {
                 reply.reply(MessagesPigeonUtils.wrapResult(null))
               }
             }
+          }
+        } else {
+          channel.setMessageHandler(null)
+        }
+      }
+      run {
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.isPermissionGranted$separatedMessageChannelSuffix", codec)
+        if (api != null) {
+          channel.setMessageHandler { message, reply ->
+            val args = message as List<Any?>
+            val permissionArg = args[0] as CarPermissions
+            val wrapped: List<Any?> = try {
+              listOf(api.isPermissionGranted(permissionArg))
+            } catch (exception: Throwable) {
+              MessagesPigeonUtils.wrapError(exception)
+            }
+            reply.reply(wrapped)
+          }
+        } else {
+          channel.setMessageHandler(null)
+        }
+      }
+      run {
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.requestPermission$separatedMessageChannelSuffix", codec)
+        if (api != null) {
+          channel.setMessageHandler { message, reply ->
+            val args = message as List<Any?>
+            val permissionArg = args[0] as CarPermissions
+            val wrapped: List<Any?> = try {
+              api.requestPermission(permissionArg)
+              listOf(null)
+            } catch (exception: Throwable) {
+              MessagesPigeonUtils.wrapError(exception)
+            }
+            reply.reply(wrapped)
           }
         } else {
           channel.setMessageHandler(null)

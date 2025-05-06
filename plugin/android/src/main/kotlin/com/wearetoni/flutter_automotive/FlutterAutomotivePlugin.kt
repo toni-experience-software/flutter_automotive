@@ -1,12 +1,18 @@
 package com.wearetoni.flutter_automotive
 
+import android.app.Activity
 import android.car.Car
 import android.car.hardware.CarPropertyValue.STATUS_AVAILABLE
 import android.car.hardware.property.CarPropertyManager
+import android.content.pm.PackageManager
+import androidx.core.app.ActivityCompat
 import io.flutter.embedding.engine.plugins.FlutterPlugin
+import io.flutter.embedding.engine.plugins.activity.ActivityAware
+import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 
 /** FlutterAutomotivePlugin */
-class FlutterAutomotivePlugin: FlutterPlugin, FlutterAutomotiveApi {
+class FlutterAutomotivePlugin: FlutterPlugin, ActivityAware, FlutterAutomotiveApi {
+  private var activity: Activity? = null;
   private lateinit var propertyManager: CarPropertyManager;
 
   // --- Setup ---
@@ -19,6 +25,24 @@ class FlutterAutomotivePlugin: FlutterPlugin, FlutterAutomotiveApi {
 
   override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
     FlutterAutomotiveApi.setUp(binding.binaryMessenger, null)
+  }
+
+  // --- Activity Setup ---
+
+  override fun onAttachedToActivity(binding: ActivityPluginBinding) {
+    activity = binding.activity
+  }
+
+  override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
+    activity = binding.activity
+  }
+
+  override fun onDetachedFromActivityForConfigChanges() {
+    activity = null
+  }
+
+  override fun onDetachedFromActivity() {
+    activity = null
   }
 
   // --- Methods ---
@@ -45,5 +69,48 @@ class FlutterAutomotivePlugin: FlutterPlugin, FlutterAutomotiveApi {
     // TODO test if the class property works
     propertyManager.setProperty(value?.javaClass, propertyId.toInt(), areaId.toInt(), value)
     callback(Result.success(Unit))
+  }
+
+  // Permissions
+  private fun transformPermission(permission: CarPermissions): String {
+    return when (permission) {
+      CarPermissions.PERMISSION_CAR_CONTROL_AUDIO_SETTINGS -> Car.PERMISSION_CAR_CONTROL_AUDIO_SETTINGS
+      CarPermissions.PERMISSION_CAR_CONTROL_AUDIO_VOLUME -> Car.PERMISSION_CAR_CONTROL_AUDIO_VOLUME
+      CarPermissions.PERMISSION_CAR_INFO -> Car.PERMISSION_CAR_INFO
+      CarPermissions.PERMISSION_CAR_NAVIGATION_MANAGER -> Car.PERMISSION_CAR_NAVIGATION_MANAGER
+      CarPermissions.PERMISSION_CONTROL_CAR_ENERGY -> Car.PERMISSION_CONTROL_CAR_ENERGY
+      CarPermissions.PERMISSION_CONTROL_DISPLAY_UNITS -> Car.PERMISSION_CONTROL_DISPLAY_UNITS
+      CarPermissions.PERMISSION_CONTROL_INTERIOR_LIGHTS -> Car.PERMISSION_CONTROL_INTERIOR_LIGHTS
+      CarPermissions.PERMISSION_ENERGY -> Car.PERMISSION_ENERGY
+      CarPermissions.PERMISSION_ENERGY_PORTS -> Car.PERMISSION_ENERGY_PORTS
+      CarPermissions.PERMISSION_EXTERIOR_ENVIRONMENT -> Car.PERMISSION_EXTERIOR_ENVIRONMENT
+      CarPermissions.PERMISSION_IDENTIFICATION -> Car.PERMISSION_IDENTIFICATION
+      CarPermissions.PERMISSION_POWERTRAIN -> Car.PERMISSION_POWERTRAIN
+      CarPermissions.PERMISSION_PRIVILEGED_CAR_INFO -> Car.PERMISSION_PRIVILEGED_CAR_INFO
+      CarPermissions.PERMISSION_READ_CAR_POWER_POLICY -> Car.PERMISSION_READ_CAR_POWER_POLICY
+      CarPermissions.PERMISSION_READ_DISPLAY_UNITS -> Car.PERMISSION_READ_DISPLAY_UNITS
+      CarPermissions.PERMISSION_READ_INTERIOR_LIGHTS -> Car.PERMISSION_READ_INTERIOR_LIGHTS
+      CarPermissions.PERMISSION_READ_STEERING_STATE -> Car.PERMISSION_READ_STEERING_STATE
+      CarPermissions.PERMISSION_SPEED -> Car.PERMISSION_SPEED
+      CarPermissions.PERMISSION_USE_REMOTE_ACCESS -> Car.PERMISSION_USE_REMOTE_ACCESS
+    }
+  }
+
+  override fun isPermissionGranted(permission: CarPermissions): Boolean {
+    val act = activity
+    if (act != null) {
+      val carPermission = transformPermission(permission)
+      return ActivityCompat.checkSelfPermission(act.applicationContext, carPermission) == PackageManager.PERMISSION_GRANTED
+    } else {
+      return false
+    }
+  }
+
+  override fun requestPermission(permission: CarPermissions) {
+    val act = activity
+    if (act != null) {
+      val carPermission = transformPermission(permission)
+      ActivityCompat.requestPermissions(act, arrayOf(carPermission), 0)
+    }
   }
 }

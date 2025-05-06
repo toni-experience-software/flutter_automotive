@@ -28,6 +28,28 @@ List<Object?> wrapResponse({Object? result, PlatformException? error, bool empty
   return <Object?>[error.code, error.message, error.details];
 }
 
+enum CarPermissions {
+  PERMISSION_CAR_CONTROL_AUDIO_SETTINGS,
+  PERMISSION_CAR_CONTROL_AUDIO_VOLUME,
+  PERMISSION_CAR_INFO,
+  PERMISSION_CAR_NAVIGATION_MANAGER,
+  PERMISSION_CONTROL_CAR_ENERGY,
+  PERMISSION_CONTROL_DISPLAY_UNITS,
+  PERMISSION_CONTROL_INTERIOR_LIGHTS,
+  PERMISSION_ENERGY,
+  PERMISSION_ENERGY_PORTS,
+  PERMISSION_EXTERIOR_ENVIRONMENT,
+  PERMISSION_IDENTIFICATION,
+  PERMISSION_POWERTRAIN,
+  PERMISSION_PRIVILEGED_CAR_INFO,
+  PERMISSION_READ_CAR_POWER_POLICY,
+  PERMISSION_READ_DISPLAY_UNITS,
+  PERMISSION_READ_INTERIOR_LIGHTS,
+  PERMISSION_READ_STEERING_STATE,
+  PERMISSION_SPEED,
+  PERMISSION_USE_REMOTE_ACCESS,
+}
+
 
 class _PigeonCodec extends StandardMessageCodec {
   const _PigeonCodec();
@@ -36,6 +58,9 @@ class _PigeonCodec extends StandardMessageCodec {
     if (value is int) {
       buffer.putUint8(4);
       buffer.putInt64(value);
+    }    else if (value is CarPermissions) {
+      buffer.putUint8(129);
+      writeValue(buffer, value.index);
     } else {
       super.writeValue(buffer, value);
     }
@@ -44,6 +69,9 @@ class _PigeonCodec extends StandardMessageCodec {
   @override
   Object? readValueOfType(int type, ReadBuffer buffer) {
     switch (type) {
+      case 129: 
+        final int? value = readValue(buffer) as int?;
+        return value == null ? null : CarPermissions.values[value];
       default:
         return super.readValueOfType(type, buffer);
     }
@@ -94,6 +122,57 @@ class FlutterAutomotiveApi {
       binaryMessenger: pigeonVar_binaryMessenger,
     );
     final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[propertyId, areaId, value]);
+    final List<Object?>? pigeonVar_replyList =
+        await pigeonVar_sendFuture as List<Object?>?;
+    if (pigeonVar_replyList == null) {
+      throw _createConnectionError(pigeonVar_channelName);
+    } else if (pigeonVar_replyList.length > 1) {
+      throw PlatformException(
+        code: pigeonVar_replyList[0]! as String,
+        message: pigeonVar_replyList[1] as String?,
+        details: pigeonVar_replyList[2],
+      );
+    } else {
+      return;
+    }
+  }
+
+  Future<bool> isPermissionGranted(CarPermissions permission) async {
+    final String pigeonVar_channelName = 'dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.isPermissionGranted$pigeonVar_messageChannelSuffix';
+    final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
+      pigeonVar_channelName,
+      pigeonChannelCodec,
+      binaryMessenger: pigeonVar_binaryMessenger,
+    );
+    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[permission]);
+    final List<Object?>? pigeonVar_replyList =
+        await pigeonVar_sendFuture as List<Object?>?;
+    if (pigeonVar_replyList == null) {
+      throw _createConnectionError(pigeonVar_channelName);
+    } else if (pigeonVar_replyList.length > 1) {
+      throw PlatformException(
+        code: pigeonVar_replyList[0]! as String,
+        message: pigeonVar_replyList[1] as String?,
+        details: pigeonVar_replyList[2],
+      );
+    } else if (pigeonVar_replyList[0] == null) {
+      throw PlatformException(
+        code: 'null-error',
+        message: 'Host platform returned null value for non-null return value.',
+      );
+    } else {
+      return (pigeonVar_replyList[0] as bool?)!;
+    }
+  }
+
+  Future<void> requestPermission(CarPermissions permission) async {
+    final String pigeonVar_channelName = 'dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.requestPermission$pigeonVar_messageChannelSuffix';
+    final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
+      pigeonVar_channelName,
+      pigeonChannelCodec,
+      binaryMessenger: pigeonVar_binaryMessenger,
+    );
+    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[permission]);
     final List<Object?>? pigeonVar_replyList =
         await pigeonVar_sendFuture as List<Object?>?;
     if (pigeonVar_replyList == null) {

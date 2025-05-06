@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:flutter/services.dart';
 import 'package:flutter_automotive/flutter_automotive.dart';
-import 'package:flutter_automotive_models/flutter_automotive_models.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,24 +15,33 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  double? _temperature;
-  final _flutterAutomotivePlugin = FlutterAutomotive();
+  double? _speed;
+  bool? _permissionGranted;
+  final _plugin = FlutterAutomotive();
 
-  @override
-  void initState() {
-    super.initState();
-    getTemperature();
-  }
-
-  Future<void> getTemperature() async {
-    double? temperature;
+  Future<void> getPermission() async {
+    bool? granted;
     try {
-      temperature = await _flutterAutomotivePlugin.getHvacTemperatureCurrent(VehicleAreaSeat.ROW_1_LEFT);
-    } on PlatformException {
-      temperature = null;
+      await _plugin.requestPermission(CarPermissions.PERMISSION_SPEED);
+      granted = await _plugin.isPermissionGranted(CarPermissions.PERMISSION_SPEED);
+    } catch(e) {
+      granted = null;
+      debugPrint('Error requesting permission: $e');
     }
     if (!mounted) return;
-    setState(() => _temperature = temperature,);
+    setState(() => _permissionGranted = granted);
+  }
+
+  Future<void> getSpeed() async {
+    double? speed;
+    try {
+      speed = await _plugin.properties.getPerfVehicleSpeed();
+    } catch (e) {
+      speed = null;
+      debugPrint('Error getting speed: $e');
+    }
+    if (!mounted) return;
+    setState(() => _speed = speed);
   }
 
   @override
@@ -46,12 +53,17 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Center(
           child: Column(
-            spacing: 32,
+            spacing: 16,
             children: [
-              Text('Current temperature: $_temperature'),
+              Text('Current speed: $_speed'),
               ElevatedButton(
-                onPressed: getTemperature,
-                child: const Text('Get current temperature'),
+                onPressed: getSpeed,
+                child: const Text('Get current speed'),
+              ),
+              Text('Permission granted: $_permissionGranted'),
+              ElevatedButton(
+                onPressed: getPermission,
+                child: const Text('Get permission'),
               ),
             ],
           ),
