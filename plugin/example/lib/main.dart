@@ -20,6 +20,9 @@ class _MyAppState extends State<MyApp> {
   bool? _permissionGranted;
   final _plugin = FlutterAutomotive();
 
+  PropertyStreamData? sub;
+  StreamSubscription? streamSub;
+
   Future<void> getPermission() async {
     bool? granted;
     try {
@@ -45,6 +48,19 @@ class _MyAppState extends State<MyApp> {
     setState(() => _speed = speed);
   }
 
+  void watchSpeed() async {
+    streamSub?.cancel();
+    final sub = _plugin.properties.listenPerfVehicleSpeed();
+    streamSub = sub.stream.listen((data) => setState(() => _speed = data));
+  }
+
+  // TODO simplify api
+  // TODO unsubscribe does not work properly
+  void stopWatchSpeed() {
+    sub?.unsubscribe();
+    streamSub?.cancel();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -66,6 +82,20 @@ class _MyAppState extends State<MyApp> {
               ElevatedButton(
                 onPressed: getPermission,
                 child: const Text('Get permission'),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                spacing: 32,
+                children: [
+                  ElevatedButton(
+                    onPressed: watchSpeed,
+                    child: const Text('Watch speed'),
+                  ),
+                  ElevatedButton(
+                    onPressed: stopWatchSpeed,
+                    child: const Text('Stop watch speed'),
+                  ),
+                ],
               ),
             ],
           ),
