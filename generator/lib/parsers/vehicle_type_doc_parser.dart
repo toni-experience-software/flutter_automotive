@@ -34,11 +34,20 @@ class VehicleTypeDocParser {
 
   final Map<VehicleProperty, VehicleTypeProperties> _typeProps;
 
-  // TODO this does not work for all cases!
-  static bool _needsPrivilegedPermission(String part) =>
-      part.contains("Normal") == false &&
-      part.contains("Dangerous") == false &&
-      part.contains("Privileged");
+  static bool _needsPrivilegedPermission(String part) {
+    if (part.contains(" or ")) {
+      return (part.contains("Normal") ||
+                  part.contains("Dangerous")) ==
+              false &&
+          part.contains("Signature|Privileged");
+    } else if (part.contains(" and ")) {
+      return part.contains("Signature|Privileged");
+    } else {
+      return part.contains("Normal") == false &&
+          part.contains("Dangerous") == false &&
+          part.contains("Signature|Privileged");
+    }
+  }
 
   static Future<VehicleTypeDocParser> init(File modelFile) async {
     final res = await resolveFile2(path: modelFile.path);
@@ -52,7 +61,8 @@ class VehicleTypeDocParser {
 
             final lis = comment
                 .split("<li>")
-                .where((l) => l.contains("permission"));
+                .where((l) => l.contains("permission"))
+                .map((e) => e.replaceAll("\n", " ").split(" ").where((e) => e.isNotEmpty).join(" "));
             final readLis = lis.where((l) => l.contains("read"));
             final writeLis = lis.where((l) => l.contains("write"));
 
