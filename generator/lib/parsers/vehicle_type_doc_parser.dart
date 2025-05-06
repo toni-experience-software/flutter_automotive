@@ -7,13 +7,22 @@ import 'package:flutter_automotive_models/flutter_automotive_models.dart';
 class VehicleTypeProperties {
   VehicleTypeProperties({
     required this.read,
+    required this.readPrivileged,
     required this.write,
+    required this.writePrivileged,
     required this.docs,
   });
 
   final bool read;
+  final bool readPrivileged;
   final bool write;
+  final bool writePrivileged;
   final String docs;
+
+  @override
+  String toString() {
+    return 'VehicleTypeProperties{read: $read, readPrivileged: $readPrivileged, write: $write, writePrivileged: $writePrivileged}';
+  }
 }
 
 class VehicleTypeDocParser {
@@ -25,6 +34,11 @@ class VehicleTypeDocParser {
 
   final Map<VehicleProperty, VehicleTypeProperties> _typeProps;
 
+  static bool _needsPrivilegedPermission(String part) =>
+      part.contains("Normal") == false &&
+      part.contains("Dangerous") == false &&
+      part.contains("Privileged");
+
   static Future<VehicleTypeDocParser> init(File modelFile) async {
     final res = await resolveFile2(path: modelFile.path);
     if (res case ResolvedUnitResult(:final libraryElement2)) {
@@ -34,11 +48,28 @@ class VehicleTypeDocParser {
         if (val.documentationComment case final comment?) {
           try {
             final type = VehicleProperty.forName(val.displayName);
+
+            final lis = comment
+                .split("<li>")
+                .where((l) => l.contains("permission"));
+            final readLis = lis.where((l) => l.contains("read"));
+            final writeLis = lis.where((l) => l.contains("write"));
+
             typeProps[type] = VehicleTypeProperties(
-              read: comment.contains(kReadDoc) || comment.contains(kReadWriteDoc),
-              write: comment.contains(kWriteDoc) || comment.contains(kReadWriteDoc),
+              read:
+                  comment.contains(kReadDoc) || comment.contains(kReadWriteDoc),
+              readPrivileged: readLis.any(_needsPrivilegedPermission),
+              write:
+                  comment.contains(kWriteDoc) ||
+                  comment.contains(kReadWriteDoc),
+              writePrivileged: writeLis.any(_needsPrivilegedPermission),
               docs: comment,
             );
+
+            if (type == VehicleProperty.INFO_VIN) {
+              print(readLis);
+              print(readLis.any(_needsPrivilegedPermission));
+            }
           } catch (_) {
             print("Error parsing vehicle property type: ${val.displayName}");
           }
@@ -50,12 +81,18 @@ class VehicleTypeDocParser {
     }
   }
 
-  bool needsGetter(VehicleProperty type) {
-    return _typeProps[type]?.read ?? false;
+  bool needsGetter(VehicleProperty type, bool privileged) {
+    return switch (_typeProps[type]) {
+      null => false,
+      final props => props.read && props.readPrivileged == privileged,
+    };
   }
 
-  bool needsSetter(VehicleProperty type) {
-    return _typeProps[type]?.write ?? false;
+  bool needsSetter(VehicleProperty type, bool privileged) {
+    return switch (_typeProps[type]) {
+      null => false,
+      final props => props.write && props.writePrivileged == privileged,
+    };
   }
 
   String? getDocs(VehicleProperty type) {

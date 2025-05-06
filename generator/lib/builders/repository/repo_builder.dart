@@ -17,7 +17,8 @@ class PropertyRepoBuilder {
           Directive.import("./datasource.dart"),
         ])
         ..body.addAll([
-          _buildClass(),
+          _buildNormalClass(),
+          _buildPrivilegedClass(),
         ])
         ..docs.addAll([
           "// ignore_for_file: slash_for_doc_comments, doc_directive_unknown_prefixes, doc_directive_unknown",
@@ -25,13 +26,68 @@ class PropertyRepoBuilder {
     );
   }
 
-  Class _buildClass() {
+  Class _buildNormalClass() {
     final datasourceTypeRef = refer("VehiclePropertyDatasource");
     final datasourceName = "datasource";
     final datasourceNameRef = refer(datasourceName);
     return Class(
       (c) => c
         ..name = "VehiclePropertyRepository"
+        ..constructors.addAll([
+          Constructor(
+            (c) => c
+              ..requiredParameters.addAll([
+                Parameter(
+                  (p) => p
+                    ..name = datasourceName
+                    ..toThis = true,
+                ),
+              ])
+              ..initializers.addAll([
+                refer("privileged").assign(refer("VehiclePrivilegedPropertyRepository").newInstance([datasourceNameRef])).code,
+              ]),
+          ),
+        ])
+        ..fields.addAll([
+          Field(
+            (f) => f
+              ..name = datasourceName
+              ..type = datasourceTypeRef
+              ..modifier = FieldModifier.final$,
+          ),
+          Field(
+            (f) => f
+              ..name = "privileged"
+              ..type = refer("VehiclePrivilegedPropertyRepository")
+              ..modifier = FieldModifier.final$,
+          ),
+        ])
+        ..methods.addAll([
+          for (final prop in VehicleProperty.values) ...[
+            if (parser.needsGetter(prop, false)) ...[
+              VehiclePropertyGetterBuilder(
+                datasource: datasourceNameRef,
+                prop: prop,
+              ).buildGetter(parser.getDocs(prop)),
+            ],
+            if (parser.needsSetter(prop, false)) ...[
+              VehiclePropertySetterBuilder(
+                datasource: datasourceNameRef,
+                prop: prop,
+              ).buildSetter(parser.getDocs(prop)),
+            ],
+          ],
+        ]),
+    );
+  }
+
+  Class _buildPrivilegedClass() {
+    final datasourceTypeRef = refer("VehiclePropertyDatasource");
+    final datasourceName = "datasource";
+    final datasourceNameRef = refer(datasourceName);
+    return Class(
+      (c) => c
+        ..name = "VehiclePrivilegedPropertyRepository"
         ..constructors.addAll([
           Constructor(
             (c) => c.requiredParameters.addAll([
@@ -53,13 +109,13 @@ class PropertyRepoBuilder {
         ])
         ..methods.addAll([
           for (final prop in VehicleProperty.values) ...[
-            if (parser.needsGetter(prop)) ...[
+            if (parser.needsGetter(prop, true)) ...[
               VehiclePropertyGetterBuilder(
                 datasource: datasourceNameRef,
                 prop: prop,
               ).buildGetter(parser.getDocs(prop)),
             ],
-            if (parser.needsSetter(prop)) ...[
+            if (parser.needsSetter(prop, true)) ...[
               VehiclePropertySetterBuilder(
                 datasource: datasourceNameRef,
                 prop: prop,
