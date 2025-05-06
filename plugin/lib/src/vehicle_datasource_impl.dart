@@ -2,6 +2,7 @@
 library;
 
 import 'package:flutter_automotive/src/flutter_automotive_platform_interface.dart';
+import 'package:flutter_automotive/src/property_stream.dart';
 import 'package:flutter_automotive/src/vehicle_datasource.dart';
 
 class VehiclePropertyDatasourceImpl extends VehiclePropertyDatasource {
@@ -18,5 +19,10 @@ class VehiclePropertyDatasourceImpl extends VehiclePropertyDatasource {
   @override
   Future<void> setProperty(int propertyId, int areaId, value) async {
     return await _platform.setProperty(propertyId, areaId, value);
+  }
+
+  @override
+  PropertyStreamData<T> listenProperty<T>(int propertyId, int areaId) {
+    return _platform.subscribeProperty<T>(propertyId, areaId);
   }
 }
