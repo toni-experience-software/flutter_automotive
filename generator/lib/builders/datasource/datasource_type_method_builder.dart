@@ -1,5 +1,6 @@
 import 'package:code_builder/code_builder.dart';
 import 'package:flutter_automotive_models/flutter_automotive_models.dart';
+import 'package:generator/util/builder_util.dart';
 
 class PropertyTypeMethodInterfaceBuilder {
   const PropertyTypeMethodInterfaceBuilder(this.type);
@@ -39,7 +40,22 @@ class PropertyTypeMethodInterfaceBuilder {
               ..name = "areaId"
               ..type = refer("int"),
           ),
-        ]),
+        ])
+        ..body = Block(
+          (b) => b..statements.addAll([
+            declareFinal("result").assign(
+              refer("getProperty").call([
+                refer("propertyId"),
+                refer("areaId"),
+              ]).awaited,
+            ).statement,
+            BuilderUtil.ifElseStatement(
+              refer("result").isA(_returnTypeForProperty),
+              refer("result").returned.statement,
+              refer((Exception).toString()).newInstance([literalString("Return type mismatch")]).thrown.statement,
+            ),
+          ]),
+        ),
     );
   }
 
@@ -65,7 +81,16 @@ class PropertyTypeMethodInterfaceBuilder {
               ..name = "value"
               ..type = _returnTypeForProperty,
           ),
-        ]),
+        ])
+        ..body = Block(
+          (b) => b..statements.addAll([
+            refer("setProperty").call([
+              refer("propertyId"),
+              refer("areaId"),
+              refer("value"),
+            ]).awaited.returned.statement,
+          ]),
+        ),
     );
   }
 }

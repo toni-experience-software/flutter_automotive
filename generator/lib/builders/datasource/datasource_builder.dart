@@ -1,5 +1,6 @@
 import 'package:code_builder/code_builder.dart';
 import 'package:flutter_automotive_models/flutter_automotive_models.dart';
+import 'package:generator/builders/datasource/datasource_general_method_builder.dart';
 import 'package:generator/builders/datasource/datasource_type_method_builder.dart';
 
 class AndroidInterfaceBuilder {
@@ -8,7 +9,7 @@ class AndroidInterfaceBuilder {
       (l) => l
         ..body.add(_buildClass())
         ..docs.addAll([
-          "// ignore_for_file: non_constant_identifier_names",
+          "// ignore_for_file: non_constant_identifier_names, unnecessary_type_check",
         ]),
     );
   }
@@ -19,6 +20,8 @@ class AndroidInterfaceBuilder {
         ..name = "VehiclePropertyDatasource"
         ..abstract = true
         ..methods.addAll([
+          PropertyGeneralMethodInterfaceBuilder().buildGetter(),
+          PropertyGeneralMethodInterfaceBuilder().buildSetter(),
           for (final type in VehiclePropertyType.values) ...[
             PropertyTypeMethodInterfaceBuilder(type).buildGetter(),
             PropertyTypeMethodInterfaceBuilder(type).buildSetter(),
