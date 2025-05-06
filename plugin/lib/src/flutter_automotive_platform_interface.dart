@@ -1,6 +1,5 @@
+import 'package:flutter_automotive/src/flutter_automotive_method_channel.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
-
-import 'flutter_automotive_method_channel.dart';
 
 abstract class FlutterAutomotivePlatform extends PlatformInterface {
   /// Constructs a FlutterAutomotivePlatform.
@@ -23,7 +22,9 @@ abstract class FlutterAutomotivePlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  Future<String?> getPlatformVersion() {
-    throw UnimplementedError('platformVersion() has not been implemented.');
-  }
+  // --- Methods ---
+
+  Future<dynamic> getProperty(int propertyId, int areaId);
+
+  Future<void> setProperty(int propertyId, int areaId, dynamic value);
 }
