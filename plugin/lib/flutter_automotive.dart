@@ -1,3 +1,4 @@
+import 'package:flutter_automotive/model/models.dart';
 import 'package:flutter_automotive/src/flutter_automotive_platform_interface.dart';
 import 'package:flutter_automotive/src/messages.g.dart';
 import 'package:flutter_automotive/src/vehicle_datasource_impl.dart';
@@ -15,6 +16,38 @@ class FlutterAutomotive {
   final VehiclePropertyRepository _repository;
 
   VehiclePropertyRepository get properties => _repository;
+
+  /// Retrieves the value of a specified vehicle property.
+  ///
+  /// [property] - The vehicle property to retrieve.
+  /// [areaId] - The area ID for which the property value is requested. Defaults to 0.
+  ///
+  /// Returns a [Future] that resolves to the value of the requested property.
+  Future<dynamic> getProperty(VehicleProperty property, {int areaId = 0}) async {
+    return await _platform.getProperty(property.id, areaId);
+  }
+
+  /// Sets the value of a specified vehicle property.
+  ///
+  /// [property] - The vehicle property to set.
+  /// [value] - The value to assign to the property.
+  /// [areaId] - The area ID for which the property value is being set. Defaults to 0.
+  ///
+  /// Returns a [Future] that completes when the property value is successfully set.
+  Future<void> setProperty(VehicleProperty property, dynamic value, {int areaId = 0}) async {
+    return await _platform.setProperty(property.id, value, areaId);
+  }
+
+  /// Subscribes to updates for a specified vehicle property.
+  ///
+  /// [propertyId] - The ID of the property to subscribe to.
+  /// [areaId] - The area ID for which the property updates are requested.
+  /// [updateRate] - The rate at which updates are received. Defaults to [SensorUpdateRates.onChange].
+  ///
+  /// Returns a [PropertyStreamData] stream that emits updates for the specified property.
+  PropertyStreamData<T> subscribeProperty<T>(int propertyId, int areaId, [SensorUpdateRate updateRate = SensorUpdateRates.onChange]) {
+    return _platform.subscribeProperty<T>(propertyId, areaId, updateRate);
+  }
 
   /// Checks if the specified car permission is granted.
   ///
