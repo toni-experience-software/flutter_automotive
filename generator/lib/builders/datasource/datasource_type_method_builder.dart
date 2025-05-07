@@ -1,5 +1,5 @@
 import 'package:code_builder/code_builder.dart';
-import 'package:flutter_automotive/flutter_automotive.dart';
+import 'package:flutter_automotive/model/models.dart';
 import 'package:generator/util/builder_util.dart';
 
 class PropertyTypeMethodInterfaceBuilder {

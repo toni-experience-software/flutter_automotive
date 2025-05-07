@@ -1,5 +1,5 @@
 import 'package:code_builder/code_builder.dart';
-import 'package:flutter_automotive/flutter_automotive.dart';
+import 'package:flutter_automotive/model/models.dart';
 import 'package:generator/builders/datasource/datasource_type_method_builder.dart';
 
 class VehiclePropertyListenerBuilder {

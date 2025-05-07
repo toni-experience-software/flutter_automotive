@@ -1,5 +1,5 @@
 import 'package:code_builder/code_builder.dart';
-import 'package:flutter_automotive/flutter_automotive.dart';
+import 'package:flutter_automotive/model/models.dart';
 import 'package:generator/builders/repository/repo_getter_builder.dart';
 import 'package:generator/builders/repository/repo_listener_builder.dart';
 import 'package:generator/builders/repository/repo_setter_builder.dart';
@@ -29,7 +29,7 @@ class PropertyRepoBuilder {
 
   Class _buildNormalClass() {
     final datasourceTypeRef = refer("VehiclePropertyDatasource");
-    final datasourceName = "datasource";
+    final datasourceName = "_datasource";
     final datasourceNameRef = refer(datasourceName);
     return Class(
       (c) => c
@@ -88,7 +88,7 @@ class PropertyRepoBuilder {
 
   Class _buildPrivilegedClass() {
     final datasourceTypeRef = refer("VehiclePropertyDatasource");
-    final datasourceName = "datasource";
+    final datasourceName = "_datasource";
     final datasourceNameRef = refer(datasourceName);
     return Class(
       (c) => c

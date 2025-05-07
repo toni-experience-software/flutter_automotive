@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:analyzer/dart/analysis/results.dart';
 import 'package:analyzer/dart/analysis/utilities.dart';
-import 'package:flutter_automotive/flutter_automotive.dart';
+import 'package:flutter_automotive/model/models.dart';
 
 class VehicleTypeProperties {
   VehicleTypeProperties({
