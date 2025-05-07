@@ -1,4 +1,4 @@
-import 'package:flutter_automotive/model/vehicle_property.dart';
+import 'package:generator/input/vehicle_property.dart';
 
 enum VehicleAreaType {
   global(0x01000000),
@@ -15,7 +15,7 @@ enum VehicleAreaType {
 
   final int value;
 
-  static VehicleAreaType forVehicleProperty(VehicleProperty prop) {
+  static VehicleAreaType forVehicleProperty(VehiclePropertyInput prop) {
     return VehicleAreaType.values.firstWhere(
       (v) => VehicleAreaType._mask & prop.id == v.value,
     );

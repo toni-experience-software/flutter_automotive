@@ -1,4 +1,4 @@
-import 'vehicle_property.dart';
+import 'package:generator/input/vehicle_property.dart';
 
 enum VehiclePropertyType {
   string(0x00100000),
@@ -18,7 +18,7 @@ enum VehiclePropertyType {
 
   final int value;
 
-  static VehiclePropertyType forVehicleProperty(VehicleProperty prop) {
+  static VehiclePropertyType forVehicleProperty(VehiclePropertyInput prop) {
     return VehiclePropertyType.values.firstWhere(
       (v) => VehiclePropertyType._mask & prop.id == v.value,
     );

@@ -1,6 +1,9 @@
 import 'package:code_builder/code_builder.dart';
 import 'package:flutter_automotive/model/models.dart';
 import 'package:generator/builders/datasource/datasource_type_method_builder.dart';
+import 'package:generator/input/vehicle_property.dart';
+import 'package:generator/util/vehicle_area_types.dart';
+import 'package:generator/util/vehicle_property_types.dart';
 
 class VehiclePropertyGetterBuilder {
   const VehiclePropertyGetterBuilder({
@@ -9,7 +12,7 @@ class VehiclePropertyGetterBuilder {
   });
 
   final Reference datasource;
-  final VehicleProperty prop;
+  final VehiclePropertyInput prop;
 
   VehiclePropertyType get propType => VehiclePropertyType.forVehicleProperty(prop);
   VehicleAreaType get areaType => VehicleAreaType.forVehicleProperty(prop);
@@ -67,7 +70,7 @@ class VehiclePropertyGetterBuilder {
 
   Block buildGetterBlock() {
     final interface = PropertyTypeMethodInterfaceBuilder(propType);
-    final propId = refer((VehicleProperty).toString()).property(prop.name).property("id");
+    final propId = refer("VehicleProperty").property(prop.name).property("id");
     final areaId = switch (areaType) {
       VehicleAreaType.global || VehicleAreaType.vendor => literal(0),
       VehicleAreaType.window

@@ -1,6 +1,6 @@
 import 'package:code_builder/code_builder.dart';
-import 'package:flutter_automotive/model/models.dart';
 import 'package:generator/util/builder_util.dart';
+import 'package:generator/util/vehicle_property_types.dart';
 
 class PropertyTypeMethodInterfaceBuilder {
   const PropertyTypeMethodInterfaceBuilder(this.type);

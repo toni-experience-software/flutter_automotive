@@ -2,10 +2,12 @@ import 'dart:io';
 
 import 'package:analyzer/dart/analysis/results.dart';
 import 'package:analyzer/dart/analysis/utilities.dart';
-import 'package:flutter_automotive/model/models.dart';
+import 'package:generator/input/vehicle_property.dart';
 
 class VehicleTypeProperties {
   VehicleTypeProperties({
+    required this.name,
+    required this.id,
     required this.read,
     required this.readPrivileged,
     required this.write,
@@ -13,6 +15,8 @@ class VehicleTypeProperties {
     required this.docs,
   });
 
+  final String name;
+  final int id;
   final bool read;
   final bool readPrivileged;
   final bool write;
@@ -32,7 +36,7 @@ class VehicleTypeDocParser {
   static const String kWriteDoc = "VEHICLE_PROPERTY_ACCESS_WRITE";
   static const String kReadWriteDoc = "VEHICLE_PROPERTY_ACCESS_READ_WRITE";
 
-  final Map<VehicleProperty, VehicleTypeProperties> _typeProps;
+  final Map<VehiclePropertyInput, VehicleTypeProperties> _typeProps;
 
   static bool _needsPrivilegedPermission(String part) {
     if (part.contains(" or ")) {
@@ -53,11 +57,11 @@ class VehicleTypeDocParser {
     final res = await resolveFile2(path: modelFile.path);
     if (res case ResolvedUnitResult(:final libraryElement2)) {
       final vals = libraryElement2.enums.first;
-      final typeProps = <VehicleProperty, VehicleTypeProperties>{};
+      final typeProps = <VehiclePropertyInput, VehicleTypeProperties>{};
       for (final val in vals.constants2) {
         if (val.documentationComment case final comment?) {
           try {
-            final type = VehicleProperty.forName(val.displayName);
+            final type = VehiclePropertyInput.forName(val.displayName);
 
             final lis = comment
                 .split("<li>")
@@ -67,6 +71,8 @@ class VehicleTypeDocParser {
             final writeLis = lis.where((l) => l.contains("write"));
 
             typeProps[type] = VehicleTypeProperties(
+              name: val.displayName,
+              id: type.id,
               read:
                   comment.contains(kReadDoc) || comment.contains(kReadWriteDoc),
               readPrivileged: readLis.any(_needsPrivilegedPermission),
@@ -87,21 +93,21 @@ class VehicleTypeDocParser {
     }
   }
 
-  bool needsGetter(VehicleProperty type, bool privileged) {
+  bool needsGetter(VehiclePropertyInput type, bool privileged) {
     return switch (_typeProps[type]) {
       null => false,
       final props => props.read && props.readPrivileged == privileged,
     };
   }
 
-  bool needsSetter(VehicleProperty type, bool privileged) {
+  bool needsSetter(VehiclePropertyInput type, bool privileged) {
     return switch (_typeProps[type]) {
       null => false,
       final props => props.write && props.writePrivileged == privileged,
     };
   }
 
-  String? getDocs(VehicleProperty type) {
+  String? getDocs(VehiclePropertyInput type) {
     return _typeProps[type]?.docs;
   }
 }
