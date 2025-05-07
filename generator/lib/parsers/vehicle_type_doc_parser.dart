@@ -23,6 +23,44 @@ class VehicleTypeProperties {
   final bool writePrivileged;
   final String docs;
 
+  String get formattedDocs {
+    return [
+      _formattedDesc,
+      if (_permissionsDoc.isNotEmpty) ...[
+        "/// ",
+        "/// # Permissions",
+        _permissionsDoc,
+      ],
+    ].join("\n");
+  }
+
+  String get _formattedDesc {
+    final desc = docs.split("<p>Property Config:")[0];
+    final lines = desc.replaceAll("<p>", "").split("\n").map((l) => l.trim()).skip(1);
+    final descLines = lines.map((l) => l.substring(1).trim()).toList();
+    final cleaned = descLines.reversed.skipWhile((l) => l.isEmpty).toList().reversed;
+    return cleaned.map((e) => "/// $e").join("\n");
+  }
+
+  String get _permissionsDoc {
+    final split = docs.split("* <p>Required Permission");
+    if (split case [_, final permissionsRaw]) {
+      final arr = permissionsRaw.split("@data_enum")[0].split("<li>").map((e) => e.replaceAll("</ul>", "").trim()).toList();
+      final lines = [];
+      if (arr case [_, final readRaw, final writeRaw, ...]) {
+        lines.addAll(readRaw.split("\n").map((l) => l.trim()).map((l) => l.startsWith("*") ? l.substring(1) : l).map((l) => l.trim()));
+        lines.addAll(writeRaw.split("\n").map((l) => l.trim()).map((l) => l.startsWith("*") ? l.substring(1) : l).map((l) => l.trim()));
+      } else if (arr case [_, final readRaw, ...]) {
+        lines.addAll(readRaw.split("\n").map((l) => l.trim()).map((l) => l.startsWith("*") ? l.substring(1) : l).map((l) => l.trim()));
+      } else {
+        return "";
+      }
+      return lines.where((e) => e.isNotEmpty && e != "/").map((l) => "/// $l").join("\n");
+    } else {
+      return "";
+    }
+  }
+
   @override
   String toString() {
     return 'VehicleTypeProperties{read: $read, readPrivileged: $readPrivileged, write: $write, writePrivileged: $writePrivileged}';
@@ -108,6 +146,6 @@ class VehicleTypeDocParser {
   }
 
   String? getDocs(VehiclePropertyInput type) {
-    return _typeProps[type]?.docs;
+    return _typeProps[type]?.formattedDocs;
   }
 }
