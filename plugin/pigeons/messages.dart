@@ -44,7 +44,7 @@ abstract class FlutterAutomotiveApi {
   @async
   void setProperty(int propertyId, int areaId, Object? value);
 
-  void subscribeProperty(int propertyId, int areaId);
+  void subscribeProperty(int propertyId, int areaId, double updateRate);
 
   void unsubscribeProperty(int propertyId, int areaId);
 

@@ -56,7 +56,7 @@ abstract class TestHostFlutterAutomotiveApi {
 
   Future<void> setProperty(int propertyId, int areaId, Object? value);
 
-  void subscribeProperty(int propertyId, int areaId);
+  void subscribeProperty(int propertyId, int areaId, double updateRate);
 
   void unsubscribeProperty(int propertyId, int areaId);
 
@@ -140,8 +140,11 @@ abstract class TestHostFlutterAutomotiveApi {
           final int? arg_areaId = (args[1] as int?);
           assert(arg_areaId != null,
               'Argument for dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.subscribeProperty was null, expected non-null int.');
+          final double? arg_updateRate = (args[2] as double?);
+          assert(arg_updateRate != null,
+              'Argument for dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.subscribeProperty was null, expected non-null double.');
           try {
-            api.subscribeProperty(arg_propertyId!, arg_areaId!);
+            api.subscribeProperty(arg_propertyId!, arg_areaId!, arg_updateRate!);
             return wrapResponse(empty: true);
           } on PlatformException catch (e) {
             return wrapResponse(error: e);

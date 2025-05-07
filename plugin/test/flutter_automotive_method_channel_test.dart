@@ -19,7 +19,7 @@ class _TestApi implements TestHostFlutterAutomotiveApi {
   void requestPermission(CarPermissions permission) {}
   
   @override
-  void subscribeProperty(int propertyId, int areaId) {}
+  void subscribeProperty(int propertyId, int areaId, double updateRate) {}
   
   @override
   void unsubscribeProperty(int propertyId, int areaId) {}

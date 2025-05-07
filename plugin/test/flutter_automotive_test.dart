@@ -1,3 +1,4 @@
+import 'package:flutter_automotive/model/sensor_update_rates.dart';
 import 'package:flutter_automotive/src/flutter_automotive_method_channel.dart';
 import 'package:flutter_automotive/src/flutter_automotive_platform_interface.dart';
 import 'package:flutter_automotive/src/messages.g.dart';
@@ -22,7 +23,7 @@ class MockFlutterAutomotivePlatform
   Future<void> requestPermission(CarPermissions permission) async {}
 
   @override
-  PropertyStreamData<T> subscribeProperty<T>(int propertyId, int areaId) {
+  PropertyStreamData<T> subscribeProperty<T>(int propertyId, int areaId, [SensorUpdateRate updateRate = SensorUpdateRates.onChange]) {
     return PropertyStreamData(
       stream: Stream.empty(),
       onUnsubscribe: () {},

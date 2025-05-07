@@ -180,7 +180,7 @@ val MessagesPigeonMethodCodec = StandardMethodCodec(MessagesPigeonCodec())
 interface FlutterAutomotiveApi {
   fun getProperty(propertyId: Long, areaId: Long, callback: (Result<Any?>) -> Unit)
   fun setProperty(propertyId: Long, areaId: Long, value: Any?, callback: (Result<Unit>) -> Unit)
-  fun subscribeProperty(propertyId: Long, areaId: Long)
+  fun subscribeProperty(propertyId: Long, areaId: Long, updateRate: Double)
   fun unsubscribeProperty(propertyId: Long, areaId: Long)
   fun isPermissionGranted(permission: CarPermissions): Boolean
   fun requestPermission(permission: CarPermissions)
@@ -243,8 +243,9 @@ interface FlutterAutomotiveApi {
             val args = message as List<Any?>
             val propertyIdArg = args[0] as Long
             val areaIdArg = args[1] as Long
+            val updateRateArg = args[2] as Double
             val wrapped: List<Any?> = try {
-              api.subscribeProperty(propertyIdArg, areaIdArg)
+              api.subscribeProperty(propertyIdArg, areaIdArg, updateRateArg)
               listOf(null)
             } catch (exception: Throwable) {
               MessagesPigeonUtils.wrapError(exception)

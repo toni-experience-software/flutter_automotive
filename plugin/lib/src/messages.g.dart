@@ -209,14 +209,14 @@ class FlutterAutomotiveApi {
     }
   }
 
-  Future<void> subscribeProperty(int propertyId, int areaId) async {
+  Future<void> subscribeProperty(int propertyId, int areaId, double updateRate) async {
     final String pigeonVar_channelName = 'dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.subscribeProperty$pigeonVar_messageChannelSuffix';
     final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
       pigeonVar_channelName,
       pigeonChannelCodec,
       binaryMessenger: pigeonVar_binaryMessenger,
     );
-    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[propertyId, areaId]);
+    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[propertyId, areaId, updateRate]);
     final List<Object?>? pigeonVar_replyList =
         await pigeonVar_sendFuture as List<Object?>?;
     if (pigeonVar_replyList == null) {

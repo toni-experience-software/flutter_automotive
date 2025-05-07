@@ -73,7 +73,7 @@ class FlutterAutomotivePlugin: FlutterPlugin, ActivityAware, FlutterAutomotiveAp
     callback(Result.success(Unit))
   }
 
-  override fun subscribeProperty(propertyId: Long, areaId: Long) {
+  override fun subscribeProperty(propertyId: Long, areaId: Long, updateRate: Double) {
     val callback = object : CarPropertyManager.CarPropertyEventCallback {
       override fun onChangeEvent(carPropertyValue: CarPropertyValue<*>) {
         try {
@@ -90,7 +90,7 @@ class FlutterAutomotivePlugin: FlutterPlugin, ActivityAware, FlutterAutomotiveAp
       }
     }
     eventCallbacks[Pair(propertyId, areaId)] = callback
-    propertyManager.registerCallback(callback, propertyId.toInt(), SENSOR_RATE_NORMAL)
+    propertyManager.registerCallback(callback, propertyId.toInt(), updateRate.toFloat())
     // This would be preferred, but it does not work
     // propertyManager.subscribePropertyEvents(propertyId.toInt(), areaId.toInt(), callback)
   }
