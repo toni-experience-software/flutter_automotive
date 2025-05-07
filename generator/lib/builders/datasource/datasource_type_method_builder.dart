@@ -20,9 +20,9 @@ class PropertyTypeMethodInterfaceBuilder {
     VehiclePropertyType.mixed => refer("dynamic"),
   };
 
-  String get getterName => "getProperty${type.name}";
-  String get setterName => "setProperty${type.name}";
-  String get listenName => "listenProperty${type.name}";
+  String get getterName => "getProperty${type.name[0].toUpperCase()}${type.name.substring(1)}";
+  String get setterName => "setProperty${type.name[0].toUpperCase()}${type.name.substring(1)}";
+  String get listenName => "listenProperty${type.name[0].toUpperCase()}${type.name.substring(1)}";
 
   Method buildGetter() {
     return Method(
@@ -111,12 +111,18 @@ class PropertyTypeMethodInterfaceBuilder {
               ..name = "areaId"
               ..type = refer("int"),
           ),
+          Parameter(
+            (p) => p
+              ..name = "rate"
+              ..type = refer("SensorUpdateRate"),
+          )
         ])
         ..body = Block(
           (b) => b..statements.addAll([
             refer("listenProperty<${_returnTypeForProperty.symbol}>").call([
               refer("propertyId"),
               refer("areaId"),
+              refer("rate"),
             ]).returned.statement,
           ]),
         ),

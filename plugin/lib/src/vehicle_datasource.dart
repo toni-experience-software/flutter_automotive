@@ -1,14 +1,17 @@
 // ignore_for_file: non_constant_identifier_names, unnecessary_type_check
 library;
 
-import 'package:flutter_automotive/model/property_stream.dart';
+import 'package:flutter_automotive/flutter_automotive.dart';
 
 abstract class VehiclePropertyDatasource {
   Future<dynamic> getProperty(int propertyId, int areaId);
   Future<void> setProperty(int propertyId, int areaId, dynamic value);
-  PropertyStreamData<T> listenProperty<T>(int propertyId, int areaId);
-
-  Future<String> getPropertySTRING(int propertyId, int areaId) async {
+  PropertyStreamData<T> listenProperty<T>(
+    int propertyId,
+    int areaId,
+    SensorUpdateRate rate,
+  );
+  Future<String> getPropertyString(int propertyId, int areaId) async {
     final result = await getProperty(propertyId, areaId);
     if (result is String) {
       return result;
@@ -17,7 +20,7 @@ abstract class VehiclePropertyDatasource {
     }
   }
 
-  Future<void> setPropertySTRING(
+  Future<void> setPropertyString(
     int propertyId,
     int areaId,
     String value,
@@ -25,11 +28,15 @@ abstract class VehiclePropertyDatasource {
     return await setProperty(propertyId, areaId, value);
   }
 
-  PropertyStreamData<String> listenPropertySTRING(int propertyId, int areaId) {
-    return listenProperty<String>(propertyId, areaId);
+  PropertyStreamData<String> listenPropertyString(
+    int propertyId,
+    int areaId,
+    SensorUpdateRate rate,
+  ) {
+    return listenProperty<String>(propertyId, areaId, rate);
   }
 
-  Future<bool> getPropertyBOOLEAN(int propertyId, int areaId) async {
+  Future<bool> getPropertyBoolean(int propertyId, int areaId) async {
     final result = await getProperty(propertyId, areaId);
     if (result is bool) {
       return result;
@@ -38,7 +45,7 @@ abstract class VehiclePropertyDatasource {
     }
   }
 
-  Future<void> setPropertyBOOLEAN(
+  Future<void> setPropertyBoolean(
     int propertyId,
     int areaId,
     bool value,
@@ -46,11 +53,15 @@ abstract class VehiclePropertyDatasource {
     return await setProperty(propertyId, areaId, value);
   }
 
-  PropertyStreamData<bool> listenPropertyBOOLEAN(int propertyId, int areaId) {
-    return listenProperty<bool>(propertyId, areaId);
+  PropertyStreamData<bool> listenPropertyBoolean(
+    int propertyId,
+    int areaId,
+    SensorUpdateRate rate,
+  ) {
+    return listenProperty<bool>(propertyId, areaId, rate);
   }
 
-  Future<int> getPropertyINT32(int propertyId, int areaId) async {
+  Future<int> getPropertyInt32(int propertyId, int areaId) async {
     final result = await getProperty(propertyId, areaId);
     if (result is int) {
       return result;
@@ -59,15 +70,19 @@ abstract class VehiclePropertyDatasource {
     }
   }
 
-  Future<void> setPropertyINT32(int propertyId, int areaId, int value) async {
+  Future<void> setPropertyInt32(int propertyId, int areaId, int value) async {
     return await setProperty(propertyId, areaId, value);
   }
 
-  PropertyStreamData<int> listenPropertyINT32(int propertyId, int areaId) {
-    return listenProperty<int>(propertyId, areaId);
+  PropertyStreamData<int> listenPropertyInt32(
+    int propertyId,
+    int areaId,
+    SensorUpdateRate rate,
+  ) {
+    return listenProperty<int>(propertyId, areaId, rate);
   }
 
-  Future<List<int>> getPropertyINT32_VEC(int propertyId, int areaId) async {
+  Future<List<int>> getPropertyInt32Vec(int propertyId, int areaId) async {
     final result = await getProperty(propertyId, areaId);
     if (result is List<int>) {
       return result;
@@ -76,7 +91,7 @@ abstract class VehiclePropertyDatasource {
     }
   }
 
-  Future<void> setPropertyINT32_VEC(
+  Future<void> setPropertyInt32Vec(
     int propertyId,
     int areaId,
     List<int> value,
@@ -84,14 +99,15 @@ abstract class VehiclePropertyDatasource {
     return await setProperty(propertyId, areaId, value);
   }
 
-  PropertyStreamData<List<int>> listenPropertyINT32_VEC(
+  PropertyStreamData<List<int>> listenPropertyInt32Vec(
     int propertyId,
     int areaId,
+    SensorUpdateRate rate,
   ) {
-    return listenProperty<List<int>>(propertyId, areaId);
+    return listenProperty<List<int>>(propertyId, areaId, rate);
   }
 
-  Future<int> getPropertyINT64(int propertyId, int areaId) async {
+  Future<int> getPropertyInt64(int propertyId, int areaId) async {
     final result = await getProperty(propertyId, areaId);
     if (result is int) {
       return result;
@@ -100,15 +116,19 @@ abstract class VehiclePropertyDatasource {
     }
   }
 
-  Future<void> setPropertyINT64(int propertyId, int areaId, int value) async {
+  Future<void> setPropertyInt64(int propertyId, int areaId, int value) async {
     return await setProperty(propertyId, areaId, value);
   }
 
-  PropertyStreamData<int> listenPropertyINT64(int propertyId, int areaId) {
-    return listenProperty<int>(propertyId, areaId);
+  PropertyStreamData<int> listenPropertyInt64(
+    int propertyId,
+    int areaId,
+    SensorUpdateRate rate,
+  ) {
+    return listenProperty<int>(propertyId, areaId, rate);
   }
 
-  Future<List<int>> getPropertyINT64_VEC(int propertyId, int areaId) async {
+  Future<List<int>> getPropertyInt64Vec(int propertyId, int areaId) async {
     final result = await getProperty(propertyId, areaId);
     if (result is List<int>) {
       return result;
@@ -117,7 +137,7 @@ abstract class VehiclePropertyDatasource {
     }
   }
 
-  Future<void> setPropertyINT64_VEC(
+  Future<void> setPropertyInt64Vec(
     int propertyId,
     int areaId,
     List<int> value,
@@ -125,14 +145,15 @@ abstract class VehiclePropertyDatasource {
     return await setProperty(propertyId, areaId, value);
   }
 
-  PropertyStreamData<List<int>> listenPropertyINT64_VEC(
+  PropertyStreamData<List<int>> listenPropertyInt64Vec(
     int propertyId,
     int areaId,
+    SensorUpdateRate rate,
   ) {
-    return listenProperty<List<int>>(propertyId, areaId);
+    return listenProperty<List<int>>(propertyId, areaId, rate);
   }
 
-  Future<double> getPropertyFLOAT(int propertyId, int areaId) async {
+  Future<double> getPropertyFloat(int propertyId, int areaId) async {
     final result = await getProperty(propertyId, areaId);
     if (result is double) {
       return result;
@@ -141,7 +162,7 @@ abstract class VehiclePropertyDatasource {
     }
   }
 
-  Future<void> setPropertyFLOAT(
+  Future<void> setPropertyFloat(
     int propertyId,
     int areaId,
     double value,
@@ -149,11 +170,15 @@ abstract class VehiclePropertyDatasource {
     return await setProperty(propertyId, areaId, value);
   }
 
-  PropertyStreamData<double> listenPropertyFLOAT(int propertyId, int areaId) {
-    return listenProperty<double>(propertyId, areaId);
+  PropertyStreamData<double> listenPropertyFloat(
+    int propertyId,
+    int areaId,
+    SensorUpdateRate rate,
+  ) {
+    return listenProperty<double>(propertyId, areaId, rate);
   }
 
-  Future<List<double>> getPropertyFLOAT_VEC(int propertyId, int areaId) async {
+  Future<List<double>> getPropertyFloatVec(int propertyId, int areaId) async {
     final result = await getProperty(propertyId, areaId);
     if (result is List<double>) {
       return result;
@@ -162,7 +187,7 @@ abstract class VehiclePropertyDatasource {
     }
   }
 
-  Future<void> setPropertyFLOAT_VEC(
+  Future<void> setPropertyFloatVec(
     int propertyId,
     int areaId,
     List<double> value,
@@ -170,14 +195,15 @@ abstract class VehiclePropertyDatasource {
     return await setProperty(propertyId, areaId, value);
   }
 
-  PropertyStreamData<List<double>> listenPropertyFLOAT_VEC(
+  PropertyStreamData<List<double>> listenPropertyFloatVec(
     int propertyId,
     int areaId,
+    SensorUpdateRate rate,
   ) {
-    return listenProperty<List<double>>(propertyId, areaId);
+    return listenProperty<List<double>>(propertyId, areaId, rate);
   }
 
-  Future<List<int>> getPropertyBYTES(int propertyId, int areaId) async {
+  Future<List<int>> getPropertyBytes(int propertyId, int areaId) async {
     final result = await getProperty(propertyId, areaId);
     if (result is List<int>) {
       return result;
@@ -186,7 +212,7 @@ abstract class VehiclePropertyDatasource {
     }
   }
 
-  Future<void> setPropertyBYTES(
+  Future<void> setPropertyBytes(
     int propertyId,
     int areaId,
     List<int> value,
@@ -194,14 +220,15 @@ abstract class VehiclePropertyDatasource {
     return await setProperty(propertyId, areaId, value);
   }
 
-  PropertyStreamData<List<int>> listenPropertyBYTES(
+  PropertyStreamData<List<int>> listenPropertyBytes(
     int propertyId,
     int areaId,
+    SensorUpdateRate rate,
   ) {
-    return listenProperty<List<int>>(propertyId, areaId);
+    return listenProperty<List<int>>(propertyId, areaId, rate);
   }
 
-  Future<dynamic> getPropertyMIXED(int propertyId, int areaId) async {
+  Future<dynamic> getPropertyMixed(int propertyId, int areaId) async {
     final result = await getProperty(propertyId, areaId);
     if (result is dynamic) {
       return result;
@@ -210,7 +237,7 @@ abstract class VehiclePropertyDatasource {
     }
   }
 
-  Future<void> setPropertyMIXED(
+  Future<void> setPropertyMixed(
     int propertyId,
     int areaId,
     dynamic value,
@@ -218,7 +245,11 @@ abstract class VehiclePropertyDatasource {
     return await setProperty(propertyId, areaId, value);
   }
 
-  PropertyStreamData<dynamic> listenPropertyMIXED(int propertyId, int areaId) {
-    return listenProperty<dynamic>(propertyId, areaId);
+  PropertyStreamData<dynamic> listenPropertyMixed(
+    int propertyId,
+    int areaId,
+    SensorUpdateRate rate,
+  ) {
+    return listenProperty<dynamic>(propertyId, areaId, rate);
   }
 }

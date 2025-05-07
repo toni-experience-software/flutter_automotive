@@ -1,5 +1,5 @@
 import 'package:code_builder/code_builder.dart';
-import 'package:flutter_automotive/flutter_automotive.dart';
+import 'package:flutter_automotive/model/models.dart';
 import 'package:generator/builders/datasource/datasource_type_method_builder.dart';
 
 class VehiclePropertyListenerBuilder {
@@ -57,6 +57,15 @@ class VehiclePropertyListenerBuilder {
               ..type = ref,
           ),
         ])
+        ..optionalParameters.addAll([
+          Parameter(
+            (p) => p
+              ..name = "rate"
+              ..named = true
+              ..type = refer("SensorUpdateRate")
+              ..defaultTo = refer("SensorUpdateRates.onChange").code,
+          ),
+        ])
         ..body = buildListenerBlock()
         ..docs.addAll([
           if (docs != null) docs,
@@ -80,6 +89,7 @@ class VehiclePropertyListenerBuilder {
         datasource.property(interface.listenName).call([
           propId,
           areaId,
+          refer("rate"),
         ]).returned.statement,
       ]),
     );

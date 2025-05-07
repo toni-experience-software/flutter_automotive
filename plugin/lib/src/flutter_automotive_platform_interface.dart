@@ -1,5 +1,4 @@
 import 'package:flutter_automotive/flutter_automotive.dart';
-import 'package:flutter_automotive/model/sensor_update_rates.dart';
 import 'package:flutter_automotive/src/flutter_automotive_method_channel.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
@@ -30,7 +29,7 @@ abstract class FlutterAutomotivePlatform extends PlatformInterface {
 
   Future<void> setProperty(int propertyId, int areaId, dynamic value);
 
-  PropertyStreamData<T> subscribeProperty<T>(int propertyId, int areaId, [SensorUpdateRate updateRate = SensorUpdateRates.onChange]);
+  PropertyStreamData<T> subscribeProperty<T>(int propertyId, int areaId, SensorUpdateRate updateRate);
 
   Future<bool> isPermissionGranted(CarPermissions permission);
 

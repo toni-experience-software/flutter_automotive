@@ -34,7 +34,7 @@ class MethodChannelFlutterAutomotive extends FlutterAutomotivePlatform {
   }
 
   @override
-  PropertyStreamData<T> subscribeProperty<T>(int propertyId, int areaId, [SensorUpdateRate updateRate = SensorUpdateRates.onChange]) {
+  PropertyStreamData<T> subscribeProperty<T>(int propertyId, int areaId, SensorUpdateRate updateRate) {
     final controller = StreamController<T>();
     _propertyStreams[(propertyId, areaId)] = controller;
     final rate = updateRate.clamp(0.0, 100.0);

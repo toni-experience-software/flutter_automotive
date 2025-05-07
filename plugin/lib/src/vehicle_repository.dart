@@ -32,7 +32,7 @@ class VehiclePropertyRepository {
      * </ul>
      */
   Future<String> getInfoMake() async {
-    return _datasource.getPropertySTRING(VehicleProperty.INFO_MAKE.id, 0);
+    return _datasource.getPropertyString(VehicleProperty.INFO_MAKE.id, 0);
   }
 
   /**
@@ -54,8 +54,14 @@ class VehiclePropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<String> listenInfoMake() {
-    return _datasource.listenPropertySTRING(VehicleProperty.INFO_MAKE.id, 0);
+  PropertyStreamData<String> listenInfoMake({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyString(
+      VehicleProperty.INFO_MAKE.id,
+      0,
+      rate,
+    );
   }
 
   /**
@@ -78,7 +84,7 @@ class VehiclePropertyRepository {
      * </ul>
      */
   Future<String> getInfoModel() async {
-    return _datasource.getPropertySTRING(VehicleProperty.INFO_MODEL.id, 0);
+    return _datasource.getPropertyString(VehicleProperty.INFO_MODEL.id, 0);
   }
 
   /**
@@ -100,8 +106,14 @@ class VehiclePropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<String> listenInfoModel() {
-    return _datasource.listenPropertySTRING(VehicleProperty.INFO_MODEL.id, 0);
+  PropertyStreamData<String> listenInfoModel({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyString(
+      VehicleProperty.INFO_MODEL.id,
+      0,
+      rate,
+    );
   }
 
   /**
@@ -122,7 +134,7 @@ class VehiclePropertyRepository {
      * </ul>
      */
   Future<int> getInfoModelYear() async {
-    return _datasource.getPropertyINT32(VehicleProperty.INFO_MODEL_YEAR.id, 0);
+    return _datasource.getPropertyInt32(VehicleProperty.INFO_MODEL_YEAR.id, 0);
   }
 
   /**
@@ -142,10 +154,13 @@ class VehiclePropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<int> listenInfoModelYear() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenInfoModelYear({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.INFO_MODEL_YEAR.id,
       0,
+      rate,
     );
   }
 
@@ -172,7 +187,7 @@ class VehiclePropertyRepository {
      * </ul>
      */
   Future<double> getInfoFuelCapacity() async {
-    return _datasource.getPropertyFLOAT(
+    return _datasource.getPropertyFloat(
       VehicleProperty.INFO_FUEL_CAPACITY.id,
       0,
     );
@@ -200,10 +215,13 @@ class VehiclePropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<double> listenInfoFuelCapacity() {
-    return _datasource.listenPropertyFLOAT(
+  PropertyStreamData<double> listenInfoFuelCapacity({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyFloat(
       VehicleProperty.INFO_FUEL_CAPACITY.id,
       0,
+      rate,
     );
   }
 
@@ -243,7 +261,7 @@ class VehiclePropertyRepository {
      * @data_enum {@link FuelType}
      */
   Future<List<int>> getInfoFuelType() async {
-    return _datasource.getPropertyINT32_VEC(
+    return _datasource.getPropertyInt32Vec(
       VehicleProperty.INFO_FUEL_TYPE.id,
       0,
     );
@@ -284,10 +302,13 @@ class VehiclePropertyRepository {
      *
      * @data_enum {@link FuelType}
      */
-  PropertyStreamData<List<int>> listenInfoFuelType() {
-    return _datasource.listenPropertyINT32_VEC(
+  PropertyStreamData<List<int>> listenInfoFuelType({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32Vec(
       VehicleProperty.INFO_FUEL_TYPE.id,
       0,
+      rate,
     );
   }
 
@@ -315,7 +336,7 @@ class VehiclePropertyRepository {
      * </ul>
      */
   Future<double> getInfoEvBatteryCapacity() async {
-    return _datasource.getPropertyFLOAT(
+    return _datasource.getPropertyFloat(
       VehicleProperty.INFO_EV_BATTERY_CAPACITY.id,
       0,
     );
@@ -344,10 +365,13 @@ class VehiclePropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<double> listenInfoEvBatteryCapacity() {
-    return _datasource.listenPropertyFLOAT(
+  PropertyStreamData<double> listenInfoEvBatteryCapacity({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyFloat(
       VehicleProperty.INFO_EV_BATTERY_CAPACITY.id,
       0,
+      rate,
     );
   }
 
@@ -374,7 +398,7 @@ class VehiclePropertyRepository {
      * @data_enum {@link EvChargingConnectorType}
      */
   Future<List<int>> getInfoEvConnectorType() async {
-    return _datasource.getPropertyINT32_VEC(
+    return _datasource.getPropertyInt32Vec(
       VehicleProperty.INFO_EV_CONNECTOR_TYPE.id,
       0,
     );
@@ -402,10 +426,13 @@ class VehiclePropertyRepository {
      *
      * @data_enum {@link EvChargingConnectorType}
      */
-  PropertyStreamData<List<int>> listenInfoEvConnectorType() {
-    return _datasource.listenPropertyINT32_VEC(
+  PropertyStreamData<List<int>> listenInfoEvConnectorType({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32Vec(
       VehicleProperty.INFO_EV_CONNECTOR_TYPE.id,
       0,
+      rate,
     );
   }
 
@@ -434,7 +461,7 @@ class VehiclePropertyRepository {
      * @data_enum {@link PortLocationType}
      */
   Future<int> getInfoFuelDoorLocation() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.INFO_FUEL_DOOR_LOCATION.id,
       0,
     );
@@ -464,10 +491,13 @@ class VehiclePropertyRepository {
      *
      * @data_enum {@link PortLocationType}
      */
-  PropertyStreamData<int> listenInfoFuelDoorLocation() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenInfoFuelDoorLocation({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.INFO_FUEL_DOOR_LOCATION.id,
       0,
+      rate,
     );
   }
 
@@ -496,7 +526,7 @@ class VehiclePropertyRepository {
      * @data_enum {@link PortLocationType}
      */
   Future<int> getInfoEvPortLocation() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.INFO_EV_PORT_LOCATION.id,
       0,
     );
@@ -526,10 +556,13 @@ class VehiclePropertyRepository {
      *
      * @data_enum {@link PortLocationType}
      */
-  PropertyStreamData<int> listenInfoEvPortLocation() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenInfoEvPortLocation({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.INFO_EV_PORT_LOCATION.id,
       0,
+      rate,
     );
   }
 
@@ -553,7 +586,7 @@ class VehiclePropertyRepository {
      * @data_enum {@link PortLocationType}
      */
   Future<List<int>> getInfoMultiEvPortLocations() async {
-    return _datasource.getPropertyINT32_VEC(
+    return _datasource.getPropertyInt32Vec(
       VehicleProperty.INFO_MULTI_EV_PORT_LOCATIONS.id,
       0,
     );
@@ -578,10 +611,13 @@ class VehiclePropertyRepository {
      *
      * @data_enum {@link PortLocationType}
      */
-  PropertyStreamData<List<int>> listenInfoMultiEvPortLocations() {
-    return _datasource.listenPropertyINT32_VEC(
+  PropertyStreamData<List<int>> listenInfoMultiEvPortLocations({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32Vec(
       VehicleProperty.INFO_MULTI_EV_PORT_LOCATIONS.id,
       0,
+      rate,
     );
   }
 
@@ -608,7 +644,7 @@ class VehiclePropertyRepository {
      * @data_enum {@link VehicleAreaSeat}
      */
   Future<int> getInfoDriverSeat(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.INFO_DRIVER_SEAT.id,
       area.value,
     );
@@ -636,10 +672,14 @@ class VehiclePropertyRepository {
      *
      * @data_enum {@link VehicleAreaSeat}
      */
-  PropertyStreamData<int> listenInfoDriverSeat(VehicleAreaSeat area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenInfoDriverSeat(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.INFO_DRIVER_SEAT.id,
       area.value,
+      rate,
     );
   }
 
@@ -673,7 +713,7 @@ class VehiclePropertyRepository {
      * </ul>
      */
   Future<List<int>> getInfoExteriorDimensions() async {
-    return _datasource.getPropertyINT32_VEC(
+    return _datasource.getPropertyInt32Vec(
       VehicleProperty.INFO_EXTERIOR_DIMENSIONS.id,
       0,
     );
@@ -708,10 +748,13 @@ class VehiclePropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<List<int>> listenInfoExteriorDimensions() {
-    return _datasource.listenPropertyINT32_VEC(
+  PropertyStreamData<List<int>> listenInfoExteriorDimensions({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32Vec(
       VehicleProperty.INFO_EXTERIOR_DIMENSIONS.id,
       0,
+      rate,
     );
   }
 
@@ -743,7 +786,7 @@ class VehiclePropertyRepository {
      * </ul>
      */
   Future<String> getInfoModelTrim() async {
-    return _datasource.getPropertySTRING(VehicleProperty.INFO_MODEL_TRIM.id, 0);
+    return _datasource.getPropertyString(VehicleProperty.INFO_MODEL_TRIM.id, 0);
   }
 
   /**
@@ -773,10 +816,13 @@ class VehiclePropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<String> listenInfoModelTrim() {
-    return _datasource.listenPropertySTRING(
+  PropertyStreamData<String> listenInfoModelTrim({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyString(
       VehicleProperty.INFO_MODEL_TRIM.id,
       0,
+      rate,
     );
   }
 
@@ -813,7 +859,7 @@ class VehiclePropertyRepository {
      * @data_enum {@link android.car.hardware.property.VehicleSizeClass}
      */
   Future<List<int>> getInfoVehicleSizeClass() async {
-    return _datasource.getPropertyINT32_VEC(
+    return _datasource.getPropertyInt32Vec(
       VehicleProperty.INFO_VEHICLE_SIZE_CLASS.id,
       0,
     );
@@ -851,10 +897,13 @@ class VehiclePropertyRepository {
      *
      * @data_enum {@link android.car.hardware.property.VehicleSizeClass}
      */
-  PropertyStreamData<List<int>> listenInfoVehicleSizeClass() {
-    return _datasource.listenPropertyINT32_VEC(
+  PropertyStreamData<List<int>> listenInfoVehicleSizeClass({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32Vec(
       VehicleProperty.INFO_VEHICLE_SIZE_CLASS.id,
       0,
+      rate,
     );
   }
 
@@ -877,7 +926,7 @@ class VehiclePropertyRepository {
      * </ul>
      */
   Future<double> getPerfOdometer() async {
-    return _datasource.getPropertyFLOAT(VehicleProperty.PERF_ODOMETER.id, 0);
+    return _datasource.getPropertyFloat(VehicleProperty.PERF_ODOMETER.id, 0);
   }
 
   /**
@@ -898,8 +947,14 @@ class VehiclePropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<double> listenPerfOdometer() {
-    return _datasource.listenPropertyFLOAT(VehicleProperty.PERF_ODOMETER.id, 0);
+  PropertyStreamData<double> listenPerfOdometer({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyFloat(
+      VehicleProperty.PERF_ODOMETER.id,
+      0,
+      rate,
+    );
   }
 
   /**
@@ -926,7 +981,7 @@ class VehiclePropertyRepository {
      * </ul>
      */
   Future<double> getPerfVehicleSpeed() async {
-    return _datasource.getPropertyFLOAT(
+    return _datasource.getPropertyFloat(
       VehicleProperty.PERF_VEHICLE_SPEED.id,
       0,
     );
@@ -955,10 +1010,13 @@ class VehiclePropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<double> listenPerfVehicleSpeed() {
-    return _datasource.listenPropertyFLOAT(
+  PropertyStreamData<double> listenPerfVehicleSpeed({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyFloat(
       VehicleProperty.PERF_VEHICLE_SPEED.id,
       0,
+      rate,
     );
   }
 
@@ -983,7 +1041,7 @@ class VehiclePropertyRepository {
      * </ul>
      */
   Future<double> getPerfVehicleSpeedDisplay() async {
-    return _datasource.getPropertyFLOAT(
+    return _datasource.getPropertyFloat(
       VehicleProperty.PERF_VEHICLE_SPEED_DISPLAY.id,
       0,
     );
@@ -1009,10 +1067,13 @@ class VehiclePropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<double> listenPerfVehicleSpeedDisplay() {
-    return _datasource.listenPropertyFLOAT(
+  PropertyStreamData<double> listenPerfVehicleSpeedDisplay({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyFloat(
       VehicleProperty.PERF_VEHICLE_SPEED_DISPLAY.id,
       0,
+      rate,
     );
   }
 
@@ -1041,7 +1102,7 @@ class VehiclePropertyRepository {
      * </ul>
      */
   Future<double> getPerfSteeringAngle() async {
-    return _datasource.getPropertyFLOAT(
+    return _datasource.getPropertyFloat(
       VehicleProperty.PERF_STEERING_ANGLE.id,
       0,
     );
@@ -1071,10 +1132,13 @@ class VehiclePropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<double> listenPerfSteeringAngle() {
-    return _datasource.listenPropertyFLOAT(
+  PropertyStreamData<double> listenPerfSteeringAngle({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyFloat(
       VehicleProperty.PERF_STEERING_ANGLE.id,
       0,
+      rate,
     );
   }
 
@@ -1104,7 +1168,7 @@ class VehiclePropertyRepository {
      * </ul>
      */
   Future<double> getInstantaneousFuelEconomy() async {
-    return _datasource.getPropertyFLOAT(
+    return _datasource.getPropertyFloat(
       VehicleProperty.INSTANTANEOUS_FUEL_ECONOMY.id,
       0,
     );
@@ -1135,10 +1199,13 @@ class VehiclePropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<double> listenInstantaneousFuelEconomy() {
-    return _datasource.listenPropertyFLOAT(
+  PropertyStreamData<double> listenInstantaneousFuelEconomy({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyFloat(
       VehicleProperty.INSTANTANEOUS_FUEL_ECONOMY.id,
       0,
+      rate,
     );
   }
 
@@ -1169,7 +1236,7 @@ class VehiclePropertyRepository {
      * </ul>
      */
   Future<double> getInstantaneousEvEfficiency() async {
-    return _datasource.getPropertyFLOAT(
+    return _datasource.getPropertyFloat(
       VehicleProperty.INSTANTANEOUS_EV_EFFICIENCY.id,
       0,
     );
@@ -1201,10 +1268,13 @@ class VehiclePropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<double> listenInstantaneousEvEfficiency() {
-    return _datasource.listenPropertyFLOAT(
+  PropertyStreamData<double> listenInstantaneousEvEfficiency({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyFloat(
       VehicleProperty.INSTANTANEOUS_EV_EFFICIENCY.id,
       0,
+      rate,
     );
   }
 
@@ -1227,7 +1297,7 @@ class VehiclePropertyRepository {
      * </ul>
      */
   Future<double> getEngineRpm() async {
-    return _datasource.getPropertyFLOAT(VehicleProperty.ENGINE_RPM.id, 0);
+    return _datasource.getPropertyFloat(VehicleProperty.ENGINE_RPM.id, 0);
   }
 
   /**
@@ -1248,8 +1318,14 @@ class VehiclePropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<double> listenEngineRpm() {
-    return _datasource.listenPropertyFLOAT(VehicleProperty.ENGINE_RPM.id, 0);
+  PropertyStreamData<double> listenEngineRpm({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyFloat(
+      VehicleProperty.ENGINE_RPM.id,
+      0,
+      rate,
+    );
   }
 
   /**
@@ -1275,7 +1351,7 @@ class VehiclePropertyRepository {
      * </ul>
      */
   Future<bool> getVehicleHornEngaged() async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.VEHICLE_HORN_ENGAGED.id,
       0,
     );
@@ -1303,10 +1379,13 @@ class VehiclePropertyRepository {
      *  <li>Dangerous permission {@link Car#PERMISSION_CONTROL_CAR_HORN} to write property.
      * </ul>
      */
-  PropertyStreamData<bool> listenVehicleHornEngaged() {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenVehicleHornEngaged({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.VEHICLE_HORN_ENGAGED.id,
       0,
+      rate,
     );
   }
 
@@ -1333,7 +1412,7 @@ class VehiclePropertyRepository {
      * </ul>
      */
   Future<void> setVehicleHornEngaged(bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.VEHICLE_HORN_ENGAGED.id,
       0,
       value,
@@ -1395,7 +1474,7 @@ class VehiclePropertyRepository {
      * </ul>
      */
   Future<List<int>> getWheelTick() async {
-    return _datasource.getPropertyINT64_VEC(VehicleProperty.WHEEL_TICK.id, 0);
+    return _datasource.getPropertyInt64Vec(VehicleProperty.WHEEL_TICK.id, 0);
   }
 
   /**
@@ -1452,10 +1531,13 @@ class VehiclePropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<List<int>> listenWheelTick() {
-    return _datasource.listenPropertyINT64_VEC(
+  PropertyStreamData<List<int>> listenWheelTick({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt64Vec(
       VehicleProperty.WHEEL_TICK.id,
       0,
+      rate,
     );
   }
 
@@ -1484,7 +1566,7 @@ class VehiclePropertyRepository {
      * </ul>
      */
   Future<double> getFuelLevel() async {
-    return _datasource.getPropertyFLOAT(VehicleProperty.FUEL_LEVEL.id, 0);
+    return _datasource.getPropertyFloat(VehicleProperty.FUEL_LEVEL.id, 0);
   }
 
   /**
@@ -1511,8 +1593,14 @@ class VehiclePropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<double> listenFuelLevel() {
-    return _datasource.listenPropertyFLOAT(VehicleProperty.FUEL_LEVEL.id, 0);
+  PropertyStreamData<double> listenFuelLevel({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyFloat(
+      VehicleProperty.FUEL_LEVEL.id,
+      0,
+      rate,
+    );
   }
 
   /**
@@ -1541,7 +1629,7 @@ class VehiclePropertyRepository {
      * </ul>
      */
   Future<bool> getFuelDoorOpen() async {
-    return _datasource.getPropertyBOOLEAN(VehicleProperty.FUEL_DOOR_OPEN.id, 0);
+    return _datasource.getPropertyBoolean(VehicleProperty.FUEL_DOOR_OPEN.id, 0);
   }
 
   /**
@@ -1569,10 +1657,13 @@ class VehiclePropertyRepository {
      *  write property.
      * </ul>
      */
-  PropertyStreamData<bool> listenFuelDoorOpen() {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenFuelDoorOpen({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.FUEL_DOOR_OPEN.id,
       0,
+      rate,
     );
   }
 
@@ -1599,7 +1690,7 @@ class VehiclePropertyRepository {
      * </ul>
      */
   Future<double> getEvBatteryLevel() async {
-    return _datasource.getPropertyFLOAT(VehicleProperty.EV_BATTERY_LEVEL.id, 0);
+    return _datasource.getPropertyFloat(VehicleProperty.EV_BATTERY_LEVEL.id, 0);
   }
 
   /**
@@ -1624,10 +1715,13 @@ class VehiclePropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<double> listenEvBatteryLevel() {
-    return _datasource.listenPropertyFLOAT(
+  PropertyStreamData<double> listenEvBatteryLevel({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyFloat(
       VehicleProperty.EV_BATTERY_LEVEL.id,
       0,
+      rate,
     );
   }
 
@@ -1655,7 +1749,7 @@ class VehiclePropertyRepository {
      * </ul>
      */
   Future<double> getEvCurrentBatteryCapacity() async {
-    return _datasource.getPropertyFLOAT(
+    return _datasource.getPropertyFloat(
       VehicleProperty.EV_CURRENT_BATTERY_CAPACITY.id,
       0,
     );
@@ -1684,10 +1778,13 @@ class VehiclePropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<double> listenEvCurrentBatteryCapacity() {
-    return _datasource.listenPropertyFLOAT(
+  PropertyStreamData<double> listenEvCurrentBatteryCapacity({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyFloat(
       VehicleProperty.EV_CURRENT_BATTERY_CAPACITY.id,
       0,
+      rate,
     );
   }
 
@@ -1715,7 +1812,7 @@ class VehiclePropertyRepository {
      * </ul>
      */
   Future<bool> getEvChargePortOpen() async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.EV_CHARGE_PORT_OPEN.id,
       0,
     );
@@ -1744,10 +1841,13 @@ class VehiclePropertyRepository {
      *  write property.
      * </ul>
      */
-  PropertyStreamData<bool> listenEvChargePortOpen() {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenEvChargePortOpen({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.EV_CHARGE_PORT_OPEN.id,
       0,
+      rate,
     );
   }
 
@@ -1772,7 +1872,7 @@ class VehiclePropertyRepository {
      * </ul>
      */
   Future<bool> getEvChargePortConnected() async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.EV_CHARGE_PORT_CONNECTED.id,
       0,
     );
@@ -1798,10 +1898,13 @@ class VehiclePropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<bool> listenEvChargePortConnected() {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenEvChargePortConnected({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.EV_CHARGE_PORT_CONNECTED.id,
       0,
+      rate,
     );
   }
 
@@ -1826,7 +1929,7 @@ class VehiclePropertyRepository {
      * </ul>
      */
   Future<double> getEvBatteryInstantaneousChargeRate() async {
-    return _datasource.getPropertyFLOAT(
+    return _datasource.getPropertyFloat(
       VehicleProperty.EV_BATTERY_INSTANTANEOUS_CHARGE_RATE.id,
       0,
     );
@@ -1852,10 +1955,13 @@ class VehiclePropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<double> listenEvBatteryInstantaneousChargeRate() {
-    return _datasource.listenPropertyFLOAT(
+  PropertyStreamData<double> listenEvBatteryInstantaneousChargeRate({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyFloat(
       VehicleProperty.EV_BATTERY_INSTANTANEOUS_CHARGE_RATE.id,
       0,
+      rate,
     );
   }
 
@@ -1883,7 +1989,7 @@ class VehiclePropertyRepository {
      * </ul>
      */
   Future<double> getRangeRemaining() async {
-    return _datasource.getPropertyFLOAT(VehicleProperty.RANGE_REMAINING.id, 0);
+    return _datasource.getPropertyFloat(VehicleProperty.RANGE_REMAINING.id, 0);
   }
 
   /**
@@ -1909,10 +2015,13 @@ class VehiclePropertyRepository {
      *  property.
      * </ul>
      */
-  PropertyStreamData<double> listenRangeRemaining() {
-    return _datasource.listenPropertyFLOAT(
+  PropertyStreamData<double> listenRangeRemaining({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyFloat(
       VehicleProperty.RANGE_REMAINING.id,
       0,
+      rate,
     );
   }
 
@@ -1938,7 +2047,7 @@ class VehiclePropertyRepository {
      * </ul>
      */
   Future<double> getEvBatteryAverageTemperature() async {
-    return _datasource.getPropertyFLOAT(
+    return _datasource.getPropertyFloat(
       VehicleProperty.EV_BATTERY_AVERAGE_TEMPERATURE.id,
       0,
     );
@@ -1965,10 +2074,13 @@ class VehiclePropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<double> listenEvBatteryAverageTemperature() {
-    return _datasource.listenPropertyFLOAT(
+  PropertyStreamData<double> listenEvBatteryAverageTemperature({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyFloat(
       VehicleProperty.EV_BATTERY_AVERAGE_TEMPERATURE.id,
       0,
+      rate,
     );
   }
 
@@ -1996,7 +2108,7 @@ class VehiclePropertyRepository {
      * </ul>
      */
   Future<double> getTirePressure(VehicleAreaWheel area) async {
-    return _datasource.getPropertyFLOAT(
+    return _datasource.getPropertyFloat(
       VehicleProperty.TIRE_PRESSURE.id,
       area.value,
     );
@@ -2025,10 +2137,14 @@ class VehiclePropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<double> listenTirePressure(VehicleAreaWheel area) {
-    return _datasource.listenPropertyFLOAT(
+  PropertyStreamData<double> listenTirePressure(
+    VehicleAreaWheel area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyFloat(
       VehicleProperty.TIRE_PRESSURE.id,
       area.value,
+      rate,
     );
   }
 
@@ -2057,7 +2173,7 @@ class VehiclePropertyRepository {
      * </ul>
      */
   Future<double> getAcceleratorPedalCompressionPercentage() async {
-    return _datasource.getPropertyFLOAT(
+    return _datasource.getPropertyFloat(
       VehicleProperty.ACCELERATOR_PEDAL_COMPRESSION_PERCENTAGE.id,
       0,
     );
@@ -2087,10 +2203,13 @@ class VehiclePropertyRepository {
      *  <li>Property is not writable
      * </ul>
      */
-  PropertyStreamData<double> listenAcceleratorPedalCompressionPercentage() {
-    return _datasource.listenPropertyFLOAT(
+  PropertyStreamData<double> listenAcceleratorPedalCompressionPercentage({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyFloat(
       VehicleProperty.ACCELERATOR_PEDAL_COMPRESSION_PERCENTAGE.id,
       0,
+      rate,
     );
   }
 
@@ -2119,7 +2238,7 @@ class VehiclePropertyRepository {
      * </ul>
      */
   Future<double> getBrakePedalCompressionPercentage() async {
-    return _datasource.getPropertyFLOAT(
+    return _datasource.getPropertyFloat(
       VehicleProperty.BRAKE_PEDAL_COMPRESSION_PERCENTAGE.id,
       0,
     );
@@ -2149,10 +2268,13 @@ class VehiclePropertyRepository {
      *  <li>Property is not writable
      * </ul>
      */
-  PropertyStreamData<double> listenBrakePedalCompressionPercentage() {
-    return _datasource.listenPropertyFLOAT(
+  PropertyStreamData<double> listenBrakePedalCompressionPercentage({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyFloat(
       VehicleProperty.BRAKE_PEDAL_COMPRESSION_PERCENTAGE.id,
       0,
+      rate,
     );
   }
 
@@ -2181,7 +2303,7 @@ class VehiclePropertyRepository {
      * </ul>
      */
   Future<double> getBrakePadWearPercentage(VehicleAreaWheel area) async {
-    return _datasource.getPropertyFLOAT(
+    return _datasource.getPropertyFloat(
       VehicleProperty.BRAKE_PAD_WEAR_PERCENTAGE.id,
       area.value,
     );
@@ -2212,11 +2334,13 @@ class VehiclePropertyRepository {
      * </ul>
      */
   PropertyStreamData<double> listenBrakePadWearPercentage(
-    VehicleAreaWheel area,
-  ) {
-    return _datasource.listenPropertyFLOAT(
+    VehicleAreaWheel area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyFloat(
       VehicleProperty.BRAKE_PAD_WEAR_PERCENTAGE.id,
       area.value,
+      rate,
     );
   }
 
@@ -2243,7 +2367,7 @@ class VehiclePropertyRepository {
      * </ul>
      */
   Future<bool> getBrakeFluidLevelLow() async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.BRAKE_FLUID_LEVEL_LOW.id,
       0,
     );
@@ -2271,10 +2395,13 @@ class VehiclePropertyRepository {
      *  <li>Property is not writable
      * </ul>
      */
-  PropertyStreamData<bool> listenBrakeFluidLevelLow() {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenBrakeFluidLevelLow({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.BRAKE_FLUID_LEVEL_LOW.id,
       0,
+      rate,
     );
   }
 
@@ -2331,7 +2458,7 @@ class VehiclePropertyRepository {
      * @data_enum {@link VehicleGear}
      */
   Future<int> getGearSelection() async {
-    return _datasource.getPropertyINT32(VehicleProperty.GEAR_SELECTION.id, 0);
+    return _datasource.getPropertyInt32(VehicleProperty.GEAR_SELECTION.id, 0);
   }
 
   /**
@@ -2386,10 +2513,13 @@ class VehiclePropertyRepository {
      *
      * @data_enum {@link VehicleGear}
      */
-  PropertyStreamData<int> listenGearSelection() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenGearSelection({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.GEAR_SELECTION.id,
       0,
+      rate,
     );
   }
 
@@ -2450,7 +2580,7 @@ class VehiclePropertyRepository {
      * @data_enum {@link VehicleGear}
      */
   Future<int> getCurrentGear() async {
-    return _datasource.getPropertyINT32(VehicleProperty.CURRENT_GEAR.id, 0);
+    return _datasource.getPropertyInt32(VehicleProperty.CURRENT_GEAR.id, 0);
   }
 
   /**
@@ -2509,8 +2639,14 @@ class VehiclePropertyRepository {
      *
      * @data_enum {@link VehicleGear}
      */
-  PropertyStreamData<int> listenCurrentGear() {
-    return _datasource.listenPropertyINT32(VehicleProperty.CURRENT_GEAR.id, 0);
+  PropertyStreamData<int> listenCurrentGear({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
+      VehicleProperty.CURRENT_GEAR.id,
+      0,
+      rate,
+    );
   }
 
   /**
@@ -2534,7 +2670,7 @@ class VehiclePropertyRepository {
      * </ul>
      */
   Future<bool> getParkingBrakeOn() async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.PARKING_BRAKE_ON.id,
       0,
     );
@@ -2560,10 +2696,13 @@ class VehiclePropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<bool> listenParkingBrakeOn() {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenParkingBrakeOn({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.PARKING_BRAKE_ON.id,
       0,
+      rate,
     );
   }
 
@@ -2595,7 +2734,7 @@ class VehiclePropertyRepository {
      * </ul>
      */
   Future<bool> getParkingBrakeAutoApply() async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.PARKING_BRAKE_AUTO_APPLY.id,
       0,
     );
@@ -2628,10 +2767,13 @@ class VehiclePropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<bool> listenParkingBrakeAutoApply() {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenParkingBrakeAutoApply({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.PARKING_BRAKE_AUTO_APPLY.id,
       0,
+      rate,
     );
   }
 
@@ -2662,7 +2804,7 @@ class VehiclePropertyRepository {
      * </ul>
      */
   Future<int> getEvBrakeRegenerationLevel() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.EV_BRAKE_REGENERATION_LEVEL.id,
       0,
     );
@@ -2694,10 +2836,13 @@ class VehiclePropertyRepository {
      *  property.
      * </ul>
      */
-  PropertyStreamData<int> listenEvBrakeRegenerationLevel() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenEvBrakeRegenerationLevel({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.EV_BRAKE_REGENERATION_LEVEL.id,
       0,
+      rate,
     );
   }
 
@@ -2730,7 +2875,7 @@ class VehiclePropertyRepository {
      * @data_enum {@link EvStoppingMode}
      */
   Future<int> getEvStoppingMode() async {
-    return _datasource.getPropertyINT32(VehicleProperty.EV_STOPPING_MODE.id, 0);
+    return _datasource.getPropertyInt32(VehicleProperty.EV_STOPPING_MODE.id, 0);
   }
 
   /**
@@ -2761,10 +2906,13 @@ class VehiclePropertyRepository {
      *
      * @data_enum {@link EvStoppingMode}
      */
-  PropertyStreamData<int> listenEvStoppingMode() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenEvStoppingMode({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.EV_STOPPING_MODE.id,
       0,
+      rate,
     );
   }
 
@@ -2796,7 +2944,7 @@ class VehiclePropertyRepository {
      * </ul>
      */
   Future<bool> getFuelLevelLow() async {
-    return _datasource.getPropertyBOOLEAN(VehicleProperty.FUEL_LEVEL_LOW.id, 0);
+    return _datasource.getPropertyBoolean(VehicleProperty.FUEL_LEVEL_LOW.id, 0);
   }
 
   /**
@@ -2826,10 +2974,13 @@ class VehiclePropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<bool> listenFuelLevelLow() {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenFuelLevelLow({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.FUEL_LEVEL_LOW.id,
       0,
+      rate,
     );
   }
 
@@ -2854,7 +3005,7 @@ class VehiclePropertyRepository {
      * </ul>
      */
   Future<bool> getNightMode() async {
-    return _datasource.getPropertyBOOLEAN(VehicleProperty.NIGHT_MODE.id, 0);
+    return _datasource.getPropertyBoolean(VehicleProperty.NIGHT_MODE.id, 0);
   }
 
   /**
@@ -2877,8 +3028,14 @@ class VehiclePropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<bool> listenNightMode() {
-    return _datasource.listenPropertyBOOLEAN(VehicleProperty.NIGHT_MODE.id, 0);
+  PropertyStreamData<bool> listenNightMode({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
+      VehicleProperty.NIGHT_MODE.id,
+      0,
+      rate,
+    );
   }
 
   /**
@@ -2903,7 +3060,7 @@ class VehiclePropertyRepository {
      * @data_enum {@link VehicleIgnitionState}
      */
   Future<int> getIgnitionState() async {
-    return _datasource.getPropertyINT32(VehicleProperty.IGNITION_STATE.id, 0);
+    return _datasource.getPropertyInt32(VehicleProperty.IGNITION_STATE.id, 0);
   }
 
   /**
@@ -2927,10 +3084,13 @@ class VehiclePropertyRepository {
      *
      * @data_enum {@link VehicleIgnitionState}
      */
-  PropertyStreamData<int> listenIgnitionState() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenIgnitionState({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.IGNITION_STATE.id,
       0,
+      rate,
     );
   }
 
@@ -2979,7 +3139,7 @@ class VehiclePropertyRepository {
      * @data_enum {@link VehicleTurnSignal}
      */
   Future<int> getTurnSignalLightState() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.TURN_SIGNAL_LIGHT_STATE.id,
       0,
     );
@@ -3029,10 +3189,13 @@ class VehiclePropertyRepository {
      *
      * @data_enum {@link VehicleTurnSignal}
      */
-  PropertyStreamData<int> listenTurnSignalLightState() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenTurnSignalLightState({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.TURN_SIGNAL_LIGHT_STATE.id,
       0,
+      rate,
     );
   }
 
@@ -3070,7 +3233,7 @@ class VehiclePropertyRepository {
      * @data_enum {@link VehicleTurnSignal}
      */
   Future<int> getTurnSignalSwitch() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.TURN_SIGNAL_SWITCH.id,
       0,
     );
@@ -3109,10 +3272,13 @@ class VehiclePropertyRepository {
      *
      * @data_enum {@link VehicleTurnSignal}
      */
-  PropertyStreamData<int> listenTurnSignalSwitch() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenTurnSignalSwitch({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.TURN_SIGNAL_SWITCH.id,
       0,
+      rate,
     );
   }
 
@@ -3139,7 +3305,7 @@ class VehiclePropertyRepository {
      * @data_enum {@link VehicleUnit}
      */
   Future<int> getHvacTemperatureDisplayUnits() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.HVAC_TEMPERATURE_DISPLAY_UNITS.id,
       0,
     );
@@ -3167,10 +3333,13 @@ class VehiclePropertyRepository {
      *
      * @data_enum {@link VehicleUnit}
      */
-  PropertyStreamData<int> listenHvacTemperatureDisplayUnits() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenHvacTemperatureDisplayUnits({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.HVAC_TEMPERATURE_DISPLAY_UNITS.id,
       0,
+      rate,
     );
   }
 
@@ -3206,7 +3375,7 @@ class VehiclePropertyRepository {
      * @data_enum {@link VehicleUnit}
      */
   Future<int> getDistanceDisplayUnits() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.DISTANCE_DISPLAY_UNITS.id,
       0,
     );
@@ -3243,10 +3412,13 @@ class VehiclePropertyRepository {
      *
      * @data_enum {@link VehicleUnit}
      */
-  PropertyStreamData<int> listenDistanceDisplayUnits() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenDistanceDisplayUnits({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.DISTANCE_DISPLAY_UNITS.id,
       0,
+      rate,
     );
   }
 
@@ -3281,7 +3453,7 @@ class VehiclePropertyRepository {
      * @data_enum {@link VehicleUnit}
      */
   Future<int> getFuelVolumeDisplayUnits() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.FUEL_VOLUME_DISPLAY_UNITS.id,
       0,
     );
@@ -3317,10 +3489,13 @@ class VehiclePropertyRepository {
      *
      * @data_enum {@link VehicleUnit}
      */
-  PropertyStreamData<int> listenFuelVolumeDisplayUnits() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenFuelVolumeDisplayUnits({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.FUEL_VOLUME_DISPLAY_UNITS.id,
       0,
+      rate,
     );
   }
 
@@ -3356,7 +3531,7 @@ class VehiclePropertyRepository {
      * @data_enum {@link VehicleUnit}
      */
   Future<int> getTirePressureDisplayUnits() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.TIRE_PRESSURE_DISPLAY_UNITS.id,
       0,
     );
@@ -3393,10 +3568,13 @@ class VehiclePropertyRepository {
      *
      * @data_enum {@link VehicleUnit}
      */
-  PropertyStreamData<int> listenTirePressureDisplayUnits() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenTirePressureDisplayUnits({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.TIRE_PRESSURE_DISPLAY_UNITS.id,
       0,
+      rate,
     );
   }
 
@@ -3432,7 +3610,7 @@ class VehiclePropertyRepository {
      * @data_enum {@link VehicleUnit}
      */
   Future<int> getEvBatteryDisplayUnits() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.EV_BATTERY_DISPLAY_UNITS.id,
       0,
     );
@@ -3469,10 +3647,13 @@ class VehiclePropertyRepository {
      *
      * @data_enum {@link VehicleUnit}
      */
-  PropertyStreamData<int> listenEvBatteryDisplayUnits() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenEvBatteryDisplayUnits({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.EV_BATTERY_DISPLAY_UNITS.id,
       0,
+      rate,
     );
   }
 
@@ -3508,7 +3689,7 @@ class VehiclePropertyRepository {
      * @data_enum {@link VehicleUnit}
      */
   Future<int> getVehicleSpeedDisplayUnits() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.VEHICLE_SPEED_DISPLAY_UNITS.id,
       0,
     );
@@ -3545,10 +3726,13 @@ class VehiclePropertyRepository {
      *
      * @data_enum {@link VehicleUnit}
      */
-  PropertyStreamData<int> listenVehicleSpeedDisplayUnits() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenVehicleSpeedDisplayUnits({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.VEHICLE_SPEED_DISPLAY_UNITS.id,
       0,
+      rate,
     );
   }
 
@@ -3578,7 +3762,7 @@ class VehiclePropertyRepository {
      * </ul>
      */
   Future<bool> getFuelConsumptionUnitsDistanceOverVolume() async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.FUEL_CONSUMPTION_UNITS_DISTANCE_OVER_VOLUME.id,
       0,
     );
@@ -3609,10 +3793,13 @@ class VehiclePropertyRepository {
      *  permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
      * </ul>
      */
-  PropertyStreamData<bool> listenFuelConsumptionUnitsDistanceOverVolume() {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenFuelConsumptionUnitsDistanceOverVolume({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.FUEL_CONSUMPTION_UNITS_DISTANCE_OVER_VOLUME.id,
       0,
+      rate,
     );
   }
 
@@ -3634,7 +3821,7 @@ class VehiclePropertyRepository {
      * </ul>
      */
   Future<double> getEnvOutsideTemperature() async {
-    return _datasource.getPropertyFLOAT(
+    return _datasource.getPropertyFloat(
       VehicleProperty.ENV_OUTSIDE_TEMPERATURE.id,
       0,
     );
@@ -3657,10 +3844,13 @@ class VehiclePropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<double> listenEnvOutsideTemperature() {
-    return _datasource.listenPropertyFLOAT(
+  PropertyStreamData<double> listenEnvOutsideTemperature({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyFloat(
       VehicleProperty.ENV_OUTSIDE_TEMPERATURE.id,
       0,
+      rate,
     );
   }
 
@@ -3685,7 +3875,7 @@ class VehiclePropertyRepository {
      * @data_enum {@link VehicleSeatOccupancyState}
      */
   Future<int> getSeatOccupancy(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.SEAT_OCCUPANCY.id,
       area.value,
     );
@@ -3711,10 +3901,14 @@ class VehiclePropertyRepository {
      *
      * @data_enum {@link VehicleSeatOccupancyState}
      */
-  PropertyStreamData<int> listenSeatOccupancy(VehicleAreaSeat area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenSeatOccupancy(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_OCCUPANCY.id,
       area.value,
+      rate,
     );
   }
 
@@ -3757,7 +3951,7 @@ class VehiclePropertyRepository {
      * @data_enum {@link WindshieldWipersState}
      */
   Future<int> getWindshieldWipersState(VehicleAreaWindow area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.WINDSHIELD_WIPERS_STATE.id,
       area.value,
     );
@@ -3801,10 +3995,14 @@ class VehiclePropertyRepository {
      *
      * @data_enum {@link WindshieldWipersState}
      */
-  PropertyStreamData<int> listenWindshieldWipersState(VehicleAreaWindow area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenWindshieldWipersState(
+    VehicleAreaWindow area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.WINDSHIELD_WIPERS_STATE.id,
       area.value,
+      rate,
     );
   }
 
@@ -3844,7 +4042,7 @@ class VehiclePropertyRepository {
      * @data_flag {@link LocationCharacterization}
      */
   Future<int> getLocationCharacterization() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.LOCATION_CHARACTERIZATION.id,
       0,
     );
@@ -3885,10 +4083,13 @@ class VehiclePropertyRepository {
      *
      * @data_flag {@link LocationCharacterization}
      */
-  PropertyStreamData<int> listenLocationCharacterization() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenLocationCharacterization({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.LOCATION_CHARACTERIZATION.id,
       0,
+      rate,
     );
   }
 
@@ -3909,7 +4110,7 @@ class VehiclePropertyRepository {
      * @hide
      */
   Future<dynamic> getInitialUserInfo() async {
-    return _datasource.getPropertyMIXED(
+    return _datasource.getPropertyMixed(
       VehicleProperty.INITIAL_USER_INFO.id,
       0,
     );
@@ -3931,10 +4132,13 @@ class VehiclePropertyRepository {
      *
      * @hide
      */
-  PropertyStreamData<dynamic> listenInitialUserInfo() {
-    return _datasource.listenPropertyMIXED(
+  PropertyStreamData<dynamic> listenInitialUserInfo({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyMixed(
       VehicleProperty.INITIAL_USER_INFO.id,
       0,
+      rate,
     );
   }
 
@@ -3955,7 +4159,7 @@ class VehiclePropertyRepository {
      * @hide
      */
   Future<void> setInitialUserInfo(dynamic value) async {
-    return _datasource.setPropertyMIXED(
+    return _datasource.setPropertyMixed(
       VehicleProperty.INITIAL_USER_INFO.id,
       0,
       value,
@@ -3979,7 +4183,7 @@ class VehiclePropertyRepository {
      * @hide
      */
   Future<dynamic> getSwitchUser() async {
-    return _datasource.getPropertyMIXED(VehicleProperty.SWITCH_USER.id, 0);
+    return _datasource.getPropertyMixed(VehicleProperty.SWITCH_USER.id, 0);
   }
 
   /**
@@ -3998,8 +4202,14 @@ class VehiclePropertyRepository {
      *
      * @hide
      */
-  PropertyStreamData<dynamic> listenSwitchUser() {
-    return _datasource.listenPropertyMIXED(VehicleProperty.SWITCH_USER.id, 0);
+  PropertyStreamData<dynamic> listenSwitchUser({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyMixed(
+      VehicleProperty.SWITCH_USER.id,
+      0,
+      rate,
+    );
   }
 
   /**
@@ -4019,7 +4229,7 @@ class VehiclePropertyRepository {
      * @hide
      */
   Future<void> setSwitchUser(dynamic value) async {
-    return _datasource.setPropertyMIXED(
+    return _datasource.setPropertyMixed(
       VehicleProperty.SWITCH_USER.id,
       0,
       value,
@@ -4043,7 +4253,7 @@ class VehiclePropertyRepository {
      * @hide
      */
   Future<dynamic> getCreateUser() async {
-    return _datasource.getPropertyMIXED(VehicleProperty.CREATE_USER.id, 0);
+    return _datasource.getPropertyMixed(VehicleProperty.CREATE_USER.id, 0);
   }
 
   /**
@@ -4062,8 +4272,14 @@ class VehiclePropertyRepository {
      *
      * @hide
      */
-  PropertyStreamData<dynamic> listenCreateUser() {
-    return _datasource.listenPropertyMIXED(VehicleProperty.CREATE_USER.id, 0);
+  PropertyStreamData<dynamic> listenCreateUser({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyMixed(
+      VehicleProperty.CREATE_USER.id,
+      0,
+      rate,
+    );
   }
 
   /**
@@ -4083,7 +4299,7 @@ class VehiclePropertyRepository {
      * @hide
      */
   Future<void> setCreateUser(dynamic value) async {
-    return _datasource.setPropertyMIXED(
+    return _datasource.setPropertyMixed(
       VehicleProperty.CREATE_USER.id,
       0,
       value,
@@ -4107,7 +4323,7 @@ class VehiclePropertyRepository {
      * @hide
      */
   Future<void> setRemoveUser(dynamic value) async {
-    return _datasource.setPropertyMIXED(
+    return _datasource.setPropertyMixed(
       VehicleProperty.REMOVE_USER.id,
       0,
       value,
@@ -4131,7 +4347,7 @@ class VehiclePropertyRepository {
      * @hide
      */
   Future<dynamic> getUserIdentificationAssociation() async {
-    return _datasource.getPropertyMIXED(
+    return _datasource.getPropertyMixed(
       VehicleProperty.USER_IDENTIFICATION_ASSOCIATION.id,
       0,
     );
@@ -4153,10 +4369,13 @@ class VehiclePropertyRepository {
      *
      * @hide
      */
-  PropertyStreamData<dynamic> listenUserIdentificationAssociation() {
-    return _datasource.listenPropertyMIXED(
+  PropertyStreamData<dynamic> listenUserIdentificationAssociation({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyMixed(
       VehicleProperty.USER_IDENTIFICATION_ASSOCIATION.id,
       0,
+      rate,
     );
   }
 
@@ -4177,7 +4396,7 @@ class VehiclePropertyRepository {
      * @hide
      */
   Future<void> setUserIdentificationAssociation(dynamic value) async {
-    return _datasource.setPropertyMIXED(
+    return _datasource.setPropertyMixed(
       VehicleProperty.USER_IDENTIFICATION_ASSOCIATION.id,
       0,
       value,
@@ -4201,7 +4420,7 @@ class VehiclePropertyRepository {
      * @hide
      */
   Future<String> getPowerPolicyReq() async {
-    return _datasource.getPropertySTRING(
+    return _datasource.getPropertyString(
       VehicleProperty.POWER_POLICY_REQ.id,
       0,
     );
@@ -4223,10 +4442,13 @@ class VehiclePropertyRepository {
      *
      * @hide
      */
-  PropertyStreamData<String> listenPowerPolicyReq() {
-    return _datasource.listenPropertySTRING(
+  PropertyStreamData<String> listenPowerPolicyReq({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyString(
       VehicleProperty.POWER_POLICY_REQ.id,
       0,
+      rate,
     );
   }
 
@@ -4247,7 +4469,7 @@ class VehiclePropertyRepository {
      * @hide
      */
   Future<String> getPowerPolicyGroupReq() async {
-    return _datasource.getPropertySTRING(
+    return _datasource.getPropertyString(
       VehicleProperty.POWER_POLICY_GROUP_REQ.id,
       0,
     );
@@ -4269,10 +4491,13 @@ class VehiclePropertyRepository {
      *
      * @hide
      */
-  PropertyStreamData<String> listenPowerPolicyGroupReq() {
-    return _datasource.listenPropertySTRING(
+  PropertyStreamData<String> listenPowerPolicyGroupReq({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyString(
       VehicleProperty.POWER_POLICY_GROUP_REQ.id,
       0,
+      rate,
     );
   }
 
@@ -4293,7 +4518,7 @@ class VehiclePropertyRepository {
      * @hide
      */
   Future<String> getCurrentPowerPolicy() async {
-    return _datasource.getPropertySTRING(
+    return _datasource.getPropertyString(
       VehicleProperty.CURRENT_POWER_POLICY.id,
       0,
     );
@@ -4315,10 +4540,13 @@ class VehiclePropertyRepository {
      *
      * @hide
      */
-  PropertyStreamData<String> listenCurrentPowerPolicy() {
-    return _datasource.listenPropertySTRING(
+  PropertyStreamData<String> listenCurrentPowerPolicy({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyString(
       VehicleProperty.CURRENT_POWER_POLICY.id,
       0,
+      rate,
     );
   }
 
@@ -4339,7 +4567,7 @@ class VehiclePropertyRepository {
      * @hide
      */
   Future<void> setCurrentPowerPolicy(String value) async {
-    return _datasource.setPropertySTRING(
+    return _datasource.setPropertyString(
       VehicleProperty.CURRENT_POWER_POLICY.id,
       0,
       value,
@@ -4363,7 +4591,7 @@ class VehiclePropertyRepository {
      * @hide
      */
   Future<void> setWatchdogAlive(int value) async {
-    return _datasource.setPropertyINT64(
+    return _datasource.setPropertyInt64(
       VehicleProperty.WATCHDOG_ALIVE.id,
       0,
       value,
@@ -4387,7 +4615,7 @@ class VehiclePropertyRepository {
      * @hide
      */
   Future<void> setWatchdogTerminatedProcess(dynamic value) async {
-    return _datasource.setPropertyMIXED(
+    return _datasource.setPropertyMixed(
       VehicleProperty.WATCHDOG_TERMINATED_PROCESS.id,
       0,
       value,
@@ -4411,7 +4639,7 @@ class VehiclePropertyRepository {
      * @hide
      */
   Future<int> getVhalHeartbeat() async {
-    return _datasource.getPropertyINT64(VehicleProperty.VHAL_HEARTBEAT.id, 0);
+    return _datasource.getPropertyInt64(VehicleProperty.VHAL_HEARTBEAT.id, 0);
   }
 
   /**
@@ -4430,10 +4658,13 @@ class VehiclePropertyRepository {
      *
      * @hide
      */
-  PropertyStreamData<int> listenVhalHeartbeat() {
-    return _datasource.listenPropertyINT64(
+  PropertyStreamData<int> listenVhalHeartbeat({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt64(
       VehicleProperty.VHAL_HEARTBEAT.id,
       0,
+      rate,
     );
   }
 
@@ -4454,7 +4685,7 @@ class VehiclePropertyRepository {
      * @hide
      */
   Future<int> getClusterSwitchUi() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.CLUSTER_SWITCH_UI.id,
       0,
     );
@@ -4476,10 +4707,13 @@ class VehiclePropertyRepository {
      *
      * @hide
      */
-  PropertyStreamData<int> listenClusterSwitchUi() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenClusterSwitchUi({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.CLUSTER_SWITCH_UI.id,
       0,
+      rate,
     );
   }
 
@@ -4500,7 +4734,7 @@ class VehiclePropertyRepository {
      * @hide
      */
   Future<List<int>> getClusterDisplayState() async {
-    return _datasource.getPropertyINT32_VEC(
+    return _datasource.getPropertyInt32Vec(
       VehicleProperty.CLUSTER_DISPLAY_STATE.id,
       0,
     );
@@ -4522,10 +4756,13 @@ class VehiclePropertyRepository {
      *
      * @hide
      */
-  PropertyStreamData<List<int>> listenClusterDisplayState() {
-    return _datasource.listenPropertyINT32_VEC(
+  PropertyStreamData<List<int>> listenClusterDisplayState({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32Vec(
       VehicleProperty.CLUSTER_DISPLAY_STATE.id,
       0,
+      rate,
     );
   }
 
@@ -4546,7 +4783,7 @@ class VehiclePropertyRepository {
      * @hide
      */
   Future<void> setClusterReportState(dynamic value) async {
-    return _datasource.setPropertyMIXED(
+    return _datasource.setPropertyMixed(
       VehicleProperty.CLUSTER_REPORT_STATE.id,
       0,
       value,
@@ -4570,7 +4807,7 @@ class VehiclePropertyRepository {
      * @hide
      */
   Future<void> setClusterRequestDisplay(int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.CLUSTER_REQUEST_DISPLAY.id,
       0,
       value,
@@ -4594,7 +4831,7 @@ class VehiclePropertyRepository {
      * @hide
      */
   Future<void> setClusterNavigationState(List<int> value) async {
-    return _datasource.setPropertyBYTES(
+    return _datasource.setPropertyBytes(
       VehicleProperty.CLUSTER_NAVIGATION_STATE.id,
       0,
       value,
@@ -4618,7 +4855,7 @@ class VehiclePropertyRepository {
      * @hide
      */
   Future<void> setClusterHeartbeat(dynamic value) async {
-    return _datasource.setPropertyMIXED(
+    return _datasource.setPropertyMixed(
       VehicleProperty.CLUSTER_HEARTBEAT.id,
       0,
       value,
@@ -4650,7 +4887,7 @@ class VehiclePropertyRepository {
      * @data_enum {@link VehicleElectronicTollCollectionCardType}
      */
   Future<int> getElectronicTollCollectionCardType() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.ELECTRONIC_TOLL_COLLECTION_CARD_TYPE.id,
       0,
     );
@@ -4680,10 +4917,13 @@ class VehiclePropertyRepository {
      *
      * @data_enum {@link VehicleElectronicTollCollectionCardType}
      */
-  PropertyStreamData<int> listenElectronicTollCollectionCardType() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenElectronicTollCollectionCardType({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.ELECTRONIC_TOLL_COLLECTION_CARD_TYPE.id,
       0,
+      rate,
     );
   }
 
@@ -4712,7 +4952,7 @@ class VehiclePropertyRepository {
      * @data_enum {@link VehicleElectronicTollCollectionCardStatus}
      */
   Future<int> getElectronicTollCollectionCardStatus() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.ELECTRONIC_TOLL_COLLECTION_CARD_STATUS.id,
       0,
     );
@@ -4742,10 +4982,13 @@ class VehiclePropertyRepository {
      *
      * @data_enum {@link VehicleElectronicTollCollectionCardStatus}
      */
-  PropertyStreamData<int> listenElectronicTollCollectionCardStatus() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenElectronicTollCollectionCardStatus({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.ELECTRONIC_TOLL_COLLECTION_CARD_STATUS.id,
       0,
+      rate,
     );
   }
 
@@ -4773,7 +5016,7 @@ class VehiclePropertyRepository {
      * </ul>
      */
   Future<double> getEvChargeCurrentDrawLimit() async {
-    return _datasource.getPropertyFLOAT(
+    return _datasource.getPropertyFloat(
       VehicleProperty.EV_CHARGE_CURRENT_DRAW_LIMIT.id,
       0,
     );
@@ -4802,10 +5045,13 @@ class VehiclePropertyRepository {
      *  property.
      * </ul>
      */
-  PropertyStreamData<double> listenEvChargeCurrentDrawLimit() {
-    return _datasource.listenPropertyFLOAT(
+  PropertyStreamData<double> listenEvChargeCurrentDrawLimit({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyFloat(
       VehicleProperty.EV_CHARGE_CURRENT_DRAW_LIMIT.id,
       0,
+      rate,
     );
   }
 
@@ -4842,7 +5088,7 @@ class VehiclePropertyRepository {
      * </ul>
      */
   Future<double> getEvChargePercentLimit() async {
-    return _datasource.getPropertyFLOAT(
+    return _datasource.getPropertyFloat(
       VehicleProperty.EV_CHARGE_PERCENT_LIMIT.id,
       0,
     );
@@ -4880,10 +5126,13 @@ class VehiclePropertyRepository {
      *  property.
      * </ul>
      */
-  PropertyStreamData<double> listenEvChargePercentLimit() {
-    return _datasource.listenPropertyFLOAT(
+  PropertyStreamData<double> listenEvChargePercentLimit({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyFloat(
       VehicleProperty.EV_CHARGE_PERCENT_LIMIT.id,
       0,
+      rate,
     );
   }
 
@@ -4914,7 +5163,7 @@ class VehiclePropertyRepository {
      * @data_enum {@link EvChargeState}
      */
   Future<int> getEvChargeState() async {
-    return _datasource.getPropertyINT32(VehicleProperty.EV_CHARGE_STATE.id, 0);
+    return _datasource.getPropertyInt32(VehicleProperty.EV_CHARGE_STATE.id, 0);
   }
 
   /**
@@ -4943,10 +5192,13 @@ class VehiclePropertyRepository {
      *
      * @data_enum {@link EvChargeState}
      */
-  PropertyStreamData<int> listenEvChargeState() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenEvChargeState({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.EV_CHARGE_STATE.id,
       0,
+      rate,
     );
   }
 
@@ -4970,7 +5222,7 @@ class VehiclePropertyRepository {
      * </ul>
      */
   Future<int> getEvChargeTimeRemaining() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.EV_CHARGE_TIME_REMAINING.id,
       0,
     );
@@ -4995,10 +5247,13 @@ class VehiclePropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<int> listenEvChargeTimeRemaining() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenEvChargeTimeRemaining({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.EV_CHARGE_TIME_REMAINING.id,
       0,
+      rate,
     );
   }
 
@@ -5030,7 +5285,7 @@ class VehiclePropertyRepository {
      * @data_enum {@link EvRegenerativeBrakingState}
      */
   Future<int> getEvRegenerativeBrakingState() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.EV_REGENERATIVE_BRAKING_STATE.id,
       0,
     );
@@ -5063,10 +5318,13 @@ class VehiclePropertyRepository {
      *
      * @data_enum {@link EvRegenerativeBrakingState}
      */
-  PropertyStreamData<int> listenEvRegenerativeBrakingState() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenEvRegenerativeBrakingState({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.EV_REGENERATIVE_BRAKING_STATE.id,
       0,
+      rate,
     );
   }
 
@@ -5093,7 +5351,7 @@ class VehiclePropertyRepository {
      * @data_enum {@link GsrComplianceType}
      */
   Future<int> getGeneralSafetyRegulationCompliance() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.GENERAL_SAFETY_REGULATION_COMPLIANCE.id,
       0,
     );
@@ -5121,10 +5379,13 @@ class VehiclePropertyRepository {
      *
      * @data_enum {@link GsrComplianceType}
      */
-  PropertyStreamData<int> listenGeneralSafetyRegulationCompliance() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenGeneralSafetyRegulationCompliance({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.GENERAL_SAFETY_REGULATION_COMPLIANCE.id,
       0,
+      rate,
     );
   }
 
@@ -5158,7 +5419,7 @@ class VehiclePropertyRepository {
      * @data_enum {@link android.car.hardware.property.VehicleAutonomousState}
      */
   Future<int> getVehicleDrivingAutomationCurrentLevel() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.VEHICLE_DRIVING_AUTOMATION_CURRENT_LEVEL.id,
       0,
     );
@@ -5193,10 +5454,13 @@ class VehiclePropertyRepository {
      *
      * @data_enum {@link android.car.hardware.property.VehicleAutonomousState}
      */
-  PropertyStreamData<int> listenVehicleDrivingAutomationCurrentLevel() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenVehicleDrivingAutomationCurrentLevel({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.VEHICLE_DRIVING_AUTOMATION_CURRENT_LEVEL.id,
       0,
+      rate,
     );
   }
 }
@@ -5225,7 +5489,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<String> getInfoVin() async {
-    return _datasource.getPropertySTRING(VehicleProperty.INFO_VIN.id, 0);
+    return _datasource.getPropertyString(VehicleProperty.INFO_VIN.id, 0);
   }
 
   /**
@@ -5246,8 +5510,14 @@ class VehiclePrivilegedPropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<String> listenInfoVin() {
-    return _datasource.listenPropertySTRING(VehicleProperty.INFO_VIN.id, 0);
+  PropertyStreamData<String> listenInfoVin({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyString(
+      VehicleProperty.INFO_VIN.id,
+      0,
+      rate,
+    );
   }
 
   /**
@@ -5275,7 +5545,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<double> getPerfRearSteeringAngle() async {
-    return _datasource.getPropertyFLOAT(
+    return _datasource.getPropertyFloat(
       VehicleProperty.PERF_REAR_STEERING_ANGLE.id,
       0,
     );
@@ -5305,10 +5575,13 @@ class VehiclePrivilegedPropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<double> listenPerfRearSteeringAngle() {
-    return _datasource.listenPropertyFLOAT(
+  PropertyStreamData<double> listenPerfRearSteeringAngle({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyFloat(
       VehicleProperty.PERF_REAR_STEERING_ANGLE.id,
       0,
+      rate,
     );
   }
 
@@ -5331,7 +5604,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<double> getEngineCoolantTemp() async {
-    return _datasource.getPropertyFLOAT(
+    return _datasource.getPropertyFloat(
       VehicleProperty.ENGINE_COOLANT_TEMP.id,
       0,
     );
@@ -5355,10 +5628,13 @@ class VehiclePrivilegedPropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<double> listenEngineCoolantTemp() {
-    return _datasource.listenPropertyFLOAT(
+  PropertyStreamData<double> listenEngineCoolantTemp({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyFloat(
       VehicleProperty.ENGINE_COOLANT_TEMP.id,
       0,
+      rate,
     );
   }
 
@@ -5386,7 +5662,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link VehicleOilLevel}
      */
   Future<int> getEngineOilLevel() async {
-    return _datasource.getPropertyINT32(VehicleProperty.ENGINE_OIL_LEVEL.id, 0);
+    return _datasource.getPropertyInt32(VehicleProperty.ENGINE_OIL_LEVEL.id, 0);
   }
 
   /**
@@ -5412,10 +5688,13 @@ class VehiclePrivilegedPropertyRepository {
      *
      * @data_enum {@link VehicleOilLevel}
      */
-  PropertyStreamData<int> listenEngineOilLevel() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenEngineOilLevel({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.ENGINE_OIL_LEVEL.id,
       0,
+      rate,
     );
   }
 
@@ -5438,7 +5717,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<double> getEngineOilTemp() async {
-    return _datasource.getPropertyFLOAT(VehicleProperty.ENGINE_OIL_TEMP.id, 0);
+    return _datasource.getPropertyFloat(VehicleProperty.ENGINE_OIL_TEMP.id, 0);
   }
 
   /**
@@ -5459,10 +5738,13 @@ class VehiclePrivilegedPropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<double> listenEngineOilTemp() {
-    return _datasource.listenPropertyFLOAT(
+  PropertyStreamData<double> listenEngineOilTemp({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyFloat(
       VehicleProperty.ENGINE_OIL_TEMP.id,
       0,
+      rate,
     );
   }
 
@@ -5488,7 +5770,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getEngineIdleAutoStopEnabled() async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.ENGINE_IDLE_AUTO_STOP_ENABLED.id,
       0,
     );
@@ -5515,10 +5797,13 @@ class VehiclePrivilegedPropertyRepository {
      *  write property.
      * </ul>
      */
-  PropertyStreamData<bool> listenEngineIdleAutoStopEnabled() {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenEngineIdleAutoStopEnabled({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.ENGINE_IDLE_AUTO_STOP_ENABLED.id,
       0,
+      rate,
     );
   }
 
@@ -5544,7 +5829,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setEngineIdleAutoStopEnabled(bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.ENGINE_IDLE_AUTO_STOP_ENABLED.id,
       0,
       value,
@@ -5583,7 +5868,7 @@ class VehiclePrivilegedPropertyRepository {
      *
      */
   Future<int> getImpactDetected() async {
-    return _datasource.getPropertyINT32(VehicleProperty.IMPACT_DETECTED.id, 0);
+    return _datasource.getPropertyInt32(VehicleProperty.IMPACT_DETECTED.id, 0);
   }
 
   /**
@@ -5617,10 +5902,13 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link android.car.hardware.property.ImpactSensorLocation}
      *
      */
-  PropertyStreamData<int> listenImpactDetected() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenImpactDetected({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.IMPACT_DETECTED.id,
       0,
+      rate,
     );
   }
 
@@ -5650,7 +5938,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setFuelDoorOpen(bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.FUEL_DOOR_OPEN.id,
       0,
       value,
@@ -5681,7 +5969,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setEvChargePortOpen(bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.EV_CHARGE_PORT_OPEN.id,
       0,
       value,
@@ -5712,7 +6000,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setRangeRemaining(double value) async {
-    return _datasource.setPropertyFLOAT(
+    return _datasource.setPropertyFloat(
       VehicleProperty.RANGE_REMAINING.id,
       0,
       value,
@@ -5742,7 +6030,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<double> getCriticallyLowTirePressure(VehicleAreaWheel area) async {
-    return _datasource.getPropertyFLOAT(
+    return _datasource.getPropertyFloat(
       VehicleProperty.CRITICALLY_LOW_TIRE_PRESSURE.id,
       area.value,
     );
@@ -5771,11 +6059,13 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   PropertyStreamData<double> listenCriticallyLowTirePressure(
-    VehicleAreaWheel area,
-  ) {
-    return _datasource.listenPropertyFLOAT(
+    VehicleAreaWheel area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyFloat(
       VehicleProperty.CRITICALLY_LOW_TIRE_PRESSURE.id,
       area.value,
+      rate,
     );
   }
 
@@ -5827,7 +6117,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getVehiclePassiveSuspensionHeight(VehicleAreaWheel area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.VEHICLE_PASSIVE_SUSPENSION_HEIGHT.id,
       area.value,
     );
@@ -5881,11 +6171,13 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   PropertyStreamData<int> listenVehiclePassiveSuspensionHeight(
-    VehicleAreaWheel area,
-  ) {
-    return _datasource.listenPropertyINT32(
+    VehicleAreaWheel area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.VEHICLE_PASSIVE_SUSPENSION_HEIGHT.id,
       area.value,
+      rate,
     );
   }
 
@@ -5916,7 +6208,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setEvBrakeRegenerationLevel(int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.EV_BRAKE_REGENERATION_LEVEL.id,
       0,
       value,
@@ -5952,7 +6244,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link EvStoppingMode}
      */
   Future<void> setEvStoppingMode(int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.EV_STOPPING_MODE.id,
       0,
       value,
@@ -5987,7 +6279,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link VehicleTurnSignal}
      */
   Future<int> getTurnSignalState() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.TURN_SIGNAL_STATE.id,
       0,
     );
@@ -6020,10 +6312,13 @@ class VehiclePrivilegedPropertyRepository {
      *
      * @data_enum {@link VehicleTurnSignal}
      */
-  PropertyStreamData<int> listenTurnSignalState() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenTurnSignalState({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.TURN_SIGNAL_STATE.id,
       0,
+      rate,
     );
   }
 
@@ -6046,7 +6341,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getAbsActive() async {
-    return _datasource.getPropertyBOOLEAN(VehicleProperty.ABS_ACTIVE.id, 0);
+    return _datasource.getPropertyBoolean(VehicleProperty.ABS_ACTIVE.id, 0);
   }
 
   /**
@@ -6067,8 +6362,14 @@ class VehiclePrivilegedPropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<bool> listenAbsActive() {
-    return _datasource.listenPropertyBOOLEAN(VehicleProperty.ABS_ACTIVE.id, 0);
+  PropertyStreamData<bool> listenAbsActive({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
+      VehicleProperty.ABS_ACTIVE.id,
+      0,
+      rate,
+    );
   }
 
   /**
@@ -6090,7 +6391,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getTractionControlActive() async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.TRACTION_CONTROL_ACTIVE.id,
       0,
     );
@@ -6114,10 +6415,13 @@ class VehiclePrivilegedPropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<bool> listenTractionControlActive() {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenTractionControlActive({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.TRACTION_CONTROL_ACTIVE.id,
       0,
+      rate,
     );
   }
 
@@ -6150,7 +6454,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getElectronicStabilityControlEnabled() async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.ELECTRONIC_STABILITY_CONTROL_ENABLED.id,
       0,
     );
@@ -6184,10 +6488,13 @@ class VehiclePrivilegedPropertyRepository {
      *  write property.
      * </ul>
      */
-  PropertyStreamData<bool> listenElectronicStabilityControlEnabled() {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenElectronicStabilityControlEnabled({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.ELECTRONIC_STABILITY_CONTROL_ENABLED.id,
       0,
+      rate,
     );
   }
 
@@ -6220,7 +6527,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setElectronicStabilityControlEnabled(bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.ELECTRONIC_STABILITY_CONTROL_ENABLED.id,
       0,
       value,
@@ -6259,7 +6566,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link ErrorState}
      */
   Future<int> getElectronicStabilityControlState() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.ELECTRONIC_STABILITY_CONTROL_STATE.id,
       0,
     );
@@ -6296,10 +6603,13 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link android.car.hardware.property.ElectronicStabilityControlState}
      * @data_enum {@link ErrorState}
      */
-  PropertyStreamData<int> listenElectronicStabilityControlState() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenElectronicStabilityControlState({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.ELECTRONIC_STABILITY_CONTROL_STATE.id,
       0,
+      rate,
     );
   }
 
@@ -6337,7 +6647,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link VehicleTurnSignal}
      */
   Future<void> setTurnSignalSwitch(int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.TURN_SIGNAL_SWITCH.id,
       0,
       value,
@@ -6363,7 +6673,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getHvacFanSpeed(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.HVAC_FAN_SPEED.id,
       area.value,
     );
@@ -6387,10 +6697,14 @@ class VehiclePrivilegedPropertyRepository {
      *  and write property.
      * </ul>
      */
-  PropertyStreamData<int> listenHvacFanSpeed(VehicleAreaSeat area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenHvacFanSpeed(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.HVAC_FAN_SPEED.id,
       area.value,
+      rate,
     );
   }
 
@@ -6413,7 +6727,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setHvacFanSpeed(VehicleAreaSeat area, int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.HVAC_FAN_SPEED.id,
       area.value,
       value,
@@ -6446,7 +6760,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link CarHvacFanDirection}
      */
   Future<int> getHvacFanDirection(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.HVAC_FAN_DIRECTION.id,
       area.value,
     );
@@ -6477,10 +6791,14 @@ class VehiclePrivilegedPropertyRepository {
      *
      * @data_enum {@link CarHvacFanDirection}
      */
-  PropertyStreamData<int> listenHvacFanDirection(VehicleAreaSeat area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenHvacFanDirection(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.HVAC_FAN_DIRECTION.id,
       area.value,
+      rate,
     );
   }
 
@@ -6510,7 +6828,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link CarHvacFanDirection}
      */
   Future<void> setHvacFanDirection(VehicleAreaSeat area, int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.HVAC_FAN_DIRECTION.id,
       area.value,
       value,
@@ -6536,7 +6854,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<double> getHvacTemperatureCurrent(VehicleAreaSeat area) async {
-    return _datasource.getPropertyFLOAT(
+    return _datasource.getPropertyFloat(
       VehicleProperty.HVAC_TEMPERATURE_CURRENT.id,
       area.value,
     );
@@ -6561,11 +6879,13 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   PropertyStreamData<double> listenHvacTemperatureCurrent(
-    VehicleAreaSeat area,
-  ) {
-    return _datasource.listenPropertyFLOAT(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyFloat(
       VehicleProperty.HVAC_TEMPERATURE_CURRENT.id,
       area.value,
+      rate,
     );
   }
 
@@ -6658,7 +6978,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<double> getHvacTemperatureSet(VehicleAreaSeat area) async {
-    return _datasource.getPropertyFLOAT(
+    return _datasource.getPropertyFloat(
       VehicleProperty.HVAC_TEMPERATURE_SET.id,
       area.value,
     );
@@ -6752,10 +7072,14 @@ class VehiclePrivilegedPropertyRepository {
      *  and write property.
      * </ul>
      */
-  PropertyStreamData<double> listenHvacTemperatureSet(VehicleAreaSeat area) {
-    return _datasource.listenPropertyFLOAT(
+  PropertyStreamData<double> listenHvacTemperatureSet(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyFloat(
       VehicleProperty.HVAC_TEMPERATURE_SET.id,
       area.value,
+      rate,
     );
   }
 
@@ -6848,7 +7172,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setHvacTemperatureSet(VehicleAreaSeat area, double value) async {
-    return _datasource.setPropertyFLOAT(
+    return _datasource.setPropertyFloat(
       VehicleProperty.HVAC_TEMPERATURE_SET.id,
       area.value,
       value,
@@ -6911,7 +7235,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<List<double>> getHvacTemperatureValueSuggestion() async {
-    return _datasource.getPropertyFLOAT_VEC(
+    return _datasource.getPropertyFloatVec(
       VehicleProperty.HVAC_TEMPERATURE_VALUE_SUGGESTION.id,
       0,
     );
@@ -6972,10 +7296,13 @@ class VehiclePrivilegedPropertyRepository {
      *  and write property.
      * </ul>
      */
-  PropertyStreamData<List<double>> listenHvacTemperatureValueSuggestion() {
-    return _datasource.listenPropertyFLOAT_VEC(
+  PropertyStreamData<List<double>> listenHvacTemperatureValueSuggestion({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyFloatVec(
       VehicleProperty.HVAC_TEMPERATURE_VALUE_SUGGESTION.id,
       0,
+      rate,
     );
   }
 
@@ -7035,7 +7362,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setHvacTemperatureValueSuggestion(List<double> value) async {
-    return _datasource.setPropertyFLOAT_VEC(
+    return _datasource.setPropertyFloatVec(
       VehicleProperty.HVAC_TEMPERATURE_VALUE_SUGGESTION.id,
       0,
       value,
@@ -7061,7 +7388,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getHvacDefroster(VehicleAreaWindow area) async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.HVAC_DEFROSTER.id,
       area.value,
     );
@@ -7085,10 +7412,14 @@ class VehiclePrivilegedPropertyRepository {
      *  and write property.
      * </ul>
      */
-  PropertyStreamData<bool> listenHvacDefroster(VehicleAreaWindow area) {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenHvacDefroster(
+    VehicleAreaWindow area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.HVAC_DEFROSTER.id,
       area.value,
+      rate,
     );
   }
 
@@ -7111,7 +7442,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setHvacDefroster(VehicleAreaWindow area, bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.HVAC_DEFROSTER.id,
       area.value,
       value,
@@ -7137,7 +7468,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getHvacAcOn(VehicleAreaSeat area) async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.HVAC_AC_ON.id,
       area.value,
     );
@@ -7161,10 +7492,14 @@ class VehiclePrivilegedPropertyRepository {
      *  and write property.
      * </ul>
      */
-  PropertyStreamData<bool> listenHvacAcOn(VehicleAreaSeat area) {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenHvacAcOn(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.HVAC_AC_ON.id,
       area.value,
+      rate,
     );
   }
 
@@ -7187,7 +7522,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setHvacAcOn(VehicleAreaSeat area, bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.HVAC_AC_ON.id,
       area.value,
       value,
@@ -7213,7 +7548,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getHvacMaxAcOn(VehicleAreaSeat area) async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.HVAC_MAX_AC_ON.id,
       area.value,
     );
@@ -7237,10 +7572,14 @@ class VehiclePrivilegedPropertyRepository {
      *  and write property.
      * </ul>
      */
-  PropertyStreamData<bool> listenHvacMaxAcOn(VehicleAreaSeat area) {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenHvacMaxAcOn(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.HVAC_MAX_AC_ON.id,
       area.value,
+      rate,
     );
   }
 
@@ -7263,7 +7602,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setHvacMaxAcOn(VehicleAreaSeat area, bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.HVAC_MAX_AC_ON.id,
       area.value,
       value,
@@ -7289,7 +7628,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getHvacMaxDefrostOn(VehicleAreaSeat area) async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.HVAC_MAX_DEFROST_ON.id,
       area.value,
     );
@@ -7313,10 +7652,14 @@ class VehiclePrivilegedPropertyRepository {
      *  and write property.
      * </ul>
      */
-  PropertyStreamData<bool> listenHvacMaxDefrostOn(VehicleAreaSeat area) {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenHvacMaxDefrostOn(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.HVAC_MAX_DEFROST_ON.id,
       area.value,
+      rate,
     );
   }
 
@@ -7339,7 +7682,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setHvacMaxDefrostOn(VehicleAreaSeat area, bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.HVAC_MAX_DEFROST_ON.id,
       area.value,
       value,
@@ -7365,7 +7708,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getHvacRecircOn(VehicleAreaSeat area) async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.HVAC_RECIRC_ON.id,
       area.value,
     );
@@ -7389,10 +7732,14 @@ class VehiclePrivilegedPropertyRepository {
      *  and write property.
      * </ul>
      */
-  PropertyStreamData<bool> listenHvacRecircOn(VehicleAreaSeat area) {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenHvacRecircOn(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.HVAC_RECIRC_ON.id,
       area.value,
+      rate,
     );
   }
 
@@ -7415,7 +7762,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setHvacRecircOn(VehicleAreaSeat area, bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.HVAC_RECIRC_ON.id,
       area.value,
       value,
@@ -7441,7 +7788,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getHvacDualOn(VehicleAreaSeat area) async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.HVAC_DUAL_ON.id,
       area.value,
     );
@@ -7465,10 +7812,14 @@ class VehiclePrivilegedPropertyRepository {
      *  and write property.
      * </ul>
      */
-  PropertyStreamData<bool> listenHvacDualOn(VehicleAreaSeat area) {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenHvacDualOn(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.HVAC_DUAL_ON.id,
       area.value,
+      rate,
     );
   }
 
@@ -7491,7 +7842,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setHvacDualOn(VehicleAreaSeat area, bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.HVAC_DUAL_ON.id,
       area.value,
       value,
@@ -7517,7 +7868,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getHvacAutoOn(VehicleAreaSeat area) async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.HVAC_AUTO_ON.id,
       area.value,
     );
@@ -7541,10 +7892,14 @@ class VehiclePrivilegedPropertyRepository {
      *  and write property.
      * </ul>
      */
-  PropertyStreamData<bool> listenHvacAutoOn(VehicleAreaSeat area) {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenHvacAutoOn(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.HVAC_AUTO_ON.id,
       area.value,
+      rate,
     );
   }
 
@@ -7567,7 +7922,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setHvacAutoOn(VehicleAreaSeat area, bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.HVAC_AUTO_ON.id,
       area.value,
       value,
@@ -7593,7 +7948,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getHvacSeatTemperature(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.HVAC_SEAT_TEMPERATURE.id,
       area.value,
     );
@@ -7617,10 +7972,14 @@ class VehiclePrivilegedPropertyRepository {
      *  and write property.
      * </ul>
      */
-  PropertyStreamData<int> listenHvacSeatTemperature(VehicleAreaSeat area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenHvacSeatTemperature(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.HVAC_SEAT_TEMPERATURE.id,
       area.value,
+      rate,
     );
   }
 
@@ -7643,7 +8002,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setHvacSeatTemperature(VehicleAreaSeat area, int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.HVAC_SEAT_TEMPERATURE.id,
       area.value,
       value,
@@ -7669,7 +8028,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getHvacSideMirrorHeat(VehicleAreaMirror area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.HVAC_SIDE_MIRROR_HEAT.id,
       area.value,
     );
@@ -7693,10 +8052,14 @@ class VehiclePrivilegedPropertyRepository {
      *  and write property.
      * </ul>
      */
-  PropertyStreamData<int> listenHvacSideMirrorHeat(VehicleAreaMirror area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenHvacSideMirrorHeat(
+    VehicleAreaMirror area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.HVAC_SIDE_MIRROR_HEAT.id,
       area.value,
+      rate,
     );
   }
 
@@ -7719,7 +8082,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setHvacSideMirrorHeat(VehicleAreaMirror area, int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.HVAC_SIDE_MIRROR_HEAT.id,
       area.value,
       value,
@@ -7745,7 +8108,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getHvacSteeringWheelHeat() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.HVAC_STEERING_WHEEL_HEAT.id,
       0,
     );
@@ -7769,10 +8132,13 @@ class VehiclePrivilegedPropertyRepository {
      *  and write property.
      * </ul>
      */
-  PropertyStreamData<int> listenHvacSteeringWheelHeat() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenHvacSteeringWheelHeat({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.HVAC_STEERING_WHEEL_HEAT.id,
       0,
+      rate,
     );
   }
 
@@ -7795,7 +8161,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setHvacSteeringWheelHeat(int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.HVAC_STEERING_WHEEL_HEAT.id,
       0,
       value,
@@ -7825,7 +8191,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link VehicleUnit}
      */
   Future<void> setHvacTemperatureDisplayUnits(int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.HVAC_TEMPERATURE_DISPLAY_UNITS.id,
       0,
       value,
@@ -7851,7 +8217,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getHvacActualFanSpeedRpm(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.HVAC_ACTUAL_FAN_SPEED_RPM.id,
       area.value,
     );
@@ -7875,10 +8241,14 @@ class VehiclePrivilegedPropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<int> listenHvacActualFanSpeedRpm(VehicleAreaSeat area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenHvacActualFanSpeedRpm(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.HVAC_ACTUAL_FAN_SPEED_RPM.id,
       area.value,
+      rate,
     );
   }
 
@@ -7906,7 +8276,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getHvacPowerOn(VehicleAreaSeat area) async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.HVAC_POWER_ON.id,
       area.value,
     );
@@ -7935,10 +8305,14 @@ class VehiclePrivilegedPropertyRepository {
      *  and write property.
      * </ul>
      */
-  PropertyStreamData<bool> listenHvacPowerOn(VehicleAreaSeat area) {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenHvacPowerOn(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.HVAC_POWER_ON.id,
       area.value,
+      rate,
     );
   }
 
@@ -7966,7 +8340,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setHvacPowerOn(VehicleAreaSeat area, bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.HVAC_POWER_ON.id,
       area.value,
       value,
@@ -7994,7 +8368,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link CarHvacFanDirection}
      */
   Future<List<int>> getHvacFanDirectionAvailable(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32_VEC(
+    return _datasource.getPropertyInt32Vec(
       VehicleProperty.HVAC_FAN_DIRECTION_AVAILABLE.id,
       area.value,
     );
@@ -8021,11 +8395,13 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link CarHvacFanDirection}
      */
   PropertyStreamData<List<int>> listenHvacFanDirectionAvailable(
-    VehicleAreaSeat area,
-  ) {
-    return _datasource.listenPropertyINT32_VEC(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32Vec(
       VehicleProperty.HVAC_FAN_DIRECTION_AVAILABLE.id,
       area.value,
+      rate,
     );
   }
 
@@ -8048,7 +8424,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getHvacAutoRecircOn(VehicleAreaSeat area) async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.HVAC_AUTO_RECIRC_ON.id,
       area.value,
     );
@@ -8072,10 +8448,14 @@ class VehiclePrivilegedPropertyRepository {
      *  and write property.
      * </ul>
      */
-  PropertyStreamData<bool> listenHvacAutoRecircOn(VehicleAreaSeat area) {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenHvacAutoRecircOn(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.HVAC_AUTO_RECIRC_ON.id,
       area.value,
+      rate,
     );
   }
 
@@ -8098,7 +8478,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setHvacAutoRecircOn(VehicleAreaSeat area, bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.HVAC_AUTO_RECIRC_ON.id,
       area.value,
       value,
@@ -8124,7 +8504,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getHvacSeatVentilation(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.HVAC_SEAT_VENTILATION.id,
       area.value,
     );
@@ -8148,10 +8528,14 @@ class VehiclePrivilegedPropertyRepository {
      *  and write property.
      * </ul>
      */
-  PropertyStreamData<int> listenHvacSeatVentilation(VehicleAreaSeat area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenHvacSeatVentilation(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.HVAC_SEAT_VENTILATION.id,
       area.value,
+      rate,
     );
   }
 
@@ -8174,7 +8558,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setHvacSeatVentilation(VehicleAreaSeat area, int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.HVAC_SEAT_VENTILATION.id,
       area.value,
       value,
@@ -8200,7 +8584,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getHvacElectricDefrosterOn(VehicleAreaWindow area) async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.HVAC_ELECTRIC_DEFROSTER_ON.id,
       area.value,
     );
@@ -8225,11 +8609,13 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   PropertyStreamData<bool> listenHvacElectricDefrosterOn(
-    VehicleAreaWindow area,
-  ) {
-    return _datasource.listenPropertyBOOLEAN(
+    VehicleAreaWindow area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.HVAC_ELECTRIC_DEFROSTER_ON.id,
       area.value,
+      rate,
     );
   }
 
@@ -8255,7 +8641,7 @@ class VehiclePrivilegedPropertyRepository {
     VehicleAreaWindow area,
     bool value,
   ) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.HVAC_ELECTRIC_DEFROSTER_ON.id,
       area.value,
       value,
@@ -8294,7 +8680,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link VehicleUnit}
      */
   Future<void> setDistanceDisplayUnits(int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.DISTANCE_DISPLAY_UNITS.id,
       0,
       value,
@@ -8332,7 +8718,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link VehicleUnit}
      */
   Future<void> setFuelVolumeDisplayUnits(int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.FUEL_VOLUME_DISPLAY_UNITS.id,
       0,
       value,
@@ -8371,7 +8757,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link VehicleUnit}
      */
   Future<void> setTirePressureDisplayUnits(int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.TIRE_PRESSURE_DISPLAY_UNITS.id,
       0,
       value,
@@ -8410,7 +8796,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link VehicleUnit}
      */
   Future<void> setEvBatteryDisplayUnits(int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.EV_BATTERY_DISPLAY_UNITS.id,
       0,
       value,
@@ -8449,7 +8835,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link VehicleUnit}
      */
   Future<void> setVehicleSpeedDisplayUnits(int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.VEHICLE_SPEED_DISPLAY_UNITS.id,
       0,
       value,
@@ -8482,7 +8868,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setFuelConsumptionUnitsDistanceOverVolume(bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.FUEL_CONSUMPTION_UNITS_DISTANCE_OVER_VOLUME.id,
       0,
       value,
@@ -8517,7 +8903,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getValetModeEnabled() async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.VALET_MODE_ENABLED.id,
       0,
     );
@@ -8550,10 +8936,13 @@ class VehiclePrivilegedPropertyRepository {
      *  property.
      * </ul>
      */
-  PropertyStreamData<bool> listenValetModeEnabled() {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenValetModeEnabled({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.VALET_MODE_ENABLED.id,
       0,
+      rate,
     );
   }
 
@@ -8585,7 +8974,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setValetModeEnabled(bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.VALET_MODE_ENABLED.id,
       0,
       value,
@@ -8621,7 +9010,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getHeadUpDisplayEnabled(VehicleAreaSeat area) async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.HEAD_UP_DISPLAY_ENABLED.id,
       area.value,
     );
@@ -8655,10 +9044,14 @@ class VehiclePrivilegedPropertyRepository {
      *  property.
      * </ul>
      */
-  PropertyStreamData<bool> listenHeadUpDisplayEnabled(VehicleAreaSeat area) {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenHeadUpDisplayEnabled(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.HEAD_UP_DISPLAY_ENABLED.id,
       area.value,
+      rate,
     );
   }
 
@@ -8691,7 +9084,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setHeadUpDisplayEnabled(VehicleAreaSeat area, bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.HEAD_UP_DISPLAY_ENABLED.id,
       area.value,
       value,
@@ -8728,7 +9121,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getDoorPos(VehicleAreaDoor area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.DOOR_POS.id,
       area.value,
     );
@@ -8763,10 +9156,14 @@ class VehiclePrivilegedPropertyRepository {
      *  write property.
      * </ul>
      */
-  PropertyStreamData<int> listenDoorPos(VehicleAreaDoor area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenDoorPos(
+    VehicleAreaDoor area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.DOOR_POS.id,
       area.value,
+      rate,
     );
   }
 
@@ -8800,7 +9197,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setDoorPos(VehicleAreaDoor area, int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.DOOR_POS.id,
       area.value,
       value,
@@ -8838,7 +9235,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getDoorMove(VehicleAreaDoor area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.DOOR_MOVE.id,
       area.value,
     );
@@ -8874,10 +9271,14 @@ class VehiclePrivilegedPropertyRepository {
      *  write property.
      * </ul>
      */
-  PropertyStreamData<int> listenDoorMove(VehicleAreaDoor area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenDoorMove(
+    VehicleAreaDoor area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.DOOR_MOVE.id,
       area.value,
+      rate,
     );
   }
 
@@ -8912,7 +9313,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setDoorMove(VehicleAreaDoor area, int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.DOOR_MOVE.id,
       area.value,
       value,
@@ -8940,7 +9341,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getDoorLock(VehicleAreaDoor area) async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.DOOR_LOCK.id,
       area.value,
     );
@@ -8966,10 +9367,14 @@ class VehiclePrivilegedPropertyRepository {
      *  write property.
      * </ul>
      */
-  PropertyStreamData<bool> listenDoorLock(VehicleAreaDoor area) {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenDoorLock(
+    VehicleAreaDoor area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.DOOR_LOCK.id,
       area.value,
+      rate,
     );
   }
 
@@ -8994,7 +9399,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setDoorLock(VehicleAreaDoor area, bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.DOOR_LOCK.id,
       area.value,
       value,
@@ -9023,7 +9428,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getDoorChildLockEnabled(VehicleAreaDoor area) async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.DOOR_CHILD_LOCK_ENABLED.id,
       area.value,
     );
@@ -9050,10 +9455,14 @@ class VehiclePrivilegedPropertyRepository {
      *  and write property.
      * </ul>
      */
-  PropertyStreamData<bool> listenDoorChildLockEnabled(VehicleAreaDoor area) {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenDoorChildLockEnabled(
+    VehicleAreaDoor area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.DOOR_CHILD_LOCK_ENABLED.id,
       area.value,
+      rate,
     );
   }
 
@@ -9079,7 +9488,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setDoorChildLockEnabled(VehicleAreaDoor area, bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.DOOR_CHILD_LOCK_ENABLED.id,
       area.value,
       value,
@@ -9117,7 +9526,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getMirrorZPos(VehicleAreaMirror area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.MIRROR_Z_POS.id,
       area.value,
     );
@@ -9153,10 +9562,14 @@ class VehiclePrivilegedPropertyRepository {
      *  write property.
      * </ul>
      */
-  PropertyStreamData<int> listenMirrorZPos(VehicleAreaMirror area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenMirrorZPos(
+    VehicleAreaMirror area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.MIRROR_Z_POS.id,
       area.value,
+      rate,
     );
   }
 
@@ -9191,7 +9604,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setMirrorZPos(VehicleAreaMirror area, int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.MIRROR_Z_POS.id,
       area.value,
       value,
@@ -9229,7 +9642,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getMirrorZMove(VehicleAreaMirror area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.MIRROR_Z_MOVE.id,
       area.value,
     );
@@ -9265,10 +9678,14 @@ class VehiclePrivilegedPropertyRepository {
      *  write property.
      * </ul>
      */
-  PropertyStreamData<int> listenMirrorZMove(VehicleAreaMirror area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenMirrorZMove(
+    VehicleAreaMirror area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.MIRROR_Z_MOVE.id,
       area.value,
+      rate,
     );
   }
 
@@ -9303,7 +9720,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setMirrorZMove(VehicleAreaMirror area, int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.MIRROR_Z_MOVE.id,
       area.value,
       value,
@@ -9341,7 +9758,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getMirrorYPos(VehicleAreaMirror area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.MIRROR_Y_POS.id,
       area.value,
     );
@@ -9377,10 +9794,14 @@ class VehiclePrivilegedPropertyRepository {
      *  write property.
      * </ul>
      */
-  PropertyStreamData<int> listenMirrorYPos(VehicleAreaMirror area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenMirrorYPos(
+    VehicleAreaMirror area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.MIRROR_Y_POS.id,
       area.value,
+      rate,
     );
   }
 
@@ -9415,7 +9836,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setMirrorYPos(VehicleAreaMirror area, int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.MIRROR_Y_POS.id,
       area.value,
       value,
@@ -9453,7 +9874,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getMirrorYMove(VehicleAreaMirror area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.MIRROR_Y_MOVE.id,
       area.value,
     );
@@ -9489,10 +9910,14 @@ class VehiclePrivilegedPropertyRepository {
      *  write property.
      * </ul>
      */
-  PropertyStreamData<int> listenMirrorYMove(VehicleAreaMirror area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenMirrorYMove(
+    VehicleAreaMirror area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.MIRROR_Y_MOVE.id,
       area.value,
+      rate,
     );
   }
 
@@ -9527,7 +9952,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setMirrorYMove(VehicleAreaMirror area, int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.MIRROR_Y_MOVE.id,
       area.value,
       value,
@@ -9555,7 +9980,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getMirrorLock() async {
-    return _datasource.getPropertyBOOLEAN(VehicleProperty.MIRROR_LOCK.id, 0);
+    return _datasource.getPropertyBoolean(VehicleProperty.MIRROR_LOCK.id, 0);
   }
 
   /**
@@ -9578,8 +10003,14 @@ class VehiclePrivilegedPropertyRepository {
      *  write property.
      * </ul>
      */
-  PropertyStreamData<bool> listenMirrorLock() {
-    return _datasource.listenPropertyBOOLEAN(VehicleProperty.MIRROR_LOCK.id, 0);
+  PropertyStreamData<bool> listenMirrorLock({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
+      VehicleProperty.MIRROR_LOCK.id,
+      0,
+      rate,
+    );
   }
 
   /**
@@ -9603,7 +10034,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setMirrorLock(bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.MIRROR_LOCK.id,
       0,
       value,
@@ -9629,7 +10060,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getMirrorFold() async {
-    return _datasource.getPropertyBOOLEAN(VehicleProperty.MIRROR_FOLD.id, 0);
+    return _datasource.getPropertyBoolean(VehicleProperty.MIRROR_FOLD.id, 0);
   }
 
   /**
@@ -9650,8 +10081,14 @@ class VehiclePrivilegedPropertyRepository {
      *  write property.
      * </ul>
      */
-  PropertyStreamData<bool> listenMirrorFold() {
-    return _datasource.listenPropertyBOOLEAN(VehicleProperty.MIRROR_FOLD.id, 0);
+  PropertyStreamData<bool> listenMirrorFold({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
+      VehicleProperty.MIRROR_FOLD.id,
+      0,
+      rate,
+    );
   }
 
   /**
@@ -9673,7 +10110,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setMirrorFold(bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.MIRROR_FOLD.id,
       0,
       value,
@@ -9702,7 +10139,7 @@ class VehiclePrivilegedPropertyRepository {
      *  write property.
      */
   Future<bool> getMirrorAutoFoldEnabled(VehicleAreaMirror area) async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.MIRROR_AUTO_FOLD_ENABLED.id,
       area.value,
     );
@@ -9729,10 +10166,14 @@ class VehiclePrivilegedPropertyRepository {
      *  <li>Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_MIRRORS} to read and
      *  write property.
      */
-  PropertyStreamData<bool> listenMirrorAutoFoldEnabled(VehicleAreaMirror area) {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenMirrorAutoFoldEnabled(
+    VehicleAreaMirror area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.MIRROR_AUTO_FOLD_ENABLED.id,
       area.value,
+      rate,
     );
   }
 
@@ -9761,7 +10202,7 @@ class VehiclePrivilegedPropertyRepository {
     VehicleAreaMirror area,
     bool value,
   ) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.MIRROR_AUTO_FOLD_ENABLED.id,
       area.value,
       value,
@@ -9791,7 +10232,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getMirrorAutoTiltEnabled(VehicleAreaMirror area) async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.MIRROR_AUTO_TILT_ENABLED.id,
       area.value,
     );
@@ -9819,10 +10260,14 @@ class VehiclePrivilegedPropertyRepository {
      *  write property.
      * </ul>
      */
-  PropertyStreamData<bool> listenMirrorAutoTiltEnabled(VehicleAreaMirror area) {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenMirrorAutoTiltEnabled(
+    VehicleAreaMirror area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.MIRROR_AUTO_TILT_ENABLED.id,
       area.value,
+      rate,
     );
   }
 
@@ -9852,7 +10297,7 @@ class VehiclePrivilegedPropertyRepository {
     VehicleAreaMirror area,
     bool value,
   ) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.MIRROR_AUTO_TILT_ENABLED.id,
       area.value,
       value,
@@ -9893,7 +10338,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getGloveBoxDoorPos(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.GLOVE_BOX_DOOR_POS.id,
       area.value,
     );
@@ -9932,10 +10377,14 @@ class VehiclePrivilegedPropertyRepository {
      *  write property.
      * </ul>
      */
-  PropertyStreamData<int> listenGloveBoxDoorPos(VehicleAreaSeat area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenGloveBoxDoorPos(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.GLOVE_BOX_DOOR_POS.id,
       area.value,
+      rate,
     );
   }
 
@@ -9973,7 +10422,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setGloveBoxDoorPos(VehicleAreaSeat area, int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.GLOVE_BOX_DOOR_POS.id,
       area.value,
       value,
@@ -10005,7 +10454,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getGloveBoxLocked(VehicleAreaSeat area) async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.GLOVE_BOX_LOCKED.id,
       area.value,
     );
@@ -10035,10 +10484,14 @@ class VehiclePrivilegedPropertyRepository {
      *  write property.
      * </ul>
      */
-  PropertyStreamData<bool> listenGloveBoxLocked(VehicleAreaSeat area) {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenGloveBoxLocked(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.GLOVE_BOX_LOCKED.id,
       area.value,
+      rate,
     );
   }
 
@@ -10067,7 +10520,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setGloveBoxLocked(VehicleAreaSeat area, bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.GLOVE_BOX_LOCKED.id,
       area.value,
       value,
@@ -10098,7 +10551,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setSeatMemorySelect(VehicleAreaSeat area, int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.SEAT_MEMORY_SELECT.id,
       area.value,
       value,
@@ -10129,7 +10582,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setSeatMemorySet(VehicleAreaSeat area, int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.SEAT_MEMORY_SET.id,
       area.value,
       value,
@@ -10157,7 +10610,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getSeatBeltBuckled(VehicleAreaSeat area) async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.SEAT_BELT_BUCKLED.id,
       area.value,
     );
@@ -10183,10 +10636,14 @@ class VehiclePrivilegedPropertyRepository {
      *  write property.
      * </ul>
      */
-  PropertyStreamData<bool> listenSeatBeltBuckled(VehicleAreaSeat area) {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenSeatBeltBuckled(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.SEAT_BELT_BUCKLED.id,
       area.value,
+      rate,
     );
   }
 
@@ -10211,7 +10668,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setSeatBeltBuckled(VehicleAreaSeat area, bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.SEAT_BELT_BUCKLED.id,
       area.value,
       value,
@@ -10248,7 +10705,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getSeatBeltHeightPos(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.SEAT_BELT_HEIGHT_POS.id,
       area.value,
     );
@@ -10283,10 +10740,14 @@ class VehiclePrivilegedPropertyRepository {
      *  write property.
      * </ul>
      */
-  PropertyStreamData<int> listenSeatBeltHeightPos(VehicleAreaSeat area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenSeatBeltHeightPos(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_BELT_HEIGHT_POS.id,
       area.value,
+      rate,
     );
   }
 
@@ -10320,7 +10781,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setSeatBeltHeightPos(VehicleAreaSeat area, int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.SEAT_BELT_HEIGHT_POS.id,
       area.value,
       value,
@@ -10359,7 +10820,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getSeatBeltHeightMove(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.SEAT_BELT_HEIGHT_MOVE.id,
       area.value,
     );
@@ -10396,10 +10857,14 @@ class VehiclePrivilegedPropertyRepository {
      *  write property.
      * </ul>
      */
-  PropertyStreamData<int> listenSeatBeltHeightMove(VehicleAreaSeat area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenSeatBeltHeightMove(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_BELT_HEIGHT_MOVE.id,
       area.value,
+      rate,
     );
   }
 
@@ -10435,7 +10900,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setSeatBeltHeightMove(VehicleAreaSeat area, int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.SEAT_BELT_HEIGHT_MOVE.id,
       area.value,
       value,
@@ -10472,7 +10937,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getSeatForeAftPos(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.SEAT_FORE_AFT_POS.id,
       area.value,
     );
@@ -10507,10 +10972,14 @@ class VehiclePrivilegedPropertyRepository {
      *  write property.
      * </ul>
      */
-  PropertyStreamData<int> listenSeatForeAftPos(VehicleAreaSeat area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenSeatForeAftPos(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_FORE_AFT_POS.id,
       area.value,
+      rate,
     );
   }
 
@@ -10544,7 +11013,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setSeatForeAftPos(VehicleAreaSeat area, int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.SEAT_FORE_AFT_POS.id,
       area.value,
       value,
@@ -10584,7 +11053,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getSeatForeAftMove(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.SEAT_FORE_AFT_MOVE.id,
       area.value,
     );
@@ -10622,10 +11091,14 @@ class VehiclePrivilegedPropertyRepository {
      *  write property.
      * </ul>
      */
-  PropertyStreamData<int> listenSeatForeAftMove(VehicleAreaSeat area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenSeatForeAftMove(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_FORE_AFT_MOVE.id,
       area.value,
+      rate,
     );
   }
 
@@ -10662,7 +11135,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setSeatForeAftMove(VehicleAreaSeat area, int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.SEAT_FORE_AFT_MOVE.id,
       area.value,
       value,
@@ -10701,7 +11174,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getSeatBackrestAngle1Pos(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.SEAT_BACKREST_ANGLE_1_POS.id,
       area.value,
     );
@@ -10738,10 +11211,14 @@ class VehiclePrivilegedPropertyRepository {
      *  write property.
      * </ul>
      */
-  PropertyStreamData<int> listenSeatBackrestAngle1Pos(VehicleAreaSeat area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenSeatBackrestAngle1Pos(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_BACKREST_ANGLE_1_POS.id,
       area.value,
+      rate,
     );
   }
 
@@ -10777,7 +11254,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setSeatBackrestAngle1Pos(VehicleAreaSeat area, int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.SEAT_BACKREST_ANGLE_1_POS.id,
       area.value,
       value,
@@ -10819,7 +11296,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getSeatBackrestAngle1Move(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.SEAT_BACKREST_ANGLE_1_MOVE.id,
       area.value,
     );
@@ -10859,10 +11336,14 @@ class VehiclePrivilegedPropertyRepository {
      *  write property.
      * </ul>
      */
-  PropertyStreamData<int> listenSeatBackrestAngle1Move(VehicleAreaSeat area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenSeatBackrestAngle1Move(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_BACKREST_ANGLE_1_MOVE.id,
       area.value,
+      rate,
     );
   }
 
@@ -10904,7 +11385,7 @@ class VehiclePrivilegedPropertyRepository {
     VehicleAreaSeat area,
     int value,
   ) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.SEAT_BACKREST_ANGLE_1_MOVE.id,
       area.value,
       value,
@@ -10943,7 +11424,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getSeatBackrestAngle2Pos(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.SEAT_BACKREST_ANGLE_2_POS.id,
       area.value,
     );
@@ -10980,10 +11461,14 @@ class VehiclePrivilegedPropertyRepository {
      *  write property.
      * </ul>
      */
-  PropertyStreamData<int> listenSeatBackrestAngle2Pos(VehicleAreaSeat area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenSeatBackrestAngle2Pos(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_BACKREST_ANGLE_2_POS.id,
       area.value,
+      rate,
     );
   }
 
@@ -11019,7 +11504,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setSeatBackrestAngle2Pos(VehicleAreaSeat area, int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.SEAT_BACKREST_ANGLE_2_POS.id,
       area.value,
       value,
@@ -11063,7 +11548,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getSeatBackrestAngle2Move(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.SEAT_BACKREST_ANGLE_2_MOVE.id,
       area.value,
     );
@@ -11105,10 +11590,14 @@ class VehiclePrivilegedPropertyRepository {
      *  write property.
      * </ul>
      */
-  PropertyStreamData<int> listenSeatBackrestAngle2Move(VehicleAreaSeat area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenSeatBackrestAngle2Move(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_BACKREST_ANGLE_2_MOVE.id,
       area.value,
+      rate,
     );
   }
 
@@ -11152,7 +11641,7 @@ class VehiclePrivilegedPropertyRepository {
     VehicleAreaSeat area,
     int value,
   ) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.SEAT_BACKREST_ANGLE_2_MOVE.id,
       area.value,
       value,
@@ -11189,7 +11678,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getSeatHeightPos(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.SEAT_HEIGHT_POS.id,
       area.value,
     );
@@ -11224,10 +11713,14 @@ class VehiclePrivilegedPropertyRepository {
      *  write property.
      * </ul>
      */
-  PropertyStreamData<int> listenSeatHeightPos(VehicleAreaSeat area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenSeatHeightPos(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_HEIGHT_POS.id,
       area.value,
+      rate,
     );
   }
 
@@ -11261,7 +11754,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setSeatHeightPos(VehicleAreaSeat area, int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.SEAT_HEIGHT_POS.id,
       area.value,
       value,
@@ -11299,7 +11792,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getSeatHeightMove(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.SEAT_HEIGHT_MOVE.id,
       area.value,
     );
@@ -11335,10 +11828,14 @@ class VehiclePrivilegedPropertyRepository {
      *  write property.
      * </ul>
      */
-  PropertyStreamData<int> listenSeatHeightMove(VehicleAreaSeat area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenSeatHeightMove(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_HEIGHT_MOVE.id,
       area.value,
+      rate,
     );
   }
 
@@ -11373,7 +11870,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setSeatHeightMove(VehicleAreaSeat area, int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.SEAT_HEIGHT_MOVE.id,
       area.value,
       value,
@@ -11412,7 +11909,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getSeatDepthPos(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.SEAT_DEPTH_POS.id,
       area.value,
     );
@@ -11449,10 +11946,14 @@ class VehiclePrivilegedPropertyRepository {
      *  write property.
      * </ul>
      */
-  PropertyStreamData<int> listenSeatDepthPos(VehicleAreaSeat area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenSeatDepthPos(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_DEPTH_POS.id,
       area.value,
+      rate,
     );
   }
 
@@ -11488,7 +11989,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setSeatDepthPos(VehicleAreaSeat area, int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.SEAT_DEPTH_POS.id,
       area.value,
       value,
@@ -11528,7 +12029,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getSeatDepthMove(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.SEAT_DEPTH_MOVE.id,
       area.value,
     );
@@ -11566,10 +12067,14 @@ class VehiclePrivilegedPropertyRepository {
      *  write property.
      * </ul>
      */
-  PropertyStreamData<int> listenSeatDepthMove(VehicleAreaSeat area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenSeatDepthMove(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_DEPTH_MOVE.id,
       area.value,
+      rate,
     );
   }
 
@@ -11606,7 +12111,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setSeatDepthMove(VehicleAreaSeat area, int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.SEAT_DEPTH_MOVE.id,
       area.value,
       value,
@@ -11645,7 +12150,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getSeatTiltPos(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.SEAT_TILT_POS.id,
       area.value,
     );
@@ -11682,10 +12187,14 @@ class VehiclePrivilegedPropertyRepository {
      *  write property.
      * </ul>
      */
-  PropertyStreamData<int> listenSeatTiltPos(VehicleAreaSeat area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenSeatTiltPos(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_TILT_POS.id,
       area.value,
+      rate,
     );
   }
 
@@ -11721,7 +12230,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setSeatTiltPos(VehicleAreaSeat area, int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.SEAT_TILT_POS.id,
       area.value,
       value,
@@ -11761,7 +12270,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getSeatTiltMove(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.SEAT_TILT_MOVE.id,
       area.value,
     );
@@ -11799,10 +12308,14 @@ class VehiclePrivilegedPropertyRepository {
      *  write property.
      * </ul>
      */
-  PropertyStreamData<int> listenSeatTiltMove(VehicleAreaSeat area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenSeatTiltMove(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_TILT_MOVE.id,
       area.value,
+      rate,
     );
   }
 
@@ -11839,7 +12352,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setSeatTiltMove(VehicleAreaSeat area, int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.SEAT_TILT_MOVE.id,
       area.value,
       value,
@@ -11876,7 +12389,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getSeatLumbarForeAftPos(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.SEAT_LUMBAR_FORE_AFT_POS.id,
       area.value,
     );
@@ -11911,10 +12424,14 @@ class VehiclePrivilegedPropertyRepository {
      *  write property.
      * </ul>
      */
-  PropertyStreamData<int> listenSeatLumbarForeAftPos(VehicleAreaSeat area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenSeatLumbarForeAftPos(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_LUMBAR_FORE_AFT_POS.id,
       area.value,
+      rate,
     );
   }
 
@@ -11948,7 +12465,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setSeatLumbarForeAftPos(VehicleAreaSeat area, int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.SEAT_LUMBAR_FORE_AFT_POS.id,
       area.value,
       value,
@@ -11987,7 +12504,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getSeatLumbarForeAftMove(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.SEAT_LUMBAR_FORE_AFT_MOVE.id,
       area.value,
     );
@@ -12024,10 +12541,14 @@ class VehiclePrivilegedPropertyRepository {
      *  write property.
      * </ul>
      */
-  PropertyStreamData<int> listenSeatLumbarForeAftMove(VehicleAreaSeat area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenSeatLumbarForeAftMove(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_LUMBAR_FORE_AFT_MOVE.id,
       area.value,
+      rate,
     );
   }
 
@@ -12063,7 +12584,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setSeatLumbarForeAftMove(VehicleAreaSeat area, int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.SEAT_LUMBAR_FORE_AFT_MOVE.id,
       area.value,
       value,
@@ -12100,7 +12621,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getSeatLumbarSideSupportPos(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.SEAT_LUMBAR_SIDE_SUPPORT_POS.id,
       area.value,
     );
@@ -12135,10 +12656,14 @@ class VehiclePrivilegedPropertyRepository {
      *  write property.
      * </ul>
      */
-  PropertyStreamData<int> listenSeatLumbarSideSupportPos(VehicleAreaSeat area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenSeatLumbarSideSupportPos(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_LUMBAR_SIDE_SUPPORT_POS.id,
       area.value,
+      rate,
     );
   }
 
@@ -12175,7 +12700,7 @@ class VehiclePrivilegedPropertyRepository {
     VehicleAreaSeat area,
     int value,
   ) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.SEAT_LUMBAR_SIDE_SUPPORT_POS.id,
       area.value,
       value,
@@ -12214,7 +12739,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getSeatLumbarSideSupportMove(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.SEAT_LUMBAR_SIDE_SUPPORT_MOVE.id,
       area.value,
     );
@@ -12252,11 +12777,13 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   PropertyStreamData<int> listenSeatLumbarSideSupportMove(
-    VehicleAreaSeat area,
-  ) {
-    return _datasource.listenPropertyINT32(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_LUMBAR_SIDE_SUPPORT_MOVE.id,
       area.value,
+      rate,
     );
   }
 
@@ -12295,7 +12822,7 @@ class VehiclePrivilegedPropertyRepository {
     VehicleAreaSeat area,
     int value,
   ) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.SEAT_LUMBAR_SIDE_SUPPORT_MOVE.id,
       area.value,
       value,
@@ -12335,7 +12862,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getSeatHeadrestHeightPosV2(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.SEAT_HEADREST_HEIGHT_POS_V2.id,
       area.value,
     );
@@ -12373,10 +12900,14 @@ class VehiclePrivilegedPropertyRepository {
      *  and write property.
      * </ul>
      */
-  PropertyStreamData<int> listenSeatHeadrestHeightPosV2(VehicleAreaSeat area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenSeatHeadrestHeightPosV2(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_HEADREST_HEIGHT_POS_V2.id,
       area.value,
+      rate,
     );
   }
 
@@ -12416,7 +12947,7 @@ class VehiclePrivilegedPropertyRepository {
     VehicleAreaSeat area,
     int value,
   ) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.SEAT_HEADREST_HEIGHT_POS_V2.id,
       area.value,
       value,
@@ -12454,7 +12985,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getSeatHeadrestHeightMove(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.SEAT_HEADREST_HEIGHT_MOVE.id,
       area.value,
     );
@@ -12490,10 +13021,14 @@ class VehiclePrivilegedPropertyRepository {
      *  and write property.
      * </ul>
      */
-  PropertyStreamData<int> listenSeatHeadrestHeightMove(VehicleAreaSeat area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenSeatHeadrestHeightMove(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_HEADREST_HEIGHT_MOVE.id,
       area.value,
+      rate,
     );
   }
 
@@ -12531,7 +13066,7 @@ class VehiclePrivilegedPropertyRepository {
     VehicleAreaSeat area,
     int value,
   ) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.SEAT_HEADREST_HEIGHT_MOVE.id,
       area.value,
       value,
@@ -12568,7 +13103,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getSeatHeadrestAnglePos(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.SEAT_HEADREST_ANGLE_POS.id,
       area.value,
     );
@@ -12603,10 +13138,14 @@ class VehiclePrivilegedPropertyRepository {
      *  and write property.
      * </ul>
      */
-  PropertyStreamData<int> listenSeatHeadrestAnglePos(VehicleAreaSeat area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenSeatHeadrestAnglePos(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_HEADREST_ANGLE_POS.id,
       area.value,
+      rate,
     );
   }
 
@@ -12640,7 +13179,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setSeatHeadrestAnglePos(VehicleAreaSeat area, int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.SEAT_HEADREST_ANGLE_POS.id,
       area.value,
       value,
@@ -12678,7 +13217,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getSeatHeadrestAngleMove(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.SEAT_HEADREST_ANGLE_MOVE.id,
       area.value,
     );
@@ -12714,10 +13253,14 @@ class VehiclePrivilegedPropertyRepository {
      *  and write property.
      * </ul>
      */
-  PropertyStreamData<int> listenSeatHeadrestAngleMove(VehicleAreaSeat area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenSeatHeadrestAngleMove(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_HEADREST_ANGLE_MOVE.id,
       area.value,
+      rate,
     );
   }
 
@@ -12752,7 +13295,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setSeatHeadrestAngleMove(VehicleAreaSeat area, int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.SEAT_HEADREST_ANGLE_MOVE.id,
       area.value,
       value,
@@ -12789,7 +13332,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getSeatHeadrestForeAftPos(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.SEAT_HEADREST_FORE_AFT_POS.id,
       area.value,
     );
@@ -12824,10 +13367,14 @@ class VehiclePrivilegedPropertyRepository {
      *  and write property.
      * </ul>
      */
-  PropertyStreamData<int> listenSeatHeadrestForeAftPos(VehicleAreaSeat area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenSeatHeadrestForeAftPos(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_HEADREST_FORE_AFT_POS.id,
       area.value,
+      rate,
     );
   }
 
@@ -12864,7 +13411,7 @@ class VehiclePrivilegedPropertyRepository {
     VehicleAreaSeat area,
     int value,
   ) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.SEAT_HEADREST_FORE_AFT_POS.id,
       area.value,
       value,
@@ -12903,7 +13450,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getSeatHeadrestForeAftMove(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.SEAT_HEADREST_FORE_AFT_MOVE.id,
       area.value,
     );
@@ -12940,10 +13487,14 @@ class VehiclePrivilegedPropertyRepository {
      *  and write property.
      * </ul>
      */
-  PropertyStreamData<int> listenSeatHeadrestForeAftMove(VehicleAreaSeat area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenSeatHeadrestForeAftMove(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_HEADREST_FORE_AFT_MOVE.id,
       area.value,
+      rate,
     );
   }
 
@@ -12982,7 +13533,7 @@ class VehiclePrivilegedPropertyRepository {
     VehicleAreaSeat area,
     int value,
   ) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.SEAT_HEADREST_FORE_AFT_MOVE.id,
       area.value,
       value,
@@ -13025,7 +13576,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link VehicleLightState}
      */
   Future<int> getSeatFootwellLightsState(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.SEAT_FOOTWELL_LIGHTS_STATE.id,
       area.value,
     );
@@ -13066,10 +13617,14 @@ class VehiclePrivilegedPropertyRepository {
      *
      * @data_enum {@link VehicleLightState}
      */
-  PropertyStreamData<int> listenSeatFootwellLightsState(VehicleAreaSeat area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenSeatFootwellLightsState(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_FOOTWELL_LIGHTS_STATE.id,
       area.value,
+      rate,
     );
   }
 
@@ -13109,7 +13664,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link VehicleLightSwitch}
      */
   Future<int> getSeatFootwellLightsSwitch(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.SEAT_FOOTWELL_LIGHTS_SWITCH.id,
       area.value,
     );
@@ -13150,10 +13705,14 @@ class VehiclePrivilegedPropertyRepository {
      *
      * @data_enum {@link VehicleLightSwitch}
      */
-  PropertyStreamData<int> listenSeatFootwellLightsSwitch(VehicleAreaSeat area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenSeatFootwellLightsSwitch(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_FOOTWELL_LIGHTS_SWITCH.id,
       area.value,
+      rate,
     );
   }
 
@@ -13196,7 +13755,7 @@ class VehiclePrivilegedPropertyRepository {
     VehicleAreaSeat area,
     int value,
   ) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.SEAT_FOOTWELL_LIGHTS_SWITCH.id,
       area.value,
       value,
@@ -13226,7 +13785,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getSeatEasyAccessEnabled(VehicleAreaSeat area) async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.SEAT_EASY_ACCESS_ENABLED.id,
       area.value,
     );
@@ -13254,10 +13813,14 @@ class VehiclePrivilegedPropertyRepository {
      *  write property.
      * </ul>
      */
-  PropertyStreamData<bool> listenSeatEasyAccessEnabled(VehicleAreaSeat area) {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenSeatEasyAccessEnabled(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.SEAT_EASY_ACCESS_ENABLED.id,
       area.value,
+      rate,
     );
   }
 
@@ -13287,7 +13850,7 @@ class VehiclePrivilegedPropertyRepository {
     VehicleAreaSeat area,
     bool value,
   ) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.SEAT_EASY_ACCESS_ENABLED.id,
       area.value,
       value,
@@ -13318,7 +13881,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getSeatAirbagEnabled(VehicleAreaSeat area) async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.SEAT_AIRBAG_ENABLED.id,
       area.value,
     );
@@ -13347,10 +13910,14 @@ class VehiclePrivilegedPropertyRepository {
      *  write property.
      * </ul>
      */
-  PropertyStreamData<bool> listenSeatAirbagEnabled(VehicleAreaSeat area) {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenSeatAirbagEnabled(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.SEAT_AIRBAG_ENABLED.id,
       area.value,
+      rate,
     );
   }
 
@@ -13378,7 +13945,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setSeatAirbagEnabled(VehicleAreaSeat area, bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.SEAT_AIRBAG_ENABLED.id,
       area.value,
       value,
@@ -13420,7 +13987,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link android.car.hardware.property.VehicleAirbagLocation}
      */
   Future<int> getSeatAirbagsDeployed(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.SEAT_AIRBAGS_DEPLOYED.id,
       area.value,
     );
@@ -13460,10 +14027,14 @@ class VehiclePrivilegedPropertyRepository {
      *
      * @data_enum {@link android.car.hardware.property.VehicleAirbagLocation}
      */
-  PropertyStreamData<int> listenSeatAirbagsDeployed(VehicleAreaSeat area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenSeatAirbagsDeployed(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_AIRBAGS_DEPLOYED.id,
       area.value,
+      rate,
     );
   }
 
@@ -13497,7 +14068,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getSeatCushionSideSupportPos(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.SEAT_CUSHION_SIDE_SUPPORT_POS.id,
       area.value,
     );
@@ -13533,11 +14104,13 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   PropertyStreamData<int> listenSeatCushionSideSupportPos(
-    VehicleAreaSeat area,
-  ) {
-    return _datasource.listenPropertyINT32(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_CUSHION_SIDE_SUPPORT_POS.id,
       area.value,
+      rate,
     );
   }
 
@@ -13574,7 +14147,7 @@ class VehiclePrivilegedPropertyRepository {
     VehicleAreaSeat area,
     int value,
   ) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.SEAT_CUSHION_SIDE_SUPPORT_POS.id,
       area.value,
       value,
@@ -13613,7 +14186,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getSeatCushionSideSupportMove(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.SEAT_CUSHION_SIDE_SUPPORT_MOVE.id,
       area.value,
     );
@@ -13651,11 +14224,13 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   PropertyStreamData<int> listenSeatCushionSideSupportMove(
-    VehicleAreaSeat area,
-  ) {
-    return _datasource.listenPropertyINT32(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_CUSHION_SIDE_SUPPORT_MOVE.id,
       area.value,
+      rate,
     );
   }
 
@@ -13694,7 +14269,7 @@ class VehiclePrivilegedPropertyRepository {
     VehicleAreaSeat area,
     int value,
   ) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.SEAT_CUSHION_SIDE_SUPPORT_MOVE.id,
       area.value,
       value,
@@ -13731,7 +14306,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getSeatLumbarVerticalPos(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.SEAT_LUMBAR_VERTICAL_POS.id,
       area.value,
     );
@@ -13766,10 +14341,14 @@ class VehiclePrivilegedPropertyRepository {
      *  write property.
      * </ul>
      */
-  PropertyStreamData<int> listenSeatLumbarVerticalPos(VehicleAreaSeat area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenSeatLumbarVerticalPos(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_LUMBAR_VERTICAL_POS.id,
       area.value,
+      rate,
     );
   }
 
@@ -13803,7 +14382,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setSeatLumbarVerticalPos(VehicleAreaSeat area, int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.SEAT_LUMBAR_VERTICAL_POS.id,
       area.value,
       value,
@@ -13841,7 +14420,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getSeatLumbarVerticalMove(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.SEAT_LUMBAR_VERTICAL_MOVE.id,
       area.value,
     );
@@ -13877,10 +14456,14 @@ class VehiclePrivilegedPropertyRepository {
      *  write property.
      * </ul>
      */
-  PropertyStreamData<int> listenSeatLumbarVerticalMove(VehicleAreaSeat area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenSeatLumbarVerticalMove(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_LUMBAR_VERTICAL_MOVE.id,
       area.value,
+      rate,
     );
   }
 
@@ -13918,7 +14501,7 @@ class VehiclePrivilegedPropertyRepository {
     VehicleAreaSeat area,
     int value,
   ) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.SEAT_LUMBAR_VERTICAL_MOVE.id,
       area.value,
       value,
@@ -13956,7 +14539,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getSeatWalkInPos(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.SEAT_WALK_IN_POS.id,
       area.value,
     );
@@ -13992,10 +14575,14 @@ class VehiclePrivilegedPropertyRepository {
      *  write property.
      * </ul>
      */
-  PropertyStreamData<int> listenSeatWalkInPos(VehicleAreaSeat area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenSeatWalkInPos(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_WALK_IN_POS.id,
       area.value,
+      rate,
     );
   }
 
@@ -14030,7 +14617,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setSeatWalkInPos(VehicleAreaSeat area, int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.SEAT_WALK_IN_POS.id,
       area.value,
       value,
@@ -14066,7 +14653,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getSeatBeltPretensionerDeployed(VehicleAreaSeat area) async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.SEAT_BELT_PRETENSIONER_DEPLOYED.id,
       area.value,
     );
@@ -14101,11 +14688,13 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   PropertyStreamData<bool> listenSeatBeltPretensionerDeployed(
-    VehicleAreaSeat area,
-  ) {
-    return _datasource.listenPropertyBOOLEAN(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.SEAT_BELT_PRETENSIONER_DEPLOYED.id,
       area.value,
+      rate,
     );
   }
 
@@ -14143,7 +14732,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getWindowPos(VehicleAreaWindow area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.WINDOW_POS.id,
       area.value,
     );
@@ -14182,10 +14771,14 @@ class VehiclePrivilegedPropertyRepository {
      *  write property.
      * </ul>
      */
-  PropertyStreamData<int> listenWindowPos(VehicleAreaWindow area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenWindowPos(
+    VehicleAreaWindow area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.WINDOW_POS.id,
       area.value,
+      rate,
     );
   }
 
@@ -14223,7 +14816,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setWindowPos(VehicleAreaWindow area, int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.WINDOW_POS.id,
       area.value,
       value,
@@ -14263,7 +14856,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getWindowMove(VehicleAreaWindow area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.WINDOW_MOVE.id,
       area.value,
     );
@@ -14301,10 +14894,14 @@ class VehiclePrivilegedPropertyRepository {
      *  write property.
      * </ul>
      */
-  PropertyStreamData<int> listenWindowMove(VehicleAreaWindow area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenWindowMove(
+    VehicleAreaWindow area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.WINDOW_MOVE.id,
       area.value,
+      rate,
     );
   }
 
@@ -14341,7 +14938,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setWindowMove(VehicleAreaWindow area, int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.WINDOW_MOVE.id,
       area.value,
       value,
@@ -14369,7 +14966,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getWindowLock(VehicleAreaWindow area) async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.WINDOW_LOCK.id,
       area.value,
     );
@@ -14395,10 +14992,14 @@ class VehiclePrivilegedPropertyRepository {
      *  write property.
      * </ul>
      */
-  PropertyStreamData<bool> listenWindowLock(VehicleAreaWindow area) {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenWindowLock(
+    VehicleAreaWindow area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.WINDOW_LOCK.id,
       area.value,
+      rate,
     );
   }
 
@@ -14423,7 +15024,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setWindowLock(VehicleAreaWindow area, bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.WINDOW_LOCK.id,
       area.value,
       value,
@@ -14457,7 +15058,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getWindshieldWipersPeriod(VehicleAreaWindow area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.WINDSHIELD_WIPERS_PERIOD.id,
       area.value,
     );
@@ -14489,10 +15090,14 @@ class VehiclePrivilegedPropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<int> listenWindshieldWipersPeriod(VehicleAreaWindow area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenWindshieldWipersPeriod(
+    VehicleAreaWindow area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.WINDSHIELD_WIPERS_PERIOD.id,
       area.value,
+      rate,
     );
   }
 
@@ -14534,7 +15139,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link WindshieldWipersSwitch}
      */
   Future<int> getWindshieldWipersSwitch(VehicleAreaWindow area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.WINDSHIELD_WIPERS_SWITCH.id,
       area.value,
     );
@@ -14577,10 +15182,14 @@ class VehiclePrivilegedPropertyRepository {
      *
      * @data_enum {@link WindshieldWipersSwitch}
      */
-  PropertyStreamData<int> listenWindshieldWipersSwitch(VehicleAreaWindow area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenWindshieldWipersSwitch(
+    VehicleAreaWindow area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.WINDSHIELD_WIPERS_SWITCH.id,
       area.value,
+      rate,
     );
   }
 
@@ -14625,7 +15234,7 @@ class VehiclePrivilegedPropertyRepository {
     VehicleAreaWindow area,
     int value,
   ) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.WINDSHIELD_WIPERS_SWITCH.id,
       area.value,
       value,
@@ -14662,7 +15271,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getSteeringWheelDepthPos() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.STEERING_WHEEL_DEPTH_POS.id,
       0,
     );
@@ -14697,10 +15306,13 @@ class VehiclePrivilegedPropertyRepository {
      *  and write property.
      * </ul>
      */
-  PropertyStreamData<int> listenSteeringWheelDepthPos() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenSteeringWheelDepthPos({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.STEERING_WHEEL_DEPTH_POS.id,
       0,
+      rate,
     );
   }
 
@@ -14734,7 +15346,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setSteeringWheelDepthPos(int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.STEERING_WHEEL_DEPTH_POS.id,
       0,
       value,
@@ -14774,7 +15386,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getSteeringWheelDepthMove() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.STEERING_WHEEL_DEPTH_MOVE.id,
       0,
     );
@@ -14812,10 +15424,13 @@ class VehiclePrivilegedPropertyRepository {
      *  and write property.
      * </ul>
      */
-  PropertyStreamData<int> listenSteeringWheelDepthMove() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenSteeringWheelDepthMove({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.STEERING_WHEEL_DEPTH_MOVE.id,
       0,
+      rate,
     );
   }
 
@@ -14852,7 +15467,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setSteeringWheelDepthMove(int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.STEERING_WHEEL_DEPTH_MOVE.id,
       0,
       value,
@@ -14889,7 +15504,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getSteeringWheelHeightPos() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.STEERING_WHEEL_HEIGHT_POS.id,
       0,
     );
@@ -14924,10 +15539,13 @@ class VehiclePrivilegedPropertyRepository {
      *  and write property.
      * </ul>
      */
-  PropertyStreamData<int> listenSteeringWheelHeightPos() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenSteeringWheelHeightPos({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.STEERING_WHEEL_HEIGHT_POS.id,
       0,
+      rate,
     );
   }
 
@@ -14961,7 +15579,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setSteeringWheelHeightPos(int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.STEERING_WHEEL_HEIGHT_POS.id,
       0,
       value,
@@ -15000,7 +15618,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getSteeringWheelHeightMove() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.STEERING_WHEEL_HEIGHT_MOVE.id,
       0,
     );
@@ -15037,10 +15655,13 @@ class VehiclePrivilegedPropertyRepository {
      *  and write property.
      * </ul>
      */
-  PropertyStreamData<int> listenSteeringWheelHeightMove() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenSteeringWheelHeightMove({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.STEERING_WHEEL_HEIGHT_MOVE.id,
       0,
+      rate,
     );
   }
 
@@ -15076,7 +15697,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setSteeringWheelHeightMove(int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.STEERING_WHEEL_HEIGHT_MOVE.id,
       0,
       value,
@@ -15106,7 +15727,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getSteeringWheelTheftLockEnabled() async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.STEERING_WHEEL_THEFT_LOCK_ENABLED.id,
       0,
     );
@@ -15134,10 +15755,13 @@ class VehiclePrivilegedPropertyRepository {
      *  and write property.
      * </ul>
      */
-  PropertyStreamData<bool> listenSteeringWheelTheftLockEnabled() {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenSteeringWheelTheftLockEnabled({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.STEERING_WHEEL_THEFT_LOCK_ENABLED.id,
       0,
+      rate,
     );
   }
 
@@ -15164,7 +15788,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setSteeringWheelTheftLockEnabled(bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.STEERING_WHEEL_THEFT_LOCK_ENABLED.id,
       0,
       value,
@@ -15193,7 +15817,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getSteeringWheelLocked() async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.STEERING_WHEEL_LOCKED.id,
       0,
     );
@@ -15220,10 +15844,13 @@ class VehiclePrivilegedPropertyRepository {
      *  and write property.
      * </ul>
      */
-  PropertyStreamData<bool> listenSteeringWheelLocked() {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenSteeringWheelLocked({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.STEERING_WHEEL_LOCKED.id,
       0,
+      rate,
     );
   }
 
@@ -15249,7 +15876,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setSteeringWheelLocked(bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.STEERING_WHEEL_LOCKED.id,
       0,
       value,
@@ -15279,7 +15906,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getSteeringWheelEasyAccessEnabled() async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.STEERING_WHEEL_EASY_ACCESS_ENABLED.id,
       0,
     );
@@ -15307,10 +15934,13 @@ class VehiclePrivilegedPropertyRepository {
      *  and write property.
      * </ul>
      */
-  PropertyStreamData<bool> listenSteeringWheelEasyAccessEnabled() {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenSteeringWheelEasyAccessEnabled({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.STEERING_WHEEL_EASY_ACCESS_ENABLED.id,
       0,
+      rate,
     );
   }
 
@@ -15337,7 +15967,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setSteeringWheelEasyAccessEnabled(bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.STEERING_WHEEL_EASY_ACCESS_ENABLED.id,
       0,
       value,
@@ -15375,7 +16005,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<List<int>> getUltrasonicsSensorPosition() async {
-    return _datasource.getPropertyINT32_VEC(
+    return _datasource.getPropertyInt32Vec(
       VehicleProperty.ULTRASONICS_SENSOR_POSITION.id,
       0,
     );
@@ -15411,10 +16041,13 @@ class VehiclePrivilegedPropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<List<int>> listenUltrasonicsSensorPosition() {
-    return _datasource.listenPropertyINT32_VEC(
+  PropertyStreamData<List<int>> listenUltrasonicsSensorPosition({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32Vec(
       VehicleProperty.ULTRASONICS_SENSOR_POSITION.id,
       0,
+      rate,
     );
   }
 
@@ -15453,7 +16086,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<List<double>> getUltrasonicsSensorOrientation() async {
-    return _datasource.getPropertyFLOAT_VEC(
+    return _datasource.getPropertyFloatVec(
       VehicleProperty.ULTRASONICS_SENSOR_ORIENTATION.id,
       0,
     );
@@ -15493,10 +16126,13 @@ class VehiclePrivilegedPropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<List<double>> listenUltrasonicsSensorOrientation() {
-    return _datasource.listenPropertyFLOAT_VEC(
+  PropertyStreamData<List<double>> listenUltrasonicsSensorOrientation({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyFloatVec(
       VehicleProperty.ULTRASONICS_SENSOR_ORIENTATION.id,
       0,
+      rate,
     );
   }
 
@@ -15531,7 +16167,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<List<int>> getUltrasonicsSensorFieldOfView() async {
-    return _datasource.getPropertyINT32_VEC(
+    return _datasource.getPropertyInt32Vec(
       VehicleProperty.ULTRASONICS_SENSOR_FIELD_OF_VIEW.id,
       0,
     );
@@ -15567,10 +16203,13 @@ class VehiclePrivilegedPropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<List<int>> listenUltrasonicsSensorFieldOfView() {
-    return _datasource.listenPropertyINT32_VEC(
+  PropertyStreamData<List<int>> listenUltrasonicsSensorFieldOfView({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32Vec(
       VehicleProperty.ULTRASONICS_SENSOR_FIELD_OF_VIEW.id,
       0,
+      rate,
     );
   }
 
@@ -15601,7 +16240,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<List<int>> getUltrasonicsSensorDetectionRange() async {
-    return _datasource.getPropertyINT32_VEC(
+    return _datasource.getPropertyInt32Vec(
       VehicleProperty.ULTRASONICS_SENSOR_DETECTION_RANGE.id,
       0,
     );
@@ -15633,10 +16272,13 @@ class VehiclePrivilegedPropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<List<int>> listenUltrasonicsSensorDetectionRange() {
-    return _datasource.listenPropertyINT32_VEC(
+  PropertyStreamData<List<int>> listenUltrasonicsSensorDetectionRange({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32Vec(
       VehicleProperty.ULTRASONICS_SENSOR_DETECTION_RANGE.id,
       0,
+      rate,
     );
   }
 
@@ -15693,7 +16335,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<List<int>> getUltrasonicsSensorSupportedRanges() async {
-    return _datasource.getPropertyINT32_VEC(
+    return _datasource.getPropertyInt32Vec(
       VehicleProperty.ULTRASONICS_SENSOR_SUPPORTED_RANGES.id,
       0,
     );
@@ -15751,10 +16393,13 @@ class VehiclePrivilegedPropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<List<int>> listenUltrasonicsSensorSupportedRanges() {
-    return _datasource.listenPropertyINT32_VEC(
+  PropertyStreamData<List<int>> listenUltrasonicsSensorSupportedRanges({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32Vec(
       VehicleProperty.ULTRASONICS_SENSOR_SUPPORTED_RANGES.id,
       0,
+      rate,
     );
   }
 
@@ -15790,7 +16435,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<List<int>> getUltrasonicsSensorMeasuredDistance() async {
-    return _datasource.getPropertyINT32_VEC(
+    return _datasource.getPropertyInt32Vec(
       VehicleProperty.ULTRASONICS_SENSOR_MEASURED_DISTANCE.id,
       0,
     );
@@ -15827,10 +16472,13 @@ class VehiclePrivilegedPropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<List<int>> listenUltrasonicsSensorMeasuredDistance() {
-    return _datasource.listenPropertyINT32_VEC(
+  PropertyStreamData<List<int>> listenUltrasonicsSensorMeasuredDistance({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32Vec(
       VehicleProperty.ULTRASONICS_SENSOR_MEASURED_DISTANCE.id,
       0,
+      rate,
     );
   }
 
@@ -15855,7 +16503,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link VehicleLightState}
      */
   Future<int> getHeadlightsState() async {
-    return _datasource.getPropertyINT32(VehicleProperty.HEADLIGHTS_STATE.id, 0);
+    return _datasource.getPropertyInt32(VehicleProperty.HEADLIGHTS_STATE.id, 0);
   }
 
   /**
@@ -15878,10 +16526,13 @@ class VehiclePrivilegedPropertyRepository {
      *
      * @data_enum {@link VehicleLightState}
      */
-  PropertyStreamData<int> listenHeadlightsState() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenHeadlightsState({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.HEADLIGHTS_STATE.id,
       0,
+      rate,
     );
   }
 
@@ -15906,7 +16557,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link VehicleLightState}
      */
   Future<int> getHighBeamLightsState() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.HIGH_BEAM_LIGHTS_STATE.id,
       0,
     );
@@ -15932,10 +16583,13 @@ class VehiclePrivilegedPropertyRepository {
      *
      * @data_enum {@link VehicleLightState}
      */
-  PropertyStreamData<int> listenHighBeamLightsState() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenHighBeamLightsState({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.HIGH_BEAM_LIGHTS_STATE.id,
       0,
+      rate,
     );
   }
 
@@ -15981,7 +16635,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link VehicleLightState}
      */
   Future<int> getFogLightsState() async {
-    return _datasource.getPropertyINT32(VehicleProperty.FOG_LIGHTS_STATE.id, 0);
+    return _datasource.getPropertyInt32(VehicleProperty.FOG_LIGHTS_STATE.id, 0);
   }
 
   /**
@@ -16025,10 +16679,13 @@ class VehiclePrivilegedPropertyRepository {
      *
      * @data_enum {@link VehicleLightState}
      */
-  PropertyStreamData<int> listenFogLightsState() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenFogLightsState({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.FOG_LIGHTS_STATE.id,
       0,
+      rate,
     );
   }
 
@@ -16053,7 +16710,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link VehicleLightState}
      */
   Future<int> getHazardLightsState() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.HAZARD_LIGHTS_STATE.id,
       0,
     );
@@ -16079,10 +16736,13 @@ class VehiclePrivilegedPropertyRepository {
      *
      * @data_enum {@link VehicleLightState}
      */
-  PropertyStreamData<int> listenHazardLightsState() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenHazardLightsState({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.HAZARD_LIGHTS_STATE.id,
       0,
+      rate,
     );
   }
 
@@ -16107,7 +16767,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link VehicleLightSwitch}
      */
   Future<int> getHeadlightsSwitch() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.HEADLIGHTS_SWITCH.id,
       0,
     );
@@ -16133,10 +16793,13 @@ class VehiclePrivilegedPropertyRepository {
      *
      * @data_enum {@link VehicleLightSwitch}
      */
-  PropertyStreamData<int> listenHeadlightsSwitch() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenHeadlightsSwitch({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.HEADLIGHTS_SWITCH.id,
       0,
+      rate,
     );
   }
 
@@ -16161,7 +16824,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link VehicleLightSwitch}
      */
   Future<void> setHeadlightsSwitch(int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.HEADLIGHTS_SWITCH.id,
       0,
       value,
@@ -16189,7 +16852,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link VehicleLightSwitch}
      */
   Future<int> getHighBeamLightsSwitch() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.HIGH_BEAM_LIGHTS_SWITCH.id,
       0,
     );
@@ -16215,10 +16878,13 @@ class VehiclePrivilegedPropertyRepository {
      *
      * @data_enum {@link VehicleLightSwitch}
      */
-  PropertyStreamData<int> listenHighBeamLightsSwitch() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenHighBeamLightsSwitch({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.HIGH_BEAM_LIGHTS_SWITCH.id,
       0,
+      rate,
     );
   }
 
@@ -16243,7 +16909,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link VehicleLightSwitch}
      */
   Future<void> setHighBeamLightsSwitch(int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.HIGH_BEAM_LIGHTS_SWITCH.id,
       0,
       value,
@@ -16294,7 +16960,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link VehicleLightSwitch}
      */
   Future<int> getFogLightsSwitch() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.FOG_LIGHTS_SWITCH.id,
       0,
     );
@@ -16343,10 +17009,13 @@ class VehiclePrivilegedPropertyRepository {
      *
      * @data_enum {@link VehicleLightSwitch}
      */
-  PropertyStreamData<int> listenFogLightsSwitch() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenFogLightsSwitch({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.FOG_LIGHTS_SWITCH.id,
       0,
+      rate,
     );
   }
 
@@ -16394,7 +17063,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link VehicleLightSwitch}
      */
   Future<void> setFogLightsSwitch(int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.FOG_LIGHTS_SWITCH.id,
       0,
       value,
@@ -16422,7 +17091,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link VehicleLightSwitch}
      */
   Future<int> getHazardLightsSwitch() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.HAZARD_LIGHTS_SWITCH.id,
       0,
     );
@@ -16448,10 +17117,13 @@ class VehiclePrivilegedPropertyRepository {
      *
      * @data_enum {@link VehicleLightSwitch}
      */
-  PropertyStreamData<int> listenHazardLightsSwitch() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenHazardLightsSwitch({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.HAZARD_LIGHTS_SWITCH.id,
       0,
+      rate,
     );
   }
 
@@ -16476,7 +17148,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link VehicleLightSwitch}
      */
   Future<void> setHazardLightsSwitch(int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.HAZARD_LIGHTS_SWITCH.id,
       0,
       value,
@@ -16504,7 +17176,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link VehicleLightState}
      */
   Future<int> getCabinLightsState() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.CABIN_LIGHTS_STATE.id,
       0,
     );
@@ -16530,10 +17202,13 @@ class VehiclePrivilegedPropertyRepository {
      *
      * @data_enum {@link VehicleLightState}
      */
-  PropertyStreamData<int> listenCabinLightsState() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenCabinLightsState({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.CABIN_LIGHTS_STATE.id,
       0,
+      rate,
     );
   }
 
@@ -16558,7 +17233,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link VehicleLightSwitch}
      */
   Future<int> getCabinLightsSwitch() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.CABIN_LIGHTS_SWITCH.id,
       0,
     );
@@ -16584,10 +17259,13 @@ class VehiclePrivilegedPropertyRepository {
      *
      * @data_enum {@link VehicleLightSwitch}
      */
-  PropertyStreamData<int> listenCabinLightsSwitch() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenCabinLightsSwitch({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.CABIN_LIGHTS_SWITCH.id,
       0,
+      rate,
     );
   }
 
@@ -16612,7 +17290,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link VehicleLightSwitch}
      */
   Future<void> setCabinLightsSwitch(int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.CABIN_LIGHTS_SWITCH.id,
       0,
       value,
@@ -16640,7 +17318,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link VehicleLightState}
      */
   Future<int> getReadingLightsState(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.READING_LIGHTS_STATE.id,
       area.value,
     );
@@ -16666,10 +17344,14 @@ class VehiclePrivilegedPropertyRepository {
      *
      * @data_enum {@link VehicleLightState}
      */
-  PropertyStreamData<int> listenReadingLightsState(VehicleAreaSeat area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenReadingLightsState(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.READING_LIGHTS_STATE.id,
       area.value,
+      rate,
     );
   }
 
@@ -16694,7 +17376,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link VehicleLightSwitch}
      */
   Future<int> getReadingLightsSwitch(VehicleAreaSeat area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.READING_LIGHTS_SWITCH.id,
       area.value,
     );
@@ -16720,10 +17402,14 @@ class VehiclePrivilegedPropertyRepository {
      *
      * @data_enum {@link VehicleLightSwitch}
      */
-  PropertyStreamData<int> listenReadingLightsSwitch(VehicleAreaSeat area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenReadingLightsSwitch(
+    VehicleAreaSeat area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.READING_LIGHTS_SWITCH.id,
       area.value,
+      rate,
     );
   }
 
@@ -16748,7 +17434,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link VehicleLightSwitch}
      */
   Future<void> setReadingLightsSwitch(VehicleAreaSeat area, int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.READING_LIGHTS_SWITCH.id,
       area.value,
       value,
@@ -16791,7 +17477,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link VehicleLightState}
      */
   Future<int> getSteeringWheelLightsState() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.STEERING_WHEEL_LIGHTS_STATE.id,
       0,
     );
@@ -16832,10 +17518,13 @@ class VehiclePrivilegedPropertyRepository {
      *
      * @data_enum {@link VehicleLightState}
      */
-  PropertyStreamData<int> listenSteeringWheelLightsState() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenSteeringWheelLightsState({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.STEERING_WHEEL_LIGHTS_STATE.id,
       0,
+      rate,
     );
   }
 
@@ -16875,7 +17564,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link VehicleLightSwitch}
      */
   Future<int> getSteeringWheelLightsSwitch() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.STEERING_WHEEL_LIGHTS_SWITCH.id,
       0,
     );
@@ -16916,10 +17605,13 @@ class VehiclePrivilegedPropertyRepository {
      *
      * @data_enum {@link VehicleLightSwitch}
      */
-  PropertyStreamData<int> listenSteeringWheelLightsSwitch() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenSteeringWheelLightsSwitch({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.STEERING_WHEEL_LIGHTS_SWITCH.id,
       0,
+      rate,
     );
   }
 
@@ -16959,7 +17651,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link VehicleLightSwitch}
      */
   Future<void> setSteeringWheelLightsSwitch(int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.STEERING_WHEEL_LIGHTS_SWITCH.id,
       0,
       value,
@@ -16987,7 +17679,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setEpochTime(int value) async {
-    return _datasource.setPropertyINT64(
+    return _datasource.setPropertyInt64(
       VehicleProperty.EPOCH_TIME.id,
       0,
       value,
@@ -17017,7 +17709,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link VehicleLightState}
      */
   Future<int> getFrontFogLightsState() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.FRONT_FOG_LIGHTS_STATE.id,
       0,
     );
@@ -17045,10 +17737,13 @@ class VehiclePrivilegedPropertyRepository {
      *
      * @data_enum {@link VehicleLightState}
      */
-  PropertyStreamData<int> listenFrontFogLightsState() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenFrontFogLightsState({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.FRONT_FOG_LIGHTS_STATE.id,
       0,
+      rate,
     );
   }
 
@@ -17075,7 +17770,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link VehicleLightSwitch}
      */
   Future<int> getFrontFogLightsSwitch() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.FRONT_FOG_LIGHTS_SWITCH.id,
       0,
     );
@@ -17103,10 +17798,13 @@ class VehiclePrivilegedPropertyRepository {
      *
      * @data_enum {@link VehicleLightSwitch}
      */
-  PropertyStreamData<int> listenFrontFogLightsSwitch() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenFrontFogLightsSwitch({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.FRONT_FOG_LIGHTS_SWITCH.id,
       0,
+      rate,
     );
   }
 
@@ -17133,7 +17831,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link VehicleLightSwitch}
      */
   Future<void> setFrontFogLightsSwitch(int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.FRONT_FOG_LIGHTS_SWITCH.id,
       0,
       value,
@@ -17163,7 +17861,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link VehicleLightState}
      */
   Future<int> getRearFogLightsState() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.REAR_FOG_LIGHTS_STATE.id,
       0,
     );
@@ -17191,10 +17889,13 @@ class VehiclePrivilegedPropertyRepository {
      *
      * @data_enum {@link VehicleLightState}
      */
-  PropertyStreamData<int> listenRearFogLightsState() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenRearFogLightsState({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.REAR_FOG_LIGHTS_STATE.id,
       0,
+      rate,
     );
   }
 
@@ -17221,7 +17922,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link VehicleLightSwitch}
      */
   Future<int> getRearFogLightsSwitch() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.REAR_FOG_LIGHTS_SWITCH.id,
       0,
     );
@@ -17249,10 +17950,13 @@ class VehiclePrivilegedPropertyRepository {
      *
      * @data_enum {@link VehicleLightSwitch}
      */
-  PropertyStreamData<int> listenRearFogLightsSwitch() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenRearFogLightsSwitch({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.REAR_FOG_LIGHTS_SWITCH.id,
       0,
+      rate,
     );
   }
 
@@ -17279,7 +17983,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link VehicleLightSwitch}
      */
   Future<void> setRearFogLightsSwitch(int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.REAR_FOG_LIGHTS_SWITCH.id,
       0,
       value,
@@ -17310,7 +18014,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setEvChargeCurrentDrawLimit(double value) async {
-    return _datasource.setPropertyFLOAT(
+    return _datasource.setPropertyFloat(
       VehicleProperty.EV_CHARGE_CURRENT_DRAW_LIMIT.id,
       0,
       value,
@@ -17350,7 +18054,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setEvChargePercentLimit(double value) async {
-    return _datasource.setPropertyFLOAT(
+    return _datasource.setPropertyFloat(
       VehicleProperty.EV_CHARGE_PERCENT_LIMIT.id,
       0,
       value,
@@ -17381,7 +18085,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getEvChargeSwitch() async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.EV_CHARGE_SWITCH.id,
       0,
     );
@@ -17410,10 +18114,13 @@ class VehiclePrivilegedPropertyRepository {
      *  property.
      * </ul>
      */
-  PropertyStreamData<bool> listenEvChargeSwitch() {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenEvChargeSwitch({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.EV_CHARGE_SWITCH.id,
       0,
+      rate,
     );
   }
 
@@ -17441,7 +18148,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setEvChargeSwitch(bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.EV_CHARGE_SWITCH.id,
       0,
       value,
@@ -17473,7 +18180,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getVehicleCurbWeight() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.VEHICLE_CURB_WEIGHT.id,
       0,
     );
@@ -17503,10 +18210,13 @@ class VehiclePrivilegedPropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<int> listenVehicleCurbWeight() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenVehicleCurbWeight({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.VEHICLE_CURB_WEIGHT.id,
       0,
+      rate,
     );
   }
 
@@ -17534,7 +18244,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link TrailerState}
      */
   Future<int> getTrailerPresent() async {
-    return _datasource.getPropertyINT32(VehicleProperty.TRAILER_PRESENT.id, 0);
+    return _datasource.getPropertyInt32(VehicleProperty.TRAILER_PRESENT.id, 0);
   }
 
   /**
@@ -17560,10 +18270,13 @@ class VehiclePrivilegedPropertyRepository {
      *
      * @data_enum {@link TrailerState}
      */
-  PropertyStreamData<int> listenTrailerPresent() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenTrailerPresent({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.TRAILER_PRESENT.id,
       0,
+      rate,
     );
   }
 
@@ -17611,7 +18324,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link android.car.hardware.property.VehicleAutonomousState}
      */
   Future<int> getVehicleDrivingAutomationTargetLevel() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.VEHICLE_DRIVING_AUTOMATION_TARGET_LEVEL.id,
       0,
     );
@@ -17660,10 +18373,13 @@ class VehiclePrivilegedPropertyRepository {
      *
      * @data_enum {@link android.car.hardware.property.VehicleAutonomousState}
      */
-  PropertyStreamData<int> listenVehicleDrivingAutomationTargetLevel() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenVehicleDrivingAutomationTargetLevel({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.VEHICLE_DRIVING_AUTOMATION_TARGET_LEVEL.id,
       0,
+      rate,
     );
   }
 
@@ -17697,7 +18413,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getAutomaticEmergencyBrakingEnabled() async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.AUTOMATIC_EMERGENCY_BRAKING_ENABLED.id,
       0,
     );
@@ -17732,10 +18448,13 @@ class VehiclePrivilegedPropertyRepository {
      *  property.
      * </ul>
      */
-  PropertyStreamData<bool> listenAutomaticEmergencyBrakingEnabled() {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenAutomaticEmergencyBrakingEnabled({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.AUTOMATIC_EMERGENCY_BRAKING_ENABLED.id,
       0,
+      rate,
     );
   }
 
@@ -17769,7 +18488,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setAutomaticEmergencyBrakingEnabled(bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.AUTOMATIC_EMERGENCY_BRAKING_ENABLED.id,
       0,
       value,
@@ -17813,7 +18532,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link ErrorState}
      */
   Future<int> getAutomaticEmergencyBrakingState() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.AUTOMATIC_EMERGENCY_BRAKING_STATE.id,
       0,
     );
@@ -17855,10 +18574,13 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link AutomaticEmergencyBrakingState}
      * @data_enum {@link ErrorState}
      */
-  PropertyStreamData<int> listenAutomaticEmergencyBrakingState() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenAutomaticEmergencyBrakingState({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.AUTOMATIC_EMERGENCY_BRAKING_STATE.id,
       0,
+      rate,
     );
   }
 
@@ -17890,7 +18612,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getForwardCollisionWarningEnabled() async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.FORWARD_COLLISION_WARNING_ENABLED.id,
       0,
     );
@@ -17923,10 +18645,13 @@ class VehiclePrivilegedPropertyRepository {
      *  property.
      * </ul>
      */
-  PropertyStreamData<bool> listenForwardCollisionWarningEnabled() {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenForwardCollisionWarningEnabled({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.FORWARD_COLLISION_WARNING_ENABLED.id,
       0,
+      rate,
     );
   }
 
@@ -17958,7 +18683,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setForwardCollisionWarningEnabled(bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.FORWARD_COLLISION_WARNING_ENABLED.id,
       0,
       value,
@@ -17997,7 +18722,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link ErrorState}
      */
   Future<int> getForwardCollisionWarningState() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.FORWARD_COLLISION_WARNING_STATE.id,
       0,
     );
@@ -18034,10 +18759,13 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link ForwardCollisionWarningState}
      * @data_enum {@link ErrorState}
      */
-  PropertyStreamData<int> listenForwardCollisionWarningState() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenForwardCollisionWarningState({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.FORWARD_COLLISION_WARNING_STATE.id,
       0,
+      rate,
     );
   }
 
@@ -18070,7 +18798,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getBlindSpotWarningEnabled() async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.BLIND_SPOT_WARNING_ENABLED.id,
       0,
     );
@@ -18104,10 +18832,13 @@ class VehiclePrivilegedPropertyRepository {
      *  property.
      * </ul>
      */
-  PropertyStreamData<bool> listenBlindSpotWarningEnabled() {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenBlindSpotWarningEnabled({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.BLIND_SPOT_WARNING_ENABLED.id,
       0,
+      rate,
     );
   }
 
@@ -18140,7 +18871,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setBlindSpotWarningEnabled(bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.BLIND_SPOT_WARNING_ENABLED.id,
       0,
       value,
@@ -18179,7 +18910,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link ErrorState}
      */
   Future<int> getBlindSpotWarningState(VehicleAreaMirror area) async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.BLIND_SPOT_WARNING_STATE.id,
       area.value,
     );
@@ -18216,10 +18947,14 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link BlindSpotWarningState}
      * @data_enum {@link ErrorState}
      */
-  PropertyStreamData<int> listenBlindSpotWarningState(VehicleAreaMirror area) {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenBlindSpotWarningState(
+    VehicleAreaMirror area, {
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.BLIND_SPOT_WARNING_STATE.id,
       area.value,
+      rate,
     );
   }
 
@@ -18252,7 +18987,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getLaneDepartureWarningEnabled() async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.LANE_DEPARTURE_WARNING_ENABLED.id,
       0,
     );
@@ -18286,10 +19021,13 @@ class VehiclePrivilegedPropertyRepository {
      *  property.
      * </ul>
      */
-  PropertyStreamData<bool> listenLaneDepartureWarningEnabled() {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenLaneDepartureWarningEnabled({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.LANE_DEPARTURE_WARNING_ENABLED.id,
       0,
+      rate,
     );
   }
 
@@ -18322,7 +19060,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setLaneDepartureWarningEnabled(bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.LANE_DEPARTURE_WARNING_ENABLED.id,
       0,
       value,
@@ -18361,7 +19099,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link ErrorState}
      */
   Future<int> getLaneDepartureWarningState() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.LANE_DEPARTURE_WARNING_STATE.id,
       0,
     );
@@ -18398,10 +19136,13 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link LaneDepartureWarningState}
      * @data_enum {@link ErrorState}
      */
-  PropertyStreamData<int> listenLaneDepartureWarningState() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenLaneDepartureWarningState({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.LANE_DEPARTURE_WARNING_STATE.id,
       0,
+      rate,
     );
   }
 
@@ -18438,7 +19179,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getLaneKeepAssistEnabled() async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.LANE_KEEP_ASSIST_ENABLED.id,
       0,
     );
@@ -18476,10 +19217,13 @@ class VehiclePrivilegedPropertyRepository {
      *  property.
      * </ul>
      */
-  PropertyStreamData<bool> listenLaneKeepAssistEnabled() {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenLaneKeepAssistEnabled({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.LANE_KEEP_ASSIST_ENABLED.id,
       0,
+      rate,
     );
   }
 
@@ -18516,7 +19260,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setLaneKeepAssistEnabled(bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.LANE_KEEP_ASSIST_ENABLED.id,
       0,
       value,
@@ -18558,7 +19302,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link ErrorState}
      */
   Future<int> getLaneKeepAssistState() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.LANE_KEEP_ASSIST_STATE.id,
       0,
     );
@@ -18598,10 +19342,13 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link LaneKeepAssistState}
      * @data_enum {@link ErrorState}
      */
-  PropertyStreamData<int> listenLaneKeepAssistState() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenLaneKeepAssistState({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.LANE_KEEP_ASSIST_STATE.id,
       0,
+      rate,
     );
   }
 
@@ -18639,7 +19386,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getLaneCenteringAssistEnabled() async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.LANE_CENTERING_ASSIST_ENABLED.id,
       0,
     );
@@ -18678,10 +19425,13 @@ class VehiclePrivilegedPropertyRepository {
      *  property.
      * </ul>
      */
-  PropertyStreamData<bool> listenLaneCenteringAssistEnabled() {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenLaneCenteringAssistEnabled({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.LANE_CENTERING_ASSIST_ENABLED.id,
       0,
+      rate,
     );
   }
 
@@ -18719,7 +19469,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setLaneCenteringAssistEnabled(bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.LANE_CENTERING_ASSIST_ENABLED.id,
       0,
       value,
@@ -18766,7 +19516,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link LaneCenteringAssistCommand}
      */
   Future<void> setLaneCenteringAssistCommand(int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.LANE_CENTERING_ASSIST_COMMAND.id,
       0,
       value,
@@ -18808,7 +19558,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link ErrorState}
      */
   Future<int> getLaneCenteringAssistState() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.LANE_CENTERING_ASSIST_STATE.id,
       0,
     );
@@ -18848,10 +19598,13 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link LaneCenteringAssistState}
      * @data_enum {@link ErrorState}
      */
-  PropertyStreamData<int> listenLaneCenteringAssistState() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenLaneCenteringAssistState({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.LANE_CENTERING_ASSIST_STATE.id,
       0,
+      rate,
     );
   }
 
@@ -18885,7 +19638,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getEmergencyLaneKeepAssistEnabled() async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.EMERGENCY_LANE_KEEP_ASSIST_ENABLED.id,
       0,
     );
@@ -18920,10 +19673,13 @@ class VehiclePrivilegedPropertyRepository {
      *  property.
      * </ul>
      */
-  PropertyStreamData<bool> listenEmergencyLaneKeepAssistEnabled() {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenEmergencyLaneKeepAssistEnabled({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.EMERGENCY_LANE_KEEP_ASSIST_ENABLED.id,
       0,
+      rate,
     );
   }
 
@@ -18957,7 +19713,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setEmergencyLaneKeepAssistEnabled(bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.EMERGENCY_LANE_KEEP_ASSIST_ENABLED.id,
       0,
       value,
@@ -18998,7 +19754,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link ErrorState}
      */
   Future<int> getEmergencyLaneKeepAssistState() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.EMERGENCY_LANE_KEEP_ASSIST_STATE.id,
       0,
     );
@@ -19037,10 +19793,13 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link EmergencyLaneKeepAssistState}
      * @data_enum {@link ErrorState}
      */
-  PropertyStreamData<int> listenEmergencyLaneKeepAssistState() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenEmergencyLaneKeepAssistState({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.EMERGENCY_LANE_KEEP_ASSIST_STATE.id,
       0,
+      rate,
     );
   }
 
@@ -19075,7 +19834,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getCruiseControlEnabled() async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.CRUISE_CONTROL_ENABLED.id,
       0,
     );
@@ -19111,10 +19870,13 @@ class VehiclePrivilegedPropertyRepository {
      *  property.
      * </ul>
      */
-  PropertyStreamData<bool> listenCruiseControlEnabled() {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenCruiseControlEnabled({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.CRUISE_CONTROL_ENABLED.id,
       0,
+      rate,
     );
   }
 
@@ -19149,7 +19911,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setCruiseControlEnabled(bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.CRUISE_CONTROL_ENABLED.id,
       0,
       value,
@@ -19199,7 +19961,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link ErrorState}
      */
   Future<int> getCruiseControlType() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.CRUISE_CONTROL_TYPE.id,
       0,
     );
@@ -19247,10 +20009,13 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link CruiseControlType}
      * @data_enum {@link ErrorState}
      */
-  PropertyStreamData<int> listenCruiseControlType() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenCruiseControlType({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.CRUISE_CONTROL_TYPE.id,
       0,
+      rate,
     );
   }
 
@@ -19297,7 +20062,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link ErrorState}
      */
   Future<void> setCruiseControlType(int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.CRUISE_CONTROL_TYPE.id,
       0,
       value,
@@ -19338,7 +20103,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link ErrorState}
      */
   Future<int> getCruiseControlState() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.CRUISE_CONTROL_STATE.id,
       0,
     );
@@ -19377,10 +20142,13 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link CruiseControlState}
      * @data_enum {@link ErrorState}
      */
-  PropertyStreamData<int> listenCruiseControlState() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenCruiseControlState({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.CRUISE_CONTROL_STATE.id,
       0,
+      rate,
     );
   }
 
@@ -19417,7 +20185,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link CruiseControlCommand}
      */
   Future<void> setCruiseControlCommand(int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.CRUISE_CONTROL_COMMAND.id,
       0,
       value,
@@ -19456,7 +20224,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<double> getCruiseControlTargetSpeed() async {
-    return _datasource.getPropertyFLOAT(
+    return _datasource.getPropertyFloat(
       VehicleProperty.CRUISE_CONTROL_TARGET_SPEED.id,
       0,
     );
@@ -19493,10 +20261,13 @@ class VehiclePrivilegedPropertyRepository {
      *  <li>Property is not writable.
      * </ul>
      */
-  PropertyStreamData<double> listenCruiseControlTargetSpeed() {
-    return _datasource.listenPropertyFLOAT(
+  PropertyStreamData<double> listenCruiseControlTargetSpeed({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyFloat(
       VehicleProperty.CRUISE_CONTROL_TARGET_SPEED.id,
       0,
+      rate,
     );
   }
 
@@ -19536,7 +20307,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getAdaptiveCruiseControlTargetTimeGap() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.ADAPTIVE_CRUISE_CONTROL_TARGET_TIME_GAP.id,
       0,
     );
@@ -19577,10 +20348,13 @@ class VehiclePrivilegedPropertyRepository {
      *  property.
      * </ul>
      */
-  PropertyStreamData<int> listenAdaptiveCruiseControlTargetTimeGap() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenAdaptiveCruiseControlTargetTimeGap({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.ADAPTIVE_CRUISE_CONTROL_TARGET_TIME_GAP.id,
       0,
+      rate,
     );
   }
 
@@ -19620,7 +20394,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setAdaptiveCruiseControlTargetTimeGap(int value) async {
-    return _datasource.setPropertyINT32(
+    return _datasource.setPropertyInt32(
       VehicleProperty.ADAPTIVE_CRUISE_CONTROL_TARGET_TIME_GAP.id,
       0,
       value,
@@ -19662,7 +20436,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<int> getAdaptiveCruiseControlLeadVehicleMeasuredDistance() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.ADAPTIVE_CRUISE_CONTROL_LEAD_VEHICLE_MEASURED_DISTANCE.id,
       0,
     );
@@ -19703,10 +20477,13 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   PropertyStreamData<int>
-  listenAdaptiveCruiseControlLeadVehicleMeasuredDistance() {
-    return _datasource.listenPropertyINT32(
+  listenAdaptiveCruiseControlLeadVehicleMeasuredDistance({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.ADAPTIVE_CRUISE_CONTROL_LEAD_VEHICLE_MEASURED_DISTANCE.id,
       0,
+      rate,
     );
   }
 
@@ -19740,7 +20517,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getHandsOnDetectionEnabled() async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.HANDS_ON_DETECTION_ENABLED.id,
       0,
     );
@@ -19775,10 +20552,13 @@ class VehiclePrivilegedPropertyRepository {
      *  Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to write property.
      * </ul>
      */
-  PropertyStreamData<bool> listenHandsOnDetectionEnabled() {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenHandsOnDetectionEnabled({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.HANDS_ON_DETECTION_ENABLED.id,
       0,
+      rate,
     );
   }
 
@@ -19812,7 +20592,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setHandsOnDetectionEnabled(bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.HANDS_ON_DETECTION_ENABLED.id,
       0,
       value,
@@ -19858,7 +20638,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link ErrorState}
      */
   Future<int> getHandsOnDetectionDriverState() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.HANDS_ON_DETECTION_DRIVER_STATE.id,
       0,
     );
@@ -19902,10 +20682,13 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link HandsOnDetectionDriverState}
      * @data_enum {@link ErrorState}
      */
-  PropertyStreamData<int> listenHandsOnDetectionDriverState() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenHandsOnDetectionDriverState({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.HANDS_ON_DETECTION_DRIVER_STATE.id,
       0,
+      rate,
     );
   }
 
@@ -19946,7 +20729,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link ErrorState}
      */
   Future<int> getHandsOnDetectionWarning() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.HANDS_ON_DETECTION_WARNING.id,
       0,
     );
@@ -19988,10 +20771,13 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link HandsOnDetectionWarning}
      * @data_enum {@link ErrorState}
      */
-  PropertyStreamData<int> listenHandsOnDetectionWarning() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenHandsOnDetectionWarning({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.HANDS_ON_DETECTION_WARNING.id,
       0,
+      rate,
     );
   }
 
@@ -20022,7 +20808,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getDriverDrowsinessAttentionSystemEnabled() async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.DRIVER_DROWSINESS_ATTENTION_SYSTEM_ENABLED.id,
       0,
     );
@@ -20054,10 +20840,13 @@ class VehiclePrivilegedPropertyRepository {
      *  Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to write property.
      * </ul>
      */
-  PropertyStreamData<bool> listenDriverDrowsinessAttentionSystemEnabled() {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenDriverDrowsinessAttentionSystemEnabled({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.DRIVER_DROWSINESS_ATTENTION_SYSTEM_ENABLED.id,
       0,
+      rate,
     );
   }
 
@@ -20088,7 +20877,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setDriverDrowsinessAttentionSystemEnabled(bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.DRIVER_DROWSINESS_ATTENTION_SYSTEM_ENABLED.id,
       0,
       value,
@@ -20135,7 +20924,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link ErrorState}
      */
   Future<int> getDriverDrowsinessAttentionState() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.DRIVER_DROWSINESS_ATTENTION_STATE.id,
       0,
     );
@@ -20180,10 +20969,13 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link DriverDrowsinessAttentionState}
      * @data_enum {@link ErrorState}
      */
-  PropertyStreamData<int> listenDriverDrowsinessAttentionState() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenDriverDrowsinessAttentionState({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.DRIVER_DROWSINESS_ATTENTION_STATE.id,
       0,
+      rate,
     );
   }
 
@@ -20214,7 +21006,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getDriverDrowsinessAttentionWarningEnabled() async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.DRIVER_DROWSINESS_ATTENTION_WARNING_ENABLED.id,
       0,
     );
@@ -20246,10 +21038,13 @@ class VehiclePrivilegedPropertyRepository {
      *  Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to write property.
      * </ul>
      */
-  PropertyStreamData<bool> listenDriverDrowsinessAttentionWarningEnabled() {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenDriverDrowsinessAttentionWarningEnabled({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.DRIVER_DROWSINESS_ATTENTION_WARNING_ENABLED.id,
       0,
+      rate,
     );
   }
 
@@ -20280,7 +21075,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setDriverDrowsinessAttentionWarningEnabled(bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.DRIVER_DROWSINESS_ATTENTION_WARNING_ENABLED.id,
       0,
       value,
@@ -20323,7 +21118,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link ErrorState}
      */
   Future<int> getDriverDrowsinessAttentionWarning() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.DRIVER_DROWSINESS_ATTENTION_WARNING.id,
       0,
     );
@@ -20364,10 +21159,13 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link DriverDrowsinessAttentionWarning}
      * @data_enum {@link ErrorState}
      */
-  PropertyStreamData<int> listenDriverDrowsinessAttentionWarning() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenDriverDrowsinessAttentionWarning({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.DRIVER_DROWSINESS_ATTENTION_WARNING.id,
       0,
+      rate,
     );
   }
 
@@ -20397,7 +21195,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getDriverDistractionSystemEnabled() async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.DRIVER_DISTRACTION_SYSTEM_ENABLED.id,
       0,
     );
@@ -20428,10 +21226,13 @@ class VehiclePrivilegedPropertyRepository {
      *  Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to write property.
      * </ul>
      */
-  PropertyStreamData<bool> listenDriverDistractionSystemEnabled() {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenDriverDistractionSystemEnabled({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.DRIVER_DISTRACTION_SYSTEM_ENABLED.id,
       0,
+      rate,
     );
   }
 
@@ -20461,7 +21262,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setDriverDistractionSystemEnabled(bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.DRIVER_DISTRACTION_SYSTEM_ENABLED.id,
       0,
       value,
@@ -20507,7 +21308,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link ErrorState}
      */
   Future<int> getDriverDistractionState() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.DRIVER_DISTRACTION_STATE.id,
       0,
     );
@@ -20551,10 +21352,13 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link DriverDistractionState}
      * @data_enum {@link ErrorState}
      */
-  PropertyStreamData<int> listenDriverDistractionState() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenDriverDistractionState({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.DRIVER_DISTRACTION_STATE.id,
       0,
+      rate,
     );
   }
 
@@ -20584,7 +21388,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getDriverDistractionWarningEnabled() async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.DRIVER_DISTRACTION_WARNING_ENABLED.id,
       0,
     );
@@ -20615,10 +21419,13 @@ class VehiclePrivilegedPropertyRepository {
      *  Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to write property.
      * </ul>
      */
-  PropertyStreamData<bool> listenDriverDistractionWarningEnabled() {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenDriverDistractionWarningEnabled({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.DRIVER_DISTRACTION_WARNING_ENABLED.id,
       0,
+      rate,
     );
   }
 
@@ -20648,7 +21455,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setDriverDistractionWarningEnabled(bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.DRIVER_DISTRACTION_WARNING_ENABLED.id,
       0,
       value,
@@ -20691,7 +21498,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link ErrorState}
      */
   Future<int> getDriverDistractionWarning() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.DRIVER_DISTRACTION_WARNING.id,
       0,
     );
@@ -20732,10 +21539,13 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link DriverDistractionWarning}
      * @data_enum {@link ErrorState}
      */
-  PropertyStreamData<int> listenDriverDistractionWarning() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenDriverDistractionWarning({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.DRIVER_DISTRACTION_WARNING.id,
       0,
+      rate,
     );
   }
 
@@ -20771,7 +21581,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getLowSpeedCollisionWarningEnabled() async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.LOW_SPEED_COLLISION_WARNING_ENABLED.id,
       0,
     );
@@ -20808,10 +21618,13 @@ class VehiclePrivilegedPropertyRepository {
      *  property.
      * </ul>
      */
-  PropertyStreamData<bool> listenLowSpeedCollisionWarningEnabled() {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenLowSpeedCollisionWarningEnabled({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.LOW_SPEED_COLLISION_WARNING_ENABLED.id,
       0,
+      rate,
     );
   }
 
@@ -20847,7 +21660,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setLowSpeedCollisionWarningEnabled(bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.LOW_SPEED_COLLISION_WARNING_ENABLED.id,
       0,
       value,
@@ -20889,7 +21702,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link ErrorState}
      */
   Future<int> getLowSpeedCollisionWarningState() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.LOW_SPEED_COLLISION_WARNING_STATE.id,
       0,
     );
@@ -20929,10 +21742,13 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link android.car.hardware.property.LowSpeedCollisionWarningState}
      * @data_enum {@link ErrorState}
      */
-  PropertyStreamData<int> listenLowSpeedCollisionWarningState() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenLowSpeedCollisionWarningState({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.LOW_SPEED_COLLISION_WARNING_STATE.id,
       0,
+      rate,
     );
   }
 
@@ -20965,7 +21781,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getCrossTrafficMonitoringEnabled() async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.CROSS_TRAFFIC_MONITORING_ENABLED.id,
       0,
     );
@@ -20999,10 +21815,13 @@ class VehiclePrivilegedPropertyRepository {
      *  property.
      * </ul>
      */
-  PropertyStreamData<bool> listenCrossTrafficMonitoringEnabled() {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenCrossTrafficMonitoringEnabled({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.CROSS_TRAFFIC_MONITORING_ENABLED.id,
       0,
+      rate,
     );
   }
 
@@ -21035,7 +21854,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setCrossTrafficMonitoringEnabled(bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.CROSS_TRAFFIC_MONITORING_ENABLED.id,
       0,
       value,
@@ -21075,7 +21894,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link ErrorState}
      */
   Future<int> getCrossTrafficMonitoringWarningState() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.CROSS_TRAFFIC_MONITORING_WARNING_STATE.id,
       0,
     );
@@ -21113,10 +21932,13 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link android.car.hardware.property.CrossTrafficMonitoringWarningState}
      * @data_enum {@link ErrorState}
      */
-  PropertyStreamData<int> listenCrossTrafficMonitoringWarningState() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenCrossTrafficMonitoringWarningState({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.CROSS_TRAFFIC_MONITORING_WARNING_STATE.id,
       0,
+      rate,
     );
   }
 
@@ -21153,7 +21975,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<bool> getLowSpeedAutomaticEmergencyBrakingEnabled() async {
-    return _datasource.getPropertyBOOLEAN(
+    return _datasource.getPropertyBoolean(
       VehicleProperty.LOW_SPEED_AUTOMATIC_EMERGENCY_BRAKING_ENABLED.id,
       0,
     );
@@ -21191,10 +22013,13 @@ class VehiclePrivilegedPropertyRepository {
      *  property.
      * </ul>
      */
-  PropertyStreamData<bool> listenLowSpeedAutomaticEmergencyBrakingEnabled() {
-    return _datasource.listenPropertyBOOLEAN(
+  PropertyStreamData<bool> listenLowSpeedAutomaticEmergencyBrakingEnabled({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyBoolean(
       VehicleProperty.LOW_SPEED_AUTOMATIC_EMERGENCY_BRAKING_ENABLED.id,
       0,
+      rate,
     );
   }
 
@@ -21231,7 +22056,7 @@ class VehiclePrivilegedPropertyRepository {
      * </ul>
      */
   Future<void> setLowSpeedAutomaticEmergencyBrakingEnabled(bool value) async {
-    return _datasource.setPropertyBOOLEAN(
+    return _datasource.setPropertyBoolean(
       VehicleProperty.LOW_SPEED_AUTOMATIC_EMERGENCY_BRAKING_ENABLED.id,
       0,
       value,
@@ -21276,7 +22101,7 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link ErrorState}
      */
   Future<int> getLowSpeedAutomaticEmergencyBrakingState() async {
-    return _datasource.getPropertyINT32(
+    return _datasource.getPropertyInt32(
       VehicleProperty.LOW_SPEED_AUTOMATIC_EMERGENCY_BRAKING_STATE.id,
       0,
     );
@@ -21319,10 +22144,13 @@ class VehiclePrivilegedPropertyRepository {
      * @data_enum {@link android.car.hardware.property.LowSpeedAutomaticEmergencyBrakingState}
      * @data_enum {@link ErrorState}
      */
-  PropertyStreamData<int> listenLowSpeedAutomaticEmergencyBrakingState() {
-    return _datasource.listenPropertyINT32(
+  PropertyStreamData<int> listenLowSpeedAutomaticEmergencyBrakingState({
+    SensorUpdateRate rate = SensorUpdateRates.onChange,
+  }) {
+    return _datasource.listenPropertyInt32(
       VehicleProperty.LOW_SPEED_AUTOMATIC_EMERGENCY_BRAKING_STATE.id,
       0,
+      rate,
     );
   }
 }

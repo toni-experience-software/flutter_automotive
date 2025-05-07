@@ -66,6 +66,11 @@ class PropertyGeneralMethodInterfaceBuilder {
               ..name = "areaId"
               ..type = refer("int"),
           ),
+          Parameter(
+            (p) => p
+              ..name = "rate"
+              ..type = refer("SensorUpdateRate"),
+          )
         ]),
     );
   }
