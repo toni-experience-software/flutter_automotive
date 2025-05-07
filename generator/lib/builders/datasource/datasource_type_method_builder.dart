@@ -8,16 +8,16 @@ class PropertyTypeMethodInterfaceBuilder {
   final VehiclePropertyType type;
 
   Reference get _returnTypeForProperty => switch (type) {
-    VehiclePropertyType.STRING => refer("String"),
-    VehiclePropertyType.BOOLEAN => refer("bool"),
-    VehiclePropertyType.INT32 => refer("int"),
-    VehiclePropertyType.INT32_VEC => refer("List<int>"),
-    VehiclePropertyType.INT64 => refer("int"),
-    VehiclePropertyType.INT64_VEC => refer("List<int>"),
-    VehiclePropertyType.FLOAT => refer("double"),
-    VehiclePropertyType.FLOAT_VEC => refer("List<double>"),
-    VehiclePropertyType.BYTES => refer("List<int>"),
-    VehiclePropertyType.MIXED => refer("dynamic"),
+    VehiclePropertyType.string => refer("String"),
+    VehiclePropertyType.boolean => refer("bool"),
+    VehiclePropertyType.int32 => refer("int"),
+    VehiclePropertyType.int32Vec => refer("List<int>"),
+    VehiclePropertyType.int64 => refer("int"),
+    VehiclePropertyType.int64Vec => refer("List<int>"),
+    VehiclePropertyType.float => refer("double"),
+    VehiclePropertyType.floatVec => refer("List<double>"),
+    VehiclePropertyType.bytes => refer("List<int>"),
+    VehiclePropertyType.mixed => refer("dynamic"),
   };
 
   String get getterName => "getProperty${type.name}";

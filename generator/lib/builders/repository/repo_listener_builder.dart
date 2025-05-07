@@ -1,5 +1,5 @@
 import 'package:code_builder/code_builder.dart';
-import 'package:flutter_automotive/model/models.dart';
+import 'package:flutter_automotive/flutter_automotive.dart';
 import 'package:generator/builders/datasource/datasource_type_method_builder.dart';
 
 class VehiclePropertyListenerBuilder {
@@ -15,16 +15,16 @@ class VehiclePropertyListenerBuilder {
   VehicleAreaType get areaType => VehicleAreaType.forVehicleProperty(prop);
 
   Reference get _returnTypeForProperty => switch (propType) {
-    VehiclePropertyType.STRING => refer("String"),
-    VehiclePropertyType.BOOLEAN => refer("bool"),
-    VehiclePropertyType.INT32 => refer("int"),
-    VehiclePropertyType.INT32_VEC => refer("List<int>"),
-    VehiclePropertyType.INT64 => refer("int"),
-    VehiclePropertyType.INT64_VEC => refer("List<int>"),
-    VehiclePropertyType.FLOAT => refer("double"),
-    VehiclePropertyType.FLOAT_VEC => refer("List<double>"),
-    VehiclePropertyType.BYTES => refer("List<int>"),
-    VehiclePropertyType.MIXED => refer("dynamic"),
+    VehiclePropertyType.string => refer("String"),
+    VehiclePropertyType.boolean => refer("bool"),
+    VehiclePropertyType.int32 => refer("int"),
+    VehiclePropertyType.int32Vec => refer("List<int>"),
+    VehiclePropertyType.int64 => refer("int"),
+    VehiclePropertyType.int64Vec => refer("List<int>"),
+    VehiclePropertyType.float => refer("double"),
+    VehiclePropertyType.floatVec => refer("List<double>"),
+    VehiclePropertyType.bytes => refer("List<int>"),
+    VehiclePropertyType.mixed => refer("dynamic"),
   };
 
   String get _listenerName {
@@ -37,13 +37,12 @@ class VehiclePropertyListenerBuilder {
   }
 
   Reference? get _areaParameterRef => switch (areaType) {
-    VehicleAreaType.GLOBAL => null,
-    VehicleAreaType.VENDOR => null,
-    VehicleAreaType.WINDOW => refer((VehicleAreaWindow).toString()),
-    VehicleAreaType.MIRROR => refer((VehicleAreaMirror).toString()),
-    VehicleAreaType.SEAT => refer((VehicleAreaSeat).toString()),
-    VehicleAreaType.DOOR => refer((VehicleAreaDoor).toString()),
-    VehicleAreaType.WHEEL => refer((VehicleAreaWheel).toString()),
+    VehicleAreaType.global || VehicleAreaType.vendor => null,
+    VehicleAreaType.window => refer((VehicleAreaWindow).toString()),
+    VehicleAreaType.mirror => refer((VehicleAreaMirror).toString()),
+    VehicleAreaType.seat => refer((VehicleAreaSeat).toString()),
+    VehicleAreaType.door => refer((VehicleAreaDoor).toString()),
+    VehicleAreaType.wheel => refer((VehicleAreaWheel).toString()),
   };
 
   Method buildListener(String? docs) {
@@ -69,12 +68,12 @@ class VehiclePropertyListenerBuilder {
     final interface = PropertyTypeMethodInterfaceBuilder(propType);
     final propId = refer((VehicleProperty).toString()).property(prop.name).property("id");
     final areaId = switch (areaType) {
-      VehicleAreaType.GLOBAL || VehicleAreaType.VENDOR => literal(0),
-      VehicleAreaType.WINDOW
-      || VehicleAreaType.MIRROR
-      || VehicleAreaType.SEAT
-      || VehicleAreaType.DOOR
-      || VehicleAreaType.WHEEL => refer("area").property("value"),
+      VehicleAreaType.global || VehicleAreaType.vendor => literal(0),
+      VehicleAreaType.window
+      || VehicleAreaType.mirror
+      || VehicleAreaType.seat
+      || VehicleAreaType.door
+      || VehicleAreaType.wheel => refer("area").property("value"),
     };
     return Block(
       (b) => b..statements.addAll([

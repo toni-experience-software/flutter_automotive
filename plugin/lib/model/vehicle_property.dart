@@ -1,4 +1,4 @@
-// ignore_for_file: doc_directive_unknown, slash_for_doc_comments
+// ignore_for_file: doc_directive_unknown, slash_for_doc_comments, constant_identifier_names
 
 // This model file is a manual translation of the VehiclePropertyIds Java Class into a Dart Enum.
 // https://android.googlesource.com/platform/packages/services/Car/+/master/car-lib/src/android/car/VehiclePropertyIds.java

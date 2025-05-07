@@ -10,31 +10,19 @@ class _TestApi implements TestHostFlutterAutomotiveApi {
   }
 
   @override
-  Future<void> setProperty(int propertyId, int areaId, value) {
-    // TODO: implement setProperty
-    throw UnimplementedError();
-  }
+  Future<void> setProperty(int propertyId, int areaId, value) async {}
 
   @override
-  bool isPermissionGranted(CarPermissions permission) {
-    // TODO: implement isPermissionGranted
-    throw UnimplementedError();
-  }
+  bool isPermissionGranted(CarPermissions permission) => false;
 
   @override
-  void requestPermission(CarPermissions permission) {
-    // TODO: implement requestPermission
-  }
+  void requestPermission(CarPermissions permission) {}
   
   @override
-  void subscribeProperty(int propertyId, int areaId) {
-    // TODO: implement subscribeProperty
-  }
+  void subscribeProperty(int propertyId, int areaId) {}
   
   @override
-  void unsubscribeProperty(int propertyId, int areaId) {
-    // TODO: implement unsubscribeProperty
-  }
+  void unsubscribeProperty(int propertyId, int areaId) {}
 }
 
 void main() {
