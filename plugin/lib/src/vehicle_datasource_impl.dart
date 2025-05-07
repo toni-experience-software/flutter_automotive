@@ -2,7 +2,7 @@
 library;
 
 import 'package:flutter_automotive/src/flutter_automotive_platform_interface.dart';
-import 'package:flutter_automotive/src/property_stream.dart';
+import 'package:flutter_automotive/model/property_stream.dart';
 import 'package:flutter_automotive/src/vehicle_datasource.dart';
 
 class VehiclePropertyDatasourceImpl extends VehiclePropertyDatasource {

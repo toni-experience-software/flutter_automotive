@@ -1,4 +1,4 @@
-import 'package:flutter_automotive_models/flutter_automotive_models.dart';
+import 'package:flutter_automotive/model/vehicle_property.dart';
 
 enum VehicleAreaType {
   GLOBAL(0x01000000),

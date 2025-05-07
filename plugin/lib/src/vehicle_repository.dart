@@ -1,9 +1,10 @@
 // ignore_for_file: slash_for_doc_comments, doc_directive_unknown_prefixes, doc_directive_unknown
 library;
 
-import 'package:flutter_automotive/src/property_stream.dart';
+import 'package:flutter_automotive/model/vehicle_area.dart';
+import 'package:flutter_automotive/model/property_stream.dart';
+import 'package:flutter_automotive/model/vehicle_property.dart';
 import 'package:flutter_automotive/src/vehicle_datasource.dart';
-import 'package:flutter_automotive_models/flutter_automotive_models.dart';
 
 class VehiclePropertyRepository {
   VehiclePropertyRepository(this.datasource)

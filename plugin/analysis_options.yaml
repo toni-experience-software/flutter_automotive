@@ -6,3 +6,7 @@ include: package:flutter_lints/flutter.yaml
 analyzer:
   exclude:
     - "**/*.g.dart"
+  errors:
+    constant_identifier_names: ignore
+    non_constant_identifier_names: ignore
+

@@ -13,8 +13,6 @@ dependencies:
   flutter:
     sdk: flutter
   plugin_platform_interface: ^2.0.2
-  flutter_automotive_models:
-    path: ../models # Replace with published model package
 
 dev_dependencies:
   flutter_test:

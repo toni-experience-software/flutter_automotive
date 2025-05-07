@@ -10,8 +10,6 @@ dependencies:
     sdk: flutter
   flutter_automotive:
     path: ../
-  flutter_automotive_models:
-    path: ../../models
 
 dev_dependencies:
   integration_test:

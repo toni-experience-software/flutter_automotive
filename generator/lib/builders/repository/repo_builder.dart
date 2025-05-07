@@ -1,5 +1,5 @@
 import 'package:code_builder/code_builder.dart';
-import 'package:flutter_automotive_models/flutter_automotive_models.dart';
+import 'package:flutter_automotive/flutter_automotive.dart';
 import 'package:generator/builders/repository/repo_getter_builder.dart';
 import 'package:generator/builders/repository/repo_listener_builder.dart';
 import 'package:generator/builders/repository/repo_setter_builder.dart';

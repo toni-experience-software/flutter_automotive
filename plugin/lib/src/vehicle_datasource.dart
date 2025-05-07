@@ -1,7 +1,7 @@
 // ignore_for_file: non_constant_identifier_names, unnecessary_type_check
 library;
 
-import 'package:flutter_automotive/src/property_stream.dart';
+import 'package:flutter_automotive/model/property_stream.dart';
 
 abstract class VehiclePropertyDatasource {
   Future<dynamic> getProperty(int propertyId, int areaId);

@@ -1,7 +1,7 @@
 import 'package:flutter_automotive/src/flutter_automotive_method_channel.dart';
 import 'package:flutter_automotive/src/flutter_automotive_platform_interface.dart';
 import 'package:flutter_automotive/src/messages.g.dart';
-import 'package:flutter_automotive/src/property_stream.dart';
+import 'package:flutter_automotive/model/property_stream.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
