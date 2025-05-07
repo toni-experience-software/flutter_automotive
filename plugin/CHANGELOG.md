@@ -1,3 +1,5 @@
 ## 0.0.1
 
-* TODO: Describe initial release.
+* Add vehicle property setter and getter methods
+* Add basic permission handling
+* Add WIP listener methods

@@ -1,12 +1,21 @@
 name: flutter_automotive
 description: A Flutter AAOS Plugin.
 version: 0.0.1
-homepage:
+homepage: https://wearetoni.com
+repository: https://github.com/toni-experience-software/flutter_automotive
+issue_tracker: https://github.com/toni-experience-software/flutter_automotive/issues
 
 publish_to: none # Remove this once we want to publish
 
+platforms:
+  android:
+
+topics:
+  - flutter
+  - automotive
+
 environment:
-  sdk: ^3.7.2
+  sdk: ">=3.0.0 <4.0.0"
   flutter: '>=3.3.0'
 
 dependencies:
