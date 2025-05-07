@@ -14,8 +14,8 @@ class PropertyRepoBuilder {
     return Library(
       (l) => l
         ..directives.addAll([
-          Directive.import("package:flutter_automotive_models/flutter_automotive_models.dart"),
-          Directive.import("./datasource.dart"),
+          Directive.import("package:flutter_automotive/flutter_automotive.dart"),
+          Directive.import("package:flutter_automotive/src/vehicle_datasource.dart"),
         ])
         ..body.addAll([
           _buildNormalClass(),

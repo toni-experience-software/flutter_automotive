@@ -10,6 +10,9 @@ class AndroidInterfaceBuilder {
         ..body.add(_buildClass())
         ..docs.addAll([
           "// ignore_for_file: non_constant_identifier_names, unnecessary_type_check",
+        ])
+        ..directives.addAll([
+          Directive.import("package:flutter_automotive/flutter_automotive.dart"),
         ]),
     );
   }
