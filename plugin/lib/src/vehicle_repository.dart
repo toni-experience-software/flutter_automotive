@@ -461,6 +461,9 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Normal permission {@link Car#PERMISSION_CAR_INFO} to read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   Future<String> getInfoModelTrim() async {
     return _datasource.getPropertyString(VehicleProperty.INFO_MODEL_TRIM.id, 0);
   }
@@ -480,6 +483,9 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Normal permission {@link Car#PERMISSION_CAR_INFO} to read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   PropertyStreamData<String> listenInfoModelTrim({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -508,6 +514,9 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Normal permission {@link Car#PERMISSION_CAR_INFO} to read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   Future<List<int>> getInfoVehicleSizeClass() async {
     return _datasource.getPropertyInt32Vec(
       VehicleProperty.INFO_VEHICLE_SIZE_CLASS.id,
@@ -533,6 +542,9 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Normal permission {@link Car#PERMISSION_CAR_INFO} to read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   PropertyStreamData<List<int>> listenInfoVehicleSizeClass({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -549,6 +561,9 @@ class VehiclePropertyRepository {
   /// Dangerous permission {@link Car#PERMISSION_MILEAGE_3P} or Signature|Privileged
   /// permission {@link Car#PERMISSION_MILEAGE} to read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   Future<double> getPerfOdometer() async {
     return _datasource.getPropertyFloat(VehicleProperty.PERF_ODOMETER.id, 0);
   }
@@ -559,6 +574,9 @@ class VehiclePropertyRepository {
   /// Dangerous permission {@link Car#PERMISSION_MILEAGE_3P} or Signature|Privileged
   /// permission {@link Car#PERMISSION_MILEAGE} to read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   PropertyStreamData<double> listenPerfOdometer({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -653,6 +671,9 @@ class VehiclePropertyRepository {
   /// Dangerous permission {@link Car#PERMISSION_READ_STEERING_STATE_3P} or
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_STEERING_STATE} to read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_25Q2_3P_PERMISSIONS
   Future<double> getPerfSteeringAngle() async {
     return _datasource.getPropertyFloat(
       VehicleProperty.PERF_STEERING_ANGLE.id,
@@ -672,6 +693,9 @@ class VehiclePropertyRepository {
   /// Dangerous permission {@link Car#PERMISSION_READ_STEERING_STATE_3P} or
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_STEERING_STATE} to read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_25Q2_3P_PERMISSIONS
   PropertyStreamData<double> listenPerfSteeringAngle({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -695,6 +719,9 @@ class VehiclePropertyRepository {
   /// Dangerous permission {@link Car#PERMISSION_MILEAGE_3P} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   Future<double> getInstantaneousFuelEconomy() async {
     return _datasource.getPropertyFloat(
       VehicleProperty.INSTANTANEOUS_FUEL_ECONOMY.id,
@@ -715,6 +742,9 @@ class VehiclePropertyRepository {
   /// Dangerous permission {@link Car#PERMISSION_MILEAGE_3P} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   PropertyStreamData<double> listenInstantaneousFuelEconomy({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -739,6 +769,9 @@ class VehiclePropertyRepository {
   /// Dangerous permission {@link Car#PERMISSION_MILEAGE_3P} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   Future<double> getInstantaneousEvEfficiency() async {
     return _datasource.getPropertyFloat(
       VehicleProperty.INSTANTANEOUS_EV_EFFICIENCY.id,
@@ -760,6 +793,9 @@ class VehiclePropertyRepository {
   /// Dangerous permission {@link Car#PERMISSION_MILEAGE_3P} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   PropertyStreamData<double> listenInstantaneousEvEfficiency({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -776,6 +812,9 @@ class VehiclePropertyRepository {
   /// Dangerous permission {@link Car#PERMISSION_CAR_ENGINE_DETAILED_3P} or
   /// Signature|Privileged permission {@link Car#PERMISSION_CAR_ENGINE_DETAILED} to read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_25Q2_3P_PERMISSIONS
   Future<double> getEngineRpm() async {
     return _datasource.getPropertyFloat(VehicleProperty.ENGINE_RPM.id, 0);
   }
@@ -786,6 +825,9 @@ class VehiclePropertyRepository {
   /// Dangerous permission {@link Car#PERMISSION_CAR_ENGINE_DETAILED_3P} or
   /// Signature|Privileged permission {@link Car#PERMISSION_CAR_ENGINE_DETAILED} to read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_25Q2_3P_PERMISSIONS
   PropertyStreamData<double> listenEngineRpm({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -805,6 +847,9 @@ class VehiclePropertyRepository {
   /// Dangerous permission {@link Car#PERMISSION_READ_CAR_HORN} or dangerous permission {@link
   /// Car#PERMISSION_CONTROL_CAR_HORN} to read property.
   /// Dangerous permission {@link Car#PERMISSION_CONTROL_CAR_HORN} to write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   Future<bool> getVehicleHornEngaged() async {
     return _datasource.getPropertyBoolean(
       VehicleProperty.VEHICLE_HORN_ENGAGED.id,
@@ -821,6 +866,9 @@ class VehiclePropertyRepository {
   /// Dangerous permission {@link Car#PERMISSION_READ_CAR_HORN} or dangerous permission {@link
   /// Car#PERMISSION_CONTROL_CAR_HORN} to read property.
   /// Dangerous permission {@link Car#PERMISSION_CONTROL_CAR_HORN} to write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   PropertyStreamData<bool> listenVehicleHornEngaged({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -840,6 +888,9 @@ class VehiclePropertyRepository {
   /// Dangerous permission {@link Car#PERMISSION_READ_CAR_HORN} or dangerous permission {@link
   /// Car#PERMISSION_CONTROL_CAR_HORN} to read property.
   /// Dangerous permission {@link Car#PERMISSION_CONTROL_CAR_HORN} to write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   Future<void> setVehicleHornEngaged(bool value) async {
     return _datasource.setPropertyBoolean(
       VehicleProperty.VEHICLE_HORN_ENGAGED.id,
@@ -1241,6 +1292,9 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Dangerous permission {@link Car#PERMISSION_ENERGY} to read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_VIC_VEHICLE_PROPERTIES
   Future<double> getEvBatteryAverageTemperature() async {
     return _datasource.getPropertyFloat(
       VehicleProperty.EV_BATTERY_AVERAGE_TEMPERATURE.id,
@@ -1257,6 +1311,9 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Dangerous permission {@link Car#PERMISSION_ENERGY} to read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_VIC_VEHICLE_PROPERTIES
   PropertyStreamData<double> listenEvBatteryAverageTemperature({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -1278,6 +1335,9 @@ class VehiclePropertyRepository {
   /// Dangerous permission {@link Car#PERMISSION_TIRES_3P} or Signature|Privileged permission
   /// {@link Car#PERMISSION_TIRES} to read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_25Q2_3P_PERMISSIONS
   Future<double> getTirePressure(VehicleAreaWheel area) async {
     return _datasource.getPropertyFloat(
       VehicleProperty.TIRE_PRESSURE.id,
@@ -1296,6 +1356,9 @@ class VehiclePropertyRepository {
   /// Dangerous permission {@link Car#PERMISSION_TIRES_3P} or Signature|Privileged permission
   /// {@link Car#PERMISSION_TIRES} to read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_25Q2_3P_PERMISSIONS
   PropertyStreamData<double> listenTirePressure(
     VehicleAreaWheel area, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
@@ -1319,6 +1382,9 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Dangerous permission {@link Car#PERMISSION_READ_CAR_PEDALS} to read property.
   /// Property is not writable
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   Future<double> getAcceleratorPedalCompressionPercentage() async {
     return _datasource.getPropertyFloat(
       VehicleProperty.ACCELERATOR_PEDAL_COMPRESSION_PERCENTAGE.id,
@@ -1338,6 +1404,9 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Dangerous permission {@link Car#PERMISSION_READ_CAR_PEDALS} to read property.
   /// Property is not writable
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   PropertyStreamData<double> listenAcceleratorPedalCompressionPercentage({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -1360,6 +1429,9 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Dangerous permission {@link Car#PERMISSION_READ_CAR_PEDALS} to read property.
   /// Property is not writable
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   Future<double> getBrakePedalCompressionPercentage() async {
     return _datasource.getPropertyFloat(
       VehicleProperty.BRAKE_PEDAL_COMPRESSION_PERCENTAGE.id,
@@ -1379,6 +1451,9 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Dangerous permission {@link Car#PERMISSION_READ_CAR_PEDALS} to read property.
   /// Property is not writable
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   PropertyStreamData<double> listenBrakePedalCompressionPercentage({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -1401,6 +1476,9 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Dangerous permission {@link Car#PERMISSION_READ_BRAKE_INFO} to read property.
   /// Property is not writable
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   Future<double> getBrakePadWearPercentage(VehicleAreaWheel area) async {
     return _datasource.getPropertyFloat(
       VehicleProperty.BRAKE_PAD_WEAR_PERCENTAGE.id,
@@ -1420,6 +1498,9 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Dangerous permission {@link Car#PERMISSION_READ_BRAKE_INFO} to read property.
   /// Property is not writable
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   PropertyStreamData<double> listenBrakePadWearPercentage(
     VehicleAreaWheel area, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
@@ -1441,6 +1522,9 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Dangerous permission {@link Car#PERMISSION_READ_BRAKE_INFO} to read property.
   /// Property is not writable
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   Future<bool> getBrakeFluidLevelLow() async {
     return _datasource.getPropertyBoolean(
       VehicleProperty.BRAKE_FLUID_LEVEL_LOW.id,
@@ -1458,6 +1542,9 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Dangerous permission {@link Car#PERMISSION_READ_BRAKE_INFO} to read property.
   /// Property is not writable
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   PropertyStreamData<bool> listenBrakeFluidLevelLow({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -1951,6 +2038,9 @@ class VehiclePropertyRepository {
   /// Dangerous permission {@link Car#PERMISSION_READ_EXTERIOR_LIGHTS} or Signature|Privileged
   /// permission {@link Car#PERMISSION_CONTROL_EXTERIOR_LIGHTS} to read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   Future<int> getTurnSignalLightState() async {
     return _datasource.getPropertyInt32(
       VehicleProperty.TURN_SIGNAL_LIGHT_STATE.id,
@@ -1988,6 +2078,9 @@ class VehiclePropertyRepository {
   /// Dangerous permission {@link Car#PERMISSION_READ_EXTERIOR_LIGHTS} or Signature|Privileged
   /// permission {@link Car#PERMISSION_CONTROL_EXTERIOR_LIGHTS} to read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   PropertyStreamData<int> listenTurnSignalLightState({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -2016,6 +2109,9 @@ class VehiclePropertyRepository {
   /// permission {@link Car#PERMISSION_CONTROL_EXTERIOR_LIGHTS} to read property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_EXTERIOR_LIGHTS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   Future<int> getTurnSignalSwitch() async {
     return _datasource.getPropertyInt32(
       VehicleProperty.TURN_SIGNAL_SWITCH.id,
@@ -2041,6 +2137,9 @@ class VehiclePropertyRepository {
   /// permission {@link Car#PERMISSION_CONTROL_EXTERIOR_LIGHTS} to read property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_EXTERIOR_LIGHTS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   PropertyStreamData<int> listenTurnSignalSwitch({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -2399,6 +2498,9 @@ class VehiclePropertyRepository {
   /// Dangerous permission {@link Car#PERMISSION_READ_CAR_SEATS} or Signature|Privileged
   /// permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_25Q2_3P_PERMISSIONS
   Future<int> getSeatOccupancy(VehicleAreaSeat area) async {
     return _datasource.getPropertyInt32(
       VehicleProperty.SEAT_OCCUPANCY.id,
@@ -2412,6 +2514,9 @@ class VehiclePropertyRepository {
   /// Dangerous permission {@link Car#PERMISSION_READ_CAR_SEATS} or Signature|Privileged
   /// permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_25Q2_3P_PERMISSIONS
   PropertyStreamData<int> listenSeatOccupancy(
     VehicleAreaSeat area, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
@@ -2447,6 +2552,9 @@ class VehiclePropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_WINDSHIELD_WIPERS} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_25Q2_3P_PERMISSIONS
   Future<int> getWindshieldWipersState(VehicleAreaWindow area) async {
     return _datasource.getPropertyInt32(
       VehicleProperty.WINDSHIELD_WIPERS_STATE.id,
@@ -2478,6 +2586,9 @@ class VehiclePropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_WINDSHIELD_WIPERS} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_25Q2_3P_PERMISSIONS
   PropertyStreamData<int> listenWindshieldWipersState(
     VehicleAreaWindow area, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
@@ -3259,6 +3370,9 @@ class VehiclePropertyRepository {
   /// Dangerous permission {@link Car#PERMISSION_CAR_DRIVING_STATE_3P} or Signature|Privileged
   /// permission {@link Car#PERMISSION_CAR_DRIVING_STATE} to read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_25Q2_3P_PERMISSIONS
   Future<int> getVehicleDrivingAutomationCurrentLevel() async {
     return _datasource.getPropertyInt32(
       VehicleProperty.VEHICLE_DRIVING_AUTOMATION_CURRENT_LEVEL.id,
@@ -3281,6 +3395,9 @@ class VehiclePropertyRepository {
   /// Dangerous permission {@link Car#PERMISSION_CAR_DRIVING_STATE_3P} or Signature|Privileged
   /// permission {@link Car#PERMISSION_CAR_DRIVING_STATE} to read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_25Q2_3P_PERMISSIONS
   PropertyStreamData<int> listenVehicleDrivingAutomationCurrentLevel({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -3459,6 +3576,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CAR_ENGINE_DETAILED} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<bool> getEngineIdleAutoStopEnabled() async {
     return _datasource.getPropertyBoolean(
       VehicleProperty.ENGINE_IDLE_AUTO_STOP_ENABLED.id,
@@ -3474,6 +3594,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CAR_ENGINE_DETAILED} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<bool> listenEngineIdleAutoStopEnabled({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -3492,6 +3615,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CAR_ENGINE_DETAILED} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setEngineIdleAutoStopEnabled(bool value) async {
     return _datasource.setPropertyBoolean(
       VehicleProperty.ENGINE_IDLE_AUTO_STOP_ENABLED.id,
@@ -3516,6 +3642,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_IMPACT_SENSORS} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<int> getImpactDetected() async {
     return _datasource.getPropertyInt32(VehicleProperty.IMPACT_DETECTED.id, 0);
   }
@@ -3536,6 +3665,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_IMPACT_SENSORS} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<int> listenImpactDetected({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -3675,6 +3807,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_CAR_DYNAMICS_STATE} to read
   /// property.
   /// Property is not writable
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   Future<int> getVehiclePassiveSuspensionHeight(VehicleAreaWheel area) async {
     return _datasource.getPropertyInt32(
       VehicleProperty.VEHICLE_PASSIVE_SUSPENSION_HEIGHT.id,
@@ -3717,6 +3852,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_CAR_DYNAMICS_STATE} to read
   /// property.
   /// Property is not writable
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   PropertyStreamData<int> listenVehiclePassiveSuspensionHeight(
     VehicleAreaWheel area, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
@@ -3883,6 +4021,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_DYNAMICS_STATE} to
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<bool> getElectronicStabilityControlEnabled() async {
     return _datasource.getPropertyBoolean(
       VehicleProperty.ELECTRONIC_STABILITY_CONTROL_ENABLED.id,
@@ -3905,6 +4046,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_DYNAMICS_STATE} to
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<bool> listenElectronicStabilityControlEnabled({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -3930,6 +4074,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_DYNAMICS_STATE} to
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setElectronicStabilityControlEnabled(bool value) async {
     return _datasource.setPropertyBoolean(
       VehicleProperty.ELECTRONIC_STABILITY_CONTROL_ENABLED.id,
@@ -3954,6 +4101,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_CAR_DYNAMICS_STATE} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<int> getElectronicStabilityControlState() async {
     return _datasource.getPropertyInt32(
       VehicleProperty.ELECTRONIC_STABILITY_CONTROL_STATE.id,
@@ -3977,6 +4127,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_CAR_DYNAMICS_STATE} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<int> listenElectronicStabilityControlState({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -4005,6 +4158,9 @@ class VehiclePrivilegedPropertyRepository {
   /// permission {@link Car#PERMISSION_CONTROL_EXTERIOR_LIGHTS} to read property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_EXTERIOR_LIGHTS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   Future<void> setTurnSignalSwitch(int value) async {
     return _datasource.setPropertyInt32(
       VehicleProperty.TURN_SIGNAL_SWITCH.id,
@@ -5172,6 +5328,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_CLIMATE} to read
   /// and write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<bool> getHvacElectricDefrosterOn(VehicleAreaWindow area) async {
     return _datasource.getPropertyBoolean(
       VehicleProperty.HVAC_ELECTRIC_DEFROSTER_ON.id,
@@ -5184,6 +5343,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_CLIMATE} to read
   /// and write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<bool> listenHvacElectricDefrosterOn(
     VehicleAreaWindow area, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
@@ -5200,6 +5362,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_CLIMATE} to read
   /// and write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setHvacElectricDefrosterOn(
     VehicleAreaWindow area,
     bool value,
@@ -5364,6 +5529,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_VALET_MODE} to read property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_VALET_MODE} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<bool> getValetModeEnabled() async {
     return _datasource.getPropertyBoolean(
       VehicleProperty.VALET_MODE_ENABLED.id,
@@ -5385,6 +5553,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_VALET_MODE} to read property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_VALET_MODE} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<bool> listenValetModeEnabled({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -5409,6 +5580,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_VALET_MODE} to read property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_VALET_MODE} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setValetModeEnabled(bool value) async {
     return _datasource.setPropertyBoolean(
       VehicleProperty.VALET_MODE_ENABLED.id,
@@ -5432,6 +5606,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_HEAD_UP_DISPLAY} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<bool> getHeadUpDisplayEnabled(VehicleAreaSeat area) async {
     return _datasource.getPropertyBoolean(
       VehicleProperty.HEAD_UP_DISPLAY_ENABLED.id,
@@ -5454,6 +5631,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_HEAD_UP_DISPLAY} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<bool> listenHeadUpDisplayEnabled(
     VehicleAreaSeat area, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
@@ -5480,6 +5660,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_HEAD_UP_DISPLAY} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setHeadUpDisplayEnabled(VehicleAreaSeat area, bool value) async {
     return _datasource.setPropertyBoolean(
       VehicleProperty.HEAD_UP_DISPLAY_ENABLED.id,
@@ -5694,6 +5877,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_DOORS} to read
   /// and write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<bool> getDoorChildLockEnabled(VehicleAreaDoor area) async {
     return _datasource.getPropertyBoolean(
       VehicleProperty.DOOR_CHILD_LOCK_ENABLED.id,
@@ -5709,6 +5895,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_DOORS} to read
   /// and write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<bool> listenDoorChildLockEnabled(
     VehicleAreaDoor area, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
@@ -5728,6 +5917,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_DOORS} to read
   /// and write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setDoorChildLockEnabled(VehicleAreaDoor area, bool value) async {
     return _datasource.setPropertyBoolean(
       VehicleProperty.DOOR_CHILD_LOCK_ENABLED.id,
@@ -6135,6 +6327,9 @@ class VehiclePrivilegedPropertyRepository {
   /// write property.
   /// @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
   /// @RequiresPermission(Car.PERMISSION_CONTROL_CAR_MIRRORS)
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<bool> getMirrorAutoFoldEnabled(VehicleAreaMirror area) async {
     return _datasource.getPropertyBoolean(
       VehicleProperty.MIRROR_AUTO_FOLD_ENABLED.id,
@@ -6153,6 +6348,9 @@ class VehiclePrivilegedPropertyRepository {
   /// write property.
   /// @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
   /// @RequiresPermission(Car.PERMISSION_CONTROL_CAR_MIRRORS)
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<bool> listenMirrorAutoFoldEnabled(
     VehicleAreaMirror area, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
@@ -6175,6 +6373,9 @@ class VehiclePrivilegedPropertyRepository {
   /// write property.
   /// @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
   /// @RequiresPermission(Car.PERMISSION_CONTROL_CAR_MIRRORS)
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setMirrorAutoFoldEnabled(
     VehicleAreaMirror area,
     bool value,
@@ -6195,6 +6396,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_MIRRORS} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<bool> getMirrorAutoTiltEnabled(VehicleAreaMirror area) async {
     return _datasource.getPropertyBoolean(
       VehicleProperty.MIRROR_AUTO_TILT_ENABLED.id,
@@ -6211,6 +6415,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_MIRRORS} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<bool> listenMirrorAutoTiltEnabled(
     VehicleAreaMirror area, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
@@ -6231,6 +6438,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_MIRRORS} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setMirrorAutoTiltEnabled(
     VehicleAreaMirror area,
     bool value,
@@ -6262,6 +6472,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_GLOVE_BOX} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<int> getGloveBoxDoorPos(VehicleAreaSeat area) async {
     return _datasource.getPropertyInt32(
       VehicleProperty.GLOVE_BOX_DOOR_POS.id,
@@ -6289,6 +6502,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_GLOVE_BOX} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<int> listenGloveBoxDoorPos(
     VehicleAreaSeat area, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
@@ -6320,6 +6536,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_GLOVE_BOX} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setGloveBoxDoorPos(VehicleAreaSeat area, int value) async {
     return _datasource.setPropertyInt32(
       VehicleProperty.GLOVE_BOX_DOOR_POS.id,
@@ -6339,6 +6558,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_GLOVE_BOX} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<bool> getGloveBoxLocked(VehicleAreaSeat area) async {
     return _datasource.getPropertyBoolean(
       VehicleProperty.GLOVE_BOX_LOCKED.id,
@@ -6357,6 +6579,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_GLOVE_BOX} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<bool> listenGloveBoxLocked(
     VehicleAreaSeat area, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
@@ -6379,6 +6604,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_GLOVE_BOX} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setGloveBoxLocked(VehicleAreaSeat area, bool value) async {
     return _datasource.setPropertyBoolean(
       VehicleProperty.GLOVE_BOX_LOCKED.id,
@@ -8559,6 +8787,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<bool> getSeatEasyAccessEnabled(VehicleAreaSeat area) async {
     return _datasource.getPropertyBoolean(
       VehicleProperty.SEAT_EASY_ACCESS_ENABLED.id,
@@ -8575,6 +8806,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<bool> listenSeatEasyAccessEnabled(
     VehicleAreaSeat area, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
@@ -8595,6 +8829,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setSeatEasyAccessEnabled(
     VehicleAreaSeat area,
     bool value,
@@ -8616,6 +8853,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_AIRBAGS} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<bool> getSeatAirbagEnabled(VehicleAreaSeat area) async {
     return _datasource.getPropertyBoolean(
       VehicleProperty.SEAT_AIRBAG_ENABLED.id,
@@ -8633,6 +8873,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_AIRBAGS} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<bool> listenSeatAirbagEnabled(
     VehicleAreaSeat area, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
@@ -8654,6 +8897,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_AIRBAGS} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setSeatAirbagEnabled(VehicleAreaSeat area, bool value) async {
     return _datasource.setPropertyBoolean(
       VehicleProperty.SEAT_AIRBAG_ENABLED.id,
@@ -8682,6 +8928,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_CAR_AIRBAGS} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<int> getSeatAirbagsDeployed(VehicleAreaSeat area) async {
     return _datasource.getPropertyInt32(
       VehicleProperty.SEAT_AIRBAGS_DEPLOYED.id,
@@ -8709,6 +8958,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_CAR_AIRBAGS} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<int> listenSeatAirbagsDeployed(
     VehicleAreaSeat area, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
@@ -8736,6 +8988,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<int> getSeatCushionSideSupportPos(VehicleAreaSeat area) async {
     return _datasource.getPropertyInt32(
       VehicleProperty.SEAT_CUSHION_SIDE_SUPPORT_POS.id,
@@ -8759,6 +9014,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<int> listenSeatCushionSideSupportPos(
     VehicleAreaSeat area, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
@@ -8786,6 +9044,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setSeatCushionSideSupportPos(
     VehicleAreaSeat area,
     int value,
@@ -8815,6 +9076,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<int> getSeatCushionSideSupportMove(VehicleAreaSeat area) async {
     return _datasource.getPropertyInt32(
       VehicleProperty.SEAT_CUSHION_SIDE_SUPPORT_MOVE.id,
@@ -8840,6 +9104,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<int> listenSeatCushionSideSupportMove(
     VehicleAreaSeat area, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
@@ -8869,6 +9136,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setSeatCushionSideSupportMove(
     VehicleAreaSeat area,
     int value,
@@ -8896,6 +9166,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<int> getSeatLumbarVerticalPos(VehicleAreaSeat area) async {
     return _datasource.getPropertyInt32(
       VehicleProperty.SEAT_LUMBAR_VERTICAL_POS.id,
@@ -8919,6 +9192,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<int> listenSeatLumbarVerticalPos(
     VehicleAreaSeat area, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
@@ -8946,6 +9222,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setSeatLumbarVerticalPos(VehicleAreaSeat area, int value) async {
     return _datasource.setPropertyInt32(
       VehicleProperty.SEAT_LUMBAR_VERTICAL_POS.id,
@@ -8971,6 +9250,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<int> getSeatLumbarVerticalMove(VehicleAreaSeat area) async {
     return _datasource.getPropertyInt32(
       VehicleProperty.SEAT_LUMBAR_VERTICAL_MOVE.id,
@@ -8995,6 +9277,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<int> listenSeatLumbarVerticalMove(
     VehicleAreaSeat area, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
@@ -9023,6 +9308,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setSeatLumbarVerticalMove(
     VehicleAreaSeat area,
     int value,
@@ -9051,6 +9339,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<int> getSeatWalkInPos(VehicleAreaSeat area) async {
     return _datasource.getPropertyInt32(
       VehicleProperty.SEAT_WALK_IN_POS.id,
@@ -9075,6 +9366,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<int> listenSeatWalkInPos(
     VehicleAreaSeat area, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
@@ -9103,6 +9397,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setSeatWalkInPos(VehicleAreaSeat area, int value) async {
     return _datasource.setPropertyInt32(
       VehicleProperty.SEAT_WALK_IN_POS.id,
@@ -9127,6 +9424,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_CAR_SEAT_BELTS} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<bool> getSeatBeltPretensionerDeployed(VehicleAreaSeat area) async {
     return _datasource.getPropertyBoolean(
       VehicleProperty.SEAT_BELT_PRETENSIONER_DEPLOYED.id,
@@ -9150,6 +9450,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_CAR_SEAT_BELTS} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<bool> listenSeatBeltPretensionerDeployed(
     VehicleAreaSeat area, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
@@ -9391,6 +9694,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_WINDSHIELD_WIPERS} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<int> getWindshieldWipersPeriod(VehicleAreaWindow area) async {
     return _datasource.getPropertyInt32(
       VehicleProperty.WINDSHIELD_WIPERS_PERIOD.id,
@@ -9412,6 +9718,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_WINDSHIELD_WIPERS} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<int> listenWindshieldWipersPeriod(
     VehicleAreaWindow area, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
@@ -9445,6 +9754,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_WINDSHIELD_WIPERS} to
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<int> getWindshieldWipersSwitch(VehicleAreaWindow area) async {
     return _datasource.getPropertyInt32(
       VehicleProperty.WINDSHIELD_WIPERS_SWITCH.id,
@@ -9474,6 +9786,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_WINDSHIELD_WIPERS} to
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<int> listenWindshieldWipersSwitch(
     VehicleAreaWindow area, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
@@ -9507,6 +9822,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_WINDSHIELD_WIPERS} to
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setWindshieldWipersSwitch(
     VehicleAreaWindow area,
     int value,
@@ -9534,6 +9852,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_STEERING_WHEEL} to read
   /// and write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<int> getSteeringWheelDepthPos() async {
     return _datasource.getPropertyInt32(
       VehicleProperty.STEERING_WHEEL_DEPTH_POS.id,
@@ -9557,6 +9878,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_STEERING_WHEEL} to read
   /// and write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<int> listenSteeringWheelDepthPos({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -9583,6 +9907,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_STEERING_WHEEL} to read
   /// and write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setSteeringWheelDepthPos(int value) async {
     return _datasource.setPropertyInt32(
       VehicleProperty.STEERING_WHEEL_DEPTH_POS.id,
@@ -9610,6 +9937,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_STEERING_WHEEL} to read
   /// and write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<int> getSteeringWheelDepthMove() async {
     return _datasource.getPropertyInt32(
       VehicleProperty.STEERING_WHEEL_DEPTH_MOVE.id,
@@ -9636,6 +9966,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_STEERING_WHEEL} to read
   /// and write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<int> listenSteeringWheelDepthMove({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -9665,6 +9998,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_STEERING_WHEEL} to read
   /// and write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setSteeringWheelDepthMove(int value) async {
     return _datasource.setPropertyInt32(
       VehicleProperty.STEERING_WHEEL_DEPTH_MOVE.id,
@@ -9689,6 +10025,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_STEERING_WHEEL} to read
   /// and write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<int> getSteeringWheelHeightPos() async {
     return _datasource.getPropertyInt32(
       VehicleProperty.STEERING_WHEEL_HEIGHT_POS.id,
@@ -9712,6 +10051,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_STEERING_WHEEL} to read
   /// and write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<int> listenSteeringWheelHeightPos({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -9738,6 +10080,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_STEERING_WHEEL} to read
   /// and write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setSteeringWheelHeightPos(int value) async {
     return _datasource.setPropertyInt32(
       VehicleProperty.STEERING_WHEEL_HEIGHT_POS.id,
@@ -9764,6 +10109,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_STEERING_WHEEL} to read
   /// and write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<int> getSteeringWheelHeightMove() async {
     return _datasource.getPropertyInt32(
       VehicleProperty.STEERING_WHEEL_HEIGHT_MOVE.id,
@@ -9789,6 +10137,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_STEERING_WHEEL} to read
   /// and write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<int> listenSteeringWheelHeightMove({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -9817,6 +10168,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_STEERING_WHEEL} to read
   /// and write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setSteeringWheelHeightMove(int value) async {
     return _datasource.setPropertyInt32(
       VehicleProperty.STEERING_WHEEL_HEIGHT_MOVE.id,
@@ -9834,6 +10188,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_STEERING_WHEEL} to read
   /// and write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<bool> getSteeringWheelTheftLockEnabled() async {
     return _datasource.getPropertyBoolean(
       VehicleProperty.STEERING_WHEEL_THEFT_LOCK_ENABLED.id,
@@ -9850,6 +10207,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_STEERING_WHEEL} to read
   /// and write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<bool> listenSteeringWheelTheftLockEnabled({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -9869,6 +10229,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_STEERING_WHEEL} to read
   /// and write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setSteeringWheelTheftLockEnabled(bool value) async {
     return _datasource.setPropertyBoolean(
       VehicleProperty.STEERING_WHEEL_THEFT_LOCK_ENABLED.id,
@@ -9885,6 +10248,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_STEERING_WHEEL} to read
   /// and write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<bool> getSteeringWheelLocked() async {
     return _datasource.getPropertyBoolean(
       VehicleProperty.STEERING_WHEEL_LOCKED.id,
@@ -9900,6 +10266,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_STEERING_WHEEL} to read
   /// and write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<bool> listenSteeringWheelLocked({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -9918,6 +10287,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_STEERING_WHEEL} to read
   /// and write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setSteeringWheelLocked(bool value) async {
     return _datasource.setPropertyBoolean(
       VehicleProperty.STEERING_WHEEL_LOCKED.id,
@@ -9935,6 +10307,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_STEERING_WHEEL} to read
   /// and write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<bool> getSteeringWheelEasyAccessEnabled() async {
     return _datasource.getPropertyBoolean(
       VehicleProperty.STEERING_WHEEL_EASY_ACCESS_ENABLED.id,
@@ -9951,6 +10326,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_STEERING_WHEEL} to read
   /// and write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<bool> listenSteeringWheelEasyAccessEnabled({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -9970,6 +10348,9 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_STEERING_WHEEL} to read
   /// and write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setSteeringWheelEasyAccessEnabled(bool value) async {
     return _datasource.setPropertyBoolean(
       VehicleProperty.STEERING_WHEEL_EASY_ACCESS_ENABLED.id,
@@ -9996,6 +10377,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ULTRASONICS_SENSOR_DATA} to
   /// read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<List<int>> getUltrasonicsSensorPosition() async {
     return _datasource.getPropertyInt32Vec(
       VehicleProperty.ULTRASONICS_SENSOR_POSITION.id,
@@ -10021,6 +10405,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ULTRASONICS_SENSOR_DATA} to
   /// read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<List<int>> listenUltrasonicsSensorPosition({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -10053,6 +10440,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ULTRASONICS_SENSOR_DATA} to
   /// read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<List<double>> getUltrasonicsSensorOrientation() async {
     return _datasource.getPropertyFloatVec(
       VehicleProperty.ULTRASONICS_SENSOR_ORIENTATION.id,
@@ -10082,6 +10472,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ULTRASONICS_SENSOR_DATA} to
   /// read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<List<double>> listenUltrasonicsSensorOrientation({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -10110,6 +10503,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ULTRASONICS_SENSOR_DATA} to
   /// read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<List<int>> getUltrasonicsSensorFieldOfView() async {
     return _datasource.getPropertyInt32Vec(
       VehicleProperty.ULTRASONICS_SENSOR_FIELD_OF_VIEW.id,
@@ -10135,6 +10531,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ULTRASONICS_SENSOR_DATA} to
   /// read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<List<int>> listenUltrasonicsSensorFieldOfView({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -10159,6 +10558,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ULTRASONICS_SENSOR_DATA} to
   /// read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<List<int>> getUltrasonicsSensorDetectionRange() async {
     return _datasource.getPropertyInt32Vec(
       VehicleProperty.ULTRASONICS_SENSOR_DETECTION_RANGE.id,
@@ -10180,6 +10582,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ULTRASONICS_SENSOR_DATA} to
   /// read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<List<int>> listenUltrasonicsSensorDetectionRange({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -10230,6 +10635,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ULTRASONICS_SENSOR_DATA} to
   /// read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<List<int>> getUltrasonicsSensorSupportedRanges() async {
     return _datasource.getPropertyInt32Vec(
       VehicleProperty.ULTRASONICS_SENSOR_SUPPORTED_RANGES.id,
@@ -10277,6 +10685,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ULTRASONICS_SENSOR_DATA} to
   /// read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<List<int>> listenUltrasonicsSensorSupportedRanges({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -10306,6 +10717,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ULTRASONICS_SENSOR_DATA} to
   /// read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<List<int>> getUltrasonicsSensorMeasuredDistance() async {
     return _datasource.getPropertyInt32Vec(
       VehicleProperty.ULTRASONICS_SENSOR_MEASURED_DISTANCE.id,
@@ -10332,6 +10746,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ULTRASONICS_SENSOR_DATA} to
   /// read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<List<int>> listenUltrasonicsSensorMeasuredDistance({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -11383,6 +11800,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission "android.car.permission.CAR_DRIVING_STATE" to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   Future<int> getVehicleDrivingAutomationTargetLevel() async {
     return _datasource.getPropertyInt32(
       VehicleProperty.VEHICLE_DRIVING_AUTOMATION_TARGET_LEVEL.id,
@@ -11419,6 +11839,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission "android.car.permission.CAR_DRIVING_STATE" to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   PropertyStreamData<int> listenVehicleDrivingAutomationTargetLevel({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -11445,6 +11868,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<bool> getAutomaticEmergencyBrakingEnabled() async {
     return _datasource.getPropertyBoolean(
       VehicleProperty.AUTOMATIC_EMERGENCY_BRAKING_ENABLED.id,
@@ -11468,6 +11894,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<bool> listenAutomaticEmergencyBrakingEnabled({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -11494,6 +11923,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setAutomaticEmergencyBrakingEnabled(bool value) async {
     return _datasource.setPropertyBoolean(
       VehicleProperty.AUTOMATIC_EMERGENCY_BRAKING_ENABLED.id,
@@ -11523,6 +11955,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ADAS_STATES} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<int> getAutomaticEmergencyBrakingState() async {
     return _datasource.getPropertyInt32(
       VehicleProperty.AUTOMATIC_EMERGENCY_BRAKING_STATE.id,
@@ -11551,6 +11986,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ADAS_STATES} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<int> listenAutomaticEmergencyBrakingState({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -11575,6 +12013,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<bool> getForwardCollisionWarningEnabled() async {
     return _datasource.getPropertyBoolean(
       VehicleProperty.FORWARD_COLLISION_WARNING_ENABLED.id,
@@ -11596,6 +12037,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<bool> listenForwardCollisionWarningEnabled({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -11620,6 +12064,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setForwardCollisionWarningEnabled(bool value) async {
     return _datasource.setPropertyBoolean(
       VehicleProperty.FORWARD_COLLISION_WARNING_ENABLED.id,
@@ -11644,6 +12091,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ADAS_STATES} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<int> getForwardCollisionWarningState() async {
     return _datasource.getPropertyInt32(
       VehicleProperty.FORWARD_COLLISION_WARNING_STATE.id,
@@ -11667,6 +12117,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ADAS_STATES} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<int> listenForwardCollisionWarningState({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -11692,6 +12145,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<bool> getBlindSpotWarningEnabled() async {
     return _datasource.getPropertyBoolean(
       VehicleProperty.BLIND_SPOT_WARNING_ENABLED.id,
@@ -11714,6 +12170,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<bool> listenBlindSpotWarningEnabled({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -11739,6 +12198,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setBlindSpotWarningEnabled(bool value) async {
     return _datasource.setPropertyBoolean(
       VehicleProperty.BLIND_SPOT_WARNING_ENABLED.id,
@@ -11763,6 +12225,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ADAS_STATES} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<int> getBlindSpotWarningState(VehicleAreaMirror area) async {
     return _datasource.getPropertyInt32(
       VehicleProperty.BLIND_SPOT_WARNING_STATE.id,
@@ -11786,6 +12251,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ADAS_STATES} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<int> listenBlindSpotWarningState(
     VehicleAreaMirror area, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
@@ -11812,6 +12280,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<bool> getLaneDepartureWarningEnabled() async {
     return _datasource.getPropertyBoolean(
       VehicleProperty.LANE_DEPARTURE_WARNING_ENABLED.id,
@@ -11834,6 +12305,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<bool> listenLaneDepartureWarningEnabled({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -11859,6 +12333,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setLaneDepartureWarningEnabled(bool value) async {
     return _datasource.setPropertyBoolean(
       VehicleProperty.LANE_DEPARTURE_WARNING_ENABLED.id,
@@ -11883,6 +12360,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ADAS_STATES} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<int> getLaneDepartureWarningState() async {
     return _datasource.getPropertyInt32(
       VehicleProperty.LANE_DEPARTURE_WARNING_STATE.id,
@@ -11906,6 +12386,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ADAS_STATES} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<int> listenLaneDepartureWarningState({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -11935,6 +12418,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<bool> getLaneKeepAssistEnabled() async {
     return _datasource.getPropertyBoolean(
       VehicleProperty.LANE_KEEP_ASSIST_ENABLED.id,
@@ -11961,6 +12447,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<bool> listenLaneKeepAssistEnabled({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -11990,6 +12479,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setLaneKeepAssistEnabled(bool value) async {
     return _datasource.setPropertyBoolean(
       VehicleProperty.LANE_KEEP_ASSIST_ENABLED.id,
@@ -12017,6 +12509,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ADAS_STATES} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<int> getLaneKeepAssistState() async {
     return _datasource.getPropertyInt32(
       VehicleProperty.LANE_KEEP_ASSIST_STATE.id,
@@ -12043,6 +12538,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ADAS_STATES} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<int> listenLaneKeepAssistState({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -12073,6 +12571,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<bool> getLaneCenteringAssistEnabled() async {
     return _datasource.getPropertyBoolean(
       VehicleProperty.LANE_CENTERING_ASSIST_ENABLED.id,
@@ -12100,6 +12601,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<bool> listenLaneCenteringAssistEnabled({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -12130,6 +12634,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setLaneCenteringAssistEnabled(bool value) async {
     return _datasource.setPropertyBoolean(
       VehicleProperty.LANE_CENTERING_ASSIST_ENABLED.id,
@@ -12163,6 +12670,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Property is not readable.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_STATES} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setLaneCenteringAssistCommand(int value) async {
     return _datasource.setPropertyInt32(
       VehicleProperty.LANE_CENTERING_ASSIST_COMMAND.id,
@@ -12190,6 +12700,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ADAS_STATES} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<int> getLaneCenteringAssistState() async {
     return _datasource.getPropertyInt32(
       VehicleProperty.LANE_CENTERING_ASSIST_STATE.id,
@@ -12216,6 +12729,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ADAS_STATES} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<int> listenLaneCenteringAssistState({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -12242,6 +12758,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<bool> getEmergencyLaneKeepAssistEnabled() async {
     return _datasource.getPropertyBoolean(
       VehicleProperty.EMERGENCY_LANE_KEEP_ASSIST_ENABLED.id,
@@ -12265,6 +12784,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<bool> listenEmergencyLaneKeepAssistEnabled({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -12291,6 +12813,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setEmergencyLaneKeepAssistEnabled(bool value) async {
     return _datasource.setPropertyBoolean(
       VehicleProperty.EMERGENCY_LANE_KEEP_ASSIST_ENABLED.id,
@@ -12317,6 +12842,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ADAS_STATES} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<int> getEmergencyLaneKeepAssistState() async {
     return _datasource.getPropertyInt32(
       VehicleProperty.EMERGENCY_LANE_KEEP_ASSIST_STATE.id,
@@ -12342,6 +12870,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ADAS_STATES} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<int> listenEmergencyLaneKeepAssistState({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -12369,6 +12900,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<bool> getCruiseControlEnabled() async {
     return _datasource.getPropertyBoolean(
       VehicleProperty.CRUISE_CONTROL_ENABLED.id,
@@ -12393,6 +12927,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<bool> listenCruiseControlEnabled({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -12420,6 +12957,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setCruiseControlEnabled(bool value) async {
     return _datasource.setPropertyBoolean(
       VehicleProperty.CRUISE_CONTROL_ENABLED.id,
@@ -12454,6 +12994,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_STATES} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<int> getCruiseControlType() async {
     return _datasource.getPropertyInt32(
       VehicleProperty.CRUISE_CONTROL_TYPE.id,
@@ -12487,6 +13030,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_STATES} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<int> listenCruiseControlType({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -12523,6 +13069,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_STATES} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setCruiseControlType(int value) async {
     return _datasource.setPropertyInt32(
       VehicleProperty.CRUISE_CONTROL_TYPE.id,
@@ -12549,6 +13098,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ADAS_STATES} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<int> getCruiseControlState() async {
     return _datasource.getPropertyInt32(
       VehicleProperty.CRUISE_CONTROL_STATE.id,
@@ -12574,6 +13126,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ADAS_STATES} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<int> listenCruiseControlState({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -12602,6 +13157,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Property is not readable.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_STATES} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setCruiseControlCommand(int value) async {
     return _datasource.setPropertyInt32(
       VehicleProperty.CRUISE_CONTROL_COMMAND.id,
@@ -12629,6 +13187,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ADAS_STATES} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<double> getCruiseControlTargetSpeed() async {
     return _datasource.getPropertyFloat(
       VehicleProperty.CRUISE_CONTROL_TARGET_SPEED.id,
@@ -12655,6 +13216,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ADAS_STATES} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<double> listenCruiseControlTargetSpeed({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -12687,6 +13251,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_STATES} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<int> getAdaptiveCruiseControlTargetTimeGap() async {
     return _datasource.getPropertyInt32(
       VehicleProperty.ADAPTIVE_CRUISE_CONTROL_TARGET_TIME_GAP.id,
@@ -12716,6 +13283,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_STATES} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<int> listenAdaptiveCruiseControlTargetTimeGap({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -12748,6 +13318,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_STATES} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setAdaptiveCruiseControlTargetTimeGap(int value) async {
     return _datasource.setPropertyInt32(
       VehicleProperty.ADAPTIVE_CRUISE_CONTROL_TARGET_TIME_GAP.id,
@@ -12778,6 +13351,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ADAS_STATES} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<int> getAdaptiveCruiseControlLeadVehicleMeasuredDistance() async {
     return _datasource.getPropertyInt32(
       VehicleProperty.ADAPTIVE_CRUISE_CONTROL_LEAD_VEHICLE_MEASURED_DISTANCE.id,
@@ -12807,6 +13383,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ADAS_STATES} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<int>
   listenAdaptiveCruiseControlLeadVehicleMeasuredDistance({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
@@ -12834,6 +13413,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to read property.
   /// Signature|Privileged permission {@link
   /// Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<bool> getHandsOnDetectionEnabled() async {
     return _datasource.getPropertyBoolean(
       VehicleProperty.HANDS_ON_DETECTION_ENABLED.id,
@@ -12857,6 +13439,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to read property.
   /// Signature|Privileged permission {@link
   /// Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<bool> listenHandsOnDetectionEnabled({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -12883,6 +13468,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to read property.
   /// Signature|Privileged permission {@link
   /// Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setHandsOnDetectionEnabled(bool value) async {
     return _datasource.setPropertyBoolean(
       VehicleProperty.HANDS_ON_DETECTION_ENABLED.id,
@@ -12914,6 +13502,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_DRIVER_MONITORING_STATES} to
   /// read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<int> getHandsOnDetectionDriverState() async {
     return _datasource.getPropertyInt32(
       VehicleProperty.HANDS_ON_DETECTION_DRIVER_STATE.id,
@@ -12944,6 +13535,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_DRIVER_MONITORING_STATES} to
   /// read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<int> listenHandsOnDetectionDriverState({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -12975,6 +13569,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_DRIVER_MONITORING_STATES} to
   /// read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<int> getHandsOnDetectionWarning() async {
     return _datasource.getPropertyInt32(
       VehicleProperty.HANDS_ON_DETECTION_WARNING.id,
@@ -13003,6 +13600,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_DRIVER_MONITORING_STATES} to
   /// read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<int> listenHandsOnDetectionWarning({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -13026,6 +13626,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to read property.
   /// Signature|Privileged permission {@link
   /// Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<bool> getDriverDrowsinessAttentionSystemEnabled() async {
     return _datasource.getPropertyBoolean(
       VehicleProperty.DRIVER_DROWSINESS_ATTENTION_SYSTEM_ENABLED.id,
@@ -13046,6 +13649,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to read property.
   /// Signature|Privileged permission {@link
   /// Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<bool> listenDriverDrowsinessAttentionSystemEnabled({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -13069,6 +13675,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to read property.
   /// Signature|Privileged permission {@link
   /// Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setDriverDrowsinessAttentionSystemEnabled(bool value) async {
     return _datasource.setPropertyBoolean(
       VehicleProperty.DRIVER_DROWSINESS_ATTENTION_SYSTEM_ENABLED.id,
@@ -13101,6 +13710,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_DRIVER_MONITORING_STATES} to
   /// read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<int> getDriverDrowsinessAttentionState() async {
     return _datasource.getPropertyInt32(
       VehicleProperty.DRIVER_DROWSINESS_ATTENTION_STATE.id,
@@ -13132,6 +13744,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_DRIVER_MONITORING_STATES} to
   /// read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<int> listenDriverDrowsinessAttentionState({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -13155,6 +13770,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to read property.
   /// Signature|Privileged permission {@link
   /// Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<bool> getDriverDrowsinessAttentionWarningEnabled() async {
     return _datasource.getPropertyBoolean(
       VehicleProperty.DRIVER_DROWSINESS_ATTENTION_WARNING_ENABLED.id,
@@ -13175,6 +13793,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to read property.
   /// Signature|Privileged permission {@link
   /// Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<bool> listenDriverDrowsinessAttentionWarningEnabled({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -13198,6 +13819,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to read property.
   /// Signature|Privileged permission {@link
   /// Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setDriverDrowsinessAttentionWarningEnabled(bool value) async {
     return _datasource.setPropertyBoolean(
       VehicleProperty.DRIVER_DROWSINESS_ATTENTION_WARNING_ENABLED.id,
@@ -13226,6 +13850,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_DRIVER_MONITORING_STATES} to
   /// read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<int> getDriverDrowsinessAttentionWarning() async {
     return _datasource.getPropertyInt32(
       VehicleProperty.DRIVER_DROWSINESS_ATTENTION_WARNING.id,
@@ -13253,6 +13880,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_DRIVER_MONITORING_STATES} to
   /// read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<int> listenDriverDrowsinessAttentionWarning({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -13275,6 +13905,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to read property.
   /// Signature|Privileged permission {@link
   /// Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<bool> getDriverDistractionSystemEnabled() async {
     return _datasource.getPropertyBoolean(
       VehicleProperty.DRIVER_DISTRACTION_SYSTEM_ENABLED.id,
@@ -13294,6 +13927,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to read property.
   /// Signature|Privileged permission {@link
   /// Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<bool> listenDriverDistractionSystemEnabled({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -13316,6 +13952,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to read property.
   /// Signature|Privileged permission {@link
   /// Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setDriverDistractionSystemEnabled(bool value) async {
     return _datasource.setPropertyBoolean(
       VehicleProperty.DRIVER_DISTRACTION_SYSTEM_ENABLED.id,
@@ -13347,6 +13986,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_DRIVER_MONITORING_STATES} to
   /// read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<int> getDriverDistractionState() async {
     return _datasource.getPropertyInt32(
       VehicleProperty.DRIVER_DISTRACTION_STATE.id,
@@ -13377,6 +14019,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_DRIVER_MONITORING_STATES} to
   /// read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<int> listenDriverDistractionState({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -13399,6 +14044,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to read property.
   /// Signature|Privileged permission {@link
   /// Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<bool> getDriverDistractionWarningEnabled() async {
     return _datasource.getPropertyBoolean(
       VehicleProperty.DRIVER_DISTRACTION_WARNING_ENABLED.id,
@@ -13418,6 +14066,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to read property.
   /// Signature|Privileged permission {@link
   /// Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<bool> listenDriverDistractionWarningEnabled({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -13440,6 +14091,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to read property.
   /// Signature|Privileged permission {@link
   /// Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setDriverDistractionWarningEnabled(bool value) async {
     return _datasource.setPropertyBoolean(
       VehicleProperty.DRIVER_DISTRACTION_WARNING_ENABLED.id,
@@ -13468,6 +14122,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_DRIVER_MONITORING_STATES} to
   /// read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<int> getDriverDistractionWarning() async {
     return _datasource.getPropertyInt32(
       VehicleProperty.DRIVER_DISTRACTION_WARNING.id,
@@ -13495,6 +14152,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_DRIVER_MONITORING_STATES} to
   /// read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<int> listenDriverDistractionWarning({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -13523,6 +14183,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<bool> getLowSpeedCollisionWarningEnabled() async {
     return _datasource.getPropertyBoolean(
       VehicleProperty.LOW_SPEED_COLLISION_WARNING_ENABLED.id,
@@ -13548,6 +14211,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<bool> listenLowSpeedCollisionWarningEnabled({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -13576,6 +14242,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setLowSpeedCollisionWarningEnabled(bool value) async {
     return _datasource.setPropertyBoolean(
       VehicleProperty.LOW_SPEED_COLLISION_WARNING_ENABLED.id,
@@ -13603,6 +14272,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ADAS_STATES} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<int> getLowSpeedCollisionWarningState() async {
     return _datasource.getPropertyInt32(
       VehicleProperty.LOW_SPEED_COLLISION_WARNING_STATE.id,
@@ -13629,6 +14301,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ADAS_STATES} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<int> listenLowSpeedCollisionWarningState({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -13654,6 +14329,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<bool> getCrossTrafficMonitoringEnabled() async {
     return _datasource.getPropertyBoolean(
       VehicleProperty.CROSS_TRAFFIC_MONITORING_ENABLED.id,
@@ -13676,6 +14354,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<bool> listenCrossTrafficMonitoringEnabled({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -13701,6 +14382,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setCrossTrafficMonitoringEnabled(bool value) async {
     return _datasource.setPropertyBoolean(
       VehicleProperty.CROSS_TRAFFIC_MONITORING_ENABLED.id,
@@ -13726,6 +14410,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ADAS_STATES} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<int> getCrossTrafficMonitoringWarningState() async {
     return _datasource.getPropertyInt32(
       VehicleProperty.CROSS_TRAFFIC_MONITORING_WARNING_STATE.id,
@@ -13750,6 +14437,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ADAS_STATES} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<int> listenCrossTrafficMonitoringWarningState({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -13779,6 +14469,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<bool> getLowSpeedAutomaticEmergencyBrakingEnabled() async {
     return _datasource.getPropertyBoolean(
       VehicleProperty.LOW_SPEED_AUTOMATIC_EMERGENCY_BRAKING_ENABLED.id,
@@ -13805,6 +14498,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<bool> listenLowSpeedAutomaticEmergencyBrakingEnabled({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -13834,6 +14530,9 @@ class VehiclePrivilegedPropertyRepository {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<void> setLowSpeedAutomaticEmergencyBrakingEnabled(bool value) async {
     return _datasource.setPropertyBoolean(
       VehicleProperty.LOW_SPEED_AUTOMATIC_EMERGENCY_BRAKING_ENABLED.id,
@@ -13864,6 +14563,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ADAS_STATES} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   Future<int> getLowSpeedAutomaticEmergencyBrakingState() async {
     return _datasource.getPropertyInt32(
       VehicleProperty.LOW_SPEED_AUTOMATIC_EMERGENCY_BRAKING_STATE.id,
@@ -13893,6 +14595,9 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ADAS_STATES} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<int> listenLowSpeedAutomaticEmergencyBrakingState({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {

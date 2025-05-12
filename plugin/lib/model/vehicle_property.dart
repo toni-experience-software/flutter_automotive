@@ -188,6 +188,9 @@ enum VehicleProperty {
   /// # Permissions
   /// Normal permission {@link Car#PERMISSION_CAR_INFO} to read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   INFO_MODEL_TRIM(286261517),
 
   /// Vehicle Size Class.
@@ -208,6 +211,9 @@ enum VehicleProperty {
   /// # Permissions
   /// Normal permission {@link Car#PERMISSION_CAR_INFO} to read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   INFO_VEHICLE_SIZE_CLASS(289472782),
 
   /// Current odometer value of the vehicle in kilometers.
@@ -216,6 +222,9 @@ enum VehicleProperty {
   /// Dangerous permission {@link Car#PERMISSION_MILEAGE_3P} or Signature|Privileged
   /// permission {@link Car#PERMISSION_MILEAGE} to read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   PERF_ODOMETER(291504644),
 
   /// Speed of the vehicle in meters per second.
@@ -253,6 +262,9 @@ enum VehicleProperty {
   /// Dangerous permission {@link Car#PERMISSION_READ_STEERING_STATE_3P} or
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_STEERING_STATE} to read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_25Q2_3P_PERMISSIONS
   PERF_STEERING_ANGLE(291504649),
 
   /// Rear bicycle model steering angle for vehicle in degrees.
@@ -282,6 +294,9 @@ enum VehicleProperty {
   /// Dangerous permission {@link Car#PERMISSION_MILEAGE_3P} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   INSTANTANEOUS_FUEL_ECONOMY(291504657),
 
   /// Instantaneous EV efficiency in km/kWh.
@@ -298,6 +313,9 @@ enum VehicleProperty {
   /// Dangerous permission {@link Car#PERMISSION_MILEAGE_3P} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   INSTANTANEOUS_EV_EFFICIENCY(291504658),
 
   /// Temperature of engine coolant in celsius.
@@ -333,6 +351,9 @@ enum VehicleProperty {
   /// Dangerous permission {@link Car#PERMISSION_CAR_ENGINE_DETAILED_3P} or
   /// Signature|Privileged permission {@link Car#PERMISSION_CAR_ENGINE_DETAILED} to read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_25Q2_3P_PERMISSIONS
   ENGINE_RPM(291504901),
 
   /// Represents feature for engine idle automatic stop.
@@ -343,6 +364,9 @@ enum VehicleProperty {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CAR_ENGINE_DETAILED} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   ENGINE_IDLE_AUTO_STOP_ENABLED(287310624),
 
   /// Impact detected.
@@ -361,6 +385,9 @@ enum VehicleProperty {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_IMPACT_SENSORS} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   IMPACT_DETECTED(289407792),
 
   /// Vehicle horn engaged.
@@ -372,6 +399,9 @@ enum VehicleProperty {
   /// Dangerous permission {@link Car#PERMISSION_READ_CAR_HORN} or dangerous permission {@link
   /// Car#PERMISSION_CONTROL_CAR_HORN} to read property.
   /// Dangerous permission {@link Car#PERMISSION_CONTROL_CAR_HORN} to write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   VEHICLE_HORN_ENGAGED(287310656),
 
   /// Reports wheel ticks.
@@ -524,6 +554,9 @@ enum VehicleProperty {
   /// # Permissions
   /// Dangerous permission {@link Car#PERMISSION_ENERGY} to read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_VIC_VEHICLE_PROPERTIES
   EV_BATTERY_AVERAGE_TEMPERATURE(291504910),
 
   /// Tire pressure in kilopascals.
@@ -537,6 +570,9 @@ enum VehicleProperty {
   /// Dangerous permission {@link Car#PERMISSION_TIRES_3P} or Signature|Privileged permission
   /// {@link Car#PERMISSION_TIRES} to read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_25Q2_3P_PERMISSIONS
   TIRE_PRESSURE(392168201),
 
   /// Critically low tire pressure.
@@ -563,6 +599,9 @@ enum VehicleProperty {
   /// # Permissions
   /// Dangerous permission {@link Car#PERMISSION_READ_CAR_PEDALS} to read property.
   /// Property is not writable
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   ACCELERATOR_PEDAL_COMPRESSION_PERCENTAGE(291504911),
 
   /// Brake pedal compression percentage.
@@ -577,6 +616,9 @@ enum VehicleProperty {
   /// # Permissions
   /// Dangerous permission {@link Car#PERMISSION_READ_CAR_PEDALS} to read property.
   /// Property is not writable
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   BRAKE_PEDAL_COMPRESSION_PERCENTAGE(291504912),
 
   /// Brake pad wear percentage.
@@ -591,6 +633,9 @@ enum VehicleProperty {
   /// # Permissions
   /// Dangerous permission {@link Car#PERMISSION_READ_BRAKE_INFO} to read property.
   /// Property is not writable
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   BRAKE_PAD_WEAR_PERCENTAGE(392168209),
 
   /// Brake fluid level low.
@@ -603,6 +648,9 @@ enum VehicleProperty {
   /// # Permissions
   /// Dangerous permission {@link Car#PERMISSION_READ_BRAKE_INFO} to read property.
   /// Property is not writable
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   BRAKE_FLUID_LEVEL_LOW(287310610),
 
   /// Vehicle Passive Suspension Height in mm.
@@ -640,6 +688,9 @@ enum VehicleProperty {
   /// Signature|Privileged permission {@link Car#PERMISSION_CAR_DYNAMICS_STATE} to read
   /// property.
   /// Property is not writable
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   VEHICLE_PASSIVE_SUSPENSION_HEIGHT(390071059),
 
   /// Currently selected gear by user.
@@ -865,6 +916,9 @@ enum VehicleProperty {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_DYNAMICS_STATE} to
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   ELECTRONIC_STABILITY_CONTROL_ENABLED(287310862),
 
   /// Electronic Stability Control (ESC) state.
@@ -883,6 +937,9 @@ enum VehicleProperty {
   /// Signature|Privileged permission {@link Car#PERMISSION_CAR_DYNAMICS_STATE} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   ELECTRONIC_STABILITY_CONTROL_STATE(289408015),
 
   /// Turn signal light state.
@@ -915,6 +972,9 @@ enum VehicleProperty {
   /// Dangerous permission {@link Car#PERMISSION_READ_EXTERIOR_LIGHTS} or Signature|Privileged
   /// permission {@link Car#PERMISSION_CONTROL_EXTERIOR_LIGHTS} to read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   TURN_SIGNAL_LIGHT_STATE(289408016),
 
   /// Turn signal switch.
@@ -935,6 +995,9 @@ enum VehicleProperty {
   /// permission {@link Car#PERMISSION_CONTROL_EXTERIOR_LIGHTS} to read property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_EXTERIOR_LIGHTS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   TURN_SIGNAL_SWITCH(289408017),
 
   /// Fan speed setting.
@@ -1212,6 +1275,9 @@ enum VehicleProperty {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_CLIMATE} to read
   /// and write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   HVAC_ELECTRIC_DEFROSTER_ON(320865556),
 
   /// Distance units for display.
@@ -1398,6 +1464,9 @@ enum VehicleProperty {
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_VALET_MODE} to read property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_VALET_MODE} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   VALET_MODE_ENABLED(287312389),
 
   /// Head up display (HUD) enabled
@@ -1415,6 +1484,9 @@ enum VehicleProperty {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_HEAD_UP_DISPLAY} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   HEAD_UP_DISPLAY_ENABLED(354421254),
 
   /// Property to feed H/W input events to android.
@@ -1482,6 +1554,9 @@ enum VehicleProperty {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_DOORS} to read
   /// and write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   DOOR_CHILD_LOCK_ENABLED(371198723),
 
   /// Mirror Z Position.
@@ -1587,6 +1662,9 @@ enum VehicleProperty {
   /// write property.
   /// @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
   /// @RequiresPermission(Car.PERMISSION_CONTROL_CAR_MIRRORS)
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   MIRROR_AUTO_FOLD_ENABLED(337644358),
 
   /// Represents property for the Mirror Auto Tilt feature.
@@ -1598,6 +1676,9 @@ enum VehicleProperty {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_MIRRORS} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   MIRROR_AUTO_TILT_ENABLED(337644359),
 
   /// Property that represents the current position of the glove box door.
@@ -1620,6 +1701,9 @@ enum VehicleProperty {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_GLOVE_BOX} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   GLOVE_BOX_DOOR_POS(356518896),
 
   /// Lock or unlock the glove box.
@@ -1633,6 +1717,9 @@ enum VehicleProperty {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_GLOVE_BOX} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   GLOVE_BOX_LOCKED(354421745),
 
   /// Seat memory select.
@@ -2214,6 +2301,9 @@ enum VehicleProperty {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   SEAT_EASY_ACCESS_ENABLED(354421661),
 
   /// Represents feature to enable/disable a seat's ability to deploy airbag(s) when triggered
@@ -2226,6 +2316,9 @@ enum VehicleProperty {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_AIRBAGS} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   SEAT_AIRBAG_ENABLED(354421662),
 
   /// State of deployment for seat airbags.
@@ -2248,6 +2341,9 @@ enum VehicleProperty {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_CAR_AIRBAGS} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   SEAT_AIRBAGS_DEPLOYED(356518821),
 
   /// Represents property for seat’s hipside (bottom cushion’s side) support position.
@@ -2266,6 +2362,9 @@ enum VehicleProperty {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   SEAT_CUSHION_SIDE_SUPPORT_POS(356518815),
 
   /// Represents property for movement direction and speed of seat cushion side support.
@@ -2286,6 +2385,9 @@ enum VehicleProperty {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   SEAT_CUSHION_SIDE_SUPPORT_MOVE(356518816),
 
   /// Represents property for seat’s lumbar support vertical position.
@@ -2304,6 +2406,9 @@ enum VehicleProperty {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   SEAT_LUMBAR_VERTICAL_POS(356518817),
 
   /// Represents property for vertical movement direction and speed of seat lumbar support.
@@ -2323,6 +2428,9 @@ enum VehicleProperty {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   SEAT_LUMBAR_VERTICAL_MOVE(356518818),
 
   /// Represents property that indicates the current walk-in position of the seat.
@@ -2342,6 +2450,9 @@ enum VehicleProperty {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   SEAT_WALK_IN_POS(356518819),
 
   /// Seat belt pretensioner deployed.
@@ -2360,6 +2471,9 @@ enum VehicleProperty {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_CAR_SEAT_BELTS} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   SEAT_BELT_PRETENSIONER_DEPLOYED(354421670),
 
   /// Seat Occupancy.
@@ -2368,6 +2482,9 @@ enum VehicleProperty {
   /// Dangerous permission {@link Car#PERMISSION_READ_CAR_SEATS} or Signature|Privileged
   /// permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_25Q2_3P_PERMISSIONS
   SEAT_OCCUPANCY(356518832),
 
   /// Window Position.
@@ -2436,6 +2553,9 @@ enum VehicleProperty {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_WINDSHIELD_WIPERS} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   WINDSHIELD_WIPERS_PERIOD(322964421),
 
   /// Windshield wipers state.
@@ -2462,6 +2582,9 @@ enum VehicleProperty {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_WINDSHIELD_WIPERS} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_25Q2_3P_PERMISSIONS
   WINDSHIELD_WIPERS_STATE(322964422),
 
   /// Windshield wipers switch.
@@ -2486,6 +2609,9 @@ enum VehicleProperty {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_WINDSHIELD_WIPERS} to
   /// write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   WINDSHIELD_WIPERS_SWITCH(322964423),
 
   /// Steering wheel depth position.
@@ -2504,6 +2630,9 @@ enum VehicleProperty {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_STEERING_WHEEL} to read
   /// and write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   STEERING_WHEEL_DEPTH_POS(289410016),
 
   /// Steering wheel depth movement.
@@ -2525,6 +2654,9 @@ enum VehicleProperty {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_STEERING_WHEEL} to read
   /// and write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   STEERING_WHEEL_DEPTH_MOVE(289410017),
 
   /// Steering wheel height position.
@@ -2543,6 +2675,9 @@ enum VehicleProperty {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_STEERING_WHEEL} to read
   /// and write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   STEERING_WHEEL_HEIGHT_POS(289410018),
 
   /// Steering wheel height movement.
@@ -2563,6 +2698,9 @@ enum VehicleProperty {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_STEERING_WHEEL} to read
   /// and write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   STEERING_WHEEL_HEIGHT_MOVE(289410019),
 
   /// Steering wheel theft lock feature enabled.
@@ -2574,6 +2712,9 @@ enum VehicleProperty {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_STEERING_WHEEL} to read
   /// and write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   STEERING_WHEEL_THEFT_LOCK_ENABLED(287312868),
 
   /// Steering wheel locked.
@@ -2584,6 +2725,9 @@ enum VehicleProperty {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_STEERING_WHEEL} to read
   /// and write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   STEERING_WHEEL_LOCKED(287312869),
 
   /// Steering wheel easy access feature enabled.
@@ -2595,6 +2739,9 @@ enum VehicleProperty {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_STEERING_WHEEL} to read
   /// and write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   STEERING_WHEEL_EASY_ACCESS_ENABLED(287312870),
 
   /// Vehicle Maps Service (VMS) message.
@@ -2650,6 +2797,9 @@ enum VehicleProperty {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ULTRASONICS_SENSOR_DATA} to
   /// read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   ULTRASONICS_SENSOR_POSITION(406916128),
 
   /// Static data for the orientation of each ultrasonic sensor installed on the vehicle.
@@ -2674,6 +2824,9 @@ enum VehicleProperty {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ULTRASONICS_SENSOR_DATA} to
   /// read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   ULTRASONICS_SENSOR_ORIENTATION(409013281),
 
   /// Static data for the field of view of each ultrasonic sensor in degrees.
@@ -2694,6 +2847,9 @@ enum VehicleProperty {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ULTRASONICS_SENSOR_DATA} to
   /// read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   ULTRASONICS_SENSOR_FIELD_OF_VIEW(406916130),
 
   /// Static data for the detection range of each ultrasonic sensor in millimeters.
@@ -2710,6 +2866,9 @@ enum VehicleProperty {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ULTRASONICS_SENSOR_DATA} to
   /// read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   ULTRASONICS_SENSOR_DETECTION_RANGE(406916131),
 
   /// Static data for the supported ranges of each ultrasonic sensor in millimeters.
@@ -2752,6 +2911,9 @@ enum VehicleProperty {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ULTRASONICS_SENSOR_DATA} to
   /// read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   ULTRASONICS_SENSOR_SUPPORTED_RANGES(406916132),
 
   /// The distance reading of the nearest detected object per sensor in millimeters.
@@ -2773,6 +2935,9 @@ enum VehicleProperty {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ULTRASONICS_SENSOR_DATA} to
   /// read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   ULTRASONICS_SENSOR_MEASURED_DISTANCE(406916133),
 
   /// OBD2 Live Sensor Data.
@@ -3309,6 +3474,9 @@ enum VehicleProperty {
   /// Dangerous permission {@link Car#PERMISSION_CAR_DRIVING_STATE_3P} or Signature|Privileged
   /// permission {@link Car#PERMISSION_CAR_DRIVING_STATE} to read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_25Q2_3P_PERMISSIONS
   VEHICLE_DRIVING_AUTOMATION_CURRENT_LEVEL(289410892),
 
   /// Target state of vehicle autonomy.
@@ -3340,6 +3508,9 @@ enum VehicleProperty {
   /// Signature|Privileged permission "android.car.permission.CAR_DRIVING_STATE" to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
   VEHICLE_DRIVING_AUTOMATION_TARGET_LEVEL(289410895),
 
   /// Enable or disable Automatic Emergency Braking (AEB).
@@ -3358,6 +3529,9 @@ enum VehicleProperty {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   AUTOMATIC_EMERGENCY_BRAKING_ENABLED(287313920),
 
   /// Automatic Emergency Braking (AEB) state.
@@ -3381,6 +3555,9 @@ enum VehicleProperty {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ADAS_STATES} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   AUTOMATIC_EMERGENCY_BRAKING_STATE(289411073),
 
   /// Enable or disable Forward Collision Warning (FCW).
@@ -3397,6 +3574,9 @@ enum VehicleProperty {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   FORWARD_COLLISION_WARNING_ENABLED(287313922),
 
   /// Forward Collision Warning State (FCW) state.
@@ -3415,6 +3595,9 @@ enum VehicleProperty {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ADAS_STATES} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   FORWARD_COLLISION_WARNING_STATE(289411075),
 
   /// Enable and disable Blind Spot Warning (BSW).
@@ -3432,6 +3615,9 @@ enum VehicleProperty {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   BLIND_SPOT_WARNING_ENABLED(287313924),
 
   /// Blind Spot Warning (BSW) state.
@@ -3450,6 +3636,9 @@ enum VehicleProperty {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ADAS_STATES} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   BLIND_SPOT_WARNING_STATE(339742725),
 
   /// Enable or disable Lane Departure Warning (LDW).
@@ -3467,6 +3656,9 @@ enum VehicleProperty {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   LANE_DEPARTURE_WARNING_ENABLED(287313926),
 
   /// Lane Departure Warning (LDW) state.
@@ -3485,6 +3677,9 @@ enum VehicleProperty {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ADAS_STATES} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   LANE_DEPARTURE_WARNING_STATE(289411079),
 
   /// Enable or disable Lane Keep Assist (LKA).
@@ -3506,6 +3701,9 @@ enum VehicleProperty {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   LANE_KEEP_ASSIST_ENABLED(287313928),
 
   /// Lane Keep Assist (LKA) state.
@@ -3527,6 +3725,9 @@ enum VehicleProperty {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ADAS_STATES} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   LANE_KEEP_ASSIST_STATE(289411081),
 
   /// Enable or disable Lane Centering Assist (LCA).
@@ -3549,6 +3750,9 @@ enum VehicleProperty {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   LANE_CENTERING_ASSIST_ENABLED(287313930),
 
   /// Lane Centering Assist (LCA) commands.
@@ -3576,6 +3780,9 @@ enum VehicleProperty {
   /// Property is not readable.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_STATES} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   LANE_CENTERING_ASSIST_COMMAND(289411083),
 
   /// Lane Centering Assist (LCA) state.
@@ -3597,6 +3804,9 @@ enum VehicleProperty {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ADAS_STATES} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   LANE_CENTERING_ASSIST_STATE(289411084),
 
   /// Enable or disable Emergency Lane Keep Assist (ELKA).
@@ -3615,6 +3825,9 @@ enum VehicleProperty {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   EMERGENCY_LANE_KEEP_ASSIST_ENABLED(287313933),
 
   /// Emergency Lane Keep Assist (ELKA) state.
@@ -3635,6 +3848,9 @@ enum VehicleProperty {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ADAS_STATES} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   EMERGENCY_LANE_KEEP_ASSIST_STATE(289411086),
 
   /// Enable or disable Cruise Control (CC).
@@ -3654,6 +3870,9 @@ enum VehicleProperty {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   CRUISE_CONTROL_ENABLED(287313935),
 
   /// Current type of Cruise Control (CC).
@@ -3682,6 +3901,9 @@ enum VehicleProperty {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_STATES} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   CRUISE_CONTROL_TYPE(289411088),
 
   /// Current state of Cruise Control (CC).
@@ -3702,6 +3924,9 @@ enum VehicleProperty {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ADAS_STATES} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   CRUISE_CONTROL_STATE(289411089),
 
   /// Write Cruise Control (CC) commands.
@@ -3722,6 +3947,9 @@ enum VehicleProperty {
   /// Property is not readable.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_STATES} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   CRUISE_CONTROL_COMMAND(289411090),
 
   /// Current target speed for Cruise Control (CC) in meters per second.
@@ -3743,6 +3971,9 @@ enum VehicleProperty {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ADAS_STATES} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   CRUISE_CONTROL_TARGET_SPEED(291508243),
 
   /// Current target time gap for Adaptive Cruise Control (ACC) or Predictive Cruise Control in
@@ -3767,6 +3998,9 @@ enum VehicleProperty {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_STATES} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   ADAPTIVE_CRUISE_CONTROL_TARGET_TIME_GAP(289411092),
 
   /// Measured distance from leading vehicle when using Adaptive Cruise Control (ACC) or Predictive
@@ -3791,6 +4025,9 @@ enum VehicleProperty {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ADAS_STATES} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   ADAPTIVE_CRUISE_CONTROL_LEAD_VEHICLE_MEASURED_DISTANCE(289411093),
 
   /// Enable or disable Hands On Detection (HOD).
@@ -3809,6 +4046,9 @@ enum VehicleProperty {
   /// Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to read property.
   /// Signature|Privileged permission {@link
   /// Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   HANDS_ON_DETECTION_ENABLED(287313942),
 
   /// Hands On Detection (HOD) driver state.
@@ -3834,6 +4074,9 @@ enum VehicleProperty {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_DRIVER_MONITORING_STATES} to
   /// read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   HANDS_ON_DETECTION_DRIVER_STATE(289411095),
 
   /// Hands On Detection (HOD) warning.
@@ -3857,6 +4100,9 @@ enum VehicleProperty {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_DRIVER_MONITORING_STATES} to
   /// read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   HANDS_ON_DETECTION_WARNING(289411096),
 
   /// Enable or disable driver drowsiness and attention monitoring.
@@ -3872,6 +4118,9 @@ enum VehicleProperty {
   /// Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to read property.
   /// Signature|Privileged permission {@link
   /// Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   DRIVER_DROWSINESS_ATTENTION_SYSTEM_ENABLED(287313945),
 
   /// Driver drowsiness and attention level state.
@@ -3898,6 +4147,9 @@ enum VehicleProperty {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_DRIVER_MONITORING_STATES} to
   /// read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   DRIVER_DROWSINESS_ATTENTION_STATE(289411098),
 
   /// Enable or disable driver drowsiness and attention warnings.
@@ -3913,6 +4165,9 @@ enum VehicleProperty {
   /// Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to read property.
   /// Signature|Privileged permission {@link
   /// Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   DRIVER_DROWSINESS_ATTENTION_WARNING_ENABLED(287313947),
 
   /// Driver drowsiness and attention warning.
@@ -3935,6 +4190,9 @@ enum VehicleProperty {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_DRIVER_MONITORING_STATES} to
   /// read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   DRIVER_DROWSINESS_ATTENTION_WARNING(289411100),
 
   /// Enable or disable driver distraction monitoring.
@@ -3949,6 +4207,9 @@ enum VehicleProperty {
   /// Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to read property.
   /// Signature|Privileged permission {@link
   /// Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   DRIVER_DISTRACTION_SYSTEM_ENABLED(287313949),
 
   /// Driver distraction state.
@@ -3974,6 +4235,9 @@ enum VehicleProperty {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_DRIVER_MONITORING_STATES} to
   /// read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   DRIVER_DISTRACTION_STATE(289411102),
 
   /// Enable or disable driver distraction warnings.
@@ -3988,6 +4252,9 @@ enum VehicleProperty {
   /// Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to read property.
   /// Signature|Privileged permission {@link
   /// Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to write property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   DRIVER_DISTRACTION_WARNING_ENABLED(287313951),
 
   /// Driver distraction warning.
@@ -4010,6 +4277,9 @@ enum VehicleProperty {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_DRIVER_MONITORING_STATES} to
   /// read property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   DRIVER_DISTRACTION_WARNING(289411104),
 
   /// Enable or disable Low Speed Collision Warning.
@@ -4030,6 +4300,9 @@ enum VehicleProperty {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   LOW_SPEED_COLLISION_WARNING_ENABLED(287313953),
 
   /// Low Speed Collision Warning State state.
@@ -4051,6 +4324,9 @@ enum VehicleProperty {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ADAS_STATES} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   LOW_SPEED_COLLISION_WARNING_STATE(289411106),
 
   /// Enable or disable Cross Traffic Monitoring.
@@ -4068,6 +4344,9 @@ enum VehicleProperty {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   CROSS_TRAFFIC_MONITORING_ENABLED(287313955),
 
   /// Cross Traffic Monitoring Warning state.
@@ -4087,6 +4366,9 @@ enum VehicleProperty {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ADAS_STATES} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   CROSS_TRAFFIC_MONITORING_WARNING_STATE(289411108),
 
   /// Enable or disable Low Speed Automatic Emergency Braking.
@@ -4108,6 +4390,9 @@ enum VehicleProperty {
   /// property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ADAS_SETTINGS} to write
   /// property.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   LOW_SPEED_AUTOMATIC_EMERGENCY_BRAKING_ENABLED(287313957),
 
   /// Low Speed Automatic Emergency Braking state.
@@ -4132,6 +4417,9 @@ enum VehicleProperty {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_ADAS_STATES} to read
   /// property.
   /// Property is not writable.
+  ///
+  /// # Availability Flag
+  /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   LOW_SPEED_AUTOMATIC_EMERGENCY_BRAKING_STATE(289411110);
 
   const VehicleProperty(this.id);

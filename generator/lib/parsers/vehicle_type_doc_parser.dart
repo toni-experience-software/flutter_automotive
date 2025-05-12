@@ -31,6 +31,11 @@ class VehicleTypeProperties {
         "/// # Permissions",
         _permissionsDoc,
       ],
+      if (_flaggedDoc.isNotEmpty) ...[
+        "/// ",
+        "/// # Availability Flag",
+        _flaggedDoc,
+      ],
     ].join("\n");
   }
 
@@ -59,6 +64,19 @@ class VehicleTypeProperties {
     } else {
       return "";
     }
+  }
+
+  String get _flaggedDoc {
+    if (docs.contains("@FlaggedApi(")) {
+      final splits = docs.split("@FlaggedApi(");
+      if (splits case [_, final rawFlag]) {
+        final extracted = rawFlag.split(")");
+        if (extracted case [final flag, ...]) {
+          return "/// $flag";
+        }
+      }
+    }
+    return "";
   }
 
   @override
