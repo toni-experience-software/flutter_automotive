@@ -1,0 +1,56 @@
+{
+  "workbench.settings.enableNaturalLanguageSearch": false,
+  "typescript.disableAutomaticTypeAcquisition": true,
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+  "dart.flutterGenerateLocalizationsOnSave": "allIfDirty",
+  "files.autoSave": "onFocusChange",
+  "dart.debugExternalPackageLibraries": false,
+  "dart.debugSdkLibraries": false,
+  "git.autofetch": true,
+  "[dart]": {
+    "editor.formatOnType": true,
+    "editor.rulers": [
+      80
+    ],
+    "editor.selectionHighlight": false,
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.suggestSelection": "first",
+    "editor.tabCompletion": "onlySnippets",
+    "editor.wordBasedSuggestions": "off"
+  },
+  "dart.renameFilesWithClasses": "always",
+  "dart.hotReloadOnSave": "manual",
+  "files.exclude": {
+    "**/.idea": true
+  },
+  "debug.toolBarLocation": "commandCenter",
+  "dart.previewFlutterUiGuides": true,
+  "editor.formatOnSave": true,
+  "editor.renderLineHighlight": "gutter",
+  "editor.minimap.renderCharacters": false,
+  "editor.minimap.showSlider": "always",
+  "editor.inlineSuggest.enabled": true,
+  "dart.runPubGetOnPubspecChanges": "prompt",
+  "git.useEditorAsCommitInput": false,
+  "explorer.confirmDelete": false,
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "pubspec.yaml": "pubspec.lock,pubspec_overrides.yaml,.packages,.flutter-plugins,.flutter-plugins-dependencies,.metadata",
+    "*.dart": "${capture}.g.dart,${capture}.freezed.dart"
+  },
+  "dart.openTestView": [
+    "testFailure"
+  ],
+  "dart.showTodos": [
+    "FIXME"
+  ],
+  "workbench.editorAssociations": {
+    "git-rebase-todo": "default"
+  },
+  "editor.stickyScroll.enabled": true,
+  "workbench.tree.enableStickyScroll": true,
+  "accessibility.signals.onDebugBreak": {
+    "sound": "on"
+  },
+}
