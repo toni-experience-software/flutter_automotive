@@ -5,7 +5,7 @@ import 'package:flutter_automotive/src/vehicle_repository.dart';
 
 export 'model/models.dart';
 
-enum VehiclePropertyPermissionScope {
+enum CarPermissionScope {
   read,
   write,
   both,
@@ -85,16 +85,13 @@ class FlutterAutomotive {
   /// Returns a [Future] that resolves to `true` if all the required permissions
   /// for the specified scope are granted, otherwise `false`.
   Future<bool> arePropertyPermissionsGranted(
-      VehicleProperty property, VehiclePropertyPermissionScope scope) async {
-    final permissions = switch (scope) {
-      VehiclePropertyPermissionScope.read => property.readPermissions,
-      VehiclePropertyPermissionScope.write => property.writePermissions,
-      VehiclePropertyPermissionScope.both => [
-          ...property.readPermissions,
-          ...property.writePermissions
-        ],
-    }
-        .toList();
+      VehicleProperty property, CarPermissionScope scope) async {
+    final permissions = {
+      if (scope case CarPermissionScope.read || CarPermissionScope.both)
+        ...property.readPermissions,
+      if (scope case CarPermissionScope.write || CarPermissionScope.both)
+        ...property.writePermissions,
+    }.toList();
     return await _platform.arePermissionsGranted(permissions);
   }
 
@@ -106,16 +103,13 @@ class FlutterAutomotive {
   /// Returns a [Future] that completes when the permission request process
   /// is finished.
   Future<void> requestPropertyPermissions(
-      VehicleProperty property, VehiclePropertyPermissionScope scope) async {
-    final permissions = switch (scope) {
-      VehiclePropertyPermissionScope.read => property.readPermissions,
-      VehiclePropertyPermissionScope.write => property.writePermissions,
-      VehiclePropertyPermissionScope.both => [
-          ...property.readPermissions,
-          ...property.writePermissions
-        ],
-    }
-        .toList();
+      VehicleProperty property, CarPermissionScope scope) async {
+    final permissions = {
+      if (scope case CarPermissionScope.read || CarPermissionScope.both)
+        ...property.readPermissions,
+      if (scope case CarPermissionScope.write || CarPermissionScope.both)
+        ...property.writePermissions,
+    }.toList();
     return await _platform.requestPermissions(permissions);
   }
 }

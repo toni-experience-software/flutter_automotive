@@ -100,11 +100,11 @@ final speed = await _plugin.getProperty(VehicleProperty.PERF_VEHICLE_SPEED);
 
 Permissions for specific `VehicleProperty` properties can also be requested/checked using the `arePropertyPermissionsGranted` and `requestPropertyPermissions` methods.
 
-Because the required permissions for each operation can differ, a `VehiclePropertyPermissionScope` of `read`, `write` or `both` also has to be provided.
+Because the required permissions for each operation can differ, a `CarPermissionScope` of `read`, `write` or `both` also has to be provided.
 
 ```dart
 final property = VehicleProperty.PERF_VEHICLE_SPEED;
-if (await _plugin.arePropertyPermissionsGranted(property, VehiclePropertyPermissionScope.read) == false) {
-    await _plugin.requestPropertyPermissions(property, VehiclePropertyPermissionScope.read);
+if (await _plugin.arePropertyPermissionsGranted(property, CarPermissionScope.read) == false) {
+    await _plugin.requestPropertyPermissions(property, CarPermissionScope.read);
 }
 ```
