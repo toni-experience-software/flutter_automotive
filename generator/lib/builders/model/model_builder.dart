@@ -10,6 +10,9 @@ class VehicleModleBuilder {
   Library buildLibrary() {
     return Library(
       (l) => l
+        ..directives.addAll([
+          Directive.import("car_permissions.dart"),
+        ])
         ..body.addAll([
           _buildAccessEnum(),
           _buildMainEnum(),
@@ -79,6 +82,16 @@ class VehicleModleBuilder {
                       VehicleTypeProperties(write: true, writePrivileged: true) => refer("VehiclePropertyAccess.privileged"),
                       _ => refer("VehiclePropertyAccess.unavailable"),
                     },
+                    literalSet([
+                      for (final perm in props.readPermissions)
+                        if (perm != "ACCESS_FINE_LOCATION")
+                          refer("CarPermissions.$perm"),
+                    ]),
+                    literalSet([
+                      for (final perm in props.writePermissions)
+                        if (perm != "ACCESS_FINE_LOCATION")
+                          refer("CarPermissions.$perm"),
+                    ]),
                   ],
                 ]),
             ),
@@ -104,6 +117,16 @@ class VehicleModleBuilder {
                     ..name = "write"
                     ..toThis = true,
                 ),
+                Parameter(
+                  (p) => p
+                    ..name = "readPermissions"
+                    ..toThis = true,
+                ),
+                Parameter(
+                  (p) => p
+                    ..name = "writePermissions"
+                    ..toThis = true,
+                ),
               ]),
           ),
         ])
@@ -124,6 +147,18 @@ class VehicleModleBuilder {
             (f) => f
               ..name = "write"
               ..type = refer("VehiclePropertyAccess")
+              ..modifier = FieldModifier.final$,
+          ),
+          Field(
+            (f) => f
+              ..name = "readPermissions"
+              ..type = refer("Set<CarPermissions>")
+              ..modifier = FieldModifier.final$,
+          ),
+          Field(
+            (f) => f
+              ..name = "writePermissions"
+              ..type = refer("Set<CarPermissions>")
               ..modifier = FieldModifier.final$,
           ),
         ])
