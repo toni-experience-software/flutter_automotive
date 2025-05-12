@@ -11,7 +11,8 @@ class VehicleModleBuilder {
     return Library(
       (l) => l
         ..body.addAll([
-          _buildEnum(),
+          _buildAccessEnum(),
+          _buildMainEnum(),
         ])
         ..docs.addAll([
 """
@@ -40,7 +41,20 @@ class VehicleModleBuilder {
     );
   }
 
-  Enum _buildEnum() {
+  Enum _buildAccessEnum() {
+    return Enum(
+      (e) => e
+        ..name = "VehiclePropertyAccess"
+        ..values.addAll([
+            EnumValue((v) => v..name = "unavailable"),
+            EnumValue((v) => v..name = "normal"),
+            EnumValue((v) => v..name = "privileged"),
+          ],
+        )
+    );
+  }
+
+  Enum _buildMainEnum() {
     return Enum(
       (e) => e
         ..name = "VehicleProperty"
@@ -54,6 +68,18 @@ class VehicleModleBuilder {
                 ])
                 ..arguments.addAll([
                   literalNum(prop.id),
+                  if (parser.getProps(prop) case final props!) ...[
+                    switch (props) {
+                      VehicleTypeProperties(read: true, readPrivileged: false) => refer("VehiclePropertyAccess.normal"),
+                      VehicleTypeProperties(read: true, readPrivileged: true) => refer("VehiclePropertyAccess.privileged"),
+                      _ => refer("VehiclePropertyAccess.unavailable"),
+                    },
+                    switch (props) {
+                      VehicleTypeProperties(write: true, writePrivileged: false) => refer("VehiclePropertyAccess.normal"),
+                      VehicleTypeProperties(write: true, writePrivileged: true) => refer("VehiclePropertyAccess.privileged"),
+                      _ => refer("VehiclePropertyAccess.unavailable"),
+                    },
+                  ],
                 ]),
             ),
           ],
@@ -68,6 +94,16 @@ class VehicleModleBuilder {
                     ..name = "id"
                     ..toThis = true,
                 ),
+                Parameter(
+                  (p) => p
+                    ..name = "read"
+                    ..toThis = true,
+                ),
+                Parameter(
+                  (p) => p
+                    ..name = "write"
+                    ..toThis = true,
+                ),
               ]),
           ),
         ])
@@ -76,6 +112,18 @@ class VehicleModleBuilder {
             (f) => f
               ..name = "id"
               ..type = refer("int")
+              ..modifier = FieldModifier.final$,
+          ),
+          Field(
+            (f) => f
+              ..name = "read"
+              ..type = refer("VehiclePropertyAccess")
+              ..modifier = FieldModifier.final$,
+          ),
+          Field(
+            (f) => f
+              ..name = "write"
+              ..type = refer("VehiclePropertyAccess")
               ..modifier = FieldModifier.final$,
           ),
         ])

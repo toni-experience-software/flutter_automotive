@@ -149,6 +149,10 @@ class VehicleTypeDocParser {
     }
   }
 
+  VehicleTypeProperties? getProps(VehiclePropertyInput type) {
+    return _typeProps[type];
+  }
+
   bool needsGetter(VehiclePropertyInput type, bool privileged) {
     return switch (_typeProps[type]) {
       null => false,
