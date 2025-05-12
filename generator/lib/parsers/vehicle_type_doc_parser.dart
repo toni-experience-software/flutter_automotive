@@ -79,6 +79,53 @@ class VehicleTypeProperties {
     return "";
   }
 
+  List<String> get _permissionLines {
+    final lines = docs.split("\n").map((e) => e.trim()).toList();
+    return lines.where((e) => e.startsWith("* @RequiresPermission")).toList();
+  }
+
+  List<String> get _basePermissions {
+    final permissions = _permissionLines.where((e) => e.startsWith("* @RequiresPermission(")).toList();
+    return permissions.map((e) => e.substring(22, e.length - 1)).toList();
+  }
+
+  Set<String> get readPermissions {
+    if (read) {
+      final normalPerm = _permissionLines.where((e) => e.startsWith("* @RequiresPermission.Read(@RequiresPermission(Car"));
+      final allOfPerm = _permissionLines.where((e) => e.startsWith("* @RequiresPermission.Read(@RequiresPermission(allOf = {"));
+      final anyOfPerm = _permissionLines.where((e) => e.startsWith("* @RequiresPermission.Read(@RequiresPermission(anyOf = {"));
+      return [
+        ..._basePermissions,
+        ...normalPerm.map((e) => e.substring(47, e.length - 2)),
+        ...allOfPerm.map((e) => e.substring(56, e.length - 3).split(",")).expand((e) => e),
+        ...anyOfPerm.map((e) => e.substring(56, e.length - 3).split(",")).expand((e) => e),
+      ].map((e) => e.replaceAll("Car.", "").trim()).toSet();
+    } else {
+      return {};
+    }
+  }
+
+  Set<String> get writePermissions {
+    if (write) {
+      final normalPerm = _permissionLines.where((e) => e.startsWith("* @RequiresPermission.Write(@RequiresPermission(Car"));
+      final allOfPerm = _permissionLines.where((e) => e.startsWith("* @RequiresPermission.Write(@RequiresPermission(allOf = {"));
+      final anyOfPerm = _permissionLines.where((e) => e.startsWith("* @RequiresPermission.Write(@RequiresPermission(anyOf = {"));
+      return [
+        ..._basePermissions,
+        ...normalPerm.map((e) => e.substring(48, e.length - 2)),
+        ...allOfPerm.map((e) => e.substring(57, e.length - 3).split(",")).expand((e) => e),
+        ...anyOfPerm.map((e) => e.substring(57, e.length - 3).split(",")).expand((e) => e),
+      ].map((e) => e.replaceAll("Car.", "").trim()).toSet();
+    } else {
+      return {};
+    }
+  }
+
+  List<String> get permissions => [
+      ...readPermissions,
+      ...writePermissions,
+    ];
+
   @override
   String toString() {
     return 'VehicleTypeProperties{read: $read, readPrivileged: $readPrivileged, write: $write, writePrivileged: $writePrivileged}';

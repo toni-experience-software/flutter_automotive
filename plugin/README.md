@@ -36,7 +36,7 @@ final _plugin = FlutterAutomotive();
 Make sure to check for the permission or request if not granted:
 
 ```dart
-final permission = CarPermissions.permissionSpeed;
+final permission = CarPermissions.PERMISSION_SPEED;
 if (await _plugin.isPermissionGranted(permission) == false) {
     await _plugin.requestPermission(permission);
 }
