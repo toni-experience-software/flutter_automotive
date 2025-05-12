@@ -1,10 +1,8 @@
 import 'package:flutter_automotive/model/models.dart';
 import 'package:flutter_automotive/src/flutter_automotive_platform_interface.dart';
-import 'package:flutter_automotive/src/messages.g.dart';
 import 'package:flutter_automotive/src/vehicle_datasource_impl.dart';
 import 'package:flutter_automotive/src/vehicle_repository.dart';
 
-export 'src/messages.g.dart' show CarPermissions;
 export 'model/models.dart';
 
 class FlutterAutomotive {

@@ -1,5 +1,4 @@
 import 'package:flutter_automotive/src/flutter_automotive_method_channel.dart';
-import 'package:flutter_automotive/src/messages.g.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'test_api.g.dart';
 
@@ -13,10 +12,10 @@ class _TestApi implements TestHostFlutterAutomotiveApi {
   Future<void> setProperty(int propertyId, int areaId, value) async {}
 
   @override
-  bool isPermissionGranted(CarPermissions permission) => false;
+  bool isPermissionGranted(String permission) => false;
 
   @override
-  void requestPermission(CarPermissions permission) {}
+  void requestPermission(String permission) {}
   
   @override
   void subscribeProperty(int propertyId, int areaId, double updateRate) {}

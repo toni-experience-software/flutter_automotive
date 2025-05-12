@@ -1,9 +1,8 @@
 import 'dart:async';
 
-import 'package:flutter_automotive/model/sensor_update_rates.dart';
+import 'package:flutter_automotive/model/models.dart';
 import 'package:flutter_automotive/src/flutter_automotive_platform_interface.dart';
 import 'package:flutter_automotive/src/messages.g.dart';
-import 'package:flutter_automotive/model/property_stream.dart';
 
 class MethodChannelFlutterAutomotive extends FlutterAutomotivePlatform {
   MethodChannelFlutterAutomotive() {
@@ -50,11 +49,11 @@ class MethodChannelFlutterAutomotive extends FlutterAutomotivePlatform {
   
   @override
   Future<bool> isPermissionGranted(CarPermissions permission) async {
-    return await _api.isPermissionGranted(permission);
+    return await _api.isPermissionGranted(permission.androidName);
   }
   
   @override
   Future<void> requestPermission(CarPermissions permission) async {
-    return await _api.requestPermission(permission);
+    return await _api.requestPermission(permission.androidName);
   }
 }

@@ -14,28 +14,6 @@ import 'package:pigeon/pigeon.dart';
   dartPackageName: 'flutter_automotive',
 ))
 
-enum CarPermissions {
-  PERMISSION_CAR_CONTROL_AUDIO_SETTINGS,
-  PERMISSION_CAR_CONTROL_AUDIO_VOLUME,
-  PERMISSION_CAR_INFO,
-  PERMISSION_CAR_NAVIGATION_MANAGER,
-  PERMISSION_CONTROL_CAR_ENERGY,
-  PERMISSION_CONTROL_DISPLAY_UNITS,
-  PERMISSION_CONTROL_INTERIOR_LIGHTS,
-  PERMISSION_ENERGY,
-  PERMISSION_ENERGY_PORTS,
-  PERMISSION_EXTERIOR_ENVIRONMENT,
-  PERMISSION_IDENTIFICATION,
-  PERMISSION_POWERTRAIN,
-  PERMISSION_PRIVILEGED_CAR_INFO,
-  PERMISSION_READ_CAR_POWER_POLICY,
-  PERMISSION_READ_DISPLAY_UNITS,
-  PERMISSION_READ_INTERIOR_LIGHTS,
-  PERMISSION_READ_STEERING_STATE,
-  PERMISSION_SPEED,
-  PERMISSION_USE_REMOTE_ACCESS,
-}
-
 @HostApi(dartHostTestHandler: 'TestHostFlutterAutomotiveApi')
 abstract class FlutterAutomotiveApi {
   @async
@@ -48,9 +26,9 @@ abstract class FlutterAutomotiveApi {
 
   void unsubscribeProperty(int propertyId, int areaId);
 
-  bool isPermissionGranted(CarPermissions permission);
+  bool isPermissionGranted(String permission);
 
-  void requestPermission(CarPermissions permission);
+  void requestPermission(String permission);
 }
 
 class PropertyUpdateEvent {

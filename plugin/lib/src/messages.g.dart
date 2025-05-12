@@ -42,28 +42,6 @@ bool _deepEquals(Object? a, Object? b) {
 }
 
 
-enum CarPermissions {
-  PERMISSION_CAR_CONTROL_AUDIO_SETTINGS,
-  PERMISSION_CAR_CONTROL_AUDIO_VOLUME,
-  PERMISSION_CAR_INFO,
-  PERMISSION_CAR_NAVIGATION_MANAGER,
-  PERMISSION_CONTROL_CAR_ENERGY,
-  PERMISSION_CONTROL_DISPLAY_UNITS,
-  PERMISSION_CONTROL_INTERIOR_LIGHTS,
-  PERMISSION_ENERGY,
-  PERMISSION_ENERGY_PORTS,
-  PERMISSION_EXTERIOR_ENVIRONMENT,
-  PERMISSION_IDENTIFICATION,
-  PERMISSION_POWERTRAIN,
-  PERMISSION_PRIVILEGED_CAR_INFO,
-  PERMISSION_READ_CAR_POWER_POLICY,
-  PERMISSION_READ_DISPLAY_UNITS,
-  PERMISSION_READ_INTERIOR_LIGHTS,
-  PERMISSION_READ_STEERING_STATE,
-  PERMISSION_SPEED,
-  PERMISSION_USE_REMOTE_ACCESS,
-}
-
 class PropertyUpdateEvent {
   PropertyUpdateEvent({
     this.value,
@@ -123,11 +101,8 @@ class _PigeonCodec extends StandardMessageCodec {
     if (value is int) {
       buffer.putUint8(4);
       buffer.putInt64(value);
-    }    else if (value is CarPermissions) {
-      buffer.putUint8(129);
-      writeValue(buffer, value.index);
     }    else if (value is PropertyUpdateEvent) {
-      buffer.putUint8(130);
+      buffer.putUint8(129);
       writeValue(buffer, value.encode());
     } else {
       super.writeValue(buffer, value);
@@ -138,9 +113,6 @@ class _PigeonCodec extends StandardMessageCodec {
   Object? readValueOfType(int type, ReadBuffer buffer) {
     switch (type) {
       case 129: 
-        final int? value = readValue(buffer) as int?;
-        return value == null ? null : CarPermissions.values[value];
-      case 130: 
         return PropertyUpdateEvent.decode(readValue(buffer)!);
       default:
         return super.readValueOfType(type, buffer);
@@ -255,7 +227,7 @@ class FlutterAutomotiveApi {
     }
   }
 
-  Future<bool> isPermissionGranted(CarPermissions permission) async {
+  Future<bool> isPermissionGranted(String permission) async {
     final String pigeonVar_channelName = 'dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.isPermissionGranted$pigeonVar_messageChannelSuffix';
     final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
       pigeonVar_channelName,
@@ -283,7 +255,7 @@ class FlutterAutomotiveApi {
     }
   }
 
-  Future<void> requestPermission(CarPermissions permission) async {
+  Future<void> requestPermission(String permission) async {
     final String pigeonVar_channelName = 'dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.requestPermission$pigeonVar_messageChannelSuffix';
     final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
       pigeonVar_channelName,

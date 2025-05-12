@@ -21,11 +21,8 @@ class _PigeonCodec extends StandardMessageCodec {
     if (value is int) {
       buffer.putUint8(4);
       buffer.putInt64(value);
-    }    else if (value is CarPermissions) {
-      buffer.putUint8(129);
-      writeValue(buffer, value.index);
     }    else if (value is PropertyUpdateEvent) {
-      buffer.putUint8(130);
+      buffer.putUint8(129);
       writeValue(buffer, value.encode());
     } else {
       super.writeValue(buffer, value);
@@ -36,9 +33,6 @@ class _PigeonCodec extends StandardMessageCodec {
   Object? readValueOfType(int type, ReadBuffer buffer) {
     switch (type) {
       case 129: 
-        final int? value = readValue(buffer) as int?;
-        return value == null ? null : CarPermissions.values[value];
-      case 130: 
         return PropertyUpdateEvent.decode(readValue(buffer)!);
       default:
         return super.readValueOfType(type, buffer);
@@ -60,9 +54,9 @@ abstract class TestHostFlutterAutomotiveApi {
 
   void unsubscribeProperty(int propertyId, int areaId);
 
-  bool isPermissionGranted(CarPermissions permission);
+  bool isPermissionGranted(String permission);
 
-  void requestPermission(CarPermissions permission);
+  void requestPermission(String permission);
 
   static void setUp(TestHostFlutterAutomotiveApi? api, {BinaryMessenger? binaryMessenger, String messageChannelSuffix = '',}) {
     messageChannelSuffix = messageChannelSuffix.isNotEmpty ? '.$messageChannelSuffix' : '';
@@ -193,9 +187,9 @@ abstract class TestHostFlutterAutomotiveApi {
           assert(message != null,
           'Argument for dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.isPermissionGranted was null.');
           final List<Object?> args = (message as List<Object?>?)!;
-          final CarPermissions? arg_permission = (args[0] as CarPermissions?);
+          final String? arg_permission = (args[0] as String?);
           assert(arg_permission != null,
-              'Argument for dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.isPermissionGranted was null, expected non-null CarPermissions.');
+              'Argument for dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.isPermissionGranted was null, expected non-null String.');
           try {
             final bool output = api.isPermissionGranted(arg_permission!);
             return <Object?>[output];
@@ -218,9 +212,9 @@ abstract class TestHostFlutterAutomotiveApi {
           assert(message != null,
           'Argument for dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.requestPermission was null.');
           final List<Object?> args = (message as List<Object?>?)!;
-          final CarPermissions? arg_permission = (args[0] as CarPermissions?);
+          final String? arg_permission = (args[0] as String?);
           assert(arg_permission != null,
-              'Argument for dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.requestPermission was null, expected non-null CarPermissions.');
+              'Argument for dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.requestPermission was null, expected non-null String.');
           try {
             api.requestPermission(arg_permission!);
             return wrapResponse(empty: true);

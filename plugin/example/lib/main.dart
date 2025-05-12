@@ -26,8 +26,8 @@ class _MyAppState extends State<MyApp> {
   Future<void> getPermission() async {
     bool? granted;
     try {
-      await _plugin.requestPermission(CarPermissions.PERMISSION_SPEED);
-      granted = await _plugin.isPermissionGranted(CarPermissions.PERMISSION_SPEED);
+      await _plugin.requestPermission(CarPermissions.permissionSpeed);
+      granted = await _plugin.isPermissionGranted(CarPermissions.permissionSpeed);
     } catch(e) {
       granted = null;
       debugPrint('Error requesting permission: $e');

@@ -1,3 +1,4 @@
+export 'car_permissions.dart';
 export 'property_stream.dart';
 export 'sensor_update_rates.dart';
 export 'vehicle_area.dart';

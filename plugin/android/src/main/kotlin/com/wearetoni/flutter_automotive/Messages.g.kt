@@ -81,34 +81,6 @@ class FlutterError (
   val details: Any? = null
 ) : Throwable()
 
-enum class CarPermissions(val raw: Int) {
-  PERMISSION_CAR_CONTROL_AUDIO_SETTINGS(0),
-  PERMISSION_CAR_CONTROL_AUDIO_VOLUME(1),
-  PERMISSION_CAR_INFO(2),
-  PERMISSION_CAR_NAVIGATION_MANAGER(3),
-  PERMISSION_CONTROL_CAR_ENERGY(4),
-  PERMISSION_CONTROL_DISPLAY_UNITS(5),
-  PERMISSION_CONTROL_INTERIOR_LIGHTS(6),
-  PERMISSION_ENERGY(7),
-  PERMISSION_ENERGY_PORTS(8),
-  PERMISSION_EXTERIOR_ENVIRONMENT(9),
-  PERMISSION_IDENTIFICATION(10),
-  PERMISSION_POWERTRAIN(11),
-  PERMISSION_PRIVILEGED_CAR_INFO(12),
-  PERMISSION_READ_CAR_POWER_POLICY(13),
-  PERMISSION_READ_DISPLAY_UNITS(14),
-  PERMISSION_READ_INTERIOR_LIGHTS(15),
-  PERMISSION_READ_STEERING_STATE(16),
-  PERMISSION_SPEED(17),
-  PERMISSION_USE_REMOTE_ACCESS(18);
-
-  companion object {
-    fun ofRaw(raw: Int): CarPermissions? {
-      return values().firstOrNull { it.raw == raw }
-    }
-  }
-}
-
 /** Generated class from Pigeon that represents data sent in messages. */
 data class PropertyUpdateEvent (
   val value: Any? = null,
@@ -146,11 +118,6 @@ private open class MessagesPigeonCodec : StandardMessageCodec() {
   override fun readValueOfType(type: Byte, buffer: ByteBuffer): Any? {
     return when (type) {
       129.toByte() -> {
-        return (readValue(buffer) as Long?)?.let {
-          CarPermissions.ofRaw(it.toInt())
-        }
-      }
-      130.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
           PropertyUpdateEvent.fromList(it)
         }
@@ -160,12 +127,8 @@ private open class MessagesPigeonCodec : StandardMessageCodec() {
   }
   override fun writeValue(stream: ByteArrayOutputStream, value: Any?)   {
     when (value) {
-      is CarPermissions -> {
-        stream.write(129)
-        writeValue(stream, value.raw)
-      }
       is PropertyUpdateEvent -> {
-        stream.write(130)
+        stream.write(129)
         writeValue(stream, value.toList())
       }
       else -> super.writeValue(stream, value)
@@ -182,8 +145,8 @@ interface FlutterAutomotiveApi {
   fun setProperty(propertyId: Long, areaId: Long, value: Any?, callback: (Result<Unit>) -> Unit)
   fun subscribeProperty(propertyId: Long, areaId: Long, updateRate: Double)
   fun unsubscribeProperty(propertyId: Long, areaId: Long)
-  fun isPermissionGranted(permission: CarPermissions): Boolean
-  fun requestPermission(permission: CarPermissions)
+  fun isPermissionGranted(permission: String): Boolean
+  fun requestPermission(permission: String)
 
   companion object {
     /** The codec used by FlutterAutomotiveApi. */
@@ -280,7 +243,7 @@ interface FlutterAutomotiveApi {
         if (api != null) {
           channel.setMessageHandler { message, reply ->
             val args = message as List<Any?>
-            val permissionArg = args[0] as CarPermissions
+            val permissionArg = args[0] as String
             val wrapped: List<Any?> = try {
               listOf(api.isPermissionGranted(permissionArg))
             } catch (exception: Throwable) {
@@ -297,7 +260,7 @@ interface FlutterAutomotiveApi {
         if (api != null) {
           channel.setMessageHandler { message, reply ->
             val args = message as List<Any?>
-            val permissionArg = args[0] as CarPermissions
+            val permissionArg = args[0] as String
             val wrapped: List<Any?> = try {
               api.requestPermission(permissionArg)
               listOf(null)

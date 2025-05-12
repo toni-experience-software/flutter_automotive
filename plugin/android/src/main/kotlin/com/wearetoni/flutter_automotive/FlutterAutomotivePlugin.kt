@@ -105,45 +105,19 @@ class FlutterAutomotivePlugin: FlutterPlugin, ActivityAware, FlutterAutomotiveAp
   }
 
   // Permissions
-  private fun transformPermission(permission: CarPermissions): String {
-    return when (permission) {
-      CarPermissions.PERMISSION_CAR_CONTROL_AUDIO_SETTINGS -> Car.PERMISSION_CAR_CONTROL_AUDIO_SETTINGS
-      CarPermissions.PERMISSION_CAR_CONTROL_AUDIO_VOLUME -> Car.PERMISSION_CAR_CONTROL_AUDIO_VOLUME
-      CarPermissions.PERMISSION_CAR_INFO -> Car.PERMISSION_CAR_INFO
-      CarPermissions.PERMISSION_CAR_NAVIGATION_MANAGER -> Car.PERMISSION_CAR_NAVIGATION_MANAGER
-      CarPermissions.PERMISSION_CONTROL_CAR_ENERGY -> Car.PERMISSION_CONTROL_CAR_ENERGY
-      CarPermissions.PERMISSION_CONTROL_DISPLAY_UNITS -> Car.PERMISSION_CONTROL_DISPLAY_UNITS
-      CarPermissions.PERMISSION_CONTROL_INTERIOR_LIGHTS -> Car.PERMISSION_CONTROL_INTERIOR_LIGHTS
-      CarPermissions.PERMISSION_ENERGY -> Car.PERMISSION_ENERGY
-      CarPermissions.PERMISSION_ENERGY_PORTS -> Car.PERMISSION_ENERGY_PORTS
-      CarPermissions.PERMISSION_EXTERIOR_ENVIRONMENT -> Car.PERMISSION_EXTERIOR_ENVIRONMENT
-      CarPermissions.PERMISSION_IDENTIFICATION -> Car.PERMISSION_IDENTIFICATION
-      CarPermissions.PERMISSION_POWERTRAIN -> Car.PERMISSION_POWERTRAIN
-      CarPermissions.PERMISSION_PRIVILEGED_CAR_INFO -> Car.PERMISSION_PRIVILEGED_CAR_INFO
-      CarPermissions.PERMISSION_READ_CAR_POWER_POLICY -> Car.PERMISSION_READ_CAR_POWER_POLICY
-      CarPermissions.PERMISSION_READ_DISPLAY_UNITS -> Car.PERMISSION_READ_DISPLAY_UNITS
-      CarPermissions.PERMISSION_READ_INTERIOR_LIGHTS -> Car.PERMISSION_READ_INTERIOR_LIGHTS
-      CarPermissions.PERMISSION_READ_STEERING_STATE -> Car.PERMISSION_READ_STEERING_STATE
-      CarPermissions.PERMISSION_SPEED -> Car.PERMISSION_SPEED
-      CarPermissions.PERMISSION_USE_REMOTE_ACCESS -> Car.PERMISSION_USE_REMOTE_ACCESS
-    }
-  }
-
-  override fun isPermissionGranted(permission: CarPermissions): Boolean {
+  override fun isPermissionGranted(permission: String): Boolean {
     val act = activity
     if (act != null) {
-      val carPermission = transformPermission(permission)
-      return ActivityCompat.checkSelfPermission(act.applicationContext, carPermission) == PackageManager.PERMISSION_GRANTED
+      return ActivityCompat.checkSelfPermission(act.applicationContext, permission) == PackageManager.PERMISSION_GRANTED
     } else {
       return false
     }
   }
 
-  override fun requestPermission(permission: CarPermissions) {
+  override fun requestPermission(permission: String) {
     val act = activity
     if (act != null) {
-      val carPermission = transformPermission(permission)
-      ActivityCompat.requestPermissions(act, arrayOf(carPermission), 0)
+      ActivityCompat.requestPermissions(act, arrayOf(permission), 0)
     }
   }
 }
