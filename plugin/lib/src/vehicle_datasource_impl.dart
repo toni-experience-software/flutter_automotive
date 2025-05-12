@@ -7,8 +7,8 @@ import 'package:flutter_automotive/model/property_stream.dart';
 import 'package:flutter_automotive/src/vehicle_datasource.dart';
 
 class VehiclePropertyDatasourceImpl extends VehiclePropertyDatasource {
-  VehiclePropertyDatasourceImpl({FlutterAutomotivePlatform? instance}) : 
-    _platform = instance ?? FlutterAutomotivePlatform.instance;
+  VehiclePropertyDatasourceImpl({FlutterAutomotivePlatform? instance})
+      : _platform = instance ?? FlutterAutomotivePlatform.instance;
 
   final FlutterAutomotivePlatform _platform;
 
@@ -23,7 +23,8 @@ class VehiclePropertyDatasourceImpl extends VehiclePropertyDatasource {
   }
 
   @override
-  PropertyStreamData<T> listenProperty<T>(int propertyId, int areaId, SensorUpdateRate rate) {
+  PropertyStreamData<T> listenProperty<T>(
+      int propertyId, int areaId, SensorUpdateRate rate) {
     return _platform.subscribeProperty<T>(propertyId, areaId, rate);
   }
 }

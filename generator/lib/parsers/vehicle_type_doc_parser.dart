@@ -41,26 +41,57 @@ class VehicleTypeProperties {
 
   String get _formattedDesc {
     final desc = docs.split("<p>Property Config:")[0];
-    final lines = desc.replaceAll("<p>", "").split("\n").map((l) => l.trim()).skip(1);
+    final lines = desc
+        .replaceAll("<p>", "")
+        .split("\n")
+        .map((l) => l.trim())
+        .skip(1);
     final descLines = lines.map((l) => l.substring(1).trim()).toList();
-    final cleaned = descLines.reversed.skipWhile((l) => l.isEmpty).toList().reversed;
+    final cleaned =
+        descLines.reversed.skipWhile((l) => l.isEmpty).toList().reversed;
     return cleaned.map((e) => "/// $e").join("\n");
   }
 
   String get _permissionsDoc {
     final split = docs.split("* <p>Required Permission");
     if (split case [_, final permissionsRaw]) {
-      final arr = permissionsRaw.split("</ul>")[0].split("<li>").map((e) => e.replaceAll("</ul>", "").trim()).toList();
+      final arr =
+          permissionsRaw
+              .split("</ul>")[0]
+              .split("<li>")
+              .map((e) => e.replaceAll("</ul>", "").trim())
+              .toList();
       final lines = [];
       if (arr case [_, final readRaw, final writeRaw, ...]) {
-        lines.addAll(readRaw.split("\n").map((l) => l.trim()).map((l) => l.startsWith("*") ? l.substring(1) : l).map((l) => l.trim()));
-        lines.addAll(writeRaw.split("\n").map((l) => l.trim()).map((l) => l.startsWith("*") ? l.substring(1) : l).map((l) => l.trim()));
+        lines.addAll(
+          readRaw
+              .split("\n")
+              .map((l) => l.trim())
+              .map((l) => l.startsWith("*") ? l.substring(1) : l)
+              .map((l) => l.trim()),
+        );
+        lines.addAll(
+          writeRaw
+              .split("\n")
+              .map((l) => l.trim())
+              .map((l) => l.startsWith("*") ? l.substring(1) : l)
+              .map((l) => l.trim()),
+        );
       } else if (arr case [_, final readRaw, ...]) {
-        lines.addAll(readRaw.split("\n").map((l) => l.trim()).map((l) => l.startsWith("*") ? l.substring(1) : l).map((l) => l.trim()));
+        lines.addAll(
+          readRaw
+              .split("\n")
+              .map((l) => l.trim())
+              .map((l) => l.startsWith("*") ? l.substring(1) : l)
+              .map((l) => l.trim()),
+        );
       } else {
         return "";
       }
-      return lines.where((e) => e.isNotEmpty && e != "/").map((l) => "/// $l").join("\n");
+      return lines
+          .where((e) => e.isNotEmpty && e != "/")
+          .map((l) => "/// $l")
+          .join("\n");
     } else {
       return "";
     }
@@ -85,20 +116,38 @@ class VehicleTypeProperties {
   }
 
   List<String> get _basePermissions {
-    final permissions = _permissionLines.where((e) => e.startsWith("* @RequiresPermission(")).toList();
+    final permissions =
+        _permissionLines
+            .where((e) => e.startsWith("* @RequiresPermission("))
+            .toList();
     return permissions.map((e) => e.substring(22, e.length - 1)).toList();
   }
 
   Set<String> get readPermissions {
     if (read) {
-      final normalPerm = _permissionLines.where((e) => e.startsWith("* @RequiresPermission.Read(@RequiresPermission(Car"));
-      final allOfPerm = _permissionLines.where((e) => e.startsWith("* @RequiresPermission.Read(@RequiresPermission(allOf = {"));
-      final anyOfPerm = _permissionLines.where((e) => e.startsWith("* @RequiresPermission.Read(@RequiresPermission(anyOf = {"));
+      final normalPerm = _permissionLines.where(
+        (e) =>
+            e.startsWith("* @RequiresPermission.Read(@RequiresPermission(Car"),
+      );
+      final allOfPerm = _permissionLines.where(
+        (e) => e.startsWith(
+          "* @RequiresPermission.Read(@RequiresPermission(allOf = {",
+        ),
+      );
+      final anyOfPerm = _permissionLines.where(
+        (e) => e.startsWith(
+          "* @RequiresPermission.Read(@RequiresPermission(anyOf = {",
+        ),
+      );
       return [
         ..._basePermissions,
         ...normalPerm.map((e) => e.substring(47, e.length - 2)),
-        ...allOfPerm.map((e) => e.substring(56, e.length - 3).split(",")).expand((e) => e),
-        ...anyOfPerm.map((e) => e.substring(56, e.length - 3).split(",")).expand((e) => e),
+        ...allOfPerm
+            .map((e) => e.substring(56, e.length - 3).split(","))
+            .expand((e) => e),
+        ...anyOfPerm
+            .map((e) => e.substring(56, e.length - 3).split(","))
+            .expand((e) => e),
       ].map((e) => e.replaceAll("Car.", "").trim()).toSet();
     } else {
       return {};
@@ -107,24 +156,36 @@ class VehicleTypeProperties {
 
   Set<String> get writePermissions {
     if (write) {
-      final normalPerm = _permissionLines.where((e) => e.startsWith("* @RequiresPermission.Write(@RequiresPermission(Car"));
-      final allOfPerm = _permissionLines.where((e) => e.startsWith("* @RequiresPermission.Write(@RequiresPermission(allOf = {"));
-      final anyOfPerm = _permissionLines.where((e) => e.startsWith("* @RequiresPermission.Write(@RequiresPermission(anyOf = {"));
+      final normalPerm = _permissionLines.where(
+        (e) =>
+            e.startsWith("* @RequiresPermission.Write(@RequiresPermission(Car"),
+      );
+      final allOfPerm = _permissionLines.where(
+        (e) => e.startsWith(
+          "* @RequiresPermission.Write(@RequiresPermission(allOf = {",
+        ),
+      );
+      final anyOfPerm = _permissionLines.where(
+        (e) => e.startsWith(
+          "* @RequiresPermission.Write(@RequiresPermission(anyOf = {",
+        ),
+      );
       return [
         ..._basePermissions,
         ...normalPerm.map((e) => e.substring(48, e.length - 2)),
-        ...allOfPerm.map((e) => e.substring(57, e.length - 3).split(",")).expand((e) => e),
-        ...anyOfPerm.map((e) => e.substring(57, e.length - 3).split(",")).expand((e) => e),
+        ...allOfPerm
+            .map((e) => e.substring(57, e.length - 3).split(","))
+            .expand((e) => e),
+        ...anyOfPerm
+            .map((e) => e.substring(57, e.length - 3).split(","))
+            .expand((e) => e),
       ].map((e) => e.replaceAll("Car.", "").trim()).toSet();
     } else {
       return {};
     }
   }
 
-  List<String> get permissions => [
-      ...readPermissions,
-      ...writePermissions,
-    ];
+  List<String> get permissions => [...readPermissions, ...writePermissions];
 
   @override
   String toString() {
@@ -143,9 +204,7 @@ class VehicleTypeDocParser {
 
   static bool _needsPrivilegedPermission(String part) {
     if (part.contains(" or ")) {
-      return (part.contains("Normal") ||
-                  part.contains("Dangerous")) ==
-              false &&
+      return (part.contains("Normal") || part.contains("Dangerous")) == false &&
           part.contains("Signature|Privileged");
     } else if (part.contains(" and ")) {
       return part.contains("Signature|Privileged");
@@ -169,7 +228,13 @@ class VehicleTypeDocParser {
             final lis = comment
                 .split("<li>")
                 .where((l) => l.contains("permission"))
-                .map((e) => e.replaceAll("\n", " ").split(" ").where((e) => e.isNotEmpty).join(" "));
+                .map(
+                  (e) => e
+                      .replaceAll("\n", " ")
+                      .split(" ")
+                      .where((e) => e.isNotEmpty)
+                      .join(" "),
+                );
             final readLis = lis.where((l) => l.contains("read"));
             final writeLis = lis.where((l) => l.contains("write"));
 

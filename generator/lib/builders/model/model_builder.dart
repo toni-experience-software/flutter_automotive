@@ -9,16 +9,12 @@ class VehicleModleBuilder {
 
   Library buildLibrary() {
     return Library(
-      (l) => l
-        ..directives.addAll([
-          Directive.import("car_permissions.dart"),
-        ])
-        ..body.addAll([
-          _buildAccessEnum(),
-          _buildMainEnum(),
-        ])
-        ..docs.addAll([
-"""
+      (l) =>
+          l
+            ..directives.addAll([Directive.import("car_permissions.dart")])
+            ..body.addAll([_buildAccessEnum(), _buildMainEnum()])
+            ..docs.addAll([
+              """
 // ignore_for_file: doc_directive_unknown, slash_for_doc_comments, constant_identifier_names
 
 // This model file is generated from the VehiclePropertyIds Java Class into a Dart Enum.
@@ -39,129 +35,158 @@ class VehicleModleBuilder {
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-"""
-        ]),
+""",
+            ]),
     );
   }
 
   Enum _buildAccessEnum() {
     return Enum(
-      (e) => e
-        ..name = "VehiclePropertyAccess"
-        ..values.addAll([
-            EnumValue((v) => v..name = "unavailable"),
-            EnumValue((v) => v..name = "normal"),
-            EnumValue((v) => v..name = "privileged"),
-          ],
-        )
+      (e) =>
+          e
+            ..name = "VehiclePropertyAccess"
+            ..values.addAll([
+              EnumValue((v) => v..name = "unavailable"),
+              EnumValue((v) => v..name = "normal"),
+              EnumValue((v) => v..name = "privileged"),
+            ]),
     );
   }
 
   Enum _buildMainEnum() {
     return Enum(
-      (e) => e
-        ..name = "VehicleProperty"
-        ..values.addAll([
-          for (final prop in VehiclePropertyInput.values) ...[
-            EnumValue(
-              (v) => v
-                ..name = prop.name
-                ..docs.addAll([
-                  if (parser.getDocs(prop)case final docs?) docs,
-                ])
-                ..arguments.addAll([
-                  literalNum(prop.id),
-                  if (parser.getProps(prop) case final props!) ...[
-                    switch (props) {
-                      VehicleTypeProperties(read: true, readPrivileged: false) => refer("VehiclePropertyAccess.normal"),
-                      VehicleTypeProperties(read: true, readPrivileged: true) => refer("VehiclePropertyAccess.privileged"),
-                      _ => refer("VehiclePropertyAccess.unavailable"),
-                    },
-                    switch (props) {
-                      VehicleTypeProperties(write: true, writePrivileged: false) => refer("VehiclePropertyAccess.normal"),
-                      VehicleTypeProperties(write: true, writePrivileged: true) => refer("VehiclePropertyAccess.privileged"),
-                      _ => refer("VehiclePropertyAccess.unavailable"),
-                    },
-                    literalSet([
-                      for (final perm in props.readPermissions)
-                        if (perm != "ACCESS_FINE_LOCATION")
-                          refer("CarPermissions.$perm"),
-                    ]),
-                    literalSet([
-                      for (final perm in props.writePermissions)
-                        if (perm != "ACCESS_FINE_LOCATION")
-                          refer("CarPermissions.$perm"),
-                    ]),
-                  ],
-                ]),
-            ),
-          ],
-        ])
-        ..constructors.addAll([
-          Constructor(
-            (c) => c
-              ..constant = true
-              ..requiredParameters.addAll([
-                Parameter(
-                  (p) => p
-                    ..name = "id"
-                    ..toThis = true,
+      (e) =>
+          e
+            ..name = "VehicleProperty"
+            ..values.addAll([
+              for (final prop in VehiclePropertyInput.values) ...[
+                EnumValue(
+                  (v) =>
+                      v
+                        ..name = prop.name
+                        ..docs.addAll([
+                          if (parser.getDocs(prop) case final docs?) docs,
+                        ])
+                        ..arguments.addAll([
+                          literalNum(prop.id),
+                          if (parser.getProps(prop) case final props!) ...[
+                            switch (props) {
+                              VehicleTypeProperties(
+                                read: true,
+                                readPrivileged: false,
+                              ) =>
+                                refer("VehiclePropertyAccess.normal"),
+                              VehicleTypeProperties(
+                                read: true,
+                                readPrivileged: true,
+                              ) =>
+                                refer("VehiclePropertyAccess.privileged"),
+                              _ => refer("VehiclePropertyAccess.unavailable"),
+                            },
+                            switch (props) {
+                              VehicleTypeProperties(
+                                write: true,
+                                writePrivileged: false,
+                              ) =>
+                                refer("VehiclePropertyAccess.normal"),
+                              VehicleTypeProperties(
+                                write: true,
+                                writePrivileged: true,
+                              ) =>
+                                refer("VehiclePropertyAccess.privileged"),
+                              _ => refer("VehiclePropertyAccess.unavailable"),
+                            },
+                            literalSet([
+                              for (final perm in props.readPermissions)
+                                if (perm != "ACCESS_FINE_LOCATION")
+                                  refer("CarPermissions.$perm"),
+                            ]),
+                            literalSet([
+                              for (final perm in props.writePermissions)
+                                if (perm != "ACCESS_FINE_LOCATION")
+                                  refer("CarPermissions.$perm"),
+                            ]),
+                          ],
+                        ]),
                 ),
-                Parameter(
-                  (p) => p
-                    ..name = "read"
-                    ..toThis = true,
-                ),
-                Parameter(
-                  (p) => p
-                    ..name = "write"
-                    ..toThis = true,
-                ),
-                Parameter(
-                  (p) => p
-                    ..name = "readPermissions"
-                    ..toThis = true,
-                ),
-                Parameter(
-                  (p) => p
-                    ..name = "writePermissions"
-                    ..toThis = true,
-                ),
-              ]),
-          ),
-        ])
-        ..fields.addAll([
-          Field(
-            (f) => f
-              ..name = "id"
-              ..type = refer("int")
-              ..modifier = FieldModifier.final$,
-          ),
-          Field(
-            (f) => f
-              ..name = "read"
-              ..type = refer("VehiclePropertyAccess")
-              ..modifier = FieldModifier.final$,
-          ),
-          Field(
-            (f) => f
-              ..name = "write"
-              ..type = refer("VehiclePropertyAccess")
-              ..modifier = FieldModifier.final$,
-          ),
-          Field(
-            (f) => f
-              ..name = "readPermissions"
-              ..type = refer("Set<CarPermissions>")
-              ..modifier = FieldModifier.final$,
-          ),
-          Field(
-            (f) => f
-              ..name = "writePermissions"
-              ..type = refer("Set<CarPermissions>")
-              ..modifier = FieldModifier.final$,
-          ),
-        ])
+              ],
+            ])
+            ..constructors.addAll([
+              Constructor(
+                (c) =>
+                    c
+                      ..constant = true
+                      ..requiredParameters.addAll([
+                        Parameter(
+                          (p) =>
+                              p
+                                ..name = "id"
+                                ..toThis = true,
+                        ),
+                        Parameter(
+                          (p) =>
+                              p
+                                ..name = "read"
+                                ..toThis = true,
+                        ),
+                        Parameter(
+                          (p) =>
+                              p
+                                ..name = "write"
+                                ..toThis = true,
+                        ),
+                        Parameter(
+                          (p) =>
+                              p
+                                ..name = "readPermissions"
+                                ..toThis = true,
+                        ),
+                        Parameter(
+                          (p) =>
+                              p
+                                ..name = "writePermissions"
+                                ..toThis = true,
+                        ),
+                      ]),
+              ),
+            ])
+            ..fields.addAll([
+              Field(
+                (f) =>
+                    f
+                      ..name = "id"
+                      ..type = refer("int")
+                      ..modifier = FieldModifier.final$,
+              ),
+              Field(
+                (f) =>
+                    f
+                      ..name = "read"
+                      ..type = refer("VehiclePropertyAccess")
+                      ..modifier = FieldModifier.final$,
+              ),
+              Field(
+                (f) =>
+                    f
+                      ..name = "write"
+                      ..type = refer("VehiclePropertyAccess")
+                      ..modifier = FieldModifier.final$,
+              ),
+              Field(
+                (f) =>
+                    f
+                      ..name = "readPermissions"
+                      ..type = refer("Set<CarPermissions>")
+                      ..modifier = FieldModifier.final$,
+              ),
+              Field(
+                (f) =>
+                    f
+                      ..name = "writePermissions"
+                      ..type = refer("Set<CarPermissions>")
+                      ..modifier = FieldModifier.final$,
+              ),
+            ]),
     );
   }
 }

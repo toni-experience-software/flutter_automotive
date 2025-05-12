@@ -18,7 +18,8 @@ PlatformException _createConnectionError(String channelName) {
   );
 }
 
-List<Object?> wrapResponse({Object? result, PlatformException? error, bool empty = false}) {
+List<Object?> wrapResponse(
+    {Object? result, PlatformException? error, bool empty = false}) {
   if (empty) {
     return <Object?>[];
   }
@@ -27,20 +28,21 @@ List<Object?> wrapResponse({Object? result, PlatformException? error, bool empty
   }
   return <Object?>[error.code, error.message, error.details];
 }
+
 bool _deepEquals(Object? a, Object? b) {
   if (a is List && b is List) {
     return a.length == b.length &&
         a.indexed
-        .every(((int, dynamic) item) => _deepEquals(item.$2, b[item.$1]));
+            .every(((int, dynamic) item) => _deepEquals(item.$2, b[item.$1]));
   }
   if (a is Map && b is Map) {
-    return a.length == b.length && a.entries.every((MapEntry<Object?, Object?> entry) =>
-        (b as Map<Object?, Object?>).containsKey(entry.key) &&
-        _deepEquals(entry.value, b[entry.key]));
+    return a.length == b.length &&
+        a.entries.every((MapEntry<Object?, Object?> entry) =>
+            (b as Map<Object?, Object?>).containsKey(entry.key) &&
+            _deepEquals(entry.value, b[entry.key]));
   }
   return a == b;
 }
-
 
 class PropertyUpdateEvent {
   PropertyUpdateEvent({
@@ -64,7 +66,8 @@ class PropertyUpdateEvent {
   }
 
   Object encode() {
-    return _toList();  }
+    return _toList();
+  }
 
   static PropertyUpdateEvent decode(Object result) {
     result as List<Object?>;
@@ -89,10 +92,8 @@ class PropertyUpdateEvent {
 
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  int get hashCode => Object.hashAll(_toList())
-;
+  int get hashCode => Object.hashAll(_toList());
 }
-
 
 class _PigeonCodec extends StandardMessageCodec {
   const _PigeonCodec();
@@ -101,7 +102,7 @@ class _PigeonCodec extends StandardMessageCodec {
     if (value is int) {
       buffer.putUint8(4);
       buffer.putInt64(value);
-    }    else if (value is PropertyUpdateEvent) {
+    } else if (value is PropertyUpdateEvent) {
       buffer.putUint8(129);
       writeValue(buffer, value.encode());
     } else {
@@ -112,7 +113,7 @@ class _PigeonCodec extends StandardMessageCodec {
   @override
   Object? readValueOfType(int type, ReadBuffer buffer) {
     switch (type) {
-      case 129: 
+      case 129:
         return PropertyUpdateEvent.decode(readValue(buffer)!);
       default:
         return super.readValueOfType(type, buffer);
@@ -120,15 +121,18 @@ class _PigeonCodec extends StandardMessageCodec {
   }
 }
 
-const StandardMethodCodec pigeonMethodCodec = StandardMethodCodec(_PigeonCodec());
+const StandardMethodCodec pigeonMethodCodec =
+    StandardMethodCodec(_PigeonCodec());
 
 class FlutterAutomotiveApi {
   /// Constructor for [FlutterAutomotiveApi].  The [binaryMessenger] named argument is
   /// available for dependency injection.  If it is left null, the default
   /// BinaryMessenger will be used which routes to the host platform.
-  FlutterAutomotiveApi({BinaryMessenger? binaryMessenger, String messageChannelSuffix = ''})
+  FlutterAutomotiveApi(
+      {BinaryMessenger? binaryMessenger, String messageChannelSuffix = ''})
       : pigeonVar_binaryMessenger = binaryMessenger,
-        pigeonVar_messageChannelSuffix = messageChannelSuffix.isNotEmpty ? '.$messageChannelSuffix' : '';
+        pigeonVar_messageChannelSuffix =
+            messageChannelSuffix.isNotEmpty ? '.$messageChannelSuffix' : '';
   final BinaryMessenger? pigeonVar_binaryMessenger;
 
   static const MessageCodec<Object?> pigeonChannelCodec = _PigeonCodec();
@@ -136,13 +140,16 @@ class FlutterAutomotiveApi {
   final String pigeonVar_messageChannelSuffix;
 
   Future<Object?> getProperty(int propertyId, int areaId) async {
-    final String pigeonVar_channelName = 'dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.getProperty$pigeonVar_messageChannelSuffix';
-    final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
+    final String pigeonVar_channelName =
+        'dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.getProperty$pigeonVar_messageChannelSuffix';
+    final BasicMessageChannel<Object?> pigeonVar_channel =
+        BasicMessageChannel<Object?>(
       pigeonVar_channelName,
       pigeonChannelCodec,
       binaryMessenger: pigeonVar_binaryMessenger,
     );
-    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[propertyId, areaId]);
+    final Future<Object?> pigeonVar_sendFuture =
+        pigeonVar_channel.send(<Object?>[propertyId, areaId]);
     final List<Object?>? pigeonVar_replyList =
         await pigeonVar_sendFuture as List<Object?>?;
     if (pigeonVar_replyList == null) {
@@ -159,13 +166,16 @@ class FlutterAutomotiveApi {
   }
 
   Future<void> setProperty(int propertyId, int areaId, Object? value) async {
-    final String pigeonVar_channelName = 'dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.setProperty$pigeonVar_messageChannelSuffix';
-    final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
+    final String pigeonVar_channelName =
+        'dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.setProperty$pigeonVar_messageChannelSuffix';
+    final BasicMessageChannel<Object?> pigeonVar_channel =
+        BasicMessageChannel<Object?>(
       pigeonVar_channelName,
       pigeonChannelCodec,
       binaryMessenger: pigeonVar_binaryMessenger,
     );
-    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[propertyId, areaId, value]);
+    final Future<Object?> pigeonVar_sendFuture =
+        pigeonVar_channel.send(<Object?>[propertyId, areaId, value]);
     final List<Object?>? pigeonVar_replyList =
         await pigeonVar_sendFuture as List<Object?>?;
     if (pigeonVar_replyList == null) {
@@ -181,14 +191,18 @@ class FlutterAutomotiveApi {
     }
   }
 
-  Future<void> subscribeProperty(int propertyId, int areaId, double updateRate) async {
-    final String pigeonVar_channelName = 'dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.subscribeProperty$pigeonVar_messageChannelSuffix';
-    final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
+  Future<void> subscribeProperty(
+      int propertyId, int areaId, double updateRate) async {
+    final String pigeonVar_channelName =
+        'dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.subscribeProperty$pigeonVar_messageChannelSuffix';
+    final BasicMessageChannel<Object?> pigeonVar_channel =
+        BasicMessageChannel<Object?>(
       pigeonVar_channelName,
       pigeonChannelCodec,
       binaryMessenger: pigeonVar_binaryMessenger,
     );
-    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[propertyId, areaId, updateRate]);
+    final Future<Object?> pigeonVar_sendFuture =
+        pigeonVar_channel.send(<Object?>[propertyId, areaId, updateRate]);
     final List<Object?>? pigeonVar_replyList =
         await pigeonVar_sendFuture as List<Object?>?;
     if (pigeonVar_replyList == null) {
@@ -205,13 +219,16 @@ class FlutterAutomotiveApi {
   }
 
   Future<void> unsubscribeProperty(int propertyId, int areaId) async {
-    final String pigeonVar_channelName = 'dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.unsubscribeProperty$pigeonVar_messageChannelSuffix';
-    final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
+    final String pigeonVar_channelName =
+        'dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.unsubscribeProperty$pigeonVar_messageChannelSuffix';
+    final BasicMessageChannel<Object?> pigeonVar_channel =
+        BasicMessageChannel<Object?>(
       pigeonVar_channelName,
       pigeonChannelCodec,
       binaryMessenger: pigeonVar_binaryMessenger,
     );
-    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[propertyId, areaId]);
+    final Future<Object?> pigeonVar_sendFuture =
+        pigeonVar_channel.send(<Object?>[propertyId, areaId]);
     final List<Object?>? pigeonVar_replyList =
         await pigeonVar_sendFuture as List<Object?>?;
     if (pigeonVar_replyList == null) {
@@ -228,13 +245,16 @@ class FlutterAutomotiveApi {
   }
 
   Future<bool> arePermissionsGranted(List<String> permissions) async {
-    final String pigeonVar_channelName = 'dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.arePermissionsGranted$pigeonVar_messageChannelSuffix';
-    final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
+    final String pigeonVar_channelName =
+        'dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.arePermissionsGranted$pigeonVar_messageChannelSuffix';
+    final BasicMessageChannel<Object?> pigeonVar_channel =
+        BasicMessageChannel<Object?>(
       pigeonVar_channelName,
       pigeonChannelCodec,
       binaryMessenger: pigeonVar_binaryMessenger,
     );
-    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[permissions]);
+    final Future<Object?> pigeonVar_sendFuture =
+        pigeonVar_channel.send(<Object?>[permissions]);
     final List<Object?>? pigeonVar_replyList =
         await pigeonVar_sendFuture as List<Object?>?;
     if (pigeonVar_replyList == null) {
@@ -256,13 +276,16 @@ class FlutterAutomotiveApi {
   }
 
   Future<void> requestPermissions(List<String> permissions) async {
-    final String pigeonVar_channelName = 'dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.requestPermissions$pigeonVar_messageChannelSuffix';
-    final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
+    final String pigeonVar_channelName =
+        'dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.requestPermissions$pigeonVar_messageChannelSuffix';
+    final BasicMessageChannel<Object?> pigeonVar_channel =
+        BasicMessageChannel<Object?>(
       pigeonVar_channelName,
       pigeonChannelCodec,
       binaryMessenger: pigeonVar_binaryMessenger,
     );
-    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[permissions]);
+    final Future<Object?> pigeonVar_sendFuture =
+        pigeonVar_channel.send(<Object?>[permissions]);
     final List<Object?>? pigeonVar_replyList =
         await pigeonVar_sendFuture as List<Object?>?;
     if (pigeonVar_replyList == null) {
@@ -279,14 +302,14 @@ class FlutterAutomotiveApi {
   }
 }
 
-Stream<PropertyUpdateEvent> receiveEvents( {String instanceName = ''}) {
+Stream<PropertyUpdateEvent> receiveEvents({String instanceName = ''}) {
   if (instanceName.isNotEmpty) {
     instanceName = '.$instanceName';
   }
-  final EventChannel receiveEventsChannel =
-      EventChannel('dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveEventApi.receiveEvents$instanceName', pigeonMethodCodec);
+  final EventChannel receiveEventsChannel = EventChannel(
+      'dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveEventApi.receiveEvents$instanceName',
+      pigeonMethodCodec);
   return receiveEventsChannel.receiveBroadcastStream().map((dynamic event) {
     return event as PropertyUpdateEvent;
   });
 }
-    

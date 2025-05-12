@@ -14,26 +14,25 @@ class MethodChannelFlutterAutomotive extends FlutterAutomotivePlatform {
 
   void _handleEvent() {
     final events = receiveEvents();
-    events.listen(
-      (event) {
-        final controller = _propertyStreams[(event.propertyId, event.areaId)];
-        controller?.add(event.value);
-      }
-    );
+    events.listen((event) {
+      final controller = _propertyStreams[(event.propertyId, event.areaId)];
+      controller?.add(event.value);
+    });
   }
-  
+
   @override
   Future<dynamic> getProperty(int propertyId, int areaId) async {
     return _api.getProperty(propertyId, areaId);
   }
-  
+
   @override
   Future<void> setProperty(int propertyId, int areaId, value) {
     return _api.setProperty(propertyId, areaId, value);
   }
 
   @override
-  PropertyStreamData<T> subscribeProperty<T>(int propertyId, int areaId, SensorUpdateRate updateRate) {
+  PropertyStreamData<T> subscribeProperty<T>(
+      int propertyId, int areaId, SensorUpdateRate updateRate) {
     final controller = StreamController<T>();
     _propertyStreams[(propertyId, areaId)] = controller;
     final rate = updateRate.clamp(0.0, 100.0);
@@ -46,20 +45,18 @@ class MethodChannelFlutterAutomotive extends FlutterAutomotivePlatform {
       },
     );
   }
-  
+
   @override
   Future<bool> arePermissionsGranted(List<CarPermissions> permissions) async {
     return await _api.arePermissionsGranted([
-      for (final permission in permissions)
-        permission.androidName,
+      for (final permission in permissions) permission.androidName,
     ]);
   }
-  
+
   @override
   Future<void> requestPermissions(List<CarPermissions> permissions) async {
     return await _api.requestPermissions([
-      for (final permission in permissions)
-        permission.androidName,
+      for (final permission in permissions) permission.androidName,
     ]);
   }
 }

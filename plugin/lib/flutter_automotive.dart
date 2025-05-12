@@ -13,8 +13,9 @@ enum VehiclePropertyPermissionScope {
 
 class FlutterAutomotive {
   FlutterAutomotive([FlutterAutomotivePlatform? platform])
-    : _platform = platform ?? FlutterAutomotivePlatform.instance,
-      _repository = VehiclePropertyRepository(VehiclePropertyDatasourceImpl(instance: platform ?? FlutterAutomotivePlatform.instance));
+      : _platform = platform ?? FlutterAutomotivePlatform.instance,
+        _repository = VehiclePropertyRepository(VehiclePropertyDatasourceImpl(
+            instance: platform ?? FlutterAutomotivePlatform.instance));
 
   final FlutterAutomotivePlatform _platform;
   final VehiclePropertyRepository _repository;
@@ -27,7 +28,8 @@ class FlutterAutomotive {
   /// [areaId] - The area ID for which the property value is requested. Defaults to 0.
   ///
   /// Returns a [Future] that resolves to the value of the requested property.
-  Future<dynamic> getProperty(VehicleProperty property, {int areaId = 0}) async {
+  Future<dynamic> getProperty(VehicleProperty property,
+      {int areaId = 0}) async {
     return await _platform.getProperty(property.id, areaId);
   }
 
@@ -38,7 +40,8 @@ class FlutterAutomotive {
   /// [areaId] - The area ID for which the property value is being set. Defaults to 0.
   ///
   /// Returns a [Future] that completes when the property value is successfully set.
-  Future<void> setProperty(VehicleProperty property, dynamic value, {int areaId = 0}) async {
+  Future<void> setProperty(VehicleProperty property, dynamic value,
+      {int areaId = 0}) async {
     return await _platform.setProperty(property.id, value, areaId);
   }
 
@@ -49,20 +52,21 @@ class FlutterAutomotive {
   /// [updateRate] - The rate at which updates are received. Defaults to [SensorUpdateRates.onChange].
   ///
   /// Returns a [PropertyStreamData] stream that emits updates for the specified property.
-  PropertyStreamData<T> subscribeProperty<T>(int propertyId, int areaId, [SensorUpdateRate updateRate = SensorUpdateRates.onChange]) {
+  PropertyStreamData<T> subscribeProperty<T>(int propertyId, int areaId,
+      [SensorUpdateRate updateRate = SensorUpdateRates.onChange]) {
     return _platform.subscribeProperty<T>(propertyId, areaId, updateRate);
   }
 
   /// Checks if the specified car permission is granted.
   ///
   /// [permission] - The car permission to check.
-  /// 
+  ///
   /// Returns a [Future] that resolves to `true` if the permission is granted,
   /// otherwise `false`.
   Future<bool> isPermissionGranted(CarPermissions permission) async {
     return await _platform.arePermissionsGranted([permission]);
   }
-  
+
   /// Requests the specified car permission.
   ///
   /// [permission] - The car permission to request.
@@ -80,15 +84,20 @@ class FlutterAutomotive {
   ///
   /// Returns a [Future] that resolves to `true` if all the required permissions
   /// for the specified scope are granted, otherwise `false`.
-  Future<bool> arePropertyPermissionsGranted(VehicleProperty property, VehiclePropertyPermissionScope scope) async {
+  Future<bool> arePropertyPermissionsGranted(
+      VehicleProperty property, VehiclePropertyPermissionScope scope) async {
     final permissions = switch (scope) {
       VehiclePropertyPermissionScope.read => property.readPermissions,
       VehiclePropertyPermissionScope.write => property.writePermissions,
-      VehiclePropertyPermissionScope.both => [...property.readPermissions, ...property.writePermissions],
-    }.toList();
+      VehiclePropertyPermissionScope.both => [
+          ...property.readPermissions,
+          ...property.writePermissions
+        ],
+    }
+        .toList();
     return await _platform.arePermissionsGranted(permissions);
   }
-  
+
   /// Requests permissions for a specified vehicle property.
   ///
   /// [property] - The vehicle property for which permissions are being requested.
@@ -96,12 +105,17 @@ class FlutterAutomotive {
   ///
   /// Returns a [Future] that completes when the permission request process
   /// is finished.
-  Future<void> requestPropertyPermissions(VehicleProperty property, VehiclePropertyPermissionScope scope) async {
+  Future<void> requestPropertyPermissions(
+      VehicleProperty property, VehiclePropertyPermissionScope scope) async {
     final permissions = switch (scope) {
       VehiclePropertyPermissionScope.read => property.readPermissions,
       VehiclePropertyPermissionScope.write => property.writePermissions,
-      VehiclePropertyPermissionScope.both => [...property.readPermissions, ...property.writePermissions],
-    }.toList();
+      VehiclePropertyPermissionScope.both => [
+          ...property.readPermissions,
+          ...property.writePermissions
+        ],
+    }
+        .toList();
     return await _platform.requestPermissions(permissions);
   }
 }
