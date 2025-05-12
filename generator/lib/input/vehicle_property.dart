@@ -38,6 +38,7 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_IDENTIFICATION)
     INFO_VIN(286261504),
     /**
      * Manufacturer of vehicle.
@@ -58,6 +59,7 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CAR_INFO)
     INFO_MAKE(286261505),
     /**
      * Model of vehicle.
@@ -78,6 +80,7 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CAR_INFO)
     INFO_MODEL(286261506),
     /**
      * Model year of vehicle in YYYY format based on Gregorian calendar.
@@ -96,6 +99,7 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CAR_INFO)
     INFO_MODEL_YEAR(289407235),
     /**
      * Fuel capacity of the vehicle in milliliters.
@@ -119,6 +123,7 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CAR_INFO)
     INFO_FUEL_CAPACITY(291504388),
     /**
      * List the {@link FuelType}s the vehicle may use.
@@ -155,6 +160,7 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link FuelType}
      */
+    // @RequiresPermission(Car.PERMISSION_CAR_INFO)
     INFO_FUEL_TYPE(289472773),
     /**
      * Nominal usable battery capacity for EV or hybrid vehicle.
@@ -179,6 +185,7 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CAR_INFO)
     INFO_EV_BATTERY_CAPACITY(291504390),
     /**
      * List of {@link android.car.hardware.property.EvChargingConnectorType}s this vehicle may use.
@@ -202,6 +209,7 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link EvChargingConnectorType}
      */
+    // @RequiresPermission(Car.PERMISSION_CAR_INFO)
     INFO_EV_CONNECTOR_TYPE(289472775),
     /**
      * {@link PortLocationType} for the fuel door location.
@@ -227,6 +235,7 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link PortLocationType}
      */
+    // @RequiresPermission(Car.PERMISSION_CAR_INFO)
     INFO_FUEL_DOOR_LOCATION(289407240),
     /**
      * {@link PortLocationType} for the EV port location.
@@ -252,6 +261,7 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link PortLocationType}
      */
+    // @RequiresPermission(Car.PERMISSION_CAR_INFO)
     INFO_EV_PORT_LOCATION(289407241),
     /**
      * List {@link PortLocationType}s for Multiple EV port locations.
@@ -272,6 +282,7 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link PortLocationType}
      */
+    // @RequiresPermission(Car.PERMISSION_CAR_INFO)
     INFO_MULTI_EV_PORT_LOCATIONS(289472780),
     /**
      * Driver's seat location.
@@ -295,6 +306,7 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link VehicleAreaSeat}
      */
+    // @RequiresPermission(Car.PERMISSION_CAR_INFO)
     INFO_DRIVER_SEAT(356516106),
     /**
      * Vehicle's exterior dimensions in millimeters.
@@ -325,6 +337,7 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CAR_INFO)
     INFO_EXTERIOR_DIMENSIONS(289472779),
     /**
      * Public trim name of the vehicle.
@@ -336,7 +349,7 @@ enum VehiclePropertyInput {
      *   <li>"makeName modelName" and
      *   <li>"makeName modelName Sport"
      * </ul>
-     * <p>This property will be empty for the first vehicle (i.e. base model, and set to "Sport"
+     * <p>This property will be empty for the first vehicle (i.e. base model), and set to "Sport"
      * for the second vehicle.
      *
      * <p>Property Config:
@@ -353,6 +366,8 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @FlaggedApi(FLAG_ANDROID_B_VEHICLE_PROPERTIES)
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_CAR_INFO))
     INFO_MODEL_TRIM(286261517),
     /**
      * Vehicle Size Class.
@@ -386,6 +401,8 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link android.car.hardware.property.VehicleSizeClass}
      */
+    // @FlaggedApi(FLAG_ANDROID_B_VEHICLE_PROPERTIES)
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_CAR_INFO))
     INFO_VEHICLE_SIZE_CLASS(289472782),
     /**
      * Current odometer value of the vehicle in kilometers.
@@ -405,6 +422,8 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @FlaggedApi(FLAG_ANDROID_B_VEHICLE_PROPERTIES)
+    // @RequiresPermission.Read(@RequiresPermission(anyOf = {Car.PERMISSION_MILEAGE_3P,Car.PERMISSION_MILEAGE}))
     PERF_ODOMETER(291504644),
     /**
      * Speed of the vehicle in meters per second.
@@ -429,6 +448,7 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_SPEED)
     PERF_VEHICLE_SPEED(291504647),
     /**
      * Speed of the vehicle in meters per second for displays.
@@ -450,6 +470,7 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_SPEED)
     PERF_VEHICLE_SPEED_DISPLAY(291504648),
     /**
      * Front bicycle model steering angle for vehicle in degrees.
@@ -475,6 +496,8 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_25Q2_3P_PERMISSIONS)
+    // @RequiresPermission.Read(@RequiresPermission(anyOf = {Car.PERMISSION_READ_STEERING_STATE_3P,Car.PERMISSION_READ_STEERING_STATE}))
     PERF_STEERING_ANGLE(291504649),
     /**
      * Rear bicycle model steering angle for vehicle in degrees.
@@ -500,6 +523,7 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_READ_STEERING_STATE)
     PERF_REAR_STEERING_ANGLE(291504656),
     /**
      * Instantaneous Fuel Economy in L/100km.
@@ -526,6 +550,8 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @FlaggedApi(FLAG_ANDROID_B_VEHICLE_PROPERTIES)
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_MILEAGE_3P))
     INSTANTANEOUS_FUEL_ECONOMY(291504657),
     /**
      * Instantaneous EV efficiency in km/kWh.
@@ -553,6 +579,8 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @FlaggedApi(FLAG_ANDROID_B_VEHICLE_PROPERTIES)
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_MILEAGE_3P))
     INSTANTANEOUS_EV_EFFICIENCY(291504658),
     /**
      * Temperature of engine coolant in celsius.
@@ -572,6 +600,7 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CAR_ENGINE_DETAILED)
     ENGINE_COOLANT_TEMP(291504897),
     /**
      * Engine oil level.
@@ -596,6 +625,7 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link VehicleOilLevel}
      */
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_CAR_ENGINE_DETAILED))
     ENGINE_OIL_LEVEL(289407747),
     /**
      * Temperature of engine oil in celsius.
@@ -615,6 +645,7 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CAR_ENGINE_DETAILED)
     ENGINE_OIL_TEMP(291504900),
     /**
      * Engine rpm.
@@ -634,6 +665,8 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_25Q2_3P_PERMISSIONS)
+    // @RequiresPermission.Read(@RequiresPermission(anyOf = {Car.PERMISSION_CAR_ENGINE_DETAILED_3P,Car.PERMISSION_CAR_ENGINE_DETAILED}))
     ENGINE_RPM(291504901),
     /**
      * Represents feature for engine idle automatic stop.
@@ -656,6 +689,8 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission(Car.PERMISSION_CAR_ENGINE_DETAILED)
     ENGINE_IDLE_AUTO_STOP_ENABLED(287310624),
     /**
      * Impact detected.
@@ -665,7 +700,7 @@ enum VehiclePropertyInput {
      * android.car.hardware.property.ImpactSensorLocation} enum. As a bit flag property, this
      * property can be set to multiple ORed together values of the enum when necessary.
      *
-     * <p>For the global area ID (0, the {@link
+     * <p>For the global area ID (0), the {@link
      * android.car.hardware.property.AreaIdConfig#getSupportedEnumValues()} array obtained from
      * {@link android.car.hardware.CarPropertyConfig#getAreaIdConfig(int)} specifies which bit flags
      * from {@link android.car.hardware.property.ImpactSensorLocation} are supported.
@@ -688,6 +723,8 @@ enum VehiclePropertyInput {
      * @data_enum {@link android.car.hardware.property.ImpactSensorLocation}
      *
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_READ_IMPACT_SENSORS))
     IMPACT_DETECTED(289407792),
     /**
      * Vehicle horn engaged.
@@ -711,6 +748,9 @@ enum VehiclePropertyInput {
      *  <li>Dangerous permission {@link Car#PERMISSION_CONTROL_CAR_HORN} to write property.
      * </ul>
      */
+    // @FlaggedApi(FLAG_ANDROID_B_VEHICLE_PROPERTIES)
+    // @RequiresPermission.Read(@RequiresPermission(anyOf = {Car.PERMISSION_READ_CAR_HORN,Car.PERMISSION_CONTROL_CAR_HORN}))
+    // @RequiresPermission.Write(@RequiresPermission(Car.PERMISSION_CONTROL_CAR_HORN))
     VEHICLE_HORN_ENGAGED(287310656),
     /**
      * Reports wheel ticks.
@@ -766,6 +806,7 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_SPEED)
     WHEEL_TICK(290521862),
     /**
      * Fuel level in milliliters.
@@ -791,6 +832,7 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_ENERGY)
     FUEL_LEVEL(291504903),
     /**
      * Fuel door open.
@@ -817,6 +859,8 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @RequiresPermission.Read(@RequiresPermission(anyOf = {Car.PERMISSION_ENERGY_PORTS,Car.PERMISSION_CONTROL_ENERGY_PORTS}))
+    // @RequiresPermission.Write(@RequiresPermission(Car.PERMISSION_CONTROL_ENERGY_PORTS))
     FUEL_DOOR_OPEN(287310600),
     /**
      * EV battery level.
@@ -840,6 +884,7 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_ENERGY)
     EV_BATTERY_LEVEL(291504905),
     /**
      * Current usable battery capacity for EV or hybrid vehicle.
@@ -864,6 +909,7 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_ENERGY)
     EV_CURRENT_BATTERY_CAPACITY(291504909),
     /**
      * EV charge port open.
@@ -888,6 +934,8 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @RequiresPermission.Read(@RequiresPermission(anyOf = {Car.PERMISSION_ENERGY_PORTS,Car.PERMISSION_CONTROL_ENERGY_PORTS}))
+    // @RequiresPermission.Write(@RequiresPermission(Car.PERMISSION_CONTROL_ENERGY_PORTS))
     EV_CHARGE_PORT_OPEN(287310602),
     /**
      * EV charge port connected.
@@ -909,6 +957,7 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_ENERGY_PORTS)
     EV_CHARGE_PORT_CONNECTED(287310603),
     /**
      * EV instantaneous charge rate in milliwatts.
@@ -930,6 +979,7 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_ENERGY)
     EV_BATTERY_INSTANTANEOUS_CHARGE_RATE(291504908),
     /**
      * Range remaining in meters.
@@ -954,6 +1004,8 @@ enum VehiclePropertyInput {
      *  property.
      * </ul>
      */
+    // @RequiresPermission.Read(@RequiresPermission(anyOf = {Car.PERMISSION_ENERGY,Car.PERMISSION_ADJUST_RANGE_REMAINING}))
+    // @RequiresPermission.Write(@RequiresPermission(Car.PERMISSION_ADJUST_RANGE_REMAINING))
     RANGE_REMAINING(291504904),
     /**
      * EV battery average temperature
@@ -976,6 +1028,8 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @FlaggedApi(FLAG_ANDROID_VIC_VEHICLE_PROPERTIES)
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_ENERGY))
     EV_BATTERY_AVERAGE_TEMPERATURE(291504910),
     /**
      * Tire pressure in kilopascals.
@@ -1000,7 +1054,9 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
-        TIRE_PRESSURE(392168201),
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_25Q2_3P_PERMISSIONS)
+    // @RequiresPermission.Read(@RequiresPermission(anyOf = {Car.PERMISSION_TIRES_3P,Car.PERMISSION_TIRES}))
+    TIRE_PRESSURE(392168201),
     /**
      * Critically low tire pressure.
      *
@@ -1023,6 +1079,7 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_TIRES)
     CRITICALLY_LOW_TIRE_PRESSURE(392168202),
     /**
      * Accelerator pedal compression percentage.
@@ -1048,6 +1105,8 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable
      * </ul>
      */
+    // @FlaggedApi(FLAG_ANDROID_B_VEHICLE_PROPERTIES)
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_READ_CAR_PEDALS))
     ACCELERATOR_PEDAL_COMPRESSION_PERCENTAGE(291504911),
     /**
      * Brake pedal compression percentage.
@@ -1073,6 +1132,8 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable
      * </ul>
      */
+    // @FlaggedApi(FLAG_ANDROID_B_VEHICLE_PROPERTIES)
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_READ_CAR_PEDALS))
     BRAKE_PEDAL_COMPRESSION_PERCENTAGE(291504912),
     /**
      * Brake pad wear percentage.
@@ -1098,6 +1159,8 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable
      * </ul>
      */
+    // @FlaggedApi(FLAG_ANDROID_B_VEHICLE_PROPERTIES)
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_READ_BRAKE_INFO))
     BRAKE_PAD_WEAR_PERCENTAGE(392168209),
     /**
      * Brake fluid level low.
@@ -1121,6 +1184,8 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable
      * </ul>
      */
+    // @FlaggedApi(FLAG_ANDROID_B_VEHICLE_PROPERTIES)
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_READ_BRAKE_INFO))
     BRAKE_FLUID_LEVEL_LOW(287310610),
     /**
      * Vehicle Passive Suspension Height in mm.
@@ -1169,6 +1234,8 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable
      * </ul>
      */
+    // @FlaggedApi(FLAG_ANDROID_B_VEHICLE_PROPERTIES)
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_CAR_DYNAMICS_STATE))
     VEHICLE_PASSIVE_SUSPENSION_HEIGHT(390071059),
     /**
      * Currently selected gear by user.
@@ -1222,6 +1289,7 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link VehicleGear}
      */
+    // @RequiresPermission(Car.PERMISSION_POWERTRAIN)
     GEAR_SELECTION(289408000),
     /**
      * Vehicle transmission's current {@link VehicleGear}.
@@ -1279,6 +1347,7 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link VehicleGear}
      */
+    // @RequiresPermission(Car.PERMISSION_POWERTRAIN)
     CURRENT_GEAR(289408001),
     /**
      * Parking brake state.
@@ -1300,6 +1369,7 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_POWERTRAIN)
     PARKING_BRAKE_ON(287310850),
     /**
      * Auto-apply parking brake.
@@ -1309,7 +1379,7 @@ enum VehiclePropertyInput {
      * is currently disabled.
      *
      * <p>This property is often confused with {@link #PARKING_BRAKE_ON}. The difference is that
-     * {@link #PARKING_BRAKE_ON} describes whether the actual parking brake is currently on/off),
+     * {@link #PARKING_BRAKE_ON} describes whether the actual parking brake is currently on/off,
      * whereas {@code PARKING_BRAKE_AUTO_APPLY} describes whether the feature of automatic parking
      * brake is enabled/disabled, and does not describe the current state of the actual parking
      * brake.
@@ -1328,6 +1398,7 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_POWERTRAIN)
     PARKING_BRAKE_AUTO_APPLY(287310851),
     /**
      * Regenerative braking level of an electronic vehicle.
@@ -1355,6 +1426,8 @@ enum VehiclePropertyInput {
      *  property.
      * </ul>
      */
+    // @RequiresPermission.Read(@RequiresPermission(anyOf = {Car.PERMISSION_POWERTRAIN,Car.PERMISSION_CONTROL_POWERTRAIN}))
+    // @RequiresPermission.Write(@RequiresPermission(Car.PERMISSION_CONTROL_POWERTRAIN))
     EV_BRAKE_REGENERATION_LEVEL(289408012),
     /**
      * Represents property for the current stopping mode of the vehicle.
@@ -1384,6 +1457,8 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link EvStoppingMode}
      */
+    // @RequiresPermission.Read(@RequiresPermission(anyOf = {Car.PERMISSION_POWERTRAIN,Car.PERMISSION_CONTROL_POWERTRAIN}))
+    // @RequiresPermission.Write(@RequiresPermission(Car.PERMISSION_CONTROL_POWERTRAIN))
     EV_STOPPING_MODE(289408013),
     /**
      * Warning for fuel low level.
@@ -1412,6 +1487,7 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_ENERGY)
     FUEL_LEVEL_LOW(287310853),
     /**
      * Night mode.
@@ -1433,6 +1509,7 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_EXTERIOR_ENVIRONMENT)
     NIGHT_MODE(287310855),
     /**
      * State of the vehicles turn signals
@@ -1461,6 +1538,8 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link VehicleTurnSignal}
      */
+    // @Deprecated
+    // @RequiresPermission(Car.PERMISSION_EXTERIOR_LIGHTS)
     TURN_SIGNAL_STATE(289408008),
     /**
      * Vehicle's ignition state.
@@ -1483,6 +1562,7 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link VehicleIgnitionState}
      */
+    // @RequiresPermission(Car.PERMISSION_POWERTRAIN)
     IGNITION_STATE(289408009),
     /**
      * ABS is active.
@@ -1502,6 +1582,7 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CAR_DYNAMICS_STATE)
     ABS_ACTIVE(287310858),
     /**
      * Traction Control is active.
@@ -1521,6 +1602,7 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CAR_DYNAMICS_STATE)
     TRACTION_CONTROL_ACTIVE(287310859),
     /**
      * Enable or disable Electronic Stability Control (ESC).
@@ -1550,6 +1632,9 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(anyOf = {Car.PERMISSION_CAR_DYNAMICS_STATE,Car.PERMISSION_CONTROL_CAR_DYNAMICS_STATE}))
+    // @RequiresPermission.Write(@RequiresPermission(Car.PERMISSION_CONTROL_CAR_DYNAMICS_STATE))
     ELECTRONIC_STABILITY_CONTROL_ENABLED(287310862),
     /**
      * Electronic Stability Control (ESC) state.
@@ -1582,6 +1667,8 @@ enum VehiclePropertyInput {
      * @data_enum {@link android.car.hardware.property.ElectronicStabilityControlState}
      * @data_enum {@link ErrorState}
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_CAR_DYNAMICS_STATE))
     ELECTRONIC_STABILITY_CONTROL_STATE(289408015),
     /**
      * Turn signal light state.
@@ -1627,6 +1714,8 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link VehicleTurnSignal}
      */
+    // @FlaggedApi(FLAG_ANDROID_B_VEHICLE_PROPERTIES)
+    // @RequiresPermission.Read(@RequiresPermission(anyOf = {Car.PERMISSION_READ_EXTERIOR_LIGHTS,Car.PERMISSION_CONTROL_EXTERIOR_LIGHTS}))
     TURN_SIGNAL_LIGHT_STATE(289408016),
     /**
      * Turn signal switch.
@@ -1661,6 +1750,9 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link VehicleTurnSignal}
      */
+    // @FlaggedApi(FLAG_ANDROID_B_VEHICLE_PROPERTIES)
+    // @RequiresPermission.Read(@RequiresPermission(anyOf = {Car.PERMISSION_READ_EXTERIOR_LIGHTS,Car.PERMISSION_CONTROL_EXTERIOR_LIGHTS}))
+    // @RequiresPermission.Write(@RequiresPermission(Car.PERMISSION_CONTROL_EXTERIOR_LIGHTS))
     TURN_SIGNAL_SWITCH(289408017),
     /**
      * Fan speed setting.
@@ -1680,6 +1772,7 @@ enum VehiclePropertyInput {
      *  and write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_CLIMATE)
     HVAC_FAN_SPEED(356517120),
     /**
      * Fan direction setting.
@@ -1706,6 +1799,7 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link CarHvacFanDirection}
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_CLIMATE)
     HVAC_FAN_DIRECTION(356517121),
     /**
      * HVAC current temperature in celsius.
@@ -1725,6 +1819,7 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_CLIMATE)
     HVAC_TEMPERATURE_CURRENT(358614274),
     /**
      * HVAC target temperature set in Celsius.
@@ -1783,13 +1878,13 @@ enum VehiclePropertyInput {
      * <pre>
      * {@code
      * // Given tempC and configArray
-     * float minTempC = configArray.get(0) / 10f;
-     * float temperatureIncrementCelsius = configArray.get(2) / 10f;
-     * float minTempF = configArray.get(3) / 10f;
-     * float temperatureIncrementFahrenheit = configArray.get(5) / 10f;
+     * float minTempC = configArray.get(0) / 10f),
+     * float temperatureIncrementCelsius = configArray.get(2) / 10f),
+     * float minTempF = configArray.get(3) / 10f),
+     * float temperatureIncrementFahrenheit = configArray.get(5) / 10f),
      * // Round to the closest increment
-     * int numIncrements = Math.round((tempC - minTempC) / temperatureIncrementCelsius);
-     * float tempF = temperatureIncrementFahrenheit * numIncrements + minTempF;
+     * int numIncrements = Math.round((tempC - minTempC) / temperatureIncrementCelsius)),
+     * float tempF = temperatureIncrementFahrenheit * numIncrements + minTempF),
      * }
      * </pre>
      * <p>For converting the temperature from Fahrenheit to Celsius, use the same method as above
@@ -1814,6 +1909,7 @@ enum VehiclePropertyInput {
      *  and write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_CLIMATE)
     HVAC_TEMPERATURE_SET(358614275),
     /**
      * Suggested values for setting HVAC temperature.
@@ -1870,6 +1966,7 @@ enum VehiclePropertyInput {
      *  and write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_CLIMATE)
     HVAC_TEMPERATURE_VALUE_SUGGESTION(291570965),
     /**
      * On/off defrost for designated window.
@@ -1889,6 +1986,7 @@ enum VehiclePropertyInput {
      *  and write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_CLIMATE)
     HVAC_DEFROSTER(320865540),
     /**
      * On/off AC for designated areaId.
@@ -1908,6 +2006,7 @@ enum VehiclePropertyInput {
      *  and write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_CLIMATE)
     HVAC_AC_ON(354419973),
     /**
      * On/off max AC.
@@ -1927,6 +2026,7 @@ enum VehiclePropertyInput {
      *  and write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_CLIMATE)
     HVAC_MAX_AC_ON(354419974),
     /**
      * On/off max defrost.
@@ -1946,6 +2046,7 @@ enum VehiclePropertyInput {
      *  and write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_CLIMATE)
     HVAC_MAX_DEFROST_ON(354419975),
     /**
      * Recirculation on/off.
@@ -1965,6 +2066,7 @@ enum VehiclePropertyInput {
      *  and write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_CLIMATE)
     HVAC_RECIRC_ON(354419976),
     /**
      * Enable temperature coupling between areas.
@@ -1984,6 +2086,7 @@ enum VehiclePropertyInput {
      *  and write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_CLIMATE)
     HVAC_DUAL_ON(354419977),
     /**
      * On/off automatic mode.
@@ -2003,6 +2106,7 @@ enum VehiclePropertyInput {
      *  and write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_CLIMATE)
     HVAC_AUTO_ON(354419978),
     /**
      * Seat heating/cooling.
@@ -2022,6 +2126,7 @@ enum VehiclePropertyInput {
      *  and write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_CLIMATE)
     HVAC_SEAT_TEMPERATURE(356517131),
     /**
      * Side Mirror Heat.
@@ -2041,6 +2146,7 @@ enum VehiclePropertyInput {
      *  and write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_CLIMATE)
     HVAC_SIDE_MIRROR_HEAT(339739916),
     /**
      * Steering Wheel Heating/Cooling.
@@ -2060,6 +2166,7 @@ enum VehiclePropertyInput {
      *  and write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_CLIMATE)
     HVAC_STEERING_WHEEL_HEAT(289408269),
     /**
      * Temperature units for display.
@@ -2083,6 +2190,8 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link VehicleUnit}
      */
+    // @RequiresPermission.Read(@RequiresPermission(anyOf = {Car.PERMISSION_READ_DISPLAY_UNITS,Car.PERMISSION_CONTROL_CAR_CLIMATE}))
+    // @RequiresPermission.Write(@RequiresPermission(Car.PERMISSION_CONTROL_CAR_CLIMATE))
     HVAC_TEMPERATURE_DISPLAY_UNITS(289408270),
     /**
      * Actual fan speed.
@@ -2102,6 +2211,7 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_CLIMATE)
     HVAC_ACTUAL_FAN_SPEED_RPM(356517135),
     /**
      * Represents global power state for HVAC.
@@ -2126,6 +2236,7 @@ enum VehiclePropertyInput {
      *  and write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_CLIMATE)
     HVAC_POWER_ON(354419984),
     /**
      * Fan Positions Available.
@@ -2147,6 +2258,7 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link CarHvacFanDirection}
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_CLIMATE)
     HVAC_FAN_DIRECTION_AVAILABLE(356582673),
     /**
      * Automatic recirculation on/off.
@@ -2166,6 +2278,7 @@ enum VehiclePropertyInput {
      *  and write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_CLIMATE)
     HVAC_AUTO_RECIRC_ON(354419986),
     /**
      * Seat ventilation.
@@ -2185,6 +2298,7 @@ enum VehiclePropertyInput {
      *  and write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_CLIMATE)
     HVAC_SEAT_VENTILATION(356517139),
     /**
      * ELECTRIC DEFROSTER.
@@ -2204,6 +2318,8 @@ enum VehiclePropertyInput {
      *  and write property.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_CLIMATE)
     HVAC_ELECTRIC_DEFROSTER_ON(320865556),
     /**
      * Distance units for display.
@@ -2236,6 +2352,8 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link VehicleUnit}
      */
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_READ_DISPLAY_UNITS))
+    // @RequiresPermission.Write(@RequiresPermission(allOf = {Car.PERMISSION_CONTROL_DISPLAY_UNITS,Car.PERMISSION_VENDOR_EXTENSION}))
     DISTANCE_DISPLAY_UNITS(289408512),
     /**
      * Fuel volume units for display.
@@ -2267,6 +2385,8 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link VehicleUnit}
      */
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_READ_DISPLAY_UNITS))
+    // @RequiresPermission.Write(@RequiresPermission(allOf = {Car.PERMISSION_CONTROL_DISPLAY_UNITS,Car.PERMISSION_VENDOR_EXTENSION}))
     FUEL_VOLUME_DISPLAY_UNITS(289408513),
     /**
      * Tire pressure units for display.
@@ -2299,6 +2419,8 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link VehicleUnit}
      */
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_READ_DISPLAY_UNITS))
+    // @RequiresPermission.Write(@RequiresPermission(allOf = {Car.PERMISSION_CONTROL_DISPLAY_UNITS,Car.PERMISSION_VENDOR_EXTENSION}))
     TIRE_PRESSURE_DISPLAY_UNITS(289408514),
     /**
      * EV battery units for display.
@@ -2331,6 +2453,8 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link VehicleUnit}
      */
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_READ_DISPLAY_UNITS))
+    // @RequiresPermission.Write(@RequiresPermission(allOf = {Car.PERMISSION_CONTROL_DISPLAY_UNITS,Car.PERMISSION_VENDOR_EXTENSION}))
     EV_BATTERY_DISPLAY_UNITS(289408515),
     /**
      * Speed units for display.
@@ -2363,6 +2487,8 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link VehicleUnit}
      */
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_READ_DISPLAY_UNITS))
+    // @RequiresPermission.Write(@RequiresPermission(allOf = {Car.PERMISSION_CONTROL_DISPLAY_UNITS,Car.PERMISSION_VENDOR_EXTENSION}))
     VEHICLE_SPEED_DISPLAY_UNITS(289408516),
     /**
      * Fuel consumption units for display.
@@ -2389,6 +2515,8 @@ enum VehiclePropertyInput {
      *  permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
      * </ul>
      */
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_READ_DISPLAY_UNITS))
+    // @RequiresPermission.Write(@RequiresPermission(allOf = {Car.PERMISSION_CONTROL_DISPLAY_UNITS,Car.PERMISSION_VENDOR_EXTENSION}))
     FUEL_CONSUMPTION_UNITS_DISTANCE_OVER_VOLUME(287311364),
     /**
      * Outside temperature in celsius.
@@ -2407,6 +2535,7 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_EXTERIOR_ENVIRONMENT)
     ENV_OUTSIDE_TEMPERATURE(291505923),
     /**
      * Property to control power state of application processor.
@@ -2417,6 +2546,8 @@ enum VehiclePropertyInput {
      *
      * @deprecated use {@link android.car.hardware.power.CarPowerManager} instead.
      */
+    // @Deprecated
+    // @RequiresPermission(Car.PERMISSION_CAR_POWER)
     AP_POWER_STATE_REQ(289475072),
     /**
      * Property to report power state of application processor.
@@ -2427,6 +2558,8 @@ enum VehiclePropertyInput {
      *
      * @deprecated use {@link android.car.hardware.power.CarPowerManager} instead.
      */
+    // @Deprecated
+    // @RequiresPermission(Car.PERMISSION_CAR_POWER)
     AP_POWER_STATE_REPORT(289475073),
     /**
      * Property to report bootup reason for the current power on.
@@ -2437,6 +2570,8 @@ enum VehiclePropertyInput {
      *
      * @deprecated use {@link android.car.hardware.power.CarPowerManager} instead.
      */
+    // @Deprecated
+    // @RequiresPermission(Car.PERMISSION_CAR_POWER)
     AP_POWER_BOOTUP_REASON(289409538),
     /**
      * Property to represent brightness of the display.
@@ -2447,6 +2582,8 @@ enum VehiclePropertyInput {
      *
      * @deprecated use {@link android.car.hardware.power.CarPowerManager} instead.
      */
+    // @Deprecated
+    // @RequiresPermission(Car.PERMISSION_CAR_POWER)
     DISPLAY_BRIGHTNESS(289409539),
     /**
      * Property to represent brightness of the displays which are controlled separately.
@@ -2457,6 +2594,8 @@ enum VehiclePropertyInput {
      *
      * @deprecated use {@link android.car.hardware.power.CarPowerManager} instead.
      */
+    // @Deprecated
+    // @RequiresPermission(Car.PERMISSION_CAR_POWER)
     PER_DISPLAY_BRIGHTNESS(289475076),
     /**
      * Valet mode enabled
@@ -2485,6 +2624,9 @@ enum VehiclePropertyInput {
      *  property.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(anyOf = {Car.PERMISSION_READ_VALET_MODE, Car.PERMISSION_CONTROL_VALET_MODE}))
+    // @RequiresPermission.Write(@RequiresPermission(Car.PERMISSION_CONTROL_VALET_MODE))
     VALET_MODE_ENABLED(287312389),
     /**
      * Head up display (HUD) enabled
@@ -2514,7 +2656,10 @@ enum VehiclePropertyInput {
      *  property.
      * </ul>
      */
-            HEAD_UP_DISPLAY_ENABLED(354421254),
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(anyOf = {Car.PERMISSION_READ_HEAD_UP_DISPLAY_STATUS,Car.PERMISSION_CONTROL_HEAD_UP_DISPLAY}))
+    // @RequiresPermission.Write(@RequiresPermission(Car.PERMISSION_CONTROL_HEAD_UP_DISPLAY))
+    HEAD_UP_DISPLAY_ENABLED(354421254),
     /**
      * Property to feed H/W input events to android.
      *
@@ -2524,6 +2669,7 @@ enum VehiclePropertyInput {
      *
      * @deprecated car service internal use only.
      */
+    // @Deprecated
     HW_KEY_INPUT(289475088),
     /**
      * Door position.
@@ -2554,6 +2700,7 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_DOORS)
     DOOR_POS(373295872),
     /**
      * Door move.
@@ -2585,6 +2732,7 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_DOORS)
     DOOR_MOVE(373295873),
     /**
      * Door lock.
@@ -2606,6 +2754,7 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_DOORS)
     DOOR_LOCK(371198722),
     /**
      * Door child lock feature enabled.
@@ -2628,6 +2777,8 @@ enum VehiclePropertyInput {
      *  and write property.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_DOORS)
     DOOR_CHILD_LOCK_ENABLED(371198723),
     /**
      * Mirror Z Position.
@@ -2659,6 +2810,7 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_MIRRORS)
     MIRROR_Z_POS(339741504),
     /**
      * Mirror Z Move.
@@ -2690,6 +2842,7 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_MIRRORS)
     MIRROR_Z_MOVE(339741505),
     /**
      * Mirror Y Position.
@@ -2721,6 +2874,7 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_MIRRORS)
     MIRROR_Y_POS(339741506),
     /**
      * Mirror Y Move.
@@ -2752,6 +2906,7 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_MIRRORS)
     MIRROR_Y_MOVE(339741507),
     /**
      * Mirror Lock.
@@ -2773,6 +2928,7 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_MIRRORS)
     MIRROR_LOCK(287312708),
     /**
      * Mirror Fold.
@@ -2792,6 +2948,7 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_MIRRORS)
     MIRROR_FOLD(287312709),
     /**
      * Represents property for the Mirror Auto Fold feature.
@@ -2814,6 +2971,8 @@ enum VehiclePropertyInput {
      *  <li>Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_MIRRORS} to read and
      *  write property.
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_MIRRORS)
     MIRROR_AUTO_FOLD_ENABLED(337644358),
     /**
      * Represents property for the Mirror Auto Tilt feature.
@@ -2837,6 +2996,8 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_MIRRORS)
     MIRROR_AUTO_TILT_ENABLED(337644359),
     /**
      * Property that represents the current position of the glove box door.
@@ -2871,6 +3032,8 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission(Car.PERMISSION_CONTROL_GLOVE_BOX)
     GLOVE_BOX_DOOR_POS(356518896),
     /**
      * Lock or unlock the glove box.
@@ -2896,6 +3059,8 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission(Car.PERMISSION_CONTROL_GLOVE_BOX)
     GLOVE_BOX_LOCKED(354421745),
     /**
      * Seat memory select.
@@ -2920,6 +3085,7 @@ enum VehiclePropertyInput {
      *  property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_SEATS)
     SEAT_MEMORY_SELECT(356518784),
     /**
      * Seat memory set.
@@ -2944,6 +3110,7 @@ enum VehiclePropertyInput {
      *  property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_SEATS)
     SEAT_MEMORY_SET(356518785),
     /**
      * Seatbelt buckled.
@@ -2965,6 +3132,7 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_SEATS)
     SEAT_BELT_BUCKLED(354421634),
     /**
      * Seatbelt height position.
@@ -2995,6 +3163,7 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_SEATS)
     SEAT_BELT_HEIGHT_POS(356518787),
     /**
      * Seatbelt height move.
@@ -3003,8 +3172,8 @@ enum VehiclePropertyInput {
      * speeds.
      *
      * <p>Positive values mean the seat belt's shoulder anchor is moving up and negative values mean
-     * the seat belt's shoulder anchor is moving down. Larger integers, either positive or negative),
-     * indicate a faster speed. Once the seat belt's shoulder anchor reaches the positional limit),
+     * the seat belt's shoulder anchor is moving down. Larger integers, either positive or negative,
+     * indicate a faster speed. Once the seat belt's shoulder anchor reaches the positional limit,
      * the value resets to 0. When this property's value is 0, that means there is no movement
      * currently occurring.
      *
@@ -3027,6 +3196,7 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_SEATS)
     SEAT_BELT_HEIGHT_MOVE(356518788),
     /**
      * Seat fore/aft position.
@@ -3057,6 +3227,7 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_SEATS)
     SEAT_FORE_AFT_POS(356518789),
     /**
      * Seat fore/aft move.
@@ -3090,6 +3261,7 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_SEATS)
     SEAT_FORE_AFT_MOVE(356518790),
     /**
      * Seat backrest angle 1 position.
@@ -3122,6 +3294,7 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_SEATS)
     SEAT_BACKREST_ANGLE_1_POS(356518791),
     /**
      * Seat backrest angle 1 move.
@@ -3157,6 +3330,7 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_SEATS)
     SEAT_BACKREST_ANGLE_1_MOVE(356518792),
     /**
      * Seat backrest angle 2 position.
@@ -3189,6 +3363,7 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_SEATS)
     SEAT_BACKREST_ANGLE_2_POS(356518793),
     /**
      * Seat backrest angle 2 move.
@@ -3226,6 +3401,7 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_SEATS)
     SEAT_BACKREST_ANGLE_2_MOVE(356518794),
     /**
      * Seat height position.
@@ -3256,6 +3432,7 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_SEATS)
     SEAT_HEIGHT_POS(356518795),
     /**
      * Seat height move.
@@ -3287,6 +3464,7 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_SEATS)
     SEAT_HEIGHT_MOVE(356518796),
     /**
      * Seat depth position.
@@ -3319,6 +3497,7 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_SEATS)
     SEAT_DEPTH_POS(356518797),
     /**
      * Seat depth move.
@@ -3352,6 +3531,7 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_SEATS)
     SEAT_DEPTH_MOVE(356518798),
     /**
      * Seat tilt position.
@@ -3384,6 +3564,7 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_SEATS)
     SEAT_TILT_POS(356518799),
     /**
      * Seat tilt move.
@@ -3417,6 +3598,7 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_SEATS)
     SEAT_TILT_MOVE(356518800),
     /**
      * Lumber fore/aft position.
@@ -3447,6 +3629,7 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_SEATS)
     SEAT_LUMBAR_FORE_AFT_POS(356518801),
     /**
      * Lumbar fore/aft move.
@@ -3457,7 +3640,7 @@ enum VehiclePropertyInput {
      * <p>Positive values mean the lumbar support is moving forward towards the front of the seat
      * and negative values mean the lumbar support is moving backward away from the front of the
      * seat. Larger integers, either positive or negative, indicate a faster speed. Once the lumbar
-     * support reaches the positional limit, the value resets to 0. When this property's value is 0),
+     * support reaches the positional limit, the value resets to 0. When this property's value is 0,
      * that means there is no movement currently occurring.
      *
      * <p>See {@link android.car.hardware.property.AreaIdConfig#getMaxValue()} and {@link
@@ -3479,6 +3662,7 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_SEATS)
     SEAT_LUMBAR_FORE_AFT_MOVE(356518802),
     /**
      * Lumbar side support position.
@@ -3509,6 +3693,7 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_SEATS)
     SEAT_LUMBAR_SIDE_SUPPORT_POS(356518803),
     /**
      * Lumbar side support move.
@@ -3541,6 +3726,7 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_SEATS)
     SEAT_LUMBAR_SIDE_SUPPORT_MOVE(356518804),
     /**
      * Headrest height position.
@@ -3549,11 +3735,13 @@ enum VehiclePropertyInput {
      *
      * <p>This property is not supported.
      *
-     * @deprecated because it is defined as type {@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL}),
+     * @deprecated because it is defined as type {@link VehicleAreaType#VEHICLE_AREA_TYPE_GLOBAL},
      * which means all seats use the same value. Use {@link #SEAT_HEADREST_HEIGHT_POS_V2} instead
      * which fixes this issue by being defined as type
      * {@link VehicleAreaType#VEHICLE_AREA_TYPE_SEAT}.
      */
+    // @Deprecated
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_SEATS)
     SEAT_HEADREST_HEIGHT_POS(289409941),
     /**
      * Headrest height position.
@@ -3587,6 +3775,7 @@ enum VehiclePropertyInput {
      *  and write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_SEATS)
     SEAT_HEADREST_HEIGHT_POS_V2(356518820),
     /**
      * Headrest height move.
@@ -3618,6 +3807,7 @@ enum VehiclePropertyInput {
      *  and write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_SEATS)
     SEAT_HEADREST_HEIGHT_MOVE(356518806),
     /**
      * Headrest angle position.
@@ -3648,6 +3838,7 @@ enum VehiclePropertyInput {
      *  and write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_SEATS)
     SEAT_HEADREST_ANGLE_POS(356518807),
     /**
      * Headrest angle move.
@@ -3679,6 +3870,7 @@ enum VehiclePropertyInput {
      *  and write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_SEATS)
     SEAT_HEADREST_ANGLE_MOVE(356518808),
     /**
      * Headrest fore/aft position.
@@ -3709,6 +3901,7 @@ enum VehiclePropertyInput {
      *  and write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_SEATS)
     SEAT_HEADREST_FORE_AFT_POS(356518809),
     /**
      * Headrest fore/aft move.
@@ -3741,6 +3934,7 @@ enum VehiclePropertyInput {
      *  and write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_SEATS)
     SEAT_HEADREST_FORE_AFT_MOVE(356518810),
     /**
      * Represents property for state of the footwell lights.
@@ -3777,6 +3971,7 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link VehicleLightState}
      */
+    // @RequiresPermission(Car.PERMISSION_READ_INTERIOR_LIGHTS)
     SEAT_FOOTWELL_LIGHTS_STATE(356518811),
     /**
      * Represents property for switch of the footwell lights.
@@ -3813,6 +4008,7 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link VehicleLightSwitch}
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_INTERIOR_LIGHTS)
     SEAT_FOOTWELL_LIGHTS_SWITCH(356518812),
     /**
      * Represents property for Seat easy access feature.
@@ -3836,6 +4032,8 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_SEATS)
     SEAT_EASY_ACCESS_ENABLED(354421661),
     /**
      * Represents feature to enable/disable a seat's ability to deploy airbag(s) when triggered
@@ -3860,6 +4058,8 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_AIRBAGS)
     SEAT_AIRBAG_ENABLED(354421662),
     /**
      * State of deployment for seat airbags.
@@ -3868,7 +4068,7 @@ enum VehiclePropertyInput {
      * at each seat, vs which ones are currently still armed. When SEAT_AIRBAG_ENABLED is set to
      * false at a particular areaId, this property will be UNAVAILABLE at that areaId.
      *
-     * <p>Enums apply to each seat, not the global vehicle. For example),
+     * <p>Enums apply to each seat, not the global vehicle. For example,
      * {@link android.car.hardware.property.VehicleAirbagLocation#CURTAIN} at the driver seat areaId
      * represents whether the driver side curtain airbag has been deployed. Multiple bit flags can
      * be set to indicate that multiple different airbags have been deployed for the seat.
@@ -3895,6 +4095,8 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link android.car.hardware.property.VehicleAirbagLocation}
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_READ_CAR_AIRBAGS))
     SEAT_AIRBAGS_DEPLOYED(356518821),
     /**
      * Represents property for seat’s hipside (bottom cushion’s side) support position.
@@ -3925,6 +4127,8 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_SEATS)
     SEAT_CUSHION_SIDE_SUPPORT_POS(356518815),
     /**
      * Represents property for movement direction and speed of seat cushion side support.
@@ -3957,6 +4161,8 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_SEATS)
     SEAT_CUSHION_SIDE_SUPPORT_MOVE(356518816),
     /**
      * Represents property for seat’s lumbar support vertical position.
@@ -3987,6 +4193,8 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_SEATS)
     SEAT_LUMBAR_VERTICAL_POS(356518817),
     /**
      * Represents property for vertical movement direction and speed of seat lumbar support.
@@ -4018,6 +4226,8 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_SEATS)
     SEAT_LUMBAR_VERTICAL_MOVE(356518818),
     /**
      * Represents property that indicates the current walk-in position of the seat.
@@ -4049,6 +4259,8 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_SEATS)
     SEAT_WALK_IN_POS(356518819),
     /**
      * Seat belt pretensioner deployed.
@@ -4078,6 +4290,8 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_READ_CAR_SEAT_BELTS))
     SEAT_BELT_PRETENSIONER_DEPLOYED(354421670),
     /**
      * Seat Occupancy.
@@ -4099,7 +4313,9 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link VehicleSeatOccupancyState}
      */
-        SEAT_OCCUPANCY(356518832),
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_25Q2_3P_PERMISSIONS)
+    // @RequiresPermission.Read(@RequiresPermission(anyOf = {Car.PERMISSION_READ_CAR_SEATS,Car.PERMISSION_CONTROL_CAR_SEATS}))
+    SEAT_OCCUPANCY(356518832),
     /**
      * Window Position.
      *
@@ -4133,6 +4349,7 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_WINDOWS)
     WINDOW_POS(322964416),
     /**
      * Window Move.
@@ -4166,6 +4383,7 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_WINDOWS)
     WINDOW_MOVE(322964417),
     /**
      * Window Child Lock.
@@ -4187,6 +4405,7 @@ enum VehiclePropertyInput {
      *  write property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_CAR_WINDOWS)
     WINDOW_LOCK(320867268),
     /**
      * Windshield wipers period (milliseconds).
@@ -4214,6 +4433,8 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_READ_WINDSHIELD_WIPERS))
     WINDSHIELD_WIPERS_PERIOD(322964421),
     /**
      * Windshield wipers state.
@@ -4253,7 +4474,9 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link WindshieldWipersState}
      */
-        WINDSHIELD_WIPERS_STATE(322964422),
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_25Q2_3P_PERMISSIONS)
+    // @RequiresPermission.Read(@RequiresPermission(anyOf = {Car.PERMISSION_READ_WINDSHIELD_WIPERS_3P,Car.PERMISSION_READ_WINDSHIELD_WIPERS}))
+    WINDSHIELD_WIPERS_STATE(322964422),
     /**
      * Windshield wipers switch.
      *
@@ -4291,6 +4514,9 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link WindshieldWipersSwitch}
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(anyOf = {Car.PERMISSION_READ_WINDSHIELD_WIPERS,Car.PERMISSION_CONTROL_WINDSHIELD_WIPERS}))
+    // @RequiresPermission.Write(@RequiresPermission(Car.PERMISSION_CONTROL_WINDSHIELD_WIPERS))
     WINDSHIELD_WIPERS_SWITCH(322964423),
     /**
      * Steering wheel depth position.
@@ -4321,6 +4547,8 @@ enum VehiclePropertyInput {
      *  and write property.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission(Car.PERMISSION_CONTROL_STEERING_WHEEL)
     STEERING_WHEEL_DEPTH_POS(289410016),
     /**
      * Steering wheel depth movement.
@@ -4354,6 +4582,8 @@ enum VehiclePropertyInput {
      *  and write property.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission(Car.PERMISSION_CONTROL_STEERING_WHEEL)
     STEERING_WHEEL_DEPTH_MOVE(289410017),
     /**
      * Steering wheel height position.
@@ -4384,6 +4614,8 @@ enum VehiclePropertyInput {
      *  and write property.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission(Car.PERMISSION_CONTROL_STEERING_WHEEL)
     STEERING_WHEEL_HEIGHT_POS(289410018),
     /**
      * Steering wheel height movement.
@@ -4416,6 +4648,8 @@ enum VehiclePropertyInput {
      *  and write property.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission(Car.PERMISSION_CONTROL_STEERING_WHEEL)
     STEERING_WHEEL_HEIGHT_MOVE(289410019),
     /**
      * Steering wheel theft lock feature enabled.
@@ -4439,6 +4673,8 @@ enum VehiclePropertyInput {
      *  and write property.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission(Car.PERMISSION_CONTROL_STEERING_WHEEL)
     STEERING_WHEEL_THEFT_LOCK_ENABLED(287312868),
     /**
      * Steering wheel locked.
@@ -4461,6 +4697,8 @@ enum VehiclePropertyInput {
      *  and write property.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission(Car.PERMISSION_CONTROL_STEERING_WHEEL)
     STEERING_WHEEL_LOCKED(287312869),
     /**
      * Steering wheel easy access feature enabled.
@@ -4484,6 +4722,8 @@ enum VehiclePropertyInput {
      *  and write property.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission(Car.PERMISSION_CONTROL_STEERING_WHEEL)
     STEERING_WHEEL_EASY_ACCESS_ENABLED(287312870),
     /**
      * Vehicle Maps Service (VMS) message.
@@ -4494,6 +4734,8 @@ enum VehiclePropertyInput {
      *
      * @deprecated use {@link android.car.vms.VmsClientManager} instead.
      */
+    // @Deprecated
+    // @RequiresPermission(anyOf = {Car.PERMISSION_VMS_PUBLISHER, Car.PERMISSION_VMS_SUBSCRIBER})
     VEHICLE_MAP_SERVICE(299895808),
     /**
      * Characterization of inputs used for computing location.
@@ -4530,6 +4772,7 @@ enum VehiclePropertyInput {
      *
      * @data_flag {@link LocationCharacterization}
      */
+    // @RequiresPermission(ACCESS_FINE_LOCATION)
     LOCATION_CHARACTERIZATION(289410064),
     /**
      * Static data for the position of each ultrasonic sensor installed on the vehicle.
@@ -4561,6 +4804,8 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_READ_ULTRASONICS_SENSOR_DATA))
     ULTRASONICS_SENSOR_POSITION(406916128),
     /**
      * Static data for the orientation of each ultrasonic sensor installed on the vehicle.
@@ -4596,6 +4841,8 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_READ_ULTRASONICS_SENSOR_DATA))
     ULTRASONICS_SENSOR_ORIENTATION(409013281),
     /**
      * Static data for the field of view of each ultrasonic sensor in degrees.
@@ -4627,6 +4874,8 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_READ_ULTRASONICS_SENSOR_DATA))
     ULTRASONICS_SENSOR_FIELD_OF_VIEW(406916130),
     /**
      * Static data for the detection range of each ultrasonic sensor in millimeters.
@@ -4654,6 +4903,8 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_READ_ULTRASONICS_SENSOR_DATA))
     ULTRASONICS_SENSOR_DETECTION_RANGE(406916131),
     /**
      * Static data for the supported ranges of each ultrasonic sensor in millimeters.
@@ -4707,6 +4958,8 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_READ_ULTRASONICS_SENSOR_DATA))
     ULTRASONICS_SENSOR_SUPPORTED_RANGES(406916132),
     /**
      * The distance reading of the nearest detected object per sensor in millimeters.
@@ -4739,6 +4992,8 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_READ_ULTRASONICS_SENSOR_DATA))
     ULTRASONICS_SENSOR_MEASURED_DISTANCE(406916133),
     /**
      * OBD2 Live Sensor Data.
@@ -4749,6 +5004,8 @@ enum VehiclePropertyInput {
      *
      * @deprecated use {@link android.car.diagnostic.CarDiagnosticManager} instead.
      */
+    // @Deprecated
+    // @RequiresPermission(Car.PERMISSION_CAR_DIAGNOSTIC_READ_ALL)
     OBD2_LIVE_FRAME(299896064),
     /**
      * OBD2 Freeze Frame Sensor Data.
@@ -4759,6 +5016,8 @@ enum VehiclePropertyInput {
      *
      * @deprecated use {@link android.car.diagnostic.CarDiagnosticManager} instead.
      */
+    // @Deprecated
+    // @RequiresPermission(Car.PERMISSION_CAR_DIAGNOSTIC_READ_ALL)
     OBD2_FREEZE_FRAME(299896065),
     /**
      * OBD2 Freeze Frame Information.
@@ -4769,6 +5028,8 @@ enum VehiclePropertyInput {
      *
      * @deprecated use {@link android.car.diagnostic.CarDiagnosticManager} instead.
      */
+    // @Deprecated
+    // @RequiresPermission(Car.PERMISSION_CAR_DIAGNOSTIC_READ_ALL)
     OBD2_FREEZE_FRAME_INFO(299896066),
     /**
      * OBD2 Freeze Frame Clear.
@@ -4779,6 +5040,8 @@ enum VehiclePropertyInput {
      *
      * @deprecated use {@link android.car.diagnostic.CarDiagnosticManager} instead.
      */
+    // @Deprecated
+    // @RequiresPermission(Car.PERMISSION_CAR_DIAGNOSTIC_CLEAR)
     OBD2_FREEZE_FRAME_CLEAR(299896067),
     /**
      * Headlights State.
@@ -4800,6 +5063,7 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link VehicleLightState}
      */
+    // @RequiresPermission(Car.PERMISSION_EXTERIOR_LIGHTS)
     HEADLIGHTS_STATE(289410560),
     /**
      * High beam lights state.
@@ -4821,6 +5085,7 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link VehicleLightState}
      */
+    // @RequiresPermission(Car.PERMISSION_EXTERIOR_LIGHTS)
     HIGH_BEAM_LIGHTS_STATE(289410561),
     /**
      * Fog light state.
@@ -4863,6 +5128,7 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link VehicleLightState}
      */
+    // @RequiresPermission(Car.PERMISSION_EXTERIOR_LIGHTS)
     FOG_LIGHTS_STATE(289410562),
     /**
      * Hazard light status.
@@ -4884,6 +5150,7 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link VehicleLightState}
      */
+    // @RequiresPermission(Car.PERMISSION_EXTERIOR_LIGHTS)
     HAZARD_LIGHTS_STATE(289410563),
     /**
      * Headlight switch.
@@ -4905,6 +5172,7 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link VehicleLightSwitch}
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_EXTERIOR_LIGHTS)
     HEADLIGHTS_SWITCH(289410576),
     /**
      * High beam light switch.
@@ -4926,6 +5194,7 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link VehicleLightSwitch}
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_EXTERIOR_LIGHTS)
     HIGH_BEAM_LIGHTS_SWITCH(289410577),
     /**
      * Fog light switch.
@@ -4970,6 +5239,7 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link VehicleLightSwitch}
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_EXTERIOR_LIGHTS)
     FOG_LIGHTS_SWITCH(289410578),
     /**
      * Hazard light switch.
@@ -4991,6 +5261,7 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link VehicleLightSwitch}
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_EXTERIOR_LIGHTS)
     HAZARD_LIGHTS_SWITCH(289410579),
     /**
      * Cabin lights.
@@ -5012,6 +5283,7 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link VehicleLightState}
      */
+    // @RequiresPermission(Car.PERMISSION_READ_INTERIOR_LIGHTS)
     CABIN_LIGHTS_STATE(289410817),
     /**
      * Cabin lights switch.
@@ -5033,6 +5305,7 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link VehicleLightSwitch}
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_INTERIOR_LIGHTS)
     CABIN_LIGHTS_SWITCH(289410818),
     /**
      * Reading lights.
@@ -5054,6 +5327,7 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link VehicleLightState}
      */
+    // @RequiresPermission(Car.PERMISSION_READ_INTERIOR_LIGHTS)
     READING_LIGHTS_STATE(356519683),
     /**
      * Reading lights switch.
@@ -5075,6 +5349,7 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link VehicleLightSwitch}
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_INTERIOR_LIGHTS)
     READING_LIGHTS_SWITCH(356519684),
     /**
      * Steering wheel lights state.
@@ -5111,6 +5386,7 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link VehicleLightState}
      */
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_READ_INTERIOR_LIGHTS))
     STEERING_WHEEL_LIGHTS_STATE(289410828),
     /**
      * Steering wheel lights switch.
@@ -5147,6 +5423,7 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link VehicleLightSwitch}
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_INTERIOR_LIGHTS)
     STEERING_WHEEL_LIGHTS_SWITCH(289410829),
     /**
      * Property to get the initial settings for multi-user management (such as initial user).
@@ -5457,13 +5734,14 @@ enum VehiclePropertyInput {
      *  property.
      * </ul>
      */
+    // @RequiresPermission(Car.PERMISSION_CAR_EPOCH_TIME)
     EPOCH_TIME(290457094),
     /**
      * Electronic Toll Collection card type.
      *
      * <p>This property indicates the type of ETC(Electronic Toll Collection) card in the vehicle.
      * If the head unit is aware of an ETC card attached to the vehicle, this property should return
-     * the type of card attached; otherwise, this property should be UNAVAILABLE. The property value
+     * the type of card attached), otherwise, this property should be UNAVAILABLE. The property value
      * should be one of {@link VehicleElectronicTollCollectionCardType}.
      *
      * <p>Property Config:
@@ -5482,13 +5760,14 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link VehicleElectronicTollCollectionCardType}
      */
+    // @RequiresPermission(Car.PERMISSION_CAR_INFO)
     ELECTRONIC_TOLL_COLLECTION_CARD_TYPE(289410873),
     /**
      * Electronic Toll Collection card status.
      *
      * <p>This property indicates the status of ETC(Electronic Toll Collection) card in the vehicle.
      * If the head unit is aware of an ETC card attached to the vehicle, ETC_CARD_STATUS gives that
-     * status of the card; otherwise, this property should be UNAVAILABLE. The property value should
+     * status of the card), otherwise, this property should be UNAVAILABLE. The property value should
      * be one of {@link VehicleElectronicTollCollectionCardStatus}.
      *
      * <p>Property Config:
@@ -5507,6 +5786,7 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link VehicleElectronicTollCollectionCardStatus}
      */
+    // @RequiresPermission(Car.PERMISSION_CAR_INFO)
     ELECTRONIC_TOLL_COLLECTION_CARD_STATUS(289410874),
     /**
      * Front fog lights state.
@@ -5530,6 +5810,7 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link VehicleLightState}
      */
+    // @RequiresPermission(Car.PERMISSION_EXTERIOR_LIGHTS)
     FRONT_FOG_LIGHTS_STATE(289410875),
     /**
      * Front fog lights switch.
@@ -5553,6 +5834,7 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link VehicleLightSwitch}
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_EXTERIOR_LIGHTS)
     FRONT_FOG_LIGHTS_SWITCH(289410876),
     /**
      * Rear fog lights state.
@@ -5576,6 +5858,7 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link VehicleLightState}
      */
+    // @RequiresPermission(Car.PERMISSION_EXTERIOR_LIGHTS)
     REAR_FOG_LIGHTS_STATE(289410877),
     /**
      * Rear fog lights switch.
@@ -5599,6 +5882,7 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link VehicleLightSwitch}
      */
+    // @RequiresPermission(Car.PERMISSION_CONTROL_EXTERIOR_LIGHTS)
     REAR_FOG_LIGHTS_SWITCH(289410878),
     /**
      * EV charge current draw limit.
@@ -5623,6 +5907,8 @@ enum VehiclePropertyInput {
      *  property.
      * </ul>
      */
+    // @RequiresPermission.Read(@RequiresPermission(anyOf = {Car.PERMISSION_ENERGY,Car.PERMISSION_CONTROL_CAR_ENERGY}))
+    // @RequiresPermission.Write(@RequiresPermission(Car.PERMISSION_CONTROL_CAR_ENERGY))
     EV_CHARGE_CURRENT_DRAW_LIMIT(291508031),
     /**
      * EV charge percent limit.
@@ -5656,6 +5942,8 @@ enum VehiclePropertyInput {
      *  property.
      * </ul>
      */
+    // @RequiresPermission.Read(@RequiresPermission(anyOf = {Car.PERMISSION_ENERGY,Car.PERMISSION_CONTROL_CAR_ENERGY}))
+    // @RequiresPermission.Write(@RequiresPermission(Car.PERMISSION_CONTROL_CAR_ENERGY))
     EV_CHARGE_PERCENT_LIMIT(291508032),
     /**
      * Charging state of the car.
@@ -5683,6 +5971,7 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link EvChargeState}
      */
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_ENERGY))
     EV_CHARGE_STATE(289410881),
     /**
      * Start or stop charging the EV battery.
@@ -5707,6 +5996,8 @@ enum VehiclePropertyInput {
      *  property.
      * </ul>
      */
+    // @RequiresPermission.Read(@RequiresPermission(anyOf = {Car.PERMISSION_ENERGY,Car.PERMISSION_CONTROL_CAR_ENERGY}))
+    // @RequiresPermission.Write(@RequiresPermission(Car.PERMISSION_CONTROL_CAR_ENERGY))
     EV_CHARGE_SWITCH(287313730),
     /**
      * Estimated charge time remaining in seconds.
@@ -5727,6 +6018,7 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_ENERGY))
     EV_CHARGE_TIME_REMAINING(289410883),
     /**
      * Regenerative braking or one-pedal drive setting on the car.
@@ -5755,6 +6047,7 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link EvRegenerativeBrakingState}
      */
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_ENERGY))
     EV_REGENERATIVE_BRAKING_STATE(289410884),
     /**
      * Vehicle’s curb weight in kilograms.
@@ -5780,6 +6073,7 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_PRIVILEGED_CAR_INFO))
     VEHICLE_CURB_WEIGHT(289410886),
      /**
      * Indicates if there is a trailer present or not.
@@ -5804,6 +6098,7 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link TrailerState}
      */
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_PRIVILEGED_CAR_INFO))
     TRAILER_PRESENT(289410885),
     /**
      * EU's General security regulation compliance requirement.
@@ -5827,6 +6122,7 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link GsrComplianceType}
      */
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_CAR_INFO))
     GENERAL_SAFETY_REGULATION_COMPLIANCE(289410887),
     /**
      * Current state of vehicle autonomy.
@@ -5857,7 +6153,9 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link android.car.hardware.property.VehicleAutonomousState}
      */
-        VEHICLE_DRIVING_AUTOMATION_CURRENT_LEVEL(289410892),
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_25Q2_3P_PERMISSIONS)
+    // @RequiresPermission.Read(@RequiresPermission(anyOf = {Car.PERMISSION_CAR_DRIVING_STATE_3P,Car.PERMISSION_CAR_DRIVING_STATE}))
+    VEHICLE_DRIVING_AUTOMATION_CURRENT_LEVEL(289410892),
     /**
      * Target state of vehicle autonomy.
      *
@@ -5901,6 +6199,8 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link android.car.hardware.property.VehicleAutonomousState}
      */
+    // @FlaggedApi(FLAG_ANDROID_B_VEHICLE_PROPERTIES)
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_CAR_DRIVING_STATE))
     VEHICLE_DRIVING_AUTOMATION_TARGET_LEVEL(289410895),
     /**
      * Enable or disable Automatic Emergency Braking (AEB).
@@ -5931,6 +6231,9 @@ enum VehiclePropertyInput {
      *  property.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(anyOf = {Car.PERMISSION_READ_ADAS_SETTINGS,Car.PERMISSION_CONTROL_ADAS_SETTINGS}))
+    // @RequiresPermission.Write(@RequiresPermission(Car.PERMISSION_CONTROL_ADAS_SETTINGS))
     AUTOMATIC_EMERGENCY_BRAKING_ENABLED(287313920),
     /**
      * Automatic Emergency Braking (AEB) state.
@@ -5968,6 +6271,8 @@ enum VehiclePropertyInput {
      * @data_enum {@link AutomaticEmergencyBrakingState}
      * @data_enum {@link ErrorState}
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_READ_ADAS_STATES))
     AUTOMATIC_EMERGENCY_BRAKING_STATE(289411073),
     /**
      * Enable or disable Forward Collision Warning (FCW).
@@ -5996,6 +6301,9 @@ enum VehiclePropertyInput {
      *  property.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(anyOf = {Car.PERMISSION_READ_ADAS_SETTINGS,Car.PERMISSION_CONTROL_ADAS_SETTINGS}))
+    // @RequiresPermission.Write(@RequiresPermission(Car.PERMISSION_CONTROL_ADAS_SETTINGS))
     FORWARD_COLLISION_WARNING_ENABLED(287313922),
     /**
      * Forward Collision Warning State (FCW) state.
@@ -6028,6 +6336,8 @@ enum VehiclePropertyInput {
      * @data_enum {@link ForwardCollisionWarningState}
      * @data_enum {@link ErrorState}
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_READ_ADAS_STATES))
     FORWARD_COLLISION_WARNING_STATE(289411075),
     /**
      * Enable and disable Blind Spot Warning (BSW).
@@ -6057,6 +6367,9 @@ enum VehiclePropertyInput {
      *  property.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(anyOf = {Car.PERMISSION_READ_ADAS_SETTINGS,Car.PERMISSION_CONTROL_ADAS_SETTINGS}))
+    // @RequiresPermission.Write(@RequiresPermission(Car.PERMISSION_CONTROL_ADAS_SETTINGS))
     BLIND_SPOT_WARNING_ENABLED(287313924),
     /**
      * Blind Spot Warning (BSW) state.
@@ -6089,6 +6402,8 @@ enum VehiclePropertyInput {
      * @data_enum {@link BlindSpotWarningState}
      * @data_enum {@link ErrorState}
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_READ_ADAS_STATES))
     BLIND_SPOT_WARNING_STATE(339742725),
     /**
      * Enable or disable Lane Departure Warning (LDW).
@@ -6118,6 +6433,9 @@ enum VehiclePropertyInput {
      *  property.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(anyOf = {Car.PERMISSION_READ_ADAS_SETTINGS,Car.PERMISSION_CONTROL_ADAS_SETTINGS}))
+    // @RequiresPermission.Write(@RequiresPermission(Car.PERMISSION_CONTROL_ADAS_SETTINGS))
     LANE_DEPARTURE_WARNING_ENABLED(287313926),
     /**
      * Lane Departure Warning (LDW) state.
@@ -6150,6 +6468,8 @@ enum VehiclePropertyInput {
      * @data_enum {@link LaneDepartureWarningState}
      * @data_enum {@link ErrorState}
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_READ_ADAS_STATES))
     LANE_DEPARTURE_WARNING_STATE(289411079),
     /**
      * Enable or disable Lane Keep Assist (LKA).
@@ -6183,6 +6503,9 @@ enum VehiclePropertyInput {
      *  property.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(anyOf = {Car.PERMISSION_READ_ADAS_SETTINGS,Car.PERMISSION_CONTROL_ADAS_SETTINGS}))
+    // @RequiresPermission.Write(@RequiresPermission(Car.PERMISSION_CONTROL_ADAS_SETTINGS))
     LANE_KEEP_ASSIST_ENABLED(287313928),
     /**
      * Lane Keep Assist (LKA) state.
@@ -6218,6 +6541,8 @@ enum VehiclePropertyInput {
      * @data_enum {@link LaneKeepAssistState}
      * @data_enum {@link ErrorState}
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_READ_ADAS_STATES))
     LANE_KEEP_ASSIST_STATE(289411081),
     /**
      * Enable or disable Lane Centering Assist (LCA).
@@ -6252,6 +6577,9 @@ enum VehiclePropertyInput {
      *  property.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(anyOf = {Car.PERMISSION_READ_ADAS_SETTINGS,Car.PERMISSION_CONTROL_ADAS_SETTINGS}))
+    // @RequiresPermission.Write(@RequiresPermission(Car.PERMISSION_CONTROL_ADAS_SETTINGS))
     LANE_CENTERING_ASSIST_ENABLED(287313930),
     /**
      * Lane Centering Assist (LCA) commands.
@@ -6292,6 +6620,8 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link LaneCenteringAssistCommand}
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Write(@RequiresPermission(Car.PERMISSION_CONTROL_ADAS_STATES))
     LANE_CENTERING_ASSIST_COMMAND(289411083),
     /**
      * Lane Centering Assist (LCA) state.
@@ -6327,6 +6657,8 @@ enum VehiclePropertyInput {
      * @data_enum {@link LaneCenteringAssistState}
      * @data_enum {@link ErrorState}
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_READ_ADAS_STATES))
     LANE_CENTERING_ASSIST_STATE(289411084),
     /**
      * Enable or disable Emergency Lane Keep Assist (ELKA).
@@ -6357,6 +6689,9 @@ enum VehiclePropertyInput {
      *  property.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(anyOf = {Car.PERMISSION_READ_ADAS_SETTINGS,Car.PERMISSION_CONTROL_ADAS_SETTINGS}))
+    // @RequiresPermission.Write(@RequiresPermission(Car.PERMISSION_CONTROL_ADAS_SETTINGS))
     EMERGENCY_LANE_KEEP_ASSIST_ENABLED(287313933),
     /**
      * Emergency Lane Keep Assist (ELKA) state.
@@ -6391,6 +6726,8 @@ enum VehiclePropertyInput {
      * @data_enum {@link EmergencyLaneKeepAssistState}
      * @data_enum {@link ErrorState}
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_READ_ADAS_STATES))
     EMERGENCY_LANE_KEEP_ASSIST_STATE(289411086),
     /**
      * Enable or disable Cruise Control (CC).
@@ -6422,6 +6759,9 @@ enum VehiclePropertyInput {
      *  property.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(anyOf = {Car.PERMISSION_READ_ADAS_SETTINGS,Car.PERMISSION_CONTROL_ADAS_SETTINGS}))
+    // @RequiresPermission.Write(@RequiresPermission(Car.PERMISSION_CONTROL_ADAS_SETTINGS))
     CRUISE_CONTROL_ENABLED(287313935),
     /**
      * Current type of Cruise Control (CC).
@@ -6465,6 +6805,9 @@ enum VehiclePropertyInput {
      * @data_enum {@link CruiseControlType}
      * @data_enum {@link ErrorState}
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(anyOf = {Car.PERMISSION_READ_ADAS_STATES,Car.PERMISSION_CONTROL_ADAS_STATES}))
+    // @RequiresPermission.Write(@RequiresPermission(Car.PERMISSION_CONTROL_ADAS_STATES))
     CRUISE_CONTROL_TYPE(289411088),
     /**
      * Current state of Cruise Control (CC).
@@ -6499,6 +6842,8 @@ enum VehiclePropertyInput {
      * @data_enum {@link CruiseControlState}
      * @data_enum {@link ErrorState}
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_READ_ADAS_STATES))
     CRUISE_CONTROL_STATE(289411089),
     /**
      * Write Cruise Control (CC) commands.
@@ -6532,6 +6877,8 @@ enum VehiclePropertyInput {
      *
      * @data_enum {@link CruiseControlCommand}
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Write(@RequiresPermission(Car.PERMISSION_CONTROL_ADAS_STATES))
     CRUISE_CONTROL_COMMAND(289411090),
     /**
      * Current target speed for Cruise Control (CC) in meters per second.
@@ -6564,6 +6911,8 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_READ_ADAS_STATES))
     CRUISE_CONTROL_TARGET_SPEED(291508243),
     /**
      * Current target time gap for Adaptive Cruise Control (ACC) or Predictive Cruise Control in
@@ -6600,6 +6949,9 @@ enum VehiclePropertyInput {
      *  property.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(anyOf = {Car.PERMISSION_READ_ADAS_STATES,Car.PERMISSION_CONTROL_ADAS_STATES}))
+    // @RequiresPermission.Write(@RequiresPermission(Car.PERMISSION_CONTROL_ADAS_STATES))
     ADAPTIVE_CRUISE_CONTROL_TARGET_TIME_GAP(289411092),
     /**
      * Measured distance from leading vehicle when using Adaptive Cruise Control (ACC) or Predictive
@@ -6635,6 +6987,8 @@ enum VehiclePropertyInput {
      *  <li>Property is not writable.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_READ_ADAS_STATES))
     ADAPTIVE_CRUISE_CONTROL_LEAD_VEHICLE_MEASURED_DISTANCE(289411093),
     /**
      * Enable or disable Hands On Detection (HOD).
@@ -6665,7 +7019,10 @@ enum VehiclePropertyInput {
      *  Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to write property.
      * </ul>
      */
-            HANDS_ON_DETECTION_ENABLED(287313942),
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(anyOf = {Car.PERMISSION_READ_DRIVER_MONITORING_SETTINGS,Car.PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS}))
+    // @RequiresPermission.Write(@RequiresPermission(Car.PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS))
+    HANDS_ON_DETECTION_ENABLED(287313942),
     /**
      * Hands On Detection (HOD) driver state.
      *
@@ -6704,6 +7061,8 @@ enum VehiclePropertyInput {
      * @data_enum {@link HandsOnDetectionDriverState}
      * @data_enum {@link ErrorState}
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_READ_DRIVER_MONITORING_STATES))
     HANDS_ON_DETECTION_DRIVER_STATE(289411095),
     /**
      * Hands On Detection (HOD) warning.
@@ -6741,6 +7100,8 @@ enum VehiclePropertyInput {
      * @data_enum {@link HandsOnDetectionWarning}
      * @data_enum {@link ErrorState}
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_READ_DRIVER_MONITORING_STATES))
     HANDS_ON_DETECTION_WARNING(289411096),
     /**
      * Enable or disable driver drowsiness and attention monitoring.
@@ -6768,7 +7129,10 @@ enum VehiclePropertyInput {
      *  Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to write property.
      * </ul>
      */
-            DRIVER_DROWSINESS_ATTENTION_SYSTEM_ENABLED(287313945),
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(anyOf = {Car.PERMISSION_READ_DRIVER_MONITORING_SETTINGS,Car.PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS}))
+    // @RequiresPermission.Write(@RequiresPermission(Car.PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS))
+    DRIVER_DROWSINESS_ATTENTION_SYSTEM_ENABLED(287313945),
     /**
      * Driver drowsiness and attention level state.
      *
@@ -6808,6 +7172,8 @@ enum VehiclePropertyInput {
      * @data_enum {@link DriverDrowsinessAttentionState}
      * @data_enum {@link ErrorState}
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_READ_DRIVER_MONITORING_STATES))
     DRIVER_DROWSINESS_ATTENTION_STATE(289411098),
     /**
      * Enable or disable driver drowsiness and attention warnings.
@@ -6835,7 +7201,10 @@ enum VehiclePropertyInput {
      *  Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to write property.
      * </ul>
      */
-            DRIVER_DROWSINESS_ATTENTION_WARNING_ENABLED(287313947),
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(anyOf = {Car.PERMISSION_READ_DRIVER_MONITORING_SETTINGS,Car.PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS}))
+    // @RequiresPermission.Write(@RequiresPermission(Car.PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS))
+    DRIVER_DROWSINESS_ATTENTION_WARNING_ENABLED(287313947),
     /**
      * Driver drowsiness and attention warning.
      *
@@ -6871,6 +7240,8 @@ enum VehiclePropertyInput {
      * @data_enum {@link DriverDrowsinessAttentionWarning}
      * @data_enum {@link ErrorState}
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_READ_DRIVER_MONITORING_STATES))
     DRIVER_DROWSINESS_ATTENTION_WARNING(289411100),
    /**
      * Enable or disable driver distraction monitoring.
@@ -6897,7 +7268,10 @@ enum VehiclePropertyInput {
      *  Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to write property.
      * </ul>
      */
-            DRIVER_DISTRACTION_SYSTEM_ENABLED(287313949),
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(anyOf = {Car.PERMISSION_READ_DRIVER_MONITORING_SETTINGS,Car.PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS}))
+    // @RequiresPermission.Write(@RequiresPermission(Car.PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS))
+    DRIVER_DISTRACTION_SYSTEM_ENABLED(287313949),
     /**
      * Driver distraction state.
      *
@@ -6936,6 +7310,8 @@ enum VehiclePropertyInput {
      * @data_enum {@link DriverDistractionState}
      * @data_enum {@link ErrorState}
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_READ_DRIVER_MONITORING_STATES))
     DRIVER_DISTRACTION_STATE(289411102),
     /**
      * Enable or disable driver distraction warnings.
@@ -6962,7 +7338,10 @@ enum VehiclePropertyInput {
      *  Car#PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS} to write property.
      * </ul>
      */
-            DRIVER_DISTRACTION_WARNING_ENABLED(287313951),
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(anyOf = {Car.PERMISSION_READ_DRIVER_MONITORING_SETTINGS,Car.PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS}))
+    // @RequiresPermission.Write(@RequiresPermission(Car.PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS))
+    DRIVER_DISTRACTION_WARNING_ENABLED(287313951),
     /**
      * Driver distraction warning.
      *
@@ -6998,6 +7377,8 @@ enum VehiclePropertyInput {
      * @data_enum {@link DriverDistractionWarning}
      * @data_enum {@link ErrorState}
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_READ_DRIVER_MONITORING_STATES))
     DRIVER_DISTRACTION_WARNING(289411104),
     /**
      * Enable or disable Low Speed Collision Warning.
@@ -7030,6 +7411,9 @@ enum VehiclePropertyInput {
      *  property.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(anyOf = {Car.PERMISSION_READ_ADAS_SETTINGS,Car.PERMISSION_CONTROL_ADAS_SETTINGS}))
+    // @RequiresPermission.Write(@RequiresPermission(Car.PERMISSION_CONTROL_ADAS_SETTINGS))
     LOW_SPEED_COLLISION_WARNING_ENABLED(287313953),
     /**
      * Low Speed Collision Warning State state.
@@ -7065,6 +7449,8 @@ enum VehiclePropertyInput {
      * @data_enum {@link android.car.hardware.property.LowSpeedCollisionWarningState}
      * @data_enum {@link ErrorState}
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_READ_ADAS_STATES))
     LOW_SPEED_COLLISION_WARNING_STATE(289411106),
     /**
      * Enable or disable Cross Traffic Monitoring.
@@ -7094,6 +7480,9 @@ enum VehiclePropertyInput {
      *  property.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(anyOf = {Car.PERMISSION_READ_ADAS_SETTINGS,Car.PERMISSION_CONTROL_ADAS_SETTINGS}))
+    // @RequiresPermission.Write(@RequiresPermission(Car.PERMISSION_CONTROL_ADAS_SETTINGS))
     CROSS_TRAFFIC_MONITORING_ENABLED(287313955),
     /**
      * Cross Traffic Monitoring Warning state.
@@ -7127,6 +7516,8 @@ enum VehiclePropertyInput {
      * @data_enum {@link android.car.hardware.property.CrossTrafficMonitoringWarningState}
      * @data_enum {@link ErrorState}
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_READ_ADAS_STATES))
     CROSS_TRAFFIC_MONITORING_WARNING_STATE(289411108),
     /**
      * Enable or disable Low Speed Automatic Emergency Braking.
@@ -7160,6 +7551,9 @@ enum VehiclePropertyInput {
      *  property.
      * </ul>
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(anyOf = {Car.PERMISSION_READ_ADAS_SETTINGS,Car.PERMISSION_CONTROL_ADAS_SETTINGS}))
+    // @RequiresPermission.Write(@RequiresPermission(Car.PERMISSION_CONTROL_ADAS_SETTINGS))
     LOW_SPEED_AUTOMATIC_EMERGENCY_BRAKING_ENABLED(287313957),
     /**
      * Low Speed Automatic Emergency Braking state.
@@ -7198,6 +7592,8 @@ enum VehiclePropertyInput {
      * @data_enum {@link android.car.hardware.property.LowSpeedAutomaticEmergencyBrakingState}
      * @data_enum {@link ErrorState}
      */
+    // @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+    // @RequiresPermission.Read(@RequiresPermission(Car.PERMISSION_READ_ADAS_STATES))
     LOW_SPEED_AUTOMATIC_EMERGENCY_BRAKING_STATE(289411110);
 
     const VehiclePropertyInput(this.id);

@@ -455,7 +455,7 @@ class VehiclePropertyRepository {
   /// <li>"makeName modelName" and
   /// <li>"makeName modelName Sport"
   /// </ul>
-  /// This property will be empty for the first vehicle (i.e. base model, and set to "Sport"
+  /// This property will be empty for the first vehicle (i.e. base model), and set to "Sport"
   /// for the second vehicle.
   ///
   /// # Permissions
@@ -474,7 +474,7 @@ class VehiclePropertyRepository {
   /// <li>"makeName modelName" and
   /// <li>"makeName modelName Sport"
   /// </ul>
-  /// This property will be empty for the first vehicle (i.e. base model, and set to "Sport"
+  /// This property will be empty for the first vehicle (i.e. base model), and set to "Sport"
   /// for the second vehicle.
   ///
   /// # Permissions
@@ -1696,7 +1696,7 @@ class VehiclePropertyRepository {
   /// is currently disabled.
   ///
   /// This property is often confused with {@link #PARKING_BRAKE_ON}. The difference is that
-  /// {@link #PARKING_BRAKE_ON} describes whether the actual parking brake is currently on/off),
+  /// {@link #PARKING_BRAKE_ON} describes whether the actual parking brake is currently on/off,
   /// whereas {@code PARKING_BRAKE_AUTO_APPLY} describes whether the feature of automatic parking
   /// brake is enabled/disabled, and does not describe the current state of the actual parking
   /// brake.
@@ -1718,7 +1718,7 @@ class VehiclePropertyRepository {
   /// is currently disabled.
   ///
   /// This property is often confused with {@link #PARKING_BRAKE_ON}. The difference is that
-  /// {@link #PARKING_BRAKE_ON} describes whether the actual parking brake is currently on/off),
+  /// {@link #PARKING_BRAKE_ON} describes whether the actual parking brake is currently on/off,
   /// whereas {@code PARKING_BRAKE_AUTO_APPLY} describes whether the feature of automatic parking
   /// brake is enabled/disabled, and does not describe the current state of the actual parking
   /// brake.
@@ -2939,7 +2939,7 @@ class VehiclePropertyRepository {
   ///
   /// This property indicates the type of ETC(Electronic Toll Collection) card in the vehicle.
   /// If the head unit is aware of an ETC card attached to the vehicle, this property should return
-  /// the type of card attached; otherwise, this property should be UNAVAILABLE. The property value
+  /// the type of card attached), otherwise, this property should be UNAVAILABLE. The property value
   /// should be one of {@link VehicleElectronicTollCollectionCardType}.
   ///
   /// # Permissions
@@ -2956,7 +2956,7 @@ class VehiclePropertyRepository {
   ///
   /// This property indicates the type of ETC(Electronic Toll Collection) card in the vehicle.
   /// If the head unit is aware of an ETC card attached to the vehicle, this property should return
-  /// the type of card attached; otherwise, this property should be UNAVAILABLE. The property value
+  /// the type of card attached), otherwise, this property should be UNAVAILABLE. The property value
   /// should be one of {@link VehicleElectronicTollCollectionCardType}.
   ///
   /// # Permissions
@@ -2976,7 +2976,7 @@ class VehiclePropertyRepository {
   ///
   /// This property indicates the status of ETC(Electronic Toll Collection) card in the vehicle.
   /// If the head unit is aware of an ETC card attached to the vehicle, ETC_CARD_STATUS gives that
-  /// status of the card; otherwise, this property should be UNAVAILABLE. The property value should
+  /// status of the card), otherwise, this property should be UNAVAILABLE. The property value should
   /// be one of {@link VehicleElectronicTollCollectionCardStatus}.
   ///
   /// # Permissions
@@ -2993,7 +2993,7 @@ class VehiclePropertyRepository {
   ///
   /// This property indicates the status of ETC(Electronic Toll Collection) card in the vehicle.
   /// If the head unit is aware of an ETC card attached to the vehicle, ETC_CARD_STATUS gives that
-  /// status of the card; otherwise, this property should be UNAVAILABLE. The property value should
+  /// status of the card), otherwise, this property should be UNAVAILABLE. The property value should
   /// be one of {@link VehicleElectronicTollCollectionCardStatus}.
   ///
   /// # Permissions
@@ -3509,7 +3509,7 @@ class VehiclePrivilegedPropertyRepository {
   /// android.car.hardware.property.ImpactSensorLocation} enum. As a bit flag property, this
   /// property can be set to multiple ORed together values of the enum when necessary.
   ///
-  /// For the global area ID (0, the {@link
+  /// For the global area ID (0), the {@link
   /// android.car.hardware.property.AreaIdConfig#getSupportedEnumValues()} array obtained from
   /// {@link android.car.hardware.CarPropertyConfig#getAreaIdConfig(int)} specifies which bit flags
   /// from {@link android.car.hardware.property.ImpactSensorLocation} are supported.
@@ -3529,7 +3529,7 @@ class VehiclePrivilegedPropertyRepository {
   /// android.car.hardware.property.ImpactSensorLocation} enum. As a bit flag property, this
   /// property can be set to multiple ORed together values of the enum when necessary.
   ///
-  /// For the global area ID (0, the {@link
+  /// For the global area ID (0), the {@link
   /// android.car.hardware.property.AreaIdConfig#getSupportedEnumValues()} array obtained from
   /// {@link android.car.hardware.CarPropertyConfig#getAreaIdConfig(int)} specifies which bit flags
   /// from {@link android.car.hardware.property.ImpactSensorLocation} are supported.
@@ -4198,13 +4198,13 @@ class VehiclePrivilegedPropertyRepository {
   /// <pre>
   /// {@code
   /// // Given tempC and configArray
-  /// float minTempC = configArray.get(0) / 10f;
-  /// float temperatureIncrementCelsius = configArray.get(2) / 10f;
-  /// float minTempF = configArray.get(3) / 10f;
-  /// float temperatureIncrementFahrenheit = configArray.get(5) / 10f;
+  /// float minTempC = configArray.get(0) / 10f),
+  /// float temperatureIncrementCelsius = configArray.get(2) / 10f),
+  /// float minTempF = configArray.get(3) / 10f),
+  /// float temperatureIncrementFahrenheit = configArray.get(5) / 10f),
   /// // Round to the closest increment
-  /// int numIncrements = Math.round((tempC - minTempC) / temperatureIncrementCelsius);
-  /// float tempF = temperatureIncrementFahrenheit * numIncrements + minTempF;
+  /// int numIncrements = Math.round((tempC - minTempC) / temperatureIncrementCelsius)),
+  /// float tempF = temperatureIncrementFahrenheit * numIncrements + minTempF),
   /// }
   /// </pre>
   /// For converting the temperature from Fahrenheit to Celsius, use the same method as above
@@ -4280,13 +4280,13 @@ class VehiclePrivilegedPropertyRepository {
   /// <pre>
   /// {@code
   /// // Given tempC and configArray
-  /// float minTempC = configArray.get(0) / 10f;
-  /// float temperatureIncrementCelsius = configArray.get(2) / 10f;
-  /// float minTempF = configArray.get(3) / 10f;
-  /// float temperatureIncrementFahrenheit = configArray.get(5) / 10f;
+  /// float minTempC = configArray.get(0) / 10f),
+  /// float temperatureIncrementCelsius = configArray.get(2) / 10f),
+  /// float minTempF = configArray.get(3) / 10f),
+  /// float temperatureIncrementFahrenheit = configArray.get(5) / 10f),
   /// // Round to the closest increment
-  /// int numIncrements = Math.round((tempC - minTempC) / temperatureIncrementCelsius);
-  /// float tempF = temperatureIncrementFahrenheit * numIncrements + minTempF;
+  /// int numIncrements = Math.round((tempC - minTempC) / temperatureIncrementCelsius)),
+  /// float tempF = temperatureIncrementFahrenheit * numIncrements + minTempF),
   /// }
   /// </pre>
   /// For converting the temperature from Fahrenheit to Celsius, use the same method as above
@@ -4366,13 +4366,13 @@ class VehiclePrivilegedPropertyRepository {
   /// <pre>
   /// {@code
   /// // Given tempC and configArray
-  /// float minTempC = configArray.get(0) / 10f;
-  /// float temperatureIncrementCelsius = configArray.get(2) / 10f;
-  /// float minTempF = configArray.get(3) / 10f;
-  /// float temperatureIncrementFahrenheit = configArray.get(5) / 10f;
+  /// float minTempC = configArray.get(0) / 10f),
+  /// float temperatureIncrementCelsius = configArray.get(2) / 10f),
+  /// float minTempF = configArray.get(3) / 10f),
+  /// float temperatureIncrementFahrenheit = configArray.get(5) / 10f),
   /// // Round to the closest increment
-  /// int numIncrements = Math.round((tempC - minTempC) / temperatureIncrementCelsius);
-  /// float tempF = temperatureIncrementFahrenheit * numIncrements + minTempF;
+  /// int numIncrements = Math.round((tempC - minTempC) / temperatureIncrementCelsius)),
+  /// float tempF = temperatureIncrementFahrenheit * numIncrements + minTempF),
   /// }
   /// </pre>
   /// For converting the temperature from Fahrenheit to Celsius, use the same method as above
@@ -6548,8 +6548,8 @@ class VehiclePrivilegedPropertyRepository {
   /// speeds.
   ///
   /// Positive values mean the seat belt's shoulder anchor is moving up and negative values mean
-  /// the seat belt's shoulder anchor is moving down. Larger integers, either positive or negative),
-  /// indicate a faster speed. Once the seat belt's shoulder anchor reaches the positional limit),
+  /// the seat belt's shoulder anchor is moving down. Larger integers, either positive or negative,
+  /// indicate a faster speed. Once the seat belt's shoulder anchor reaches the positional limit,
   /// the value resets to 0. When this property's value is 0, that means there is no movement
   /// currently occurring.
   ///
@@ -6573,8 +6573,8 @@ class VehiclePrivilegedPropertyRepository {
   /// speeds.
   ///
   /// Positive values mean the seat belt's shoulder anchor is moving up and negative values mean
-  /// the seat belt's shoulder anchor is moving down. Larger integers, either positive or negative),
-  /// indicate a faster speed. Once the seat belt's shoulder anchor reaches the positional limit),
+  /// the seat belt's shoulder anchor is moving down. Larger integers, either positive or negative,
+  /// indicate a faster speed. Once the seat belt's shoulder anchor reaches the positional limit,
   /// the value resets to 0. When this property's value is 0, that means there is no movement
   /// currently occurring.
   ///
@@ -6602,8 +6602,8 @@ class VehiclePrivilegedPropertyRepository {
   /// speeds.
   ///
   /// Positive values mean the seat belt's shoulder anchor is moving up and negative values mean
-  /// the seat belt's shoulder anchor is moving down. Larger integers, either positive or negative),
-  /// indicate a faster speed. Once the seat belt's shoulder anchor reaches the positional limit),
+  /// the seat belt's shoulder anchor is moving down. Larger integers, either positive or negative,
+  /// indicate a faster speed. Once the seat belt's shoulder anchor reaches the positional limit,
   /// the value resets to 0. When this property's value is 0, that means there is no movement
   /// currently occurring.
   ///
@@ -7688,7 +7688,7 @@ class VehiclePrivilegedPropertyRepository {
   /// Positive values mean the lumbar support is moving forward towards the front of the seat
   /// and negative values mean the lumbar support is moving backward away from the front of the
   /// seat. Larger integers, either positive or negative, indicate a faster speed. Once the lumbar
-  /// support reaches the positional limit, the value resets to 0. When this property's value is 0),
+  /// support reaches the positional limit, the value resets to 0. When this property's value is 0,
   /// that means there is no movement currently occurring.
   ///
   /// See {@link android.car.hardware.property.AreaIdConfig#getMaxValue()} and {@link
@@ -7713,7 +7713,7 @@ class VehiclePrivilegedPropertyRepository {
   /// Positive values mean the lumbar support is moving forward towards the front of the seat
   /// and negative values mean the lumbar support is moving backward away from the front of the
   /// seat. Larger integers, either positive or negative, indicate a faster speed. Once the lumbar
-  /// support reaches the positional limit, the value resets to 0. When this property's value is 0),
+  /// support reaches the positional limit, the value resets to 0. When this property's value is 0,
   /// that means there is no movement currently occurring.
   ///
   /// See {@link android.car.hardware.property.AreaIdConfig#getMaxValue()} and {@link
@@ -7742,7 +7742,7 @@ class VehiclePrivilegedPropertyRepository {
   /// Positive values mean the lumbar support is moving forward towards the front of the seat
   /// and negative values mean the lumbar support is moving backward away from the front of the
   /// seat. Larger integers, either positive or negative, indicate a faster speed. Once the lumbar
-  /// support reaches the positional limit, the value resets to 0. When this property's value is 0),
+  /// support reaches the positional limit, the value resets to 0. When this property's value is 0,
   /// that means there is no movement currently occurring.
   ///
   /// See {@link android.car.hardware.property.AreaIdConfig#getMaxValue()} and {@link
@@ -8664,7 +8664,7 @@ class VehiclePrivilegedPropertyRepository {
   /// at each seat, vs which ones are currently still armed. When SEAT_AIRBAG_ENABLED is set to
   /// false at a particular areaId, this property will be UNAVAILABLE at that areaId.
   ///
-  /// Enums apply to each seat, not the global vehicle. For example),
+  /// Enums apply to each seat, not the global vehicle. For example,
   /// {@link android.car.hardware.property.VehicleAirbagLocation#CURTAIN} at the driver seat areaId
   /// represents whether the driver side curtain airbag has been deployed. Multiple bit flags can
   /// be set to indicate that multiple different airbags have been deployed for the seat.
@@ -8691,7 +8691,7 @@ class VehiclePrivilegedPropertyRepository {
   /// at each seat, vs which ones are currently still armed. When SEAT_AIRBAG_ENABLED is set to
   /// false at a particular areaId, this property will be UNAVAILABLE at that areaId.
   ///
-  /// Enums apply to each seat, not the global vehicle. For example),
+  /// Enums apply to each seat, not the global vehicle. For example,
   /// {@link android.car.hardware.property.VehicleAirbagLocation#CURTAIN} at the driver seat areaId
   /// represents whether the driver side curtain airbag has been deployed. Multiple bit flags can
   /// be set to indicate that multiple different airbags have been deployed for the seat.
