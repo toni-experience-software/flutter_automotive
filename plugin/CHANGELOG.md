@@ -1,3 +1,8 @@
+## 0.0.4
+
+* Reference permissions in `VehicleProperty` enum
+* Add `arePropertyPermissionsGranted` and `requestPropertyPermissions` methods
+
 ## 0.0.3
 
 * Add more and rename existing car permissions
