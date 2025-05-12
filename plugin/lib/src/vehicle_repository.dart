@@ -2510,7 +2510,6 @@ class VehiclePropertyRepository {
   /// Dangerous permission {@link android.Manifest.permission#ACCESS_FINE_LOCATION} to read
   /// property.
   /// Property is not writable.
-  /// @data_flag {@link LocationCharacterization}
   Future<int> getLocationCharacterization() async {
     return _datasource.getPropertyInt32(
       VehicleProperty.LOCATION_CHARACTERIZATION.id,
@@ -2539,7 +2538,6 @@ class VehiclePropertyRepository {
   /// Dangerous permission {@link android.Manifest.permission#ACCESS_FINE_LOCATION} to read
   /// property.
   /// Property is not writable.
-  /// @data_flag {@link LocationCharacterization}
   PropertyStreamData<int> listenLocationCharacterization({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
@@ -6135,6 +6133,8 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_MIRRORS} to read and
   /// write property.
+  /// @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+  /// @RequiresPermission(Car.PERMISSION_CONTROL_CAR_MIRRORS)
   Future<bool> getMirrorAutoFoldEnabled(VehicleAreaMirror area) async {
     return _datasource.getPropertyBoolean(
       VehicleProperty.MIRROR_AUTO_FOLD_ENABLED.id,
@@ -6151,6 +6151,8 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_MIRRORS} to read and
   /// write property.
+  /// @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+  /// @RequiresPermission(Car.PERMISSION_CONTROL_CAR_MIRRORS)
   PropertyStreamData<bool> listenMirrorAutoFoldEnabled(
     VehicleAreaMirror area, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
@@ -6171,6 +6173,8 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_MIRRORS} to read and
   /// write property.
+  /// @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+  /// @RequiresPermission(Car.PERMISSION_CONTROL_CAR_MIRRORS)
   Future<void> setMirrorAutoFoldEnabled(
     VehicleAreaMirror area,
     bool value,

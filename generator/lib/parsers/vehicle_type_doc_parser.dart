@@ -45,7 +45,7 @@ class VehicleTypeProperties {
   String get _permissionsDoc {
     final split = docs.split("* <p>Required Permission");
     if (split case [_, final permissionsRaw]) {
-      final arr = permissionsRaw.split("@data_enum")[0].split("<li>").map((e) => e.replaceAll("</ul>", "").trim()).toList();
+      final arr = permissionsRaw.split("</ul>")[0].split("<li>").map((e) => e.replaceAll("</ul>", "").trim()).toList();
       final lines = [];
       if (arr case [_, final readRaw, final writeRaw, ...]) {
         lines.addAll(readRaw.split("\n").map((l) => l.trim()).map((l) => l.startsWith("*") ? l.substring(1) : l).map((l) => l.trim()));

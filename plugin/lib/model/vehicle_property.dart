@@ -1331,6 +1331,8 @@ enum VehicleProperty {
   /// This property is not supported.
   ///
   /// @deprecated use {@link android.car.hardware.power.CarPowerManager} instead.
+  /// @Deprecated
+  /// @RequiresPermission(Car.PERMISSION_CAR_POWER)
   /// /
   AP_POWER_STATE_REQ(289475072),
 
@@ -1341,6 +1343,8 @@ enum VehicleProperty {
   /// This property is not supported.
   ///
   /// @deprecated use {@link android.car.hardware.power.CarPowerManager} instead.
+  /// @Deprecated
+  /// @RequiresPermission(Car.PERMISSION_CAR_POWER)
   /// /
   AP_POWER_STATE_REPORT(289475073),
 
@@ -1351,6 +1355,8 @@ enum VehicleProperty {
   /// This property is not supported.
   ///
   /// @deprecated use {@link android.car.hardware.power.CarPowerManager} instead.
+  /// @Deprecated
+  /// @RequiresPermission(Car.PERMISSION_CAR_POWER)
   /// /
   AP_POWER_BOOTUP_REASON(289409538),
 
@@ -1361,6 +1367,8 @@ enum VehicleProperty {
   /// This property is not supported.
   ///
   /// @deprecated use {@link android.car.hardware.power.CarPowerManager} instead.
+  /// @Deprecated
+  /// @RequiresPermission(Car.PERMISSION_CAR_POWER)
   /// /
   DISPLAY_BRIGHTNESS(289409539),
 
@@ -1371,6 +1379,8 @@ enum VehicleProperty {
   /// This property is not supported.
   ///
   /// @deprecated use {@link android.car.hardware.power.CarPowerManager} instead.
+  /// @Deprecated
+  /// @RequiresPermission(Car.PERMISSION_CAR_POWER)
   /// /
   PER_DISPLAY_BRIGHTNESS(289475076),
 
@@ -1414,6 +1424,7 @@ enum VehicleProperty {
   /// This property is not supported.
   ///
   /// @deprecated car service internal use only.
+  /// @Deprecated
   /// /
   HW_KEY_INPUT(289475088),
 
@@ -1574,6 +1585,8 @@ enum VehicleProperty {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_MIRRORS} to read and
   /// write property.
+  /// @FlaggedApi(FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS)
+  /// @RequiresPermission(Car.PERMISSION_CONTROL_CAR_MIRRORS)
   MIRROR_AUTO_FOLD_ENABLED(337644358),
 
   /// Represents property for the Mirror Auto Tilt feature.
@@ -2027,6 +2040,8 @@ enum VehicleProperty {
   /// which means all seats use the same value. Use {@link #SEAT_HEADREST_HEIGHT_POS_V2} instead
   /// which fixes this issue by being defined as type
   /// {@link VehicleAreaType#VEHICLE_AREA_TYPE_SEAT}.
+  /// @Deprecated
+  /// @RequiresPermission(Car.PERMISSION_CONTROL_CAR_SEATS)
   /// /
   SEAT_HEADREST_HEIGHT_POS(289409941),
 
@@ -2589,6 +2604,8 @@ enum VehicleProperty {
   /// This property is not supported.
   ///
   /// @deprecated use {@link android.car.vms.VmsClientManager} instead.
+  /// @Deprecated
+  /// @RequiresPermission(anyOf = {Car.PERMISSION_VMS_PUBLISHER, Car.PERMISSION_VMS_SUBSCRIBER})
   /// /
   VEHICLE_MAP_SERVICE(299895808),
 
@@ -2613,7 +2630,6 @@ enum VehicleProperty {
   /// Dangerous permission {@link android.Manifest.permission#ACCESS_FINE_LOCATION} to read
   /// property.
   /// Property is not writable.
-  /// @data_flag {@link LocationCharacterization}
   LOCATION_CHARACTERIZATION(289410064),
 
   /// Static data for the position of each ultrasonic sensor installed on the vehicle.
@@ -2766,6 +2782,8 @@ enum VehicleProperty {
   /// This property is not supported.
   ///
   /// @deprecated use {@link android.car.diagnostic.CarDiagnosticManager} instead.
+  /// @Deprecated
+  /// @RequiresPermission(Car.PERMISSION_CAR_DIAGNOSTIC_READ_ALL)
   /// /
   OBD2_LIVE_FRAME(299896064),
 
@@ -2776,6 +2794,8 @@ enum VehicleProperty {
   /// This property is not supported.
   ///
   /// @deprecated use {@link android.car.diagnostic.CarDiagnosticManager} instead.
+  /// @Deprecated
+  /// @RequiresPermission(Car.PERMISSION_CAR_DIAGNOSTIC_READ_ALL)
   /// /
   OBD2_FREEZE_FRAME(299896065),
 
@@ -2786,6 +2806,8 @@ enum VehicleProperty {
   /// This property is not supported.
   ///
   /// @deprecated use {@link android.car.diagnostic.CarDiagnosticManager} instead.
+  /// @Deprecated
+  /// @RequiresPermission(Car.PERMISSION_CAR_DIAGNOSTIC_READ_ALL)
   /// /
   OBD2_FREEZE_FRAME_INFO(299896066),
 
@@ -2796,6 +2818,8 @@ enum VehicleProperty {
   /// This property is not supported.
   ///
   /// @deprecated use {@link android.car.diagnostic.CarDiagnosticManager} instead.
+  /// @Deprecated
+  /// @RequiresPermission(Car.PERMISSION_CAR_DIAGNOSTIC_CLEAR)
   /// /
   OBD2_FREEZE_FRAME_CLEAR(299896067),
 
