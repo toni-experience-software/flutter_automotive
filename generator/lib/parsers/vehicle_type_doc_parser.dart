@@ -185,7 +185,19 @@ class VehicleTypeProperties {
     }
   }
 
-  List<String> get permissions => [...readPermissions, ...writePermissions];
+  Set<(String, bool)> get permissions => {
+    for (final perm in readPermissions)
+      if (_permissionIsSignature(perm)) (perm, true) else (perm, false),
+    for (final perm in writePermissions)
+      if (_permissionIsSignature(perm)) (perm, true) else (perm, false),
+  };
+
+  bool _permissionIsSignature(String permission) {
+    final link = "{@link Car#$permission}";
+    final [typeRaw, ...] = _permissionsDoc.split(link);
+    final [..., type] = typeRaw.split("@link");
+    return type.contains("Privileged");
+  }
 
   @override
   String toString() {

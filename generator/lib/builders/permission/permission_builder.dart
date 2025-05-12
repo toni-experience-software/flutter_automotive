@@ -21,14 +21,14 @@ class VehiclePermissionBuilder {
   }
 
   Enum _buildMainEnum() {
-    final List<String> permissions =
+    final List<(String, bool)> permissions =
         {
             for (final prop in VehiclePropertyInput.values)
               if (parser.getProps(prop) case final props?)
                 for (final permission in props.permissions)
-                  if (permission != "ACCESS_FINE_LOCATION") permission,
+                  if (permission.$1 != "ACCESS_FINE_LOCATION") permission,
           }.toList()
-          ..sort();
+          ..sort((a, b) => a.$1.compareTo(b.$1));
     return Enum(
       (e) =>
           e
@@ -38,10 +38,17 @@ class VehiclePermissionBuilder {
                 EnumValue(
                   (v) =>
                       v
-                        ..name = perm
-                        ..docs.addAll(["/// android.car.permission.$perm"])
+                        ..name = perm.$1
+                        ..docs.addAll([
+                          "/// android.car.permission.${perm.$1}",
+                          if (perm.$2) ...[
+                            "///",
+                            "/// This permission is a Signature|Privileged permission and requires special access.",
+                          ],
+                        ])
                         ..arguments.addAll([
-                          literalString("android.car.permission.$perm"),
+                          literalString("android.car.permission.${perm.$1}"),
+                          literalBool(perm.$2),
                         ]),
                 ),
               ],
@@ -58,6 +65,12 @@ class VehiclePermissionBuilder {
                                 ..name = "androidName"
                                 ..toThis = true,
                         ),
+                        Parameter(
+                          (p) =>
+                              p
+                                ..name = "privileged"
+                                ..toThis = true,
+                        ),
                       ]),
               ),
             ])
@@ -67,6 +80,13 @@ class VehiclePermissionBuilder {
                     f
                       ..name = "androidName"
                       ..type = refer("String")
+                      ..modifier = FieldModifier.final$,
+              ),
+              Field(
+                (f) =>
+                    f
+                      ..name = "privileged"
+                      ..type = refer("bool")
                       ..modifier = FieldModifier.final$,
               ),
             ]),

@@ -6,7 +6,7 @@ import 'package:flutter_automotive/src/vehicle_datasource.dart';
 
 class VehiclePropertyRepository {
   VehiclePropertyRepository(this._datasource)
-      : privileged = VehiclePrivilegedPropertyRepository(_datasource);
+    : privileged = VehiclePrivilegedPropertyRepository(_datasource);
 
   final VehiclePropertyDatasource _datasource;
 
@@ -13387,7 +13387,7 @@ class VehiclePrivilegedPropertyRepository {
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
   PropertyStreamData<int>
-      listenAdaptiveCruiseControlLeadVehicleMeasuredDistance({
+  listenAdaptiveCruiseControlLeadVehicleMeasuredDistance({
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
