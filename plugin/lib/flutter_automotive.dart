@@ -5,6 +5,12 @@ import 'package:flutter_automotive/src/vehicle_repository.dart';
 
 export 'model/models.dart';
 
+enum VehiclePropertyPermissionScope {
+  read,
+  write,
+  both,
+}
+
 class FlutterAutomotive {
   FlutterAutomotive([FlutterAutomotivePlatform? platform])
     : _platform = platform ?? FlutterAutomotivePlatform.instance,
@@ -65,5 +71,37 @@ class FlutterAutomotive {
   /// is finished.
   Future<void> requestPermission(CarPermissions permission) async {
     return await _platform.requestPermissions([permission]);
+  }
+
+  /// Checks if the permissions for a specified vehicle property are granted.
+  ///
+  /// [property] - The vehicle property for which permissions are being checked.
+  /// [scope] - The scope of permissions to check (read, write, or both).
+  ///
+  /// Returns a [Future] that resolves to `true` if all the required permissions
+  /// for the specified scope are granted, otherwise `false`.
+  Future<bool> arePropertyPermissionsGranted(VehicleProperty property, VehiclePropertyPermissionScope scope) async {
+    final permissions = switch (scope) {
+      VehiclePropertyPermissionScope.read => property.readPermissions,
+      VehiclePropertyPermissionScope.write => property.writePermissions,
+      VehiclePropertyPermissionScope.both => [...property.readPermissions, ...property.writePermissions],
+    }.toList();
+    return await _platform.arePermissionsGranted(permissions);
+  }
+  
+  /// Requests permissions for a specified vehicle property.
+  ///
+  /// [property] - The vehicle property for which permissions are being requested.
+  /// [scope] - The scope of permissions to request (read, write, or both).
+  ///
+  /// Returns a [Future] that completes when the permission request process
+  /// is finished.
+  Future<void> requestPropertyPermissions(VehicleProperty property, VehiclePropertyPermissionScope scope) async {
+    final permissions = switch (scope) {
+      VehiclePropertyPermissionScope.read => property.readPermissions,
+      VehiclePropertyPermissionScope.write => property.writePermissions,
+      VehiclePropertyPermissionScope.both => [...property.readPermissions, ...property.writePermissions],
+    }.toList();
+    return await _platform.requestPermissions(permissions);
   }
 }
