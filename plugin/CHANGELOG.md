@@ -1,3 +1,7 @@
+## 0.0.5
+
+* Add `privileged` field to `CarPermissions` enum
+
 ## 0.0.4
 
 * Reference permissions in `VehicleProperty` enum
