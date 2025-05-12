@@ -15,18 +15,18 @@ class MockFlutterAutomotivePlatform
   Future<void> setProperty(int propertyId, int areaId, value) async {}
 
   @override
-  Future<bool> isPermissionGranted(CarPermissions permission) async => false;
-
-  @override
-  Future<void> requestPermission(CarPermissions permission) async {}
-
-  @override
   PropertyStreamData<T> subscribeProperty<T>(int propertyId, int areaId, [SensorUpdateRate updateRate = SensorUpdateRates.onChange]) {
     return PropertyStreamData(
       stream: Stream.empty(),
       onUnsubscribe: () {},
     );
   }
+  
+  @override
+  Future<bool> arePermissionsGranted(List<CarPermissions> permissions) async => false;
+  
+  @override
+  Future<void> requestPermissions(List<CarPermissions> permissions) async {}
 }
 
 void main() {

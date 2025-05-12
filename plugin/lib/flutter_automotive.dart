@@ -54,7 +54,7 @@ class FlutterAutomotive {
   /// Returns a [Future] that resolves to `true` if the permission is granted,
   /// otherwise `false`.
   Future<bool> isPermissionGranted(CarPermissions permission) async {
-    return await _platform.isPermissionGranted(permission);
+    return await _platform.arePermissionsGranted([permission]);
   }
   
   /// Requests the specified car permission.
@@ -64,6 +64,6 @@ class FlutterAutomotive {
   /// Returns a [Future] that completes when the permission request process
   /// is finished.
   Future<void> requestPermission(CarPermissions permission) async {
-    return await _platform.requestPermission(permission);
+    return await _platform.requestPermissions([permission]);
   }
 }

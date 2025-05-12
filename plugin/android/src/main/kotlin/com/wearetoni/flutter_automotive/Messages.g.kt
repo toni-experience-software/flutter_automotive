@@ -145,8 +145,8 @@ interface FlutterAutomotiveApi {
   fun setProperty(propertyId: Long, areaId: Long, value: Any?, callback: (Result<Unit>) -> Unit)
   fun subscribeProperty(propertyId: Long, areaId: Long, updateRate: Double)
   fun unsubscribeProperty(propertyId: Long, areaId: Long)
-  fun isPermissionGranted(permission: String): Boolean
-  fun requestPermission(permission: String)
+  fun arePermissionsGranted(permissions: List<String>): Boolean
+  fun requestPermissions(permissions: List<String>)
 
   companion object {
     /** The codec used by FlutterAutomotiveApi. */
@@ -239,13 +239,13 @@ interface FlutterAutomotiveApi {
         }
       }
       run {
-        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.isPermissionGranted$separatedMessageChannelSuffix", codec)
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.arePermissionsGranted$separatedMessageChannelSuffix", codec)
         if (api != null) {
           channel.setMessageHandler { message, reply ->
             val args = message as List<Any?>
-            val permissionArg = args[0] as String
+            val permissionsArg = args[0] as List<String>
             val wrapped: List<Any?> = try {
-              listOf(api.isPermissionGranted(permissionArg))
+              listOf(api.arePermissionsGranted(permissionsArg))
             } catch (exception: Throwable) {
               MessagesPigeonUtils.wrapError(exception)
             }
@@ -256,13 +256,13 @@ interface FlutterAutomotiveApi {
         }
       }
       run {
-        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.requestPermission$separatedMessageChannelSuffix", codec)
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.requestPermissions$separatedMessageChannelSuffix", codec)
         if (api != null) {
           channel.setMessageHandler { message, reply ->
             val args = message as List<Any?>
-            val permissionArg = args[0] as String
+            val permissionsArg = args[0] as List<String>
             val wrapped: List<Any?> = try {
-              api.requestPermission(permissionArg)
+              api.requestPermissions(permissionsArg)
               listOf(null)
             } catch (exception: Throwable) {
               MessagesPigeonUtils.wrapError(exception)

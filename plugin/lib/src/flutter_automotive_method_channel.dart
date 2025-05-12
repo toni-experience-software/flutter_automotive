@@ -48,12 +48,18 @@ class MethodChannelFlutterAutomotive extends FlutterAutomotivePlatform {
   }
   
   @override
-  Future<bool> isPermissionGranted(CarPermissions permission) async {
-    return await _api.isPermissionGranted(permission.androidName);
+  Future<bool> arePermissionsGranted(List<CarPermissions> permissions) async {
+    return await _api.arePermissionsGranted([
+      for (final permission in permissions)
+        permission.androidName,
+    ]);
   }
   
   @override
-  Future<void> requestPermission(CarPermissions permission) async {
-    return await _api.requestPermission(permission.androidName);
+  Future<void> requestPermissions(List<CarPermissions> permissions) async {
+    return await _api.requestPermissions([
+      for (final permission in permissions)
+        permission.androidName,
+    ]);
   }
 }

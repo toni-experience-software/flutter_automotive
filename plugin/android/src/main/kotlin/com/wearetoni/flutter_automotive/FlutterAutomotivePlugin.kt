@@ -4,7 +4,6 @@ import android.app.Activity
 import android.car.Car
 import android.car.hardware.CarPropertyValue
 import android.car.hardware.property.CarPropertyManager
-import android.car.hardware.property.CarPropertyManager.SENSOR_RATE_NORMAL
 import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
 import io.flutter.embedding.engine.plugins.FlutterPlugin
@@ -105,19 +104,18 @@ class FlutterAutomotivePlugin: FlutterPlugin, ActivityAware, FlutterAutomotiveAp
   }
 
   // Permissions
-  override fun isPermissionGranted(permission: String): Boolean {
-    val act = activity
-    if (act != null) {
-      return ActivityCompat.checkSelfPermission(act.applicationContext, permission) == PackageManager.PERMISSION_GRANTED
-    } else {
-      return false
-    }
+  private fun isPermissionGranted(activity: Activity, permission: String): Boolean {
+    val status = ActivityCompat.checkSelfPermission(activity.applicationContext, permission)
+    return status == PackageManager.PERMISSION_GRANTED
   }
 
-  override fun requestPermission(permission: String) {
-    val act = activity
-    if (act != null) {
-      ActivityCompat.requestPermissions(act, arrayOf(permission), 0)
+  override fun arePermissionsGranted(permissions: List<String>): Boolean {
+    return activity?.let { act -> permissions.all { isPermissionGranted(act, it) } } ?: false
+  }
+
+  override fun requestPermissions(permissions: List<String>) {
+    activity?.let { act ->
+      ActivityCompat.requestPermissions(act, permissions.toTypedArray(), 0)
     }
   }
 }

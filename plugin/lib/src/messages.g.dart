@@ -227,14 +227,14 @@ class FlutterAutomotiveApi {
     }
   }
 
-  Future<bool> isPermissionGranted(String permission) async {
-    final String pigeonVar_channelName = 'dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.isPermissionGranted$pigeonVar_messageChannelSuffix';
+  Future<bool> arePermissionsGranted(List<String> permissions) async {
+    final String pigeonVar_channelName = 'dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.arePermissionsGranted$pigeonVar_messageChannelSuffix';
     final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
       pigeonVar_channelName,
       pigeonChannelCodec,
       binaryMessenger: pigeonVar_binaryMessenger,
     );
-    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[permission]);
+    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[permissions]);
     final List<Object?>? pigeonVar_replyList =
         await pigeonVar_sendFuture as List<Object?>?;
     if (pigeonVar_replyList == null) {
@@ -255,14 +255,14 @@ class FlutterAutomotiveApi {
     }
   }
 
-  Future<void> requestPermission(String permission) async {
-    final String pigeonVar_channelName = 'dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.requestPermission$pigeonVar_messageChannelSuffix';
+  Future<void> requestPermissions(List<String> permissions) async {
+    final String pigeonVar_channelName = 'dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.requestPermissions$pigeonVar_messageChannelSuffix';
     final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
       pigeonVar_channelName,
       pigeonChannelCodec,
       binaryMessenger: pigeonVar_binaryMessenger,
     );
-    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[permission]);
+    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[permissions]);
     final List<Object?>? pigeonVar_replyList =
         await pigeonVar_sendFuture as List<Object?>?;
     if (pigeonVar_replyList == null) {

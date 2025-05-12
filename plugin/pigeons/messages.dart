@@ -26,9 +26,9 @@ abstract class FlutterAutomotiveApi {
 
   void unsubscribeProperty(int propertyId, int areaId);
 
-  bool isPermissionGranted(String permission);
+  bool arePermissionsGranted(List<String> permissions);
 
-  void requestPermission(String permission);
+  void requestPermissions(List<String> permissions);
 }
 
 class PropertyUpdateEvent {
