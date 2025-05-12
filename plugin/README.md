@@ -36,7 +36,7 @@ final _plugin = FlutterAutomotive();
 Make sure to check for the permission or request if not granted:
 
 ```dart
-final permission = CarPermissions.PERMISSION_SPEED;
+final permission = CarPermissions.permissionSpeed;
 if (await _plugin.isPermissionGranted(permission) == false) {
     await _plugin.requestPermission(permission);
 }
@@ -55,7 +55,7 @@ final speed = await _plugin.properties.getPerfVehicleSpeed();
 Some methods might need their respective area as a parameter:
 
 ```dart
-final wear = await _plugin.properties.getBrakePadWearPercentage(VehicleAreaWheel.LEFT_FRONT);
+final wear = await _plugin.properties.getBrakePadWearPercentage(VehicleAreaWheel.leftFront);
 ```
 
 ### Setting a property
@@ -71,7 +71,7 @@ await _plugin.properties.setVehicleHornEngaged(true);
 These properties are scoped under `properties.privileged`, you can access their getters/setters like their non-privileged counterparts.
 
 ```dart
-await _plugin.properties.privileged.setHvacFanSpeed(VehicleAreaSeat.ROW_1_LEFT, 1);
+await _plugin.properties.privileged.setHvacFanSpeed(VehicleAreaSeat.row1Left, 1);
 ```
 
 ### Listening to a property
@@ -86,4 +86,12 @@ final sub = _plugin.properties.listenPerfVehicleSpeed();
 final stream = sub.stream;
 // Stop listening
 sub.unsubscribe();
+```
+
+### Accessing properties dynamically
+
+Properties can also be accessed using the `getProperty`, `setProperty` and `subscribeProperty` methods by providing a `VehicleProperty`.
+
+```dart
+final speed = await _plugin.getProperty(VehicleProperty.PERF_VEHICLE_SPEED);
 ```

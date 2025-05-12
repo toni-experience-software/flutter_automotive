@@ -1,3 +1,9 @@
+## 0.0.3
+
+* Add more and rename existing car permissions
+* Add access availability to `VehicleProperty` enum
+* Improve method/enum docs
+
 ## 0.0.2
 
 * Changed most enum names to lowercase (excluding `VehicleProperty`)
