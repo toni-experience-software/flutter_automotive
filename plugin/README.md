@@ -76,21 +76,18 @@ await _plugin.properties.privileged.setHvacFanSpeed(VehicleAreaSeat.row1Left, 1)
 
 ### Listening to a property
 
-> ⚠️ This feature is still under development and the API might change drastically
-
 You can also listen to every property that can be read using the respective listen method.
 
 ```dart
-final sub = _plugin.properties.listenPerfVehicleSpeed();
-// Use this stream
-final stream = sub.stream;
-// Stop listening
-sub.unsubscribe();
+// Subscribe to a property with a method
+final sub = _plugin.properties.listenPerfVehicleSpeed(print);
+// Cancel the subscription once done
+await sub.cancel();
 ```
 
 ### Accessing properties dynamically
 
-Properties can also be accessed using the `getProperty`, `setProperty` and `subscribeProperty` methods by providing a `VehicleProperty`.
+Properties can also be accessed using the `getProperty`, `setProperty` and `listenProperty` methods by providing a `VehicleProperty`.
 
 ```dart
 final speed = await _plugin.getProperty(VehicleProperty.PERF_VEHICLE_SPEED);
