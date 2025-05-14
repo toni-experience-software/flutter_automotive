@@ -13,7 +13,6 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_automotive/src/messages.g.dart';
 
-
 class _PigeonCodec extends StandardMessageCodec {
   const _PigeonCodec();
   @override
@@ -21,7 +20,7 @@ class _PigeonCodec extends StandardMessageCodec {
     if (value is int) {
       buffer.putUint8(4);
       buffer.putInt64(value);
-    }    else if (value is PropertyUpdateEvent) {
+    } else if (value is PropertyUpdateEvent) {
       buffer.putUint8(129);
       writeValue(buffer, value.encode());
     } else {
@@ -32,7 +31,7 @@ class _PigeonCodec extends StandardMessageCodec {
   @override
   Object? readValueOfType(int type, ReadBuffer buffer) {
     switch (type) {
-      case 129: 
+      case 129:
         return PropertyUpdateEvent.decode(readValue(buffer)!);
       default:
         return super.readValueOfType(type, buffer);
@@ -40,10 +39,12 @@ class _PigeonCodec extends StandardMessageCodec {
   }
 }
 
-const StandardMethodCodec pigeonMethodCodec = StandardMethodCodec(_PigeonCodec());
+const StandardMethodCodec pigeonMethodCodec =
+    StandardMethodCodec(_PigeonCodec());
 
 abstract class TestHostFlutterAutomotiveApi {
-  static TestDefaultBinaryMessengerBinding? get _testBinaryMessengerBinding => TestDefaultBinaryMessengerBinding.instance;
+  static TestDefaultBinaryMessengerBinding? get _testBinaryMessengerBinding =>
+      TestDefaultBinaryMessengerBinding.instance;
   static const MessageCodec<Object?> pigeonChannelCodec = _PigeonCodec();
 
   Future<Object?> getProperty(int propertyId, int areaId);
@@ -58,18 +59,29 @@ abstract class TestHostFlutterAutomotiveApi {
 
   void requestPermissions(List<String> permissions);
 
-  static void setUp(TestHostFlutterAutomotiveApi? api, {BinaryMessenger? binaryMessenger, String messageChannelSuffix = '',}) {
-    messageChannelSuffix = messageChannelSuffix.isNotEmpty ? '.$messageChannelSuffix' : '';
+  static void setUp(
+    TestHostFlutterAutomotiveApi? api, {
+    BinaryMessenger? binaryMessenger,
+    String messageChannelSuffix = '',
+  }) {
+    messageChannelSuffix =
+        messageChannelSuffix.isNotEmpty ? '.$messageChannelSuffix' : '';
     {
-      final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
-          'dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.getProperty$messageChannelSuffix', pigeonChannelCodec,
+      final BasicMessageChannel<
+          Object?> pigeonVar_channel = BasicMessageChannel<
+              Object?>(
+          'dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.getProperty$messageChannelSuffix',
+          pigeonChannelCodec,
           binaryMessenger: binaryMessenger);
       if (api == null) {
-        _testBinaryMessengerBinding!.defaultBinaryMessenger.setMockDecodedMessageHandler<Object?>(pigeonVar_channel, null);
+        _testBinaryMessengerBinding!.defaultBinaryMessenger
+            .setMockDecodedMessageHandler<Object?>(pigeonVar_channel, null);
       } else {
-        _testBinaryMessengerBinding!.defaultBinaryMessenger.setMockDecodedMessageHandler<Object?>(pigeonVar_channel, (Object? message) async {
+        _testBinaryMessengerBinding!.defaultBinaryMessenger
+            .setMockDecodedMessageHandler<Object?>(pigeonVar_channel,
+                (Object? message) async {
           assert(message != null,
-          'Argument for dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.getProperty was null.');
+              'Argument for dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.getProperty was null.');
           final List<Object?> args = (message as List<Object?>?)!;
           final int? arg_propertyId = (args[0] as int?);
           assert(arg_propertyId != null,
@@ -78,26 +90,34 @@ abstract class TestHostFlutterAutomotiveApi {
           assert(arg_areaId != null,
               'Argument for dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.getProperty was null, expected non-null int.');
           try {
-            final Object? output = await api.getProperty(arg_propertyId!, arg_areaId!);
+            final Object? output =
+                await api.getProperty(arg_propertyId!, arg_areaId!);
             return <Object?>[output];
           } on PlatformException catch (e) {
             return wrapResponse(error: e);
-          }          catch (e) {
-            return wrapResponse(error: PlatformException(code: 'error', message: e.toString()));
+          } catch (e) {
+            return wrapResponse(
+                error: PlatformException(code: 'error', message: e.toString()));
           }
         });
       }
     }
     {
-      final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
-          'dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.setProperty$messageChannelSuffix', pigeonChannelCodec,
+      final BasicMessageChannel<
+          Object?> pigeonVar_channel = BasicMessageChannel<
+              Object?>(
+          'dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.setProperty$messageChannelSuffix',
+          pigeonChannelCodec,
           binaryMessenger: binaryMessenger);
       if (api == null) {
-        _testBinaryMessengerBinding!.defaultBinaryMessenger.setMockDecodedMessageHandler<Object?>(pigeonVar_channel, null);
+        _testBinaryMessengerBinding!.defaultBinaryMessenger
+            .setMockDecodedMessageHandler<Object?>(pigeonVar_channel, null);
       } else {
-        _testBinaryMessengerBinding!.defaultBinaryMessenger.setMockDecodedMessageHandler<Object?>(pigeonVar_channel, (Object? message) async {
+        _testBinaryMessengerBinding!.defaultBinaryMessenger
+            .setMockDecodedMessageHandler<Object?>(pigeonVar_channel,
+                (Object? message) async {
           assert(message != null,
-          'Argument for dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.setProperty was null.');
+              'Argument for dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.setProperty was null.');
           final List<Object?> args = (message as List<Object?>?)!;
           final int? arg_propertyId = (args[0] as int?);
           assert(arg_propertyId != null,
@@ -111,22 +131,29 @@ abstract class TestHostFlutterAutomotiveApi {
             return wrapResponse(empty: true);
           } on PlatformException catch (e) {
             return wrapResponse(error: e);
-          }          catch (e) {
-            return wrapResponse(error: PlatformException(code: 'error', message: e.toString()));
+          } catch (e) {
+            return wrapResponse(
+                error: PlatformException(code: 'error', message: e.toString()));
           }
         });
       }
     }
     {
-      final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
-          'dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.subscribeProperty$messageChannelSuffix', pigeonChannelCodec,
+      final BasicMessageChannel<
+          Object?> pigeonVar_channel = BasicMessageChannel<
+              Object?>(
+          'dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.subscribeProperty$messageChannelSuffix',
+          pigeonChannelCodec,
           binaryMessenger: binaryMessenger);
       if (api == null) {
-        _testBinaryMessengerBinding!.defaultBinaryMessenger.setMockDecodedMessageHandler<Object?>(pigeonVar_channel, null);
+        _testBinaryMessengerBinding!.defaultBinaryMessenger
+            .setMockDecodedMessageHandler<Object?>(pigeonVar_channel, null);
       } else {
-        _testBinaryMessengerBinding!.defaultBinaryMessenger.setMockDecodedMessageHandler<Object?>(pigeonVar_channel, (Object? message) async {
+        _testBinaryMessengerBinding!.defaultBinaryMessenger
+            .setMockDecodedMessageHandler<Object?>(pigeonVar_channel,
+                (Object? message) async {
           assert(message != null,
-          'Argument for dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.subscribeProperty was null.');
+              'Argument for dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.subscribeProperty was null.');
           final List<Object?> args = (message as List<Object?>?)!;
           final int? arg_propertyId = (args[0] as int?);
           assert(arg_propertyId != null,
@@ -138,26 +165,34 @@ abstract class TestHostFlutterAutomotiveApi {
           assert(arg_updateRate != null,
               'Argument for dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.subscribeProperty was null, expected non-null double.');
           try {
-            api.subscribeProperty(arg_propertyId!, arg_areaId!, arg_updateRate!);
+            api.subscribeProperty(
+                arg_propertyId!, arg_areaId!, arg_updateRate!);
             return wrapResponse(empty: true);
           } on PlatformException catch (e) {
             return wrapResponse(error: e);
-          }          catch (e) {
-            return wrapResponse(error: PlatformException(code: 'error', message: e.toString()));
+          } catch (e) {
+            return wrapResponse(
+                error: PlatformException(code: 'error', message: e.toString()));
           }
         });
       }
     }
     {
-      final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
-          'dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.unsubscribeProperty$messageChannelSuffix', pigeonChannelCodec,
+      final BasicMessageChannel<
+          Object?> pigeonVar_channel = BasicMessageChannel<
+              Object?>(
+          'dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.unsubscribeProperty$messageChannelSuffix',
+          pigeonChannelCodec,
           binaryMessenger: binaryMessenger);
       if (api == null) {
-        _testBinaryMessengerBinding!.defaultBinaryMessenger.setMockDecodedMessageHandler<Object?>(pigeonVar_channel, null);
+        _testBinaryMessengerBinding!.defaultBinaryMessenger
+            .setMockDecodedMessageHandler<Object?>(pigeonVar_channel, null);
       } else {
-        _testBinaryMessengerBinding!.defaultBinaryMessenger.setMockDecodedMessageHandler<Object?>(pigeonVar_channel, (Object? message) async {
+        _testBinaryMessengerBinding!.defaultBinaryMessenger
+            .setMockDecodedMessageHandler<Object?>(pigeonVar_channel,
+                (Object? message) async {
           assert(message != null,
-          'Argument for dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.unsubscribeProperty was null.');
+              'Argument for dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.unsubscribeProperty was null.');
           final List<Object?> args = (message as List<Object?>?)!;
           final int? arg_propertyId = (args[0] as int?);
           assert(arg_propertyId != null,
@@ -170,24 +205,32 @@ abstract class TestHostFlutterAutomotiveApi {
             return wrapResponse(empty: true);
           } on PlatformException catch (e) {
             return wrapResponse(error: e);
-          }          catch (e) {
-            return wrapResponse(error: PlatformException(code: 'error', message: e.toString()));
+          } catch (e) {
+            return wrapResponse(
+                error: PlatformException(code: 'error', message: e.toString()));
           }
         });
       }
     }
     {
-      final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
-          'dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.arePermissionsGranted$messageChannelSuffix', pigeonChannelCodec,
+      final BasicMessageChannel<
+          Object?> pigeonVar_channel = BasicMessageChannel<
+              Object?>(
+          'dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.arePermissionsGranted$messageChannelSuffix',
+          pigeonChannelCodec,
           binaryMessenger: binaryMessenger);
       if (api == null) {
-        _testBinaryMessengerBinding!.defaultBinaryMessenger.setMockDecodedMessageHandler<Object?>(pigeonVar_channel, null);
+        _testBinaryMessengerBinding!.defaultBinaryMessenger
+            .setMockDecodedMessageHandler<Object?>(pigeonVar_channel, null);
       } else {
-        _testBinaryMessengerBinding!.defaultBinaryMessenger.setMockDecodedMessageHandler<Object?>(pigeonVar_channel, (Object? message) async {
+        _testBinaryMessengerBinding!.defaultBinaryMessenger
+            .setMockDecodedMessageHandler<Object?>(pigeonVar_channel,
+                (Object? message) async {
           assert(message != null,
-          'Argument for dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.arePermissionsGranted was null.');
+              'Argument for dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.arePermissionsGranted was null.');
           final List<Object?> args = (message as List<Object?>?)!;
-          final List<String>? arg_permissions = (args[0] as List<Object?>?)?.cast<String>();
+          final List<String>? arg_permissions =
+              (args[0] as List<Object?>?)?.cast<String>();
           assert(arg_permissions != null,
               'Argument for dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.arePermissionsGranted was null, expected non-null List<String>.');
           try {
@@ -195,24 +238,32 @@ abstract class TestHostFlutterAutomotiveApi {
             return <Object?>[output];
           } on PlatformException catch (e) {
             return wrapResponse(error: e);
-          }          catch (e) {
-            return wrapResponse(error: PlatformException(code: 'error', message: e.toString()));
+          } catch (e) {
+            return wrapResponse(
+                error: PlatformException(code: 'error', message: e.toString()));
           }
         });
       }
     }
     {
-      final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
-          'dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.requestPermissions$messageChannelSuffix', pigeonChannelCodec,
+      final BasicMessageChannel<
+          Object?> pigeonVar_channel = BasicMessageChannel<
+              Object?>(
+          'dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.requestPermissions$messageChannelSuffix',
+          pigeonChannelCodec,
           binaryMessenger: binaryMessenger);
       if (api == null) {
-        _testBinaryMessengerBinding!.defaultBinaryMessenger.setMockDecodedMessageHandler<Object?>(pigeonVar_channel, null);
+        _testBinaryMessengerBinding!.defaultBinaryMessenger
+            .setMockDecodedMessageHandler<Object?>(pigeonVar_channel, null);
       } else {
-        _testBinaryMessengerBinding!.defaultBinaryMessenger.setMockDecodedMessageHandler<Object?>(pigeonVar_channel, (Object? message) async {
+        _testBinaryMessengerBinding!.defaultBinaryMessenger
+            .setMockDecodedMessageHandler<Object?>(pigeonVar_channel,
+                (Object? message) async {
           assert(message != null,
-          'Argument for dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.requestPermissions was null.');
+              'Argument for dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.requestPermissions was null.');
           final List<Object?> args = (message as List<Object?>?)!;
-          final List<String>? arg_permissions = (args[0] as List<Object?>?)?.cast<String>();
+          final List<String>? arg_permissions =
+              (args[0] as List<Object?>?)?.cast<String>();
           assert(arg_permissions != null,
               'Argument for dev.flutter.pigeon.flutter_automotive.FlutterAutomotiveApi.requestPermissions was null, expected non-null List<String>.');
           try {
@@ -220,8 +271,9 @@ abstract class TestHostFlutterAutomotiveApi {
             return wrapResponse(empty: true);
           } on PlatformException catch (e) {
             return wrapResponse(error: e);
-          }          catch (e) {
-            return wrapResponse(error: PlatformException(code: 'error', message: e.toString()));
+          } catch (e) {
+            return wrapResponse(
+                error: PlatformException(code: 'error', message: e.toString()));
           }
         });
       }

@@ -27,8 +27,10 @@ class _MyAppState extends State<MyApp> {
     bool? granted;
     try {
       await _plugin.requestPermission(CarPermissions.PERMISSION_SPEED);
-      granted = await _plugin.isPermissionGranted(CarPermissions.PERMISSION_SPEED);
-    } catch(e) {
+      granted = await _plugin.isPermissionGranted(
+        CarPermissions.PERMISSION_SPEED,
+      );
+    } catch (e) {
       granted = null;
       debugPrint('Error requesting permission: $e');
     }
@@ -65,9 +67,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Plugin example app'),
-        ),
+        appBar: AppBar(title: const Text('Plugin example app')),
         body: Center(
           child: Column(
             spacing: 16,
