@@ -15,6 +15,7 @@ class PropertyRepoBuilder {
       (l) =>
           l
             ..directives.addAll([
+              Directive.import("dart:async"),
               Directive.import(
                 "package:flutter_automotive/flutter_automotive.dart",
               ),

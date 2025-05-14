@@ -55,7 +55,7 @@ class VehiclePropertyListenerBuilder {
           m
             ..name = _listenerName
             ..returns = refer(
-              "PropertyStreamData<${_returnTypeForProperty.symbol}>",
+              "StreamSubscription<${_returnTypeForProperty.symbol}>",
             )
             ..requiredParameters.addAll([
               if (_areaParameterRef case final ref?)
@@ -65,6 +65,14 @@ class VehiclePropertyListenerBuilder {
                         ..name = "area"
                         ..type = ref,
                 ),
+              Parameter(
+                (p) =>
+                    p
+                      ..name = "onData"
+                      ..type = refer(
+                        "Function(${_returnTypeForProperty.symbol})",
+                      ),
+              ),
             ])
             ..optionalParameters.addAll([
               Parameter(
@@ -98,7 +106,7 @@ class VehiclePropertyListenerBuilder {
             ..statements.addAll([
               datasource
                   .property(interface.listenName)
-                  .call([propId, areaId, refer("rate")])
+                  .call([propId, areaId, refer("rate"), refer("onData")])
                   .returned
                   .statement,
             ]),

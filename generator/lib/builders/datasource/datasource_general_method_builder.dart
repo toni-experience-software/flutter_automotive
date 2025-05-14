@@ -62,7 +62,7 @@ class PropertyGeneralMethodInterfaceBuilder {
       (m) =>
           m
             ..name = "listenProperty<T>"
-            ..returns = refer("PropertyStreamData<T>")
+            ..returns = refer("StreamSubscription<T>")
             ..requiredParameters.addAll([
               Parameter(
                 (p) =>
@@ -81,6 +81,12 @@ class PropertyGeneralMethodInterfaceBuilder {
                     p
                       ..name = "rate"
                       ..type = refer("SensorUpdateRate"),
+              ),
+              Parameter(
+                (p) =>
+                    p
+                      ..name = "onData"
+                      ..type = refer("Function(T)"),
               ),
             ]),
     );

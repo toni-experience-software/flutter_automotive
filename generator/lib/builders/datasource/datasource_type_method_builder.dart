@@ -126,7 +126,7 @@ class PropertyTypeMethodInterfaceBuilder {
           m
             ..name = listenName
             ..returns = refer(
-              "PropertyStreamData<${_returnTypeForProperty.symbol}>",
+              "StreamSubscription<${_returnTypeForProperty.symbol}>",
             )
             ..requiredParameters.addAll([
               Parameter(
@@ -147,6 +147,14 @@ class PropertyTypeMethodInterfaceBuilder {
                       ..name = "rate"
                       ..type = refer("SensorUpdateRate"),
               ),
+              Parameter(
+                (p) =>
+                    p
+                      ..name = "onData"
+                      ..type = refer(
+                        "Function(${_returnTypeForProperty.symbol})",
+                      ),
+              ),
             ])
             ..body = Block(
               (b) =>
@@ -157,6 +165,7 @@ class PropertyTypeMethodInterfaceBuilder {
                             refer("propertyId"),
                             refer("areaId"),
                             refer("rate"),
+                            refer("onData"),
                           ])
                           .returned
                           .statement,

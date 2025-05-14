@@ -1,12 +1,13 @@
 // ignore_for_file: slash_for_doc_comments, doc_directive_unknown_prefixes, doc_directive_unknown
 library;
 
+import 'dart:async';
 import 'package:flutter_automotive/flutter_automotive.dart';
 import 'package:flutter_automotive/src/vehicle_datasource.dart';
 
 class VehiclePropertyRepository {
   VehiclePropertyRepository(this._datasource)
-      : privileged = VehiclePrivilegedPropertyRepository(_datasource);
+    : privileged = VehiclePrivilegedPropertyRepository(_datasource);
 
   final VehiclePropertyDatasource _datasource;
 
@@ -30,13 +31,15 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Normal permission {@link Car#PERMISSION_CAR_INFO} to read property.
   /// Property is not writable.
-  PropertyStreamData<String> listenInfoMake({
+  StreamSubscription<String> listenInfoMake(
+    Function(String) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyString(
       VehicleProperty.INFO_MAKE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -58,13 +61,15 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Normal permission {@link Car#PERMISSION_CAR_INFO} to read property.
   /// Property is not writable.
-  PropertyStreamData<String> listenInfoModel({
+  StreamSubscription<String> listenInfoModel(
+    Function(String) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyString(
       VehicleProperty.INFO_MODEL.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -82,13 +87,15 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Normal permission {@link Car#PERMISSION_CAR_INFO} to read property.
   /// Property is not writable.
-  PropertyStreamData<int> listenInfoModelYear({
+  StreamSubscription<int> listenInfoModelYear(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.INFO_MODEL_YEAR.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -119,13 +126,15 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Normal permission {@link Car#PERMISSION_CAR_INFO} to read property.
   /// Property is not writable.
-  PropertyStreamData<double> listenInfoFuelCapacity({
+  StreamSubscription<double> listenInfoFuelCapacity(
+    Function(double) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyFloat(
       VehicleProperty.INFO_FUEL_CAPACITY.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -178,13 +187,15 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Normal permission {@link Car#PERMISSION_CAR_INFO} to read property.
   /// Property is not writable.
-  PropertyStreamData<List<int>> listenInfoFuelType({
+  StreamSubscription<List<int>> listenInfoFuelType(
+    Function(List<int>) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32Vec(
       VehicleProperty.INFO_FUEL_TYPE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -217,13 +228,15 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Normal permission {@link Car#PERMISSION_CAR_INFO} to read property.
   /// Property is not writable.
-  PropertyStreamData<double> listenInfoEvBatteryCapacity({
+  StreamSubscription<double> listenInfoEvBatteryCapacity(
+    Function(double) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyFloat(
       VehicleProperty.INFO_EV_BATTERY_CAPACITY.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -250,13 +263,15 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Normal permission {@link Car#PERMISSION_CAR_INFO} to read property.
   /// Property is not writable.
-  PropertyStreamData<List<int>> listenInfoEvConnectorType({
+  StreamSubscription<List<int>> listenInfoEvConnectorType(
+    Function(List<int>) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32Vec(
       VehicleProperty.INFO_EV_CONNECTOR_TYPE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -287,13 +302,15 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Normal permission {@link Car#PERMISSION_CAR_INFO} to read property.
   /// Property is not writable.
-  PropertyStreamData<int> listenInfoFuelDoorLocation({
+  StreamSubscription<int> listenInfoFuelDoorLocation(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.INFO_FUEL_DOOR_LOCATION.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -324,13 +341,15 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Normal permission {@link Car#PERMISSION_CAR_INFO} to read property.
   /// Property is not writable.
-  PropertyStreamData<int> listenInfoEvPortLocation({
+  StreamSubscription<int> listenInfoEvPortLocation(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.INFO_EV_PORT_LOCATION.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -351,13 +370,15 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Normal permission {@link Car#PERMISSION_CAR_INFO} to read property.
   /// Property is not writable.
-  PropertyStreamData<List<int>> listenInfoMultiEvPortLocations({
+  StreamSubscription<List<int>> listenInfoMultiEvPortLocations(
+    Function(List<int>) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32Vec(
       VehicleProperty.INFO_MULTI_EV_PORT_LOCATIONS.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -384,14 +405,16 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Normal permission {@link Car#PERMISSION_CAR_INFO} to read property.
   /// Property is not writable.
-  PropertyStreamData<int> listenInfoDriverSeat(
-    VehicleAreaSeat area, {
+  StreamSubscription<int> listenInfoDriverSeat(
+    VehicleAreaSeat area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.INFO_DRIVER_SEAT.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -436,13 +459,15 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Normal permission {@link Car#PERMISSION_CAR_INFO} to read property.
   /// Property is not writable.
-  PropertyStreamData<List<int>> listenInfoExteriorDimensions({
+  StreamSubscription<List<int>> listenInfoExteriorDimensions(
+    Function(List<int>) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32Vec(
       VehicleProperty.INFO_EXTERIOR_DIMENSIONS.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -486,13 +511,15 @@ class VehiclePropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
-  PropertyStreamData<String> listenInfoModelTrim({
+  StreamSubscription<String> listenInfoModelTrim(
+    Function(String) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyString(
       VehicleProperty.INFO_MODEL_TRIM.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -545,13 +572,15 @@ class VehiclePropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
-  PropertyStreamData<List<int>> listenInfoVehicleSizeClass({
+  StreamSubscription<List<int>> listenInfoVehicleSizeClass(
+    Function(List<int>) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32Vec(
       VehicleProperty.INFO_VEHICLE_SIZE_CLASS.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -577,13 +606,15 @@ class VehiclePropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
-  PropertyStreamData<double> listenPerfOdometer({
+  StreamSubscription<double> listenPerfOdometer(
+    Function(double) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyFloat(
       VehicleProperty.PERF_ODOMETER.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -616,13 +647,15 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Dangerous permission {@link Car#PERMISSION_SPEED} to read property.
   /// Property is not writable.
-  PropertyStreamData<double> listenPerfVehicleSpeed({
+  StreamSubscription<double> listenPerfVehicleSpeed(
+    Function(double) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyFloat(
       VehicleProperty.PERF_VEHICLE_SPEED.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -649,13 +682,15 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Dangerous permission {@link Car#PERMISSION_SPEED} to read property.
   /// Property is not writable.
-  PropertyStreamData<double> listenPerfVehicleSpeedDisplay({
+  StreamSubscription<double> listenPerfVehicleSpeedDisplay(
+    Function(double) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyFloat(
       VehicleProperty.PERF_VEHICLE_SPEED_DISPLAY.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -696,13 +731,15 @@ class VehiclePropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_25Q2_3P_PERMISSIONS
-  PropertyStreamData<double> listenPerfSteeringAngle({
+  StreamSubscription<double> listenPerfSteeringAngle(
+    Function(double) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyFloat(
       VehicleProperty.PERF_STEERING_ANGLE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -745,13 +782,15 @@ class VehiclePropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
-  PropertyStreamData<double> listenInstantaneousFuelEconomy({
+  StreamSubscription<double> listenInstantaneousFuelEconomy(
+    Function(double) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyFloat(
       VehicleProperty.INSTANTANEOUS_FUEL_ECONOMY.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -796,13 +835,15 @@ class VehiclePropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
-  PropertyStreamData<double> listenInstantaneousEvEfficiency({
+  StreamSubscription<double> listenInstantaneousEvEfficiency(
+    Function(double) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyFloat(
       VehicleProperty.INSTANTANEOUS_EV_EFFICIENCY.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -828,13 +869,15 @@ class VehiclePropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_25Q2_3P_PERMISSIONS
-  PropertyStreamData<double> listenEngineRpm({
+  StreamSubscription<double> listenEngineRpm(
+    Function(double) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyFloat(
       VehicleProperty.ENGINE_RPM.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -869,13 +912,15 @@ class VehiclePropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
-  PropertyStreamData<bool> listenVehicleHornEngaged({
+  StreamSubscription<bool> listenVehicleHornEngaged(
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.VEHICLE_HORN_ENGAGED.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -987,13 +1032,15 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Dangerous permission {@link Car#PERMISSION_SPEED} to read property.
   /// Property is not writable.
-  PropertyStreamData<List<int>> listenWheelTick({
+  StreamSubscription<List<int>> listenWheelTick(
+    Function(List<int>) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt64Vec(
       VehicleProperty.WHEEL_TICK.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -1025,13 +1072,15 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Dangerous permission {@link Car#PERMISSION_ENERGY} to read property.
   /// Property is not writable.
-  PropertyStreamData<double> listenFuelLevel({
+  StreamSubscription<double> listenFuelLevel(
+    Function(double) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyFloat(
       VehicleProperty.FUEL_LEVEL.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -1063,13 +1112,15 @@ class VehiclePropertyRepository {
   /// {@link Car#PERMISSION_CONTROL_ENERGY_PORTS} to read property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ENERGY_PORTS} to
   /// write property.
-  PropertyStreamData<bool> listenFuelDoorOpen({
+  StreamSubscription<bool> listenFuelDoorOpen(
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.FUEL_DOOR_OPEN.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -1097,13 +1148,15 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Dangerous permission {@link Car#PERMISSION_ENERGY} to read property.
   /// Property is not writable.
-  PropertyStreamData<double> listenEvBatteryLevel({
+  StreamSubscription<double> listenEvBatteryLevel(
+    Function(double) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyFloat(
       VehicleProperty.EV_BATTERY_LEVEL.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -1136,13 +1189,15 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Dangerous permission {@link Car#PERMISSION_ENERGY} to read property.
   /// Property is not writable.
-  PropertyStreamData<double> listenEvCurrentBatteryCapacity({
+  StreamSubscription<double> listenEvCurrentBatteryCapacity(
+    Function(double) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyFloat(
       VehicleProperty.EV_CURRENT_BATTERY_CAPACITY.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -1173,13 +1228,15 @@ class VehiclePropertyRepository {
   /// {@link Car#PERMISSION_CONTROL_ENERGY_PORTS} to read property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_ENERGY_PORTS} to
   /// write property.
-  PropertyStreamData<bool> listenEvChargePortOpen({
+  StreamSubscription<bool> listenEvChargePortOpen(
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.EV_CHARGE_PORT_OPEN.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -1206,13 +1263,15 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Normal permission {@link Car#PERMISSION_ENERGY_PORTS} to read property.
   /// Property is not writable.
-  PropertyStreamData<bool> listenEvChargePortConnected({
+  StreamSubscription<bool> listenEvChargePortConnected(
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.EV_CHARGE_PORT_CONNECTED.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -1239,13 +1298,15 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Dangerous permission {@link Car#PERMISSION_ENERGY} to read property.
   /// Property is not writable.
-  PropertyStreamData<double> listenEvBatteryInstantaneousChargeRate({
+  StreamSubscription<double> listenEvBatteryInstantaneousChargeRate(
+    Function(double) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyFloat(
       VehicleProperty.EV_BATTERY_INSTANTANEOUS_CHARGE_RATE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -1273,13 +1334,15 @@ class VehiclePropertyRepository {
   /// {@link Car#PERMISSION_ADJUST_RANGE_REMAINING} to read property.
   /// Signature|Privileged permission {@link Car#PERMISSION_ADJUST_RANGE_REMAINING} to write
   /// property.
-  PropertyStreamData<double> listenRangeRemaining({
+  StreamSubscription<double> listenRangeRemaining(
+    Function(double) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyFloat(
       VehicleProperty.RANGE_REMAINING.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -1314,13 +1377,15 @@ class VehiclePropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_ANDROID_VIC_VEHICLE_PROPERTIES
-  PropertyStreamData<double> listenEvBatteryAverageTemperature({
+  StreamSubscription<double> listenEvBatteryAverageTemperature(
+    Function(double) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyFloat(
       VehicleProperty.EV_BATTERY_AVERAGE_TEMPERATURE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -1359,14 +1424,16 @@ class VehiclePropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_25Q2_3P_PERMISSIONS
-  PropertyStreamData<double> listenTirePressure(
-    VehicleAreaWheel area, {
+  StreamSubscription<double> listenTirePressure(
+    VehicleAreaWheel area,
+    Function(double) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyFloat(
       VehicleProperty.TIRE_PRESSURE.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -1407,13 +1474,15 @@ class VehiclePropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
-  PropertyStreamData<double> listenAcceleratorPedalCompressionPercentage({
+  StreamSubscription<double> listenAcceleratorPedalCompressionPercentage(
+    Function(double) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyFloat(
       VehicleProperty.ACCELERATOR_PEDAL_COMPRESSION_PERCENTAGE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -1454,13 +1523,15 @@ class VehiclePropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
-  PropertyStreamData<double> listenBrakePedalCompressionPercentage({
+  StreamSubscription<double> listenBrakePedalCompressionPercentage(
+    Function(double) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyFloat(
       VehicleProperty.BRAKE_PEDAL_COMPRESSION_PERCENTAGE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -1501,14 +1572,16 @@ class VehiclePropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
-  PropertyStreamData<double> listenBrakePadWearPercentage(
-    VehicleAreaWheel area, {
+  StreamSubscription<double> listenBrakePadWearPercentage(
+    VehicleAreaWheel area,
+    Function(double) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyFloat(
       VehicleProperty.BRAKE_PAD_WEAR_PERCENTAGE.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -1545,13 +1618,15 @@ class VehiclePropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
-  PropertyStreamData<bool> listenBrakeFluidLevelLow({
+  StreamSubscription<bool> listenBrakeFluidLevelLow(
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.BRAKE_FLUID_LEVEL_LOW.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -1635,13 +1710,15 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Normal permission {@link Car#PERMISSION_POWERTRAIN} to read property.
   /// Property is not writable.
-  PropertyStreamData<int> listenGearSelection({
+  StreamSubscription<int> listenGearSelection(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.GEAR_SELECTION.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -1733,13 +1810,15 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Normal permission {@link Car#PERMISSION_POWERTRAIN} to read property.
   /// Property is not writable.
-  PropertyStreamData<int> listenCurrentGear({
+  StreamSubscription<int> listenCurrentGear(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.CURRENT_GEAR.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -1766,13 +1845,15 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Normal permission {@link Car#PERMISSION_POWERTRAIN} to read property.
   /// Property is not writable.
-  PropertyStreamData<bool> listenParkingBrakeOn({
+  StreamSubscription<bool> listenParkingBrakeOn(
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.PARKING_BRAKE_ON.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -1813,13 +1894,15 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Normal permission {@link Car#PERMISSION_POWERTRAIN} to read property.
   /// Property is not writable.
-  PropertyStreamData<bool> listenParkingBrakeAutoApply({
+  StreamSubscription<bool> listenParkingBrakeAutoApply(
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.PARKING_BRAKE_AUTO_APPLY.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -1856,13 +1939,15 @@ class VehiclePropertyRepository {
   /// {@link Car#PERMISSION_CONTROL_POWERTRAIN} to read property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_POWERTRAIN} to write
   /// property.
-  PropertyStreamData<int> listenEvBrakeRegenerationLevel({
+  StreamSubscription<int> listenEvBrakeRegenerationLevel(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.EV_BRAKE_REGENERATION_LEVEL.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -1896,13 +1981,15 @@ class VehiclePropertyRepository {
   /// {@link Car#PERMISSION_CONTROL_POWERTRAIN} to read property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_POWERTRAIN} to write
   /// property.
-  PropertyStreamData<int> listenEvStoppingMode({
+  StreamSubscription<int> listenEvStoppingMode(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.EV_STOPPING_MODE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -1940,13 +2027,15 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Dangerous permission {@link Car#PERMISSION_ENERGY} to read property.
   /// Property is not writable.
-  PropertyStreamData<bool> listenFuelLevelLow({
+  StreamSubscription<bool> listenFuelLevelLow(
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.FUEL_LEVEL_LOW.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -1970,13 +2059,15 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Normal permission {@link Car#PERMISSION_EXTERIOR_ENVIRONMENT} to read property.
   /// Property is not writable.
-  PropertyStreamData<bool> listenNightMode({
+  StreamSubscription<bool> listenNightMode(
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.NIGHT_MODE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -1998,13 +2089,15 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Normal permission {@link Car#PERMISSION_POWERTRAIN} to read property.
   /// Property is not writable.
-  PropertyStreamData<int> listenIgnitionState({
+  StreamSubscription<int> listenIgnitionState(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.IGNITION_STATE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -2081,13 +2174,15 @@ class VehiclePropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
-  PropertyStreamData<int> listenTurnSignalLightState({
+  StreamSubscription<int> listenTurnSignalLightState(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.TURN_SIGNAL_LIGHT_STATE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -2140,13 +2235,15 @@ class VehiclePropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
-  PropertyStreamData<int> listenTurnSignalSwitch({
+  StreamSubscription<int> listenTurnSignalSwitch(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.TURN_SIGNAL_SWITCH.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -2171,13 +2268,15 @@ class VehiclePropertyRepository {
   /// permission {@link Car#PERMISSION_CONTROL_CAR_CLIMATE} to read property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_CLIMATE} to write
   /// property.
-  PropertyStreamData<int> listenHvacTemperatureDisplayUnits({
+  StreamSubscription<int> listenHvacTemperatureDisplayUnits(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.HVAC_TEMPERATURE_DISPLAY_UNITS.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -2220,13 +2319,15 @@ class VehiclePropertyRepository {
   /// Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} to read property.
   /// Normal permission {@link Car#PERMISSION_CONTROL_DISPLAY_UNITS} and Signature|Privileged
   /// permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
-  PropertyStreamData<int> listenDistanceDisplayUnits({
+  StreamSubscription<int> listenDistanceDisplayUnits(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.DISTANCE_DISPLAY_UNITS.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -2267,13 +2368,15 @@ class VehiclePropertyRepository {
   /// Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} to read property.
   /// Normal permission {@link Car#PERMISSION_CONTROL_DISPLAY_UNITS} and Signature|Privileged
   /// permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
-  PropertyStreamData<int> listenFuelVolumeDisplayUnits({
+  StreamSubscription<int> listenFuelVolumeDisplayUnits(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.FUEL_VOLUME_DISPLAY_UNITS.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -2316,13 +2419,15 @@ class VehiclePropertyRepository {
   /// Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} to read property.
   /// Normal permission {@link Car#PERMISSION_CONTROL_DISPLAY_UNITS} and Signature|Privileged
   /// permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
-  PropertyStreamData<int> listenTirePressureDisplayUnits({
+  StreamSubscription<int> listenTirePressureDisplayUnits(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.TIRE_PRESSURE_DISPLAY_UNITS.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -2365,13 +2470,15 @@ class VehiclePropertyRepository {
   /// Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} to read property.
   /// Normal permission {@link Car#PERMISSION_CONTROL_DISPLAY_UNITS} and Signature|Privileged
   /// permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
-  PropertyStreamData<int> listenEvBatteryDisplayUnits({
+  StreamSubscription<int> listenEvBatteryDisplayUnits(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.EV_BATTERY_DISPLAY_UNITS.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -2414,13 +2521,15 @@ class VehiclePropertyRepository {
   /// Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} to read property.
   /// Normal permission {@link Car#PERMISSION_CONTROL_DISPLAY_UNITS} and Signature|Privileged
   /// permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
-  PropertyStreamData<int> listenVehicleSpeedDisplayUnits({
+  StreamSubscription<int> listenVehicleSpeedDisplayUnits(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.VEHICLE_SPEED_DISPLAY_UNITS.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -2455,13 +2564,15 @@ class VehiclePropertyRepository {
   /// Normal permission {@link Car#PERMISSION_READ_DISPLAY_UNITS} to read property.
   /// Normal permission {@link Car#PERMISSION_CONTROL_DISPLAY_UNITS} and Signature|Privileged
   /// permission "android.car.permission.CAR_VENDOR_EXTENSION" to write property.
-  PropertyStreamData<bool> listenFuelConsumptionUnitsDistanceOverVolume({
+  StreamSubscription<bool> listenFuelConsumptionUnitsDistanceOverVolume(
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.FUEL_CONSUMPTION_UNITS_DISTANCE_OVER_VOLUME.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -2482,13 +2593,15 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Normal permission {@link Car#PERMISSION_EXTERIOR_ENVIRONMENT} to read property.
   /// Property is not writable.
-  PropertyStreamData<double> listenEnvOutsideTemperature({
+  StreamSubscription<double> listenEnvOutsideTemperature(
+    Function(double) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyFloat(
       VehicleProperty.ENV_OUTSIDE_TEMPERATURE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -2517,14 +2630,16 @@ class VehiclePropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_25Q2_3P_PERMISSIONS
-  PropertyStreamData<int> listenSeatOccupancy(
-    VehicleAreaSeat area, {
+  StreamSubscription<int> listenSeatOccupancy(
+    VehicleAreaSeat area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_OCCUPANCY.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -2589,14 +2704,16 @@ class VehiclePropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_25Q2_3P_PERMISSIONS
-  PropertyStreamData<int> listenWindshieldWipersState(
-    VehicleAreaWindow area, {
+  StreamSubscription<int> listenWindshieldWipersState(
+    VehicleAreaWindow area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.WINDSHIELD_WIPERS_STATE.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -2649,13 +2766,15 @@ class VehiclePropertyRepository {
   /// Dangerous permission {@link android.Manifest.permission#ACCESS_FINE_LOCATION} to read
   /// property.
   /// Property is not writable.
-  PropertyStreamData<int> listenLocationCharacterization({
+  StreamSubscription<int> listenLocationCharacterization(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.LOCATION_CHARACTERIZATION.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -2674,13 +2793,15 @@ class VehiclePropertyRepository {
   ///
   /// Doesn't require permission because it's not exposed through
   /// {@link android.car.hardware.property.CarPropertyManager}.
-  PropertyStreamData<dynamic> listenInitialUserInfo({
+  StreamSubscription<dynamic> listenInitialUserInfo(
+    Function(dynamic) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyMixed(
       VehicleProperty.INITIAL_USER_INFO.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -2708,13 +2829,15 @@ class VehiclePropertyRepository {
   ///
   /// Doesn't require permission because it's not exposed through
   /// {@link android.car.hardware.property.CarPropertyManager}.
-  PropertyStreamData<dynamic> listenSwitchUser({
+  StreamSubscription<dynamic> listenSwitchUser(
+    Function(dynamic) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyMixed(
       VehicleProperty.SWITCH_USER.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -2742,13 +2865,15 @@ class VehiclePropertyRepository {
   ///
   /// Doesn't require permission because it's not exposed through
   /// {@link android.car.hardware.property.CarPropertyManager}.
-  PropertyStreamData<dynamic> listenCreateUser({
+  StreamSubscription<dynamic> listenCreateUser(
+    Function(dynamic) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyMixed(
       VehicleProperty.CREATE_USER.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -2791,13 +2916,15 @@ class VehiclePropertyRepository {
   ///
   /// Doesn't require permission because it's not exposed through
   /// {@link android.car.hardware.property.CarPropertyManager}.
-  PropertyStreamData<dynamic> listenUserIdentificationAssociation({
+  StreamSubscription<dynamic> listenUserIdentificationAssociation(
+    Function(dynamic) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyMixed(
       VehicleProperty.USER_IDENTIFICATION_ASSOCIATION.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -2828,13 +2955,15 @@ class VehiclePropertyRepository {
   ///
   /// Doesn't require permission because it's not exposed through
   /// {@link android.car.hardware.property.CarPropertyManager}.
-  PropertyStreamData<String> listenPowerPolicyReq({
+  StreamSubscription<String> listenPowerPolicyReq(
+    Function(String) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyString(
       VehicleProperty.POWER_POLICY_REQ.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -2853,13 +2982,15 @@ class VehiclePropertyRepository {
   ///
   /// Doesn't require permission because it's not exposed through
   /// {@link android.car.hardware.property.CarPropertyManager}.
-  PropertyStreamData<String> listenPowerPolicyGroupReq({
+  StreamSubscription<String> listenPowerPolicyGroupReq(
+    Function(String) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyString(
       VehicleProperty.POWER_POLICY_GROUP_REQ.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -2878,13 +3009,15 @@ class VehiclePropertyRepository {
   ///
   /// Doesn't require permission because it's not exposed through
   /// {@link android.car.hardware.property.CarPropertyManager}.
-  PropertyStreamData<String> listenCurrentPowerPolicy({
+  StreamSubscription<String> listenCurrentPowerPolicy(
+    Function(String) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyString(
       VehicleProperty.CURRENT_POWER_POLICY.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -2936,13 +3069,15 @@ class VehiclePropertyRepository {
   ///
   /// Doesn't require permission because it's not exposed through
   /// {@link android.car.hardware.property.CarPropertyManager}.
-  PropertyStreamData<int> listenVhalHeartbeat({
+  StreamSubscription<int> listenVhalHeartbeat(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt64(
       VehicleProperty.VHAL_HEARTBEAT.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -2961,13 +3096,15 @@ class VehiclePropertyRepository {
   ///
   /// Doesn't require permission because it's not exposed through
   /// {@link android.car.hardware.property.CarPropertyManager}.
-  PropertyStreamData<int> listenClusterSwitchUi({
+  StreamSubscription<int> listenClusterSwitchUi(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.CLUSTER_SWITCH_UI.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -2986,13 +3123,15 @@ class VehiclePropertyRepository {
   ///
   /// Doesn't require permission because it's not exposed through
   /// {@link android.car.hardware.property.CarPropertyManager}.
-  PropertyStreamData<List<int>> listenClusterDisplayState({
+  StreamSubscription<List<int>> listenClusterDisplayState(
+    Function(List<int>) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32Vec(
       VehicleProperty.CLUSTER_DISPLAY_STATE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -3071,13 +3210,15 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Normal permission {@link Car#PERMISSION_CAR_INFO} to read property.
   /// Property is not writable.
-  PropertyStreamData<int> listenElectronicTollCollectionCardType({
+  StreamSubscription<int> listenElectronicTollCollectionCardType(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.ELECTRONIC_TOLL_COLLECTION_CARD_TYPE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -3108,13 +3249,15 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Normal permission {@link Car#PERMISSION_CAR_INFO} to read property.
   /// Property is not writable.
-  PropertyStreamData<int> listenElectronicTollCollectionCardStatus({
+  StreamSubscription<int> listenElectronicTollCollectionCardStatus(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.ELECTRONIC_TOLL_COLLECTION_CARD_STATUS.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -3145,13 +3288,15 @@ class VehiclePropertyRepository {
   /// {@link Car#PERMISSION_CONTROL_CAR_ENERGY} to read property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_ENERGY} to write
   /// property.
-  PropertyStreamData<double> listenEvChargeCurrentDrawLimit({
+  StreamSubscription<double> listenEvChargeCurrentDrawLimit(
+    Function(double) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyFloat(
       VehicleProperty.EV_CHARGE_CURRENT_DRAW_LIMIT.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -3200,13 +3345,15 @@ class VehiclePropertyRepository {
   /// {@link Car#PERMISSION_CONTROL_CAR_ENERGY} to read property.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_ENERGY} to write
   /// property.
-  PropertyStreamData<double> listenEvChargePercentLimit({
+  StreamSubscription<double> listenEvChargePercentLimit(
+    Function(double) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyFloat(
       VehicleProperty.EV_CHARGE_PERCENT_LIMIT.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -3238,13 +3385,15 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Dangerous permission {@link Car#PERMISSION_ENERGY} to read property.
   /// Property is not writable.
-  PropertyStreamData<int> listenEvChargeState({
+  StreamSubscription<int> listenEvChargeState(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.EV_CHARGE_STATE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -3269,13 +3418,15 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Dangerous permission {@link Car#PERMISSION_ENERGY} to read property.
   /// Property is not writable.
-  PropertyStreamData<int> listenEvChargeTimeRemaining({
+  StreamSubscription<int> listenEvChargeTimeRemaining(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.EV_CHARGE_TIME_REMAINING.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -3312,13 +3463,15 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Dangerous permission {@link Car#PERMISSION_ENERGY} to read property.
   /// Property is not writable.
-  PropertyStreamData<int> listenEvRegenerativeBrakingState({
+  StreamSubscription<int> listenEvRegenerativeBrakingState(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.EV_REGENERATIVE_BRAKING_STATE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -3345,13 +3498,15 @@ class VehiclePropertyRepository {
   /// # Permissions
   /// Normal permission {@link Car#PERMISSION_CAR_INFO} to read property.
   /// Property is not writable.
-  PropertyStreamData<int> listenGeneralSafetyRegulationCompliance({
+  StreamSubscription<int> listenGeneralSafetyRegulationCompliance(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.GENERAL_SAFETY_REGULATION_COMPLIANCE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -3398,13 +3553,15 @@ class VehiclePropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_25Q2_3P_PERMISSIONS
-  PropertyStreamData<int> listenVehicleDrivingAutomationCurrentLevel({
+  StreamSubscription<int> listenVehicleDrivingAutomationCurrentLevel(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.VEHICLE_DRIVING_AUTOMATION_CURRENT_LEVEL.id,
       0,
       rate,
+      onData,
     );
   }
 }
@@ -3430,13 +3587,15 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_IDENTIFICATION} to read
   /// property.
   /// Property is not writable.
-  PropertyStreamData<String> listenInfoVin({
+  StreamSubscription<String> listenInfoVin(
+    Function(String) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyString(
       VehicleProperty.INFO_VIN.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -3471,13 +3630,15 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_STEERING_STATE} to read
   /// property.
   /// Property is not writable.
-  PropertyStreamData<double> listenPerfRearSteeringAngle({
+  StreamSubscription<double> listenPerfRearSteeringAngle(
+    Function(double) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyFloat(
       VehicleProperty.PERF_REAR_STEERING_ANGLE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -3500,13 +3661,15 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_CAR_ENGINE_DETAILED} to read
   /// property.
   /// Property is not writable.
-  PropertyStreamData<double> listenEngineCoolantTemp({
+  StreamSubscription<double> listenEngineCoolantTemp(
+    Function(double) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyFloat(
       VehicleProperty.ENGINE_COOLANT_TEMP.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -3532,13 +3695,15 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_CAR_ENGINE_DETAILED} to read
   /// property.
   /// Property is not writable.
-  PropertyStreamData<int> listenEngineOilLevel({
+  StreamSubscription<int> listenEngineOilLevel(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.ENGINE_OIL_LEVEL.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -3558,13 +3723,15 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_CAR_ENGINE_DETAILED} to read
   /// property.
   /// Property is not writable.
-  PropertyStreamData<double> listenEngineOilTemp({
+  StreamSubscription<double> listenEngineOilTemp(
+    Function(double) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyFloat(
       VehicleProperty.ENGINE_OIL_TEMP.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -3597,13 +3764,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<bool> listenEngineIdleAutoStopEnabled({
+  StreamSubscription<bool> listenEngineIdleAutoStopEnabled(
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.ENGINE_IDLE_AUTO_STOP_ENABLED.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -3668,13 +3837,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<int> listenImpactDetected({
+  StreamSubscription<int> listenImpactDetected(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.IMPACT_DETECTED.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -3761,14 +3932,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_TIRES} to read property.
   /// Property is not writable.
-  PropertyStreamData<double> listenCriticallyLowTirePressure(
-    VehicleAreaWheel area, {
+  StreamSubscription<double> listenCriticallyLowTirePressure(
+    VehicleAreaWheel area,
+    Function(double) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyFloat(
       VehicleProperty.CRITICALLY_LOW_TIRE_PRESSURE.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -3855,14 +4028,16 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
-  PropertyStreamData<int> listenVehiclePassiveSuspensionHeight(
-    VehicleAreaWheel area, {
+  StreamSubscription<int> listenVehiclePassiveSuspensionHeight(
+    VehicleAreaWheel area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.VEHICLE_PASSIVE_SUSPENSION_HEIGHT.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -3941,13 +4116,15 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_EXTERIOR_LIGHTS} to read
   /// property.
   /// Property is not writable.
-  PropertyStreamData<int> listenTurnSignalState({
+  StreamSubscription<int> listenTurnSignalState(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.TURN_SIGNAL_STATE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -3967,13 +4144,15 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_CAR_DYNAMICS_STATE} to read
   /// property.
   /// Property is not writable.
-  PropertyStreamData<bool> listenAbsActive({
+  StreamSubscription<bool> listenAbsActive(
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.ABS_ACTIVE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -3996,13 +4175,15 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_CAR_DYNAMICS_STATE} to read
   /// property.
   /// Property is not writable.
-  PropertyStreamData<bool> listenTractionControlActive({
+  StreamSubscription<bool> listenTractionControlActive(
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.TRACTION_CONTROL_ACTIVE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -4049,13 +4230,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<bool> listenElectronicStabilityControlEnabled({
+  StreamSubscription<bool> listenElectronicStabilityControlEnabled(
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.ELECTRONIC_STABILITY_CONTROL_ENABLED.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -4130,13 +4313,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<int> listenElectronicStabilityControlState({
+  StreamSubscription<int> listenElectronicStabilityControlState(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.ELECTRONIC_STABILITY_CONTROL_STATE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -4186,14 +4371,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_CLIMATE} to read
   /// and write property.
-  PropertyStreamData<int> listenHvacFanSpeed(
-    VehicleAreaSeat area, {
+  StreamSubscription<int> listenHvacFanSpeed(
+    VehicleAreaSeat area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.HVAC_FAN_SPEED.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -4237,14 +4424,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_CLIMATE} to read
   /// and write property.
-  PropertyStreamData<int> listenHvacFanDirection(
-    VehicleAreaSeat area, {
+  StreamSubscription<int> listenHvacFanDirection(
+    VehicleAreaSeat area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.HVAC_FAN_DIRECTION.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -4285,14 +4474,16 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_CLIMATE} to read
   /// property.
   /// Property is not writable.
-  PropertyStreamData<double> listenHvacTemperatureCurrent(
-    VehicleAreaSeat area, {
+  StreamSubscription<double> listenHvacTemperatureCurrent(
+    VehicleAreaSeat area,
+    Function(double) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyFloat(
       VehicleProperty.HVAC_TEMPERATURE_CURRENT.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -4453,14 +4644,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_CLIMATE} to read
   /// and write property.
-  PropertyStreamData<double> listenHvacTemperatureSet(
-    VehicleAreaSeat area, {
+  StreamSubscription<double> listenHvacTemperatureSet(
+    VehicleAreaSeat area,
+    Function(double) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyFloat(
       VehicleProperty.HVAC_TEMPERATURE_SET.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -4640,13 +4833,15 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_CLIMATE} to read
   /// and write property.
-  PropertyStreamData<List<double>> listenHvacTemperatureValueSuggestion({
+  StreamSubscription<List<double>> listenHvacTemperatureValueSuggestion(
+    Function(List<double>) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyFloatVec(
       VehicleProperty.HVAC_TEMPERATURE_VALUE_SUGGESTION.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -4718,14 +4913,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_CLIMATE} to read
   /// and write property.
-  PropertyStreamData<bool> listenHvacDefroster(
-    VehicleAreaWindow area, {
+  StreamSubscription<bool> listenHvacDefroster(
+    VehicleAreaWindow area,
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.HVAC_DEFROSTER.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -4759,14 +4956,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_CLIMATE} to read
   /// and write property.
-  PropertyStreamData<bool> listenHvacAcOn(
-    VehicleAreaSeat area, {
+  StreamSubscription<bool> listenHvacAcOn(
+    VehicleAreaSeat area,
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.HVAC_AC_ON.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -4800,14 +4999,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_CLIMATE} to read
   /// and write property.
-  PropertyStreamData<bool> listenHvacMaxAcOn(
-    VehicleAreaSeat area, {
+  StreamSubscription<bool> listenHvacMaxAcOn(
+    VehicleAreaSeat area,
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.HVAC_MAX_AC_ON.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -4841,14 +5042,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_CLIMATE} to read
   /// and write property.
-  PropertyStreamData<bool> listenHvacMaxDefrostOn(
-    VehicleAreaSeat area, {
+  StreamSubscription<bool> listenHvacMaxDefrostOn(
+    VehicleAreaSeat area,
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.HVAC_MAX_DEFROST_ON.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -4882,14 +5085,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_CLIMATE} to read
   /// and write property.
-  PropertyStreamData<bool> listenHvacRecircOn(
-    VehicleAreaSeat area, {
+  StreamSubscription<bool> listenHvacRecircOn(
+    VehicleAreaSeat area,
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.HVAC_RECIRC_ON.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -4923,14 +5128,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_CLIMATE} to read
   /// and write property.
-  PropertyStreamData<bool> listenHvacDualOn(
-    VehicleAreaSeat area, {
+  StreamSubscription<bool> listenHvacDualOn(
+    VehicleAreaSeat area,
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.HVAC_DUAL_ON.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -4964,14 +5171,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_CLIMATE} to read
   /// and write property.
-  PropertyStreamData<bool> listenHvacAutoOn(
-    VehicleAreaSeat area, {
+  StreamSubscription<bool> listenHvacAutoOn(
+    VehicleAreaSeat area,
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.HVAC_AUTO_ON.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -5005,14 +5214,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_CLIMATE} to read
   /// and write property.
-  PropertyStreamData<int> listenHvacSeatTemperature(
-    VehicleAreaSeat area, {
+  StreamSubscription<int> listenHvacSeatTemperature(
+    VehicleAreaSeat area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.HVAC_SEAT_TEMPERATURE.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -5046,14 +5257,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_CLIMATE} to read
   /// and write property.
-  PropertyStreamData<int> listenHvacSideMirrorHeat(
-    VehicleAreaMirror area, {
+  StreamSubscription<int> listenHvacSideMirrorHeat(
+    VehicleAreaMirror area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.HVAC_SIDE_MIRROR_HEAT.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -5087,13 +5300,15 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_CLIMATE} to read
   /// and write property.
-  PropertyStreamData<int> listenHvacSteeringWheelHeat({
+  StreamSubscription<int> listenHvacSteeringWheelHeat(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.HVAC_STEERING_WHEEL_HEAT.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -5144,14 +5359,16 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_CLIMATE} to read
   /// property.
   /// Property is not writable.
-  PropertyStreamData<int> listenHvacActualFanSpeedRpm(
-    VehicleAreaSeat area, {
+  StreamSubscription<int> listenHvacActualFanSpeedRpm(
+    VehicleAreaSeat area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.HVAC_ACTUAL_FAN_SPEED_RPM.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -5182,14 +5399,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_CLIMATE} to read
   /// and write property.
-  PropertyStreamData<bool> listenHvacPowerOn(
-    VehicleAreaSeat area, {
+  StreamSubscription<bool> listenHvacPowerOn(
+    VehicleAreaSeat area,
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.HVAC_POWER_ON.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -5230,14 +5449,16 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_CLIMATE} to read
   /// property.
   /// Property is not writable.
-  PropertyStreamData<List<int>> listenHvacFanDirectionAvailable(
-    VehicleAreaSeat area, {
+  StreamSubscription<List<int>> listenHvacFanDirectionAvailable(
+    VehicleAreaSeat area,
+    Function(List<int>) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32Vec(
       VehicleProperty.HVAC_FAN_DIRECTION_AVAILABLE.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -5258,14 +5479,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_CLIMATE} to read
   /// and write property.
-  PropertyStreamData<bool> listenHvacAutoRecircOn(
-    VehicleAreaSeat area, {
+  StreamSubscription<bool> listenHvacAutoRecircOn(
+    VehicleAreaSeat area,
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.HVAC_AUTO_RECIRC_ON.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -5299,14 +5522,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_CLIMATE} to read
   /// and write property.
-  PropertyStreamData<int> listenHvacSeatVentilation(
-    VehicleAreaSeat area, {
+  StreamSubscription<int> listenHvacSeatVentilation(
+    VehicleAreaSeat area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.HVAC_SEAT_VENTILATION.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -5346,14 +5571,16 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<bool> listenHvacElectricDefrosterOn(
-    VehicleAreaWindow area, {
+  StreamSubscription<bool> listenHvacElectricDefrosterOn(
+    VehicleAreaWindow area,
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.HVAC_ELECTRIC_DEFROSTER_ON.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -5556,13 +5783,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<bool> listenValetModeEnabled({
+  StreamSubscription<bool> listenValetModeEnabled(
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.VALET_MODE_ENABLED.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -5634,14 +5863,16 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<bool> listenHeadUpDisplayEnabled(
-    VehicleAreaSeat area, {
+  StreamSubscription<bool> listenHeadUpDisplayEnabled(
+    VehicleAreaSeat area,
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.HEAD_UP_DISPLAY_ENABLED.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -5710,14 +5941,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_DOORS} to read and
   /// write property.
-  PropertyStreamData<int> listenDoorPos(
-    VehicleAreaDoor area, {
+  StreamSubscription<int> listenDoorPos(
+    VehicleAreaDoor area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.DOOR_POS.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -5786,14 +6019,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_DOORS} to read and
   /// write property.
-  PropertyStreamData<int> listenDoorMove(
-    VehicleAreaDoor area, {
+  StreamSubscription<int> listenDoorMove(
+    VehicleAreaDoor area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.DOOR_MOVE.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -5843,14 +6078,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_DOORS} to read and
   /// write property.
-  PropertyStreamData<bool> listenDoorLock(
-    VehicleAreaDoor area, {
+  StreamSubscription<bool> listenDoorLock(
+    VehicleAreaDoor area,
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.DOOR_LOCK.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -5898,14 +6135,16 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<bool> listenDoorChildLockEnabled(
-    VehicleAreaDoor area, {
+  StreamSubscription<bool> listenDoorChildLockEnabled(
+    VehicleAreaDoor area,
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.DOOR_CHILD_LOCK_ENABLED.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -5969,14 +6208,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_MIRRORS} to read and
   /// write property.
-  PropertyStreamData<int> listenMirrorZPos(
-    VehicleAreaMirror area, {
+  StreamSubscription<int> listenMirrorZPos(
+    VehicleAreaMirror area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.MIRROR_Z_POS.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -6046,14 +6287,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_MIRRORS} to read and
   /// write property.
-  PropertyStreamData<int> listenMirrorZMove(
-    VehicleAreaMirror area, {
+  StreamSubscription<int> listenMirrorZMove(
+    VehicleAreaMirror area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.MIRROR_Z_MOVE.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -6123,14 +6366,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_MIRRORS} to read and
   /// write property.
-  PropertyStreamData<int> listenMirrorYPos(
-    VehicleAreaMirror area, {
+  StreamSubscription<int> listenMirrorYPos(
+    VehicleAreaMirror area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.MIRROR_Y_POS.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -6200,14 +6445,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_MIRRORS} to read and
   /// write property.
-  PropertyStreamData<int> listenMirrorYMove(
-    VehicleAreaMirror area, {
+  StreamSubscription<int> listenMirrorYMove(
+    VehicleAreaMirror area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.MIRROR_Y_MOVE.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -6254,13 +6501,15 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_MIRRORS} to read and
   /// write property.
-  PropertyStreamData<bool> listenMirrorLock({
+  StreamSubscription<bool> listenMirrorLock(
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.MIRROR_LOCK.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -6293,13 +6542,15 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_MIRRORS} to read and
   /// write property.
-  PropertyStreamData<bool> listenMirrorFold({
+  StreamSubscription<bool> listenMirrorFold(
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.MIRROR_FOLD.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -6351,14 +6602,16 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<bool> listenMirrorAutoFoldEnabled(
-    VehicleAreaMirror area, {
+  StreamSubscription<bool> listenMirrorAutoFoldEnabled(
+    VehicleAreaMirror area,
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.MIRROR_AUTO_FOLD_ENABLED.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -6418,14 +6671,16 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<bool> listenMirrorAutoTiltEnabled(
-    VehicleAreaMirror area, {
+  StreamSubscription<bool> listenMirrorAutoTiltEnabled(
+    VehicleAreaMirror area,
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.MIRROR_AUTO_TILT_ENABLED.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -6505,14 +6760,16 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<int> listenGloveBoxDoorPos(
-    VehicleAreaSeat area, {
+  StreamSubscription<int> listenGloveBoxDoorPos(
+    VehicleAreaSeat area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.GLOVE_BOX_DOOR_POS.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -6582,14 +6839,16 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<bool> listenGloveBoxLocked(
-    VehicleAreaSeat area, {
+  StreamSubscription<bool> listenGloveBoxLocked(
+    VehicleAreaSeat area,
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.GLOVE_BOX_LOCKED.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -6674,14 +6933,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
-  PropertyStreamData<bool> listenSeatBeltBuckled(
-    VehicleAreaSeat area, {
+  StreamSubscription<bool> listenSeatBeltBuckled(
+    VehicleAreaSeat area,
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.SEAT_BELT_BUCKLED.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -6739,14 +7000,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
-  PropertyStreamData<int> listenSeatBeltHeightPos(
-    VehicleAreaSeat area, {
+  StreamSubscription<int> listenSeatBeltHeightPos(
+    VehicleAreaSeat area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_BELT_HEIGHT_POS.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -6817,14 +7080,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
-  PropertyStreamData<int> listenSeatBeltHeightMove(
-    VehicleAreaSeat area, {
+  StreamSubscription<int> listenSeatBeltHeightMove(
+    VehicleAreaSeat area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_BELT_HEIGHT_MOVE.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -6893,14 +7158,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
-  PropertyStreamData<int> listenSeatForeAftPos(
-    VehicleAreaSeat area, {
+  StreamSubscription<int> listenSeatForeAftPos(
+    VehicleAreaSeat area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_FORE_AFT_POS.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -6973,14 +7240,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
-  PropertyStreamData<int> listenSeatForeAftMove(
-    VehicleAreaSeat area, {
+  StreamSubscription<int> listenSeatForeAftMove(
+    VehicleAreaSeat area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_FORE_AFT_MOVE.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -7054,14 +7323,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
-  PropertyStreamData<int> listenSeatBackrestAngle1Pos(
-    VehicleAreaSeat area, {
+  StreamSubscription<int> listenSeatBackrestAngle1Pos(
+    VehicleAreaSeat area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_BACKREST_ANGLE_1_POS.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -7140,14 +7411,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
-  PropertyStreamData<int> listenSeatBackrestAngle1Move(
-    VehicleAreaSeat area, {
+  StreamSubscription<int> listenSeatBackrestAngle1Move(
+    VehicleAreaSeat area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_BACKREST_ANGLE_1_MOVE.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -7226,14 +7499,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
-  PropertyStreamData<int> listenSeatBackrestAngle2Pos(
-    VehicleAreaSeat area, {
+  StreamSubscription<int> listenSeatBackrestAngle2Pos(
+    VehicleAreaSeat area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_BACKREST_ANGLE_2_POS.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -7316,14 +7591,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
-  PropertyStreamData<int> listenSeatBackrestAngle2Move(
-    VehicleAreaSeat area, {
+  StreamSubscription<int> listenSeatBackrestAngle2Move(
+    VehicleAreaSeat area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_BACKREST_ANGLE_2_MOVE.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -7400,14 +7677,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
-  PropertyStreamData<int> listenSeatHeightPos(
-    VehicleAreaSeat area, {
+  StreamSubscription<int> listenSeatHeightPos(
+    VehicleAreaSeat area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_HEIGHT_POS.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -7476,14 +7755,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
-  PropertyStreamData<int> listenSeatHeightMove(
-    VehicleAreaSeat area, {
+  StreamSubscription<int> listenSeatHeightMove(
+    VehicleAreaSeat area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_HEIGHT_MOVE.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -7555,14 +7836,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
-  PropertyStreamData<int> listenSeatDepthPos(
-    VehicleAreaSeat area, {
+  StreamSubscription<int> listenSeatDepthPos(
+    VehicleAreaSeat area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_DEPTH_POS.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -7637,14 +7920,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
-  PropertyStreamData<int> listenSeatDepthMove(
-    VehicleAreaSeat area, {
+  StreamSubscription<int> listenSeatDepthMove(
+    VehicleAreaSeat area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_DEPTH_MOVE.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -7718,14 +8003,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
-  PropertyStreamData<int> listenSeatTiltPos(
-    VehicleAreaSeat area, {
+  StreamSubscription<int> listenSeatTiltPos(
+    VehicleAreaSeat area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_TILT_POS.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -7800,14 +8087,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
-  PropertyStreamData<int> listenSeatTiltMove(
-    VehicleAreaSeat area, {
+  StreamSubscription<int> listenSeatTiltMove(
+    VehicleAreaSeat area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_TILT_MOVE.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -7877,14 +8166,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
-  PropertyStreamData<int> listenSeatLumbarForeAftPos(
-    VehicleAreaSeat area, {
+  StreamSubscription<int> listenSeatLumbarForeAftPos(
+    VehicleAreaSeat area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_LUMBAR_FORE_AFT_POS.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -7955,14 +8246,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
-  PropertyStreamData<int> listenSeatLumbarForeAftMove(
-    VehicleAreaSeat area, {
+  StreamSubscription<int> listenSeatLumbarForeAftMove(
+    VehicleAreaSeat area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_LUMBAR_FORE_AFT_MOVE.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -8031,14 +8324,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
-  PropertyStreamData<int> listenSeatLumbarSideSupportPos(
-    VehicleAreaSeat area, {
+  StreamSubscription<int> listenSeatLumbarSideSupportPos(
+    VehicleAreaSeat area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_LUMBAR_SIDE_SUPPORT_POS.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -8112,14 +8407,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read and
   /// write property.
-  PropertyStreamData<int> listenSeatLumbarSideSupportMove(
-    VehicleAreaSeat area, {
+  StreamSubscription<int> listenSeatLumbarSideSupportMove(
+    VehicleAreaSeat area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_LUMBAR_SIDE_SUPPORT_MOVE.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -8197,14 +8494,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read
   /// and write property.
-  PropertyStreamData<int> listenSeatHeadrestHeightPosV2(
-    VehicleAreaSeat area, {
+  StreamSubscription<int> listenSeatHeadrestHeightPosV2(
+    VehicleAreaSeat area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_HEADREST_HEIGHT_POS_V2.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -8279,14 +8578,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read
   /// and write property.
-  PropertyStreamData<int> listenSeatHeadrestHeightMove(
-    VehicleAreaSeat area, {
+  StreamSubscription<int> listenSeatHeadrestHeightMove(
+    VehicleAreaSeat area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_HEADREST_HEIGHT_MOVE.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -8357,14 +8658,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read
   /// and write property.
-  PropertyStreamData<int> listenSeatHeadrestAnglePos(
-    VehicleAreaSeat area, {
+  StreamSubscription<int> listenSeatHeadrestAnglePos(
+    VehicleAreaSeat area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_HEADREST_ANGLE_POS.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -8433,14 +8736,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read
   /// and write property.
-  PropertyStreamData<int> listenSeatHeadrestAngleMove(
-    VehicleAreaSeat area, {
+  StreamSubscription<int> listenSeatHeadrestAngleMove(
+    VehicleAreaSeat area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_HEADREST_ANGLE_MOVE.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -8508,14 +8813,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read
   /// and write property.
-  PropertyStreamData<int> listenSeatHeadrestForeAftPos(
-    VehicleAreaSeat area, {
+  StreamSubscription<int> listenSeatHeadrestForeAftPos(
+    VehicleAreaSeat area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_HEADREST_FORE_AFT_POS.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -8589,14 +8896,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_SEATS} to read
   /// and write property.
-  PropertyStreamData<int> listenSeatHeadrestForeAftMove(
-    VehicleAreaSeat area, {
+  StreamSubscription<int> listenSeatHeadrestForeAftMove(
+    VehicleAreaSeat area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_HEADREST_FORE_AFT_MOVE.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -8678,14 +8987,16 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_INTERIOR_LIGHTS} to
   /// read property.
   /// Property is not writable.
-  PropertyStreamData<int> listenSeatFootwellLightsState(
-    VehicleAreaSeat area, {
+  StreamSubscription<int> listenSeatFootwellLightsState(
+    VehicleAreaSeat area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_FOOTWELL_LIGHTS_STATE.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -8736,14 +9047,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_INTERIOR_LIGHTS} to
   /// read and write property.
-  PropertyStreamData<int> listenSeatFootwellLightsSwitch(
-    VehicleAreaSeat area, {
+  StreamSubscription<int> listenSeatFootwellLightsSwitch(
+    VehicleAreaSeat area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_FOOTWELL_LIGHTS_SWITCH.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -8809,14 +9122,16 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<bool> listenSeatEasyAccessEnabled(
-    VehicleAreaSeat area, {
+  StreamSubscription<bool> listenSeatEasyAccessEnabled(
+    VehicleAreaSeat area,
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.SEAT_EASY_ACCESS_ENABLED.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -8876,14 +9191,16 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<bool> listenSeatAirbagEnabled(
-    VehicleAreaSeat area, {
+  StreamSubscription<bool> listenSeatAirbagEnabled(
+    VehicleAreaSeat area,
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.SEAT_AIRBAG_ENABLED.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -8961,14 +9278,16 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<int> listenSeatAirbagsDeployed(
-    VehicleAreaSeat area, {
+  StreamSubscription<int> listenSeatAirbagsDeployed(
+    VehicleAreaSeat area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_AIRBAGS_DEPLOYED.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -9017,14 +9336,16 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<int> listenSeatCushionSideSupportPos(
-    VehicleAreaSeat area, {
+  StreamSubscription<int> listenSeatCushionSideSupportPos(
+    VehicleAreaSeat area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_CUSHION_SIDE_SUPPORT_POS.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -9107,14 +9428,16 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<int> listenSeatCushionSideSupportMove(
-    VehicleAreaSeat area, {
+  StreamSubscription<int> listenSeatCushionSideSupportMove(
+    VehicleAreaSeat area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_CUSHION_SIDE_SUPPORT_MOVE.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -9195,14 +9518,16 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<int> listenSeatLumbarVerticalPos(
-    VehicleAreaSeat area, {
+  StreamSubscription<int> listenSeatLumbarVerticalPos(
+    VehicleAreaSeat area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_LUMBAR_VERTICAL_POS.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -9280,14 +9605,16 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<int> listenSeatLumbarVerticalMove(
-    VehicleAreaSeat area, {
+  StreamSubscription<int> listenSeatLumbarVerticalMove(
+    VehicleAreaSeat area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_LUMBAR_VERTICAL_MOVE.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -9369,14 +9696,16 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<int> listenSeatWalkInPos(
-    VehicleAreaSeat area, {
+  StreamSubscription<int> listenSeatWalkInPos(
+    VehicleAreaSeat area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.SEAT_WALK_IN_POS.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -9453,14 +9782,16 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<bool> listenSeatBeltPretensionerDeployed(
-    VehicleAreaSeat area, {
+  StreamSubscription<bool> listenSeatBeltPretensionerDeployed(
+    VehicleAreaSeat area,
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.SEAT_BELT_PRETENSIONER_DEPLOYED.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -9511,14 +9842,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_WINDOWS} to read and
   /// write property.
-  PropertyStreamData<int> listenWindowPos(
-    VehicleAreaWindow area, {
+  StreamSubscription<int> listenWindowPos(
+    VehicleAreaWindow area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.WINDOW_POS.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -9595,14 +9928,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_WINDOWS} to read and
   /// write property.
-  PropertyStreamData<int> listenWindowMove(
-    VehicleAreaWindow area, {
+  StreamSubscription<int> listenWindowMove(
+    VehicleAreaWindow area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.WINDOW_MOVE.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -9654,14 +9989,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_WINDOWS} to read and
   /// write property.
-  PropertyStreamData<bool> listenWindowLock(
-    VehicleAreaWindow area, {
+  StreamSubscription<bool> listenWindowLock(
+    VehicleAreaWindow area,
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.WINDOW_LOCK.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -9721,14 +10058,16 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<int> listenWindshieldWipersPeriod(
-    VehicleAreaWindow area, {
+  StreamSubscription<int> listenWindshieldWipersPeriod(
+    VehicleAreaWindow area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.WINDSHIELD_WIPERS_PERIOD.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -9789,14 +10128,16 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<int> listenWindshieldWipersSwitch(
-    VehicleAreaWindow area, {
+  StreamSubscription<int> listenWindshieldWipersSwitch(
+    VehicleAreaWindow area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.WINDSHIELD_WIPERS_SWITCH.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -9881,13 +10222,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<int> listenSteeringWheelDepthPos({
+  StreamSubscription<int> listenSteeringWheelDepthPos(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.STEERING_WHEEL_DEPTH_POS.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -9969,13 +10312,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<int> listenSteeringWheelDepthMove({
+  StreamSubscription<int> listenSteeringWheelDepthMove(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.STEERING_WHEEL_DEPTH_MOVE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -10054,13 +10399,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<int> listenSteeringWheelHeightPos({
+  StreamSubscription<int> listenSteeringWheelHeightPos(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.STEERING_WHEEL_HEIGHT_POS.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -10140,13 +10487,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<int> listenSteeringWheelHeightMove({
+  StreamSubscription<int> listenSteeringWheelHeightMove(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.STEERING_WHEEL_HEIGHT_MOVE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -10210,13 +10559,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<bool> listenSteeringWheelTheftLockEnabled({
+  StreamSubscription<bool> listenSteeringWheelTheftLockEnabled(
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.STEERING_WHEEL_THEFT_LOCK_ENABLED.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -10269,13 +10620,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<bool> listenSteeringWheelLocked({
+  StreamSubscription<bool> listenSteeringWheelLocked(
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.STEERING_WHEEL_LOCKED.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -10329,13 +10682,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<bool> listenSteeringWheelEasyAccessEnabled({
+  StreamSubscription<bool> listenSteeringWheelEasyAccessEnabled(
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.STEERING_WHEEL_EASY_ACCESS_ENABLED.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -10408,13 +10763,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<List<int>> listenUltrasonicsSensorPosition({
+  StreamSubscription<List<int>> listenUltrasonicsSensorPosition(
+    Function(List<int>) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32Vec(
       VehicleProperty.ULTRASONICS_SENSOR_POSITION.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -10475,13 +10832,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<List<double>> listenUltrasonicsSensorOrientation({
+  StreamSubscription<List<double>> listenUltrasonicsSensorOrientation(
+    Function(List<double>) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyFloatVec(
       VehicleProperty.ULTRASONICS_SENSOR_ORIENTATION.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -10534,13 +10893,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<List<int>> listenUltrasonicsSensorFieldOfView({
+  StreamSubscription<List<int>> listenUltrasonicsSensorFieldOfView(
+    Function(List<int>) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32Vec(
       VehicleProperty.ULTRASONICS_SENSOR_FIELD_OF_VIEW.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -10585,13 +10946,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<List<int>> listenUltrasonicsSensorDetectionRange({
+  StreamSubscription<List<int>> listenUltrasonicsSensorDetectionRange(
+    Function(List<int>) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32Vec(
       VehicleProperty.ULTRASONICS_SENSOR_DETECTION_RANGE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -10688,13 +11051,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<List<int>> listenUltrasonicsSensorSupportedRanges({
+  StreamSubscription<List<int>> listenUltrasonicsSensorSupportedRanges(
+    Function(List<int>) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32Vec(
       VehicleProperty.ULTRASONICS_SENSOR_SUPPORTED_RANGES.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -10749,13 +11114,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<List<int>> listenUltrasonicsSensorMeasuredDistance({
+  StreamSubscription<List<int>> listenUltrasonicsSensorMeasuredDistance(
+    Function(List<int>) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32Vec(
       VehicleProperty.ULTRASONICS_SENSOR_MEASURED_DISTANCE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -10775,13 +11142,15 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_EXTERIOR_LIGHTS} to read
   /// property.
   /// Property is not writable.
-  PropertyStreamData<int> listenHeadlightsState({
+  StreamSubscription<int> listenHeadlightsState(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.HEADLIGHTS_STATE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -10804,13 +11173,15 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_EXTERIOR_LIGHTS} to read
   /// property.
   /// Property is not writable.
-  PropertyStreamData<int> listenHighBeamLightsState({
+  StreamSubscription<int> listenHighBeamLightsState(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.HIGH_BEAM_LIGHTS_STATE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -10872,13 +11243,15 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_EXTERIOR_LIGHTS} to read
   /// property.
   /// Property is not writable.
-  PropertyStreamData<int> listenFogLightsState({
+  StreamSubscription<int> listenFogLightsState(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.FOG_LIGHTS_STATE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -10901,13 +11274,15 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_EXTERIOR_LIGHTS} to read
   /// property.
   /// Property is not writable.
-  PropertyStreamData<int> listenHazardLightsState({
+  StreamSubscription<int> listenHazardLightsState(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.HAZARD_LIGHTS_STATE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -10928,13 +11303,15 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_EXTERIOR_LIGHTS} to
   /// read and write property.
-  PropertyStreamData<int> listenHeadlightsSwitch({
+  StreamSubscription<int> listenHeadlightsSwitch(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.HEADLIGHTS_SWITCH.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -10968,13 +11345,15 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_EXTERIOR_LIGHTS} to
   /// read and write property.
-  PropertyStreamData<int> listenHighBeamLightsSwitch({
+  StreamSubscription<int> listenHighBeamLightsSwitch(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.HIGH_BEAM_LIGHTS_SWITCH.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -11054,13 +11433,15 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission{@link Car#PERMISSION_CONTROL_EXTERIOR_LIGHTS} to
   /// read and write property.
-  PropertyStreamData<int> listenFogLightsSwitch({
+  StreamSubscription<int> listenFogLightsSwitch(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.FOG_LIGHTS_SWITCH.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -11117,13 +11498,15 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_EXTERIOR_LIGHTS} to
   /// read and write property.
-  PropertyStreamData<int> listenHazardLightsSwitch({
+  StreamSubscription<int> listenHazardLightsSwitch(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.HAZARD_LIGHTS_SWITCH.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -11159,13 +11542,15 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_INTERIOR_LIGHTS} to
   /// read property.
   /// Property is not writable.
-  PropertyStreamData<int> listenCabinLightsState({
+  StreamSubscription<int> listenCabinLightsState(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.CABIN_LIGHTS_STATE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -11186,13 +11571,15 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_INTERIOR_LIGHTS} to
   /// read and write property.
-  PropertyStreamData<int> listenCabinLightsSwitch({
+  StreamSubscription<int> listenCabinLightsSwitch(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.CABIN_LIGHTS_SWITCH.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -11228,14 +11615,16 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_INTERIOR_LIGHTS} to
   /// read property.
   /// Property is not writable.
-  PropertyStreamData<int> listenReadingLightsState(
-    VehicleAreaSeat area, {
+  StreamSubscription<int> listenReadingLightsState(
+    VehicleAreaSeat area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.READING_LIGHTS_STATE.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -11256,14 +11645,16 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_INTERIOR_LIGHTS} to
   /// read and write property.
-  PropertyStreamData<int> listenReadingLightsSwitch(
-    VehicleAreaSeat area, {
+  StreamSubscription<int> listenReadingLightsSwitch(
+    VehicleAreaSeat area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.READING_LIGHTS_SWITCH.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -11329,13 +11720,15 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_READ_INTERIOR_LIGHTS} to
   /// read property.
   /// Property is not writable.
-  PropertyStreamData<int> listenSteeringWheelLightsState({
+  StreamSubscription<int> listenSteeringWheelLightsState(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.STEERING_WHEEL_LIGHTS_STATE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -11386,13 +11779,15 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_INTERIOR_LIGHTS} to
   /// read and write property.
-  PropertyStreamData<int> listenSteeringWheelLightsSwitch({
+  StreamSubscription<int> listenSteeringWheelLightsSwitch(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.STEERING_WHEEL_LIGHTS_SWITCH.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -11463,13 +11858,15 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_EXTERIOR_LIGHTS} to read
   /// property.
   /// Property is not writable.
-  PropertyStreamData<int> listenFrontFogLightsState({
+  StreamSubscription<int> listenFrontFogLightsState(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.FRONT_FOG_LIGHTS_STATE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -11494,13 +11891,15 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_EXTERIOR_LIGHTS} to
   /// read and write property.
-  PropertyStreamData<int> listenFrontFogLightsSwitch({
+  StreamSubscription<int> listenFrontFogLightsSwitch(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.FRONT_FOG_LIGHTS_SWITCH.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -11542,13 +11941,15 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_EXTERIOR_LIGHTS} to read
   /// property.
   /// Property is not writable.
-  PropertyStreamData<int> listenRearFogLightsState({
+  StreamSubscription<int> listenRearFogLightsState(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.REAR_FOG_LIGHTS_STATE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -11573,13 +11974,15 @@ class VehiclePrivilegedPropertyRepository {
   /// # Permissions
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_EXTERIOR_LIGHTS} to
   /// read and write property.
-  PropertyStreamData<int> listenRearFogLightsSwitch({
+  StreamSubscription<int> listenRearFogLightsSwitch(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.REAR_FOG_LIGHTS_SWITCH.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -11670,13 +12073,15 @@ class VehiclePrivilegedPropertyRepository {
   /// dangerous permission {@link Car#PERMISSION_ENERGY} to read.
   /// Signature|Privileged permission {@link Car#PERMISSION_CONTROL_CAR_ENERGY} to write
   /// property.
-  PropertyStreamData<bool> listenEvChargeSwitch({
+  StreamSubscription<bool> listenEvChargeSwitch(
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.EV_CHARGE_SWITCH.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -11729,13 +12134,15 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_PRIVILEGED_CAR_INFO} to read
   /// property.
   /// Property is not writable.
-  PropertyStreamData<int> listenVehicleCurbWeight({
+  StreamSubscription<int> listenVehicleCurbWeight(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.VEHICLE_CURB_WEIGHT.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -11761,13 +12168,15 @@ class VehiclePrivilegedPropertyRepository {
   /// Signature|Privileged permission {@link Car#PERMISSION_PRIVILEGED_CAR_INFO} to read
   /// property.
   /// Property is not writable.
-  PropertyStreamData<int> listenTrailerPresent({
+  StreamSubscription<int> listenTrailerPresent(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.TRAILER_PRESENT.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -11842,13 +12251,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_ANDROID_B_VEHICLE_PROPERTIES
-  PropertyStreamData<int> listenVehicleDrivingAutomationTargetLevel({
+  StreamSubscription<int> listenVehicleDrivingAutomationTargetLevel(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.VEHICLE_DRIVING_AUTOMATION_TARGET_LEVEL.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -11897,13 +12308,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<bool> listenAutomaticEmergencyBrakingEnabled({
+  StreamSubscription<bool> listenAutomaticEmergencyBrakingEnabled(
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.AUTOMATIC_EMERGENCY_BRAKING_ENABLED.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -11989,13 +12402,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<int> listenAutomaticEmergencyBrakingState({
+  StreamSubscription<int> listenAutomaticEmergencyBrakingState(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.AUTOMATIC_EMERGENCY_BRAKING_STATE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -12040,13 +12455,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<bool> listenForwardCollisionWarningEnabled({
+  StreamSubscription<bool> listenForwardCollisionWarningEnabled(
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.FORWARD_COLLISION_WARNING_ENABLED.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -12120,13 +12537,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<int> listenForwardCollisionWarningState({
+  StreamSubscription<int> listenForwardCollisionWarningState(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.FORWARD_COLLISION_WARNING_STATE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -12173,13 +12592,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<bool> listenBlindSpotWarningEnabled({
+  StreamSubscription<bool> listenBlindSpotWarningEnabled(
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.BLIND_SPOT_WARNING_ENABLED.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -12254,14 +12675,16 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<int> listenBlindSpotWarningState(
-    VehicleAreaMirror area, {
+  StreamSubscription<int> listenBlindSpotWarningState(
+    VehicleAreaMirror area,
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.BLIND_SPOT_WARNING_STATE.id,
       area.value,
       rate,
+      onData,
     );
   }
 
@@ -12308,13 +12731,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<bool> listenLaneDepartureWarningEnabled({
+  StreamSubscription<bool> listenLaneDepartureWarningEnabled(
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.LANE_DEPARTURE_WARNING_ENABLED.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -12389,13 +12814,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<int> listenLaneDepartureWarningState({
+  StreamSubscription<int> listenLaneDepartureWarningState(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.LANE_DEPARTURE_WARNING_STATE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -12450,13 +12877,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<bool> listenLaneKeepAssistEnabled({
+  StreamSubscription<bool> listenLaneKeepAssistEnabled(
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.LANE_KEEP_ASSIST_ENABLED.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -12541,13 +12970,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<int> listenLaneKeepAssistState({
+  StreamSubscription<int> listenLaneKeepAssistState(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.LANE_KEEP_ASSIST_STATE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -12604,13 +13035,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<bool> listenLaneCenteringAssistEnabled({
+  StreamSubscription<bool> listenLaneCenteringAssistEnabled(
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.LANE_CENTERING_ASSIST_ENABLED.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -12732,13 +13165,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<int> listenLaneCenteringAssistState({
+  StreamSubscription<int> listenLaneCenteringAssistState(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.LANE_CENTERING_ASSIST_STATE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -12787,13 +13222,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<bool> listenEmergencyLaneKeepAssistEnabled({
+  StreamSubscription<bool> listenEmergencyLaneKeepAssistEnabled(
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.EMERGENCY_LANE_KEEP_ASSIST_ENABLED.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -12873,13 +13310,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<int> listenEmergencyLaneKeepAssistState({
+  StreamSubscription<int> listenEmergencyLaneKeepAssistState(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.EMERGENCY_LANE_KEEP_ASSIST_STATE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -12930,13 +13369,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<bool> listenCruiseControlEnabled({
+  StreamSubscription<bool> listenCruiseControlEnabled(
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.CRUISE_CONTROL_ENABLED.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -13033,13 +13474,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<int> listenCruiseControlType({
+  StreamSubscription<int> listenCruiseControlType(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.CRUISE_CONTROL_TYPE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -13129,13 +13572,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<int> listenCruiseControlState({
+  StreamSubscription<int> listenCruiseControlState(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.CRUISE_CONTROL_STATE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -13219,13 +13664,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<double> listenCruiseControlTargetSpeed({
+  StreamSubscription<double> listenCruiseControlTargetSpeed(
+    Function(double) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyFloat(
       VehicleProperty.CRUISE_CONTROL_TARGET_SPEED.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -13286,13 +13733,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<int> listenAdaptiveCruiseControlTargetTimeGap({
+  StreamSubscription<int> listenAdaptiveCruiseControlTargetTimeGap(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.ADAPTIVE_CRUISE_CONTROL_TARGET_TIME_GAP.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -13386,14 +13835,16 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<int>
-      listenAdaptiveCruiseControlLeadVehicleMeasuredDistance({
+  StreamSubscription<int>
+  listenAdaptiveCruiseControlLeadVehicleMeasuredDistance(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.ADAPTIVE_CRUISE_CONTROL_LEAD_VEHICLE_MEASURED_DISTANCE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -13442,13 +13893,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<bool> listenHandsOnDetectionEnabled({
+  StreamSubscription<bool> listenHandsOnDetectionEnabled(
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.HANDS_ON_DETECTION_ENABLED.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -13538,13 +13991,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<int> listenHandsOnDetectionDriverState({
+  StreamSubscription<int> listenHandsOnDetectionDriverState(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.HANDS_ON_DETECTION_DRIVER_STATE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -13603,13 +14058,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<int> listenHandsOnDetectionWarning({
+  StreamSubscription<int> listenHandsOnDetectionWarning(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.HANDS_ON_DETECTION_WARNING.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -13652,13 +14109,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<bool> listenDriverDrowsinessAttentionSystemEnabled({
+  StreamSubscription<bool> listenDriverDrowsinessAttentionSystemEnabled(
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.DRIVER_DROWSINESS_ATTENTION_SYSTEM_ENABLED.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -13747,13 +14206,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<int> listenDriverDrowsinessAttentionState({
+  StreamSubscription<int> listenDriverDrowsinessAttentionState(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.DRIVER_DROWSINESS_ATTENTION_STATE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -13796,13 +14257,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<bool> listenDriverDrowsinessAttentionWarningEnabled({
+  StreamSubscription<bool> listenDriverDrowsinessAttentionWarningEnabled(
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.DRIVER_DROWSINESS_ATTENTION_WARNING_ENABLED.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -13883,13 +14346,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<int> listenDriverDrowsinessAttentionWarning({
+  StreamSubscription<int> listenDriverDrowsinessAttentionWarning(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.DRIVER_DROWSINESS_ATTENTION_WARNING.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -13930,13 +14395,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<bool> listenDriverDistractionSystemEnabled({
+  StreamSubscription<bool> listenDriverDistractionSystemEnabled(
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.DRIVER_DISTRACTION_SYSTEM_ENABLED.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -14022,13 +14489,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<int> listenDriverDistractionState({
+  StreamSubscription<int> listenDriverDistractionState(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.DRIVER_DISTRACTION_STATE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -14069,13 +14538,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<bool> listenDriverDistractionWarningEnabled({
+  StreamSubscription<bool> listenDriverDistractionWarningEnabled(
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.DRIVER_DISTRACTION_WARNING_ENABLED.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -14155,13 +14626,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<int> listenDriverDistractionWarning({
+  StreamSubscription<int> listenDriverDistractionWarning(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.DRIVER_DISTRACTION_WARNING.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -14214,13 +14687,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<bool> listenLowSpeedCollisionWarningEnabled({
+  StreamSubscription<bool> listenLowSpeedCollisionWarningEnabled(
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.LOW_SPEED_COLLISION_WARNING_ENABLED.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -14304,13 +14779,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<int> listenLowSpeedCollisionWarningState({
+  StreamSubscription<int> listenLowSpeedCollisionWarningState(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.LOW_SPEED_COLLISION_WARNING_STATE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -14357,13 +14834,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<bool> listenCrossTrafficMonitoringEnabled({
+  StreamSubscription<bool> listenCrossTrafficMonitoringEnabled(
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.CROSS_TRAFFIC_MONITORING_ENABLED.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -14440,13 +14919,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<int> listenCrossTrafficMonitoringWarningState({
+  StreamSubscription<int> listenCrossTrafficMonitoringWarningState(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.CROSS_TRAFFIC_MONITORING_WARNING_STATE.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -14501,13 +14982,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<bool> listenLowSpeedAutomaticEmergencyBrakingEnabled({
+  StreamSubscription<bool> listenLowSpeedAutomaticEmergencyBrakingEnabled(
+    Function(bool) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyBoolean(
       VehicleProperty.LOW_SPEED_AUTOMATIC_EMERGENCY_BRAKING_ENABLED.id,
       0,
       rate,
+      onData,
     );
   }
 
@@ -14598,13 +15081,15 @@ class VehiclePrivilegedPropertyRepository {
   ///
   /// # Availability Flag
   /// FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS
-  PropertyStreamData<int> listenLowSpeedAutomaticEmergencyBrakingState({
+  StreamSubscription<int> listenLowSpeedAutomaticEmergencyBrakingState(
+    Function(int) onData, {
     SensorUpdateRate rate = SensorUpdateRates.onChange,
   }) {
     return _datasource.listenPropertyInt32(
       VehicleProperty.LOW_SPEED_AUTOMATIC_EMERGENCY_BRAKING_STATE.id,
       0,
       rate,
+      onData,
     );
   }
 }

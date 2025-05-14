@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_automotive/model/models.dart';
 import 'package:flutter_automotive/src/flutter_automotive_method_channel.dart';
 import 'package:flutter_automotive/src/flutter_automotive_platform_interface.dart';
@@ -14,12 +16,9 @@ class MockFlutterAutomotivePlatform
   Future<void> setProperty(int propertyId, int areaId, value) async {}
 
   @override
-  PropertyStreamData<T> subscribeProperty<T>(int propertyId, int areaId,
-      [SensorUpdateRate updateRate = SensorUpdateRates.onChange]) {
-    return PropertyStreamData(
-      stream: Stream.empty(),
-      onUnsubscribe: () {},
-    );
+  StreamSubscription<T> subscribeProperty<T>(int propertyId, int areaId,
+      SensorUpdateRate updateRate, Function(T p1) onData) {
+    return Stream<T>.empty().listen(null);
   }
 
   @override

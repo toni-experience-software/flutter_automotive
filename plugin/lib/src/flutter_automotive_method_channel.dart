@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_automotive/model/models.dart';
+import 'package:flutter_automotive/model/property_stream_subscription.dart';
 import 'package:flutter_automotive/src/flutter_automotive_platform_interface.dart';
 import 'package:flutter_automotive/src/messages.g.dart';
 
@@ -31,17 +32,18 @@ class MethodChannelFlutterAutomotive extends FlutterAutomotivePlatform {
   }
 
   @override
-  PropertyStreamData<T> subscribeProperty<T>(
-      int propertyId, int areaId, SensorUpdateRate updateRate) {
+  StreamSubscription<T> subscribeProperty<T>(int propertyId, int areaId,
+      SensorUpdateRate updateRate, Function(T) onData) {
     final controller = StreamController<T>();
     _propertyStreams[(propertyId, areaId)] = controller;
     final rate = updateRate.clamp(0.0, 100.0);
     _api.subscribeProperty(propertyId, areaId, rate);
-    return PropertyStreamData<T>(
+    return PropertyStreamSubscription(
       stream: controller.stream,
-      onUnsubscribe: () {
-        _api.unsubscribeProperty(propertyId, areaId);
-        _propertyStreams.remove((propertyId, areaId))?.close();
+      onData: onData,
+      onCancel: () async {
+        await _propertyStreams.remove((propertyId, areaId))?.close();
+        await _api.unsubscribeProperty(propertyId, areaId);
       },
     );
   }

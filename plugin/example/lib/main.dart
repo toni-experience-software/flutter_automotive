@@ -20,7 +20,6 @@ class _MyAppState extends State<MyApp> {
   bool? _permissionGranted;
   final _plugin = FlutterAutomotive();
 
-  PropertyStreamData? sub;
   StreamSubscription? streamSub;
 
   Future<void> getPermission() async {
@@ -51,16 +50,13 @@ class _MyAppState extends State<MyApp> {
   }
 
   void watchSpeed() async {
-    this.sub?.unsubscribe();
-    streamSub?.cancel();
-    final sub = _plugin.properties.listenPerfVehicleSpeed();
-    this.sub = sub;
-    streamSub = sub.stream.listen((data) => setState(() => _speed = data));
+    await streamSub?.cancel();
+    streamSub = _plugin.properties.listenPerfVehicleSpeed(
+      (speed) => setState(() => _speed = speed),
+    );
   }
 
-  // TODO simplify api
   void stopWatchSpeed() {
-    sub?.unsubscribe();
     streamSub?.cancel();
   }
 

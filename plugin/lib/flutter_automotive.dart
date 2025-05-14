@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_automotive/model/models.dart';
 import 'package:flutter_automotive/src/flutter_automotive_platform_interface.dart';
 import 'package:flutter_automotive/src/vehicle_datasource_impl.dart';
@@ -45,16 +47,34 @@ class FlutterAutomotive {
     return await _platform.setProperty(property.id, value, areaId);
   }
 
-  /// Subscribes to updates for a specified vehicle property.
+  /// Subscribes to updates for a specific vehicle property.
   ///
-  /// [propertyId] - The ID of the property to subscribe to.
-  /// [areaId] - The area ID for which the property updates are requested.
-  /// [updateRate] - The rate at which updates are received. Defaults to [SensorUpdateRates.onChange].
+  /// This method allows you to listen to changes for a given vehicle property
+  /// by subscribing to its updates. You can specify the property ID, area ID,
+  /// and the desired update rate.
   ///
-  /// Returns a [PropertyStreamData] stream that emits updates for the specified property.
-  PropertyStreamData<T> subscribeProperty<T>(int propertyId, int areaId,
-      [SensorUpdateRate updateRate = SensorUpdateRates.onChange]) {
-    return _platform.subscribeProperty<T>(propertyId, areaId, updateRate);
+  /// - [propertyId]: The unique identifier of the vehicle property to subscribe to.
+  /// - [areaId]: The specific area ID for which updates are requested. Use this to
+  ///   target a particular area of the vehicle.
+  /// - [onData]: The function that is called when updates are received.
+  /// - [updateRate] The rate at which updates are received. Defaults to [SensorUpdateRates.onChange].
+  ///
+  /// Returns a [StreamSubscription] stream that provides real-time updates for
+  /// the specified property and area.
+  ///
+  /// Cancel the subscription when you no longer need updates to avoid memory leaks.
+  StreamSubscription<T> subscribeProperty<T>(
+    int propertyId,
+    int areaId,
+    Function(T) onData, [
+    SensorUpdateRate updateRate = SensorUpdateRates.onChange,
+  ]) {
+    return _platform.subscribeProperty<T>(
+      propertyId,
+      areaId,
+      updateRate,
+      onData,
+    );
   }
 
   /// Checks if the specified car permission is granted.

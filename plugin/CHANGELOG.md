@@ -1,3 +1,7 @@
+## 0.0.7
+
+* Update `subscribe` APIs with a `onData` property
+
 ## 0.0.6
 
 * Fix `CarPermissions` permission names
