@@ -47,7 +47,7 @@ class FlutterAutomotive {
     return await _platform.setProperty(property.id, value, areaId);
   }
 
-  /// Subscribes to updates for a specific vehicle property.
+  /// Listen to updates for a specific vehicle property.
   ///
   /// This method allows you to listen to changes for a given vehicle property
   /// by subscribing to its updates. You can specify the property ID, area ID,
@@ -63,7 +63,7 @@ class FlutterAutomotive {
   /// the specified property and area.
   ///
   /// Cancel the subscription when you no longer need updates to avoid memory leaks.
-  StreamSubscription<T> subscribeProperty<T>(
+  StreamSubscription<T> listenProperty<T>(
     int propertyId,
     int areaId,
     Function(T) onData, [
