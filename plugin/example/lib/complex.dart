@@ -25,6 +25,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     checkAllPermissions();
+    listenToAllProperties();
   }
 
   Future<void> getProperty(VehicleProperty prop) async {
@@ -93,6 +94,26 @@ class _MyAppState extends State<MyApp> {
       all = all && granted;
     }
     setState(() => _allGranted = all);
+  }
+
+  Future<void> listenToAllProperties() async {
+    final normalProps = [
+      for (final prop in VehicleProperty.values)
+        if (prop.readPermissions.any((e) => e.privileged == false)) prop,
+    ];
+    try {
+      for (final prop in normalProps) {
+        if (true) {
+          _plugin.listenProperty(
+            prop.id,
+            0,
+            (v) => setState(() => _propertyValues[prop] = v),
+          );
+        }
+      }
+    } catch (e) {
+      debugPrint('Error listening to all properties: $e');
+    }
   }
 
   @override
