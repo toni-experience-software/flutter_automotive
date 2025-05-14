@@ -1,4 +1,5 @@
 import 'package:code_builder/code_builder.dart';
+import 'package:generator/input/car_permission.dart';
 import 'package:generator/input/vehicle_property.dart';
 import 'package:generator/parsers/vehicle_type_doc_parser.dart';
 
@@ -40,14 +41,16 @@ class VehiclePermissionBuilder {
                       v
                         ..name = perm.$1
                         ..docs.addAll([
-                          "/// android.car.permission.${perm.$1}",
+                          "/// ${CarPermission.forName(perm.$1).androidName}",
                           if (perm.$2) ...[
                             "///",
                             "/// This permission is a Signature|Privileged permission and requires special access.",
                           ],
                         ])
                         ..arguments.addAll([
-                          literalString("android.car.permission.${perm.$1}"),
+                          literalString(
+                            CarPermission.forName(perm.$1).androidName,
+                          ),
                           literalBool(perm.$2),
                         ]),
                 ),
