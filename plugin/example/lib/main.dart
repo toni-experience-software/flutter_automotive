@@ -51,13 +51,14 @@ class _MyAppState extends State<MyApp> {
   }
 
   void watchSpeed() async {
+    this.sub?.unsubscribe();
     streamSub?.cancel();
     final sub = _plugin.properties.listenPerfVehicleSpeed();
+    this.sub = sub;
     streamSub = sub.stream.listen((data) => setState(() => _speed = data));
   }
 
   // TODO simplify api
-  // TODO unsubscribe does not work properly
   void stopWatchSpeed() {
     sub?.unsubscribe();
     streamSub?.cancel();
