@@ -97,17 +97,26 @@ class VehicleTypeProperties {
     }
   }
 
-  String get _flaggedDoc {
+  List<String> get flags {
     if (docs.contains("@FlaggedApi(")) {
       final splits = docs.split("@FlaggedApi(");
       if (splits case [_, final rawFlag]) {
         final extracted = rawFlag.split(")");
         if (extracted case [final flag, ...]) {
-          return "/// $flag";
+          return [flag];
         }
       }
     }
-    return "";
+    return [];
+  }
+
+  String get _flaggedDoc {
+    final flagContent = flags.join(", ");
+    if (flagContent.isNotEmpty) {
+      return "/// $flagContent";
+    } else {
+      return "";
+    }
   }
 
   List<String> get _permissionLines {

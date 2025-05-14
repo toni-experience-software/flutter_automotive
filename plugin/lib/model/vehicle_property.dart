@@ -38,6 +38,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_IDENTIFICATION},
     {},
+    [],
   ),
 
   /// Manufacturer of vehicle.
@@ -53,6 +54,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_CAR_INFO},
     {},
+    [],
   ),
 
   /// Model of vehicle.
@@ -68,6 +70,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_CAR_INFO},
     {},
+    [],
   ),
 
   /// Model year of vehicle in YYYY format based on Gregorian calendar.
@@ -81,6 +84,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_CAR_INFO},
     {},
+    [],
   ),
 
   /// Fuel capacity of the vehicle in milliliters.
@@ -99,6 +103,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_CAR_INFO},
     {},
+    [],
   ),
 
   /// List the {@link FuelType}s the vehicle may use.
@@ -128,6 +133,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_CAR_INFO},
     {},
+    [],
   ),
 
   /// Nominal usable battery capacity for EV or hybrid vehicle.
@@ -147,6 +153,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_CAR_INFO},
     {},
+    [],
   ),
 
   /// List of {@link android.car.hardware.property.EvChargingConnectorType}s this vehicle may use.
@@ -163,6 +170,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_CAR_INFO},
     {},
+    [],
   ),
 
   /// {@link PortLocationType} for the fuel door location.
@@ -181,6 +189,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_CAR_INFO},
     {},
+    [],
   ),
 
   /// {@link PortLocationType} for the EV port location.
@@ -199,6 +208,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_CAR_INFO},
     {},
+    [],
   ),
 
   /// List {@link PortLocationType}s for Multiple EV port locations.
@@ -212,6 +222,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_CAR_INFO},
     {},
+    [],
   ),
 
   /// Driver's seat location.
@@ -228,6 +239,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_CAR_INFO},
     {},
+    [],
   ),
 
   /// Vehicle's exterior dimensions in millimeters.
@@ -253,6 +265,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_CAR_INFO},
     {},
+    [],
   ),
 
   /// Public trim name of the vehicle.
@@ -279,6 +292,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_CAR_INFO},
     {},
+    ['FLAG_ANDROID_B_VEHICLE_PROPERTIES'],
   ),
 
   /// Vehicle Size Class.
@@ -308,6 +322,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_CAR_INFO},
     {},
+    ['FLAG_ANDROID_B_VEHICLE_PROPERTIES'],
   ),
 
   /// Current odometer value of the vehicle in kilometers.
@@ -325,6 +340,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_MILEAGE_3P, CarPermissions.PERMISSION_MILEAGE},
     {},
+    ['FLAG_ANDROID_B_VEHICLE_PROPERTIES'],
   ),
 
   /// Speed of the vehicle in meters per second.
@@ -344,6 +360,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_SPEED},
     {},
+    [],
   ),
 
   /// Speed of the vehicle in meters per second for displays.
@@ -360,6 +377,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_SPEED},
     {},
+    [],
   ),
 
   /// Front bicycle model steering angle for vehicle in degrees.
@@ -386,6 +404,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_READ_STEERING_STATE,
     },
     {},
+    ['FLAG_VEHICLE_PROPERTY_25Q2_3P_PERMISSIONS'],
   ),
 
   /// Rear bicycle model steering angle for vehicle in degrees.
@@ -406,6 +425,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_READ_STEERING_STATE},
     {},
+    [],
   ),
 
   /// Instantaneous Fuel Economy in L/100km.
@@ -430,6 +450,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_MILEAGE_3P},
     {},
+    ['FLAG_ANDROID_B_VEHICLE_PROPERTIES'],
   ),
 
   /// Instantaneous EV efficiency in km/kWh.
@@ -455,6 +476,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_MILEAGE_3P},
     {},
+    ['FLAG_ANDROID_B_VEHICLE_PROPERTIES'],
   ),
 
   /// Temperature of engine coolant in celsius.
@@ -469,6 +491,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_CAR_ENGINE_DETAILED},
     {},
+    [],
   ),
 
   /// Engine oil level.
@@ -486,6 +509,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_CAR_ENGINE_DETAILED},
     {},
+    [],
   ),
 
   /// Temperature of engine oil in celsius.
@@ -500,6 +524,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_CAR_ENGINE_DETAILED},
     {},
+    [],
   ),
 
   /// Engine rpm.
@@ -520,6 +545,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_CAR_ENGINE_DETAILED,
     },
     {},
+    ['FLAG_VEHICLE_PROPERTY_25Q2_3P_PERMISSIONS'],
   ),
 
   /// Represents feature for engine idle automatic stop.
@@ -539,6 +565,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CAR_ENGINE_DETAILED},
     {CarPermissions.PERMISSION_CAR_ENGINE_DETAILED},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Impact detected.
@@ -566,6 +593,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_READ_IMPACT_SENSORS},
     {},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Vehicle horn engaged.
@@ -589,6 +617,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_CONTROL_CAR_HORN,
     },
     {CarPermissions.PERMISSION_CONTROL_CAR_HORN},
+    ['FLAG_ANDROID_B_VEHICLE_PROPERTIES'],
   ),
 
   /// Reports wheel ticks.
@@ -639,6 +668,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_SPEED},
     {},
+    [],
   ),
 
   /// Fuel level in milliliters.
@@ -659,6 +689,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_ENERGY},
     {},
+    [],
   ),
 
   /// Fuel door open.
@@ -682,6 +713,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_CONTROL_ENERGY_PORTS,
     },
     {CarPermissions.PERMISSION_CONTROL_ENERGY_PORTS},
+    [],
   ),
 
   /// EV battery level.
@@ -700,6 +732,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_ENERGY},
     {},
+    [],
   ),
 
   /// Current usable battery capacity for EV or hybrid vehicle.
@@ -719,6 +752,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_ENERGY},
     {},
+    [],
   ),
 
   /// EV charge port open.
@@ -740,6 +774,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_CONTROL_ENERGY_PORTS,
     },
     {CarPermissions.PERMISSION_CONTROL_ENERGY_PORTS},
+    [],
   ),
 
   /// EV charge port connected.
@@ -756,6 +791,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_ENERGY_PORTS},
     {},
+    [],
   ),
 
   /// EV instantaneous charge rate in milliwatts.
@@ -772,6 +808,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_ENERGY},
     {},
+    [],
   ),
 
   /// Range remaining in meters.
@@ -793,6 +830,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_ADJUST_RANGE_REMAINING,
     },
     {CarPermissions.PERMISSION_ADJUST_RANGE_REMAINING},
+    [],
   ),
 
   /// EV battery average temperature
@@ -813,6 +851,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_ENERGY},
     {},
+    ['FLAG_ANDROID_VIC_VEHICLE_PROPERTIES'],
   ),
 
   /// Tire pressure in kilopascals.
@@ -835,6 +874,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_TIRES_3P, CarPermissions.PERMISSION_TIRES},
     {},
+    ['FLAG_VEHICLE_PROPERTY_25Q2_3P_PERMISSIONS'],
   ),
 
   /// Critically low tire pressure.
@@ -853,6 +893,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_TIRES},
     {},
+    [],
   ),
 
   /// Accelerator pedal compression percentage.
@@ -876,6 +917,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_READ_CAR_PEDALS},
     {},
+    ['FLAG_ANDROID_B_VEHICLE_PROPERTIES'],
   ),
 
   /// Brake pedal compression percentage.
@@ -899,6 +941,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_READ_CAR_PEDALS},
     {},
+    ['FLAG_ANDROID_B_VEHICLE_PROPERTIES'],
   ),
 
   /// Brake pad wear percentage.
@@ -922,6 +965,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_READ_BRAKE_INFO},
     {},
+    ['FLAG_ANDROID_B_VEHICLE_PROPERTIES'],
   ),
 
   /// Brake fluid level low.
@@ -943,6 +987,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_READ_BRAKE_INFO},
     {},
+    ['FLAG_ANDROID_B_VEHICLE_PROPERTIES'],
   ),
 
   /// Vehicle Passive Suspension Height in mm.
@@ -989,6 +1034,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_CAR_DYNAMICS_STATE},
     {},
+    ['FLAG_ANDROID_B_VEHICLE_PROPERTIES'],
   ),
 
   /// Currently selected gear by user.
@@ -1035,6 +1081,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_POWERTRAIN},
     {},
+    [],
   ),
 
   /// Vehicle transmission's current {@link VehicleGear}.
@@ -1085,6 +1132,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_POWERTRAIN},
     {},
+    [],
   ),
 
   /// Parking brake state.
@@ -1101,6 +1149,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_POWERTRAIN},
     {},
+    [],
   ),
 
   /// Auto-apply parking brake.
@@ -1124,6 +1173,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_POWERTRAIN},
     {},
+    [],
   ),
 
   /// Regenerative braking level of an electronic vehicle.
@@ -1148,6 +1198,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_CONTROL_POWERTRAIN,
     },
     {CarPermissions.PERMISSION_CONTROL_POWERTRAIN},
+    [],
   ),
 
   /// Represents property for the current stopping mode of the vehicle.
@@ -1172,6 +1223,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_CONTROL_POWERTRAIN,
     },
     {CarPermissions.PERMISSION_CONTROL_POWERTRAIN},
+    [],
   ),
 
   /// Warning for fuel low level.
@@ -1195,6 +1247,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_ENERGY},
     {},
+    [],
   ),
 
   /// Night mode.
@@ -1211,6 +1264,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_EXTERIOR_ENVIRONMENT},
     {},
+    [],
   ),
 
   /// State of the vehicles turn signals
@@ -1232,6 +1286,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_EXTERIOR_LIGHTS},
     {},
+    [],
   ),
 
   /// Vehicle's ignition state.
@@ -1247,6 +1302,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_POWERTRAIN},
     {},
+    [],
   ),
 
   /// ABS is active.
@@ -1261,6 +1317,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_CAR_DYNAMICS_STATE},
     {},
+    [],
   ),
 
   /// Traction Control is active.
@@ -1275,6 +1332,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_CAR_DYNAMICS_STATE},
     {},
+    [],
   ),
 
   /// Enable or disable Electronic Stability Control (ESC).
@@ -1304,6 +1362,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_CONTROL_CAR_DYNAMICS_STATE,
     },
     {CarPermissions.PERMISSION_CONTROL_CAR_DYNAMICS_STATE},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Electronic Stability Control (ESC) state.
@@ -1331,6 +1390,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_CAR_DYNAMICS_STATE},
     {},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Turn signal light state.
@@ -1375,6 +1435,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_CONTROL_EXTERIOR_LIGHTS,
     },
     {},
+    ['FLAG_ANDROID_B_VEHICLE_PROPERTIES'],
   ),
 
   /// Turn signal switch.
@@ -1407,6 +1468,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_CONTROL_EXTERIOR_LIGHTS,
     },
     {CarPermissions.PERMISSION_CONTROL_EXTERIOR_LIGHTS},
+    ['FLAG_ANDROID_B_VEHICLE_PROPERTIES'],
   ),
 
   /// Fan speed setting.
@@ -1420,6 +1482,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_CLIMATE},
     {CarPermissions.PERMISSION_CONTROL_CAR_CLIMATE},
+    [],
   ),
 
   /// Fan direction setting.
@@ -1438,6 +1501,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_CLIMATE},
     {CarPermissions.PERMISSION_CONTROL_CAR_CLIMATE},
+    [],
   ),
 
   /// HVAC current temperature in celsius.
@@ -1452,6 +1516,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_CONTROL_CAR_CLIMATE},
     {},
+    [],
   ),
 
   /// HVAC target temperature set in Celsius.
@@ -1535,6 +1600,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_CLIMATE},
     {CarPermissions.PERMISSION_CONTROL_CAR_CLIMATE},
+    [],
   ),
 
   /// Suggested values for setting HVAC temperature.
@@ -1586,6 +1652,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_CLIMATE},
     {CarPermissions.PERMISSION_CONTROL_CAR_CLIMATE},
+    [],
   ),
 
   /// On/off defrost for designated window.
@@ -1599,6 +1666,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_CLIMATE},
     {CarPermissions.PERMISSION_CONTROL_CAR_CLIMATE},
+    [],
   ),
 
   /// On/off AC for designated areaId.
@@ -1612,6 +1680,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_CLIMATE},
     {CarPermissions.PERMISSION_CONTROL_CAR_CLIMATE},
+    [],
   ),
 
   /// On/off max AC.
@@ -1625,6 +1694,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_CLIMATE},
     {CarPermissions.PERMISSION_CONTROL_CAR_CLIMATE},
+    [],
   ),
 
   /// On/off max defrost.
@@ -1638,6 +1708,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_CLIMATE},
     {CarPermissions.PERMISSION_CONTROL_CAR_CLIMATE},
+    [],
   ),
 
   /// Recirculation on/off.
@@ -1651,6 +1722,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_CLIMATE},
     {CarPermissions.PERMISSION_CONTROL_CAR_CLIMATE},
+    [],
   ),
 
   /// Enable temperature coupling between areas.
@@ -1664,6 +1736,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_CLIMATE},
     {CarPermissions.PERMISSION_CONTROL_CAR_CLIMATE},
+    [],
   ),
 
   /// On/off automatic mode.
@@ -1677,6 +1750,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_CLIMATE},
     {CarPermissions.PERMISSION_CONTROL_CAR_CLIMATE},
+    [],
   ),
 
   /// Seat heating/cooling.
@@ -1690,6 +1764,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_CLIMATE},
     {CarPermissions.PERMISSION_CONTROL_CAR_CLIMATE},
+    [],
   ),
 
   /// Side Mirror Heat.
@@ -1703,6 +1778,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_CLIMATE},
     {CarPermissions.PERMISSION_CONTROL_CAR_CLIMATE},
+    [],
   ),
 
   /// Steering Wheel Heating/Cooling.
@@ -1716,6 +1792,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_CLIMATE},
     {CarPermissions.PERMISSION_CONTROL_CAR_CLIMATE},
+    [],
   ),
 
   /// Temperature units for display.
@@ -1734,6 +1811,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_CONTROL_CAR_CLIMATE,
     },
     {CarPermissions.PERMISSION_CONTROL_CAR_CLIMATE},
+    [],
   ),
 
   /// Actual fan speed.
@@ -1748,6 +1826,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_CONTROL_CAR_CLIMATE},
     {},
+    [],
   ),
 
   /// Represents global power state for HVAC.
@@ -1766,6 +1845,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_CLIMATE},
     {CarPermissions.PERMISSION_CONTROL_CAR_CLIMATE},
+    [],
   ),
 
   /// Fan Positions Available.
@@ -1780,6 +1860,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_CONTROL_CAR_CLIMATE},
     {},
+    [],
   ),
 
   /// Automatic recirculation on/off.
@@ -1793,6 +1874,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_CLIMATE},
     {CarPermissions.PERMISSION_CONTROL_CAR_CLIMATE},
+    [],
   ),
 
   /// Seat ventilation.
@@ -1806,6 +1888,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_CLIMATE},
     {CarPermissions.PERMISSION_CONTROL_CAR_CLIMATE},
+    [],
   ),
 
   /// ELECTRIC DEFROSTER.
@@ -1822,6 +1905,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_CLIMATE},
     {CarPermissions.PERMISSION_CONTROL_CAR_CLIMATE},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Distance units for display.
@@ -1849,6 +1933,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_CONTROL_DISPLAY_UNITS,
       CarPermissions.PERMISSION_VENDOR_EXTENSION,
     },
+    [],
   ),
 
   /// Fuel volume units for display.
@@ -1875,6 +1960,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_CONTROL_DISPLAY_UNITS,
       CarPermissions.PERMISSION_VENDOR_EXTENSION,
     },
+    [],
   ),
 
   /// Tire pressure units for display.
@@ -1902,6 +1988,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_CONTROL_DISPLAY_UNITS,
       CarPermissions.PERMISSION_VENDOR_EXTENSION,
     },
+    [],
   ),
 
   /// EV battery units for display.
@@ -1929,6 +2016,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_CONTROL_DISPLAY_UNITS,
       CarPermissions.PERMISSION_VENDOR_EXTENSION,
     },
+    [],
   ),
 
   /// Speed units for display.
@@ -1956,6 +2044,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_CONTROL_DISPLAY_UNITS,
       CarPermissions.PERMISSION_VENDOR_EXTENSION,
     },
+    [],
   ),
 
   /// Fuel consumption units for display.
@@ -1979,6 +2068,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_CONTROL_DISPLAY_UNITS,
       CarPermissions.PERMISSION_VENDOR_EXTENSION,
     },
+    [],
   ),
 
   /// Outside temperature in celsius.
@@ -1992,6 +2082,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_EXTERIOR_ENVIRONMENT},
     {},
+    [],
   ),
 
   /// Property to control power state of application processor.
@@ -2010,6 +2101,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {},
     {},
+    [],
   ),
 
   /// Property to report power state of application processor.
@@ -2028,6 +2120,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {},
     {},
+    [],
   ),
 
   /// Property to report bootup reason for the current power on.
@@ -2046,6 +2139,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {},
     {},
+    [],
   ),
 
   /// Property to represent brightness of the display.
@@ -2064,6 +2158,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {},
     {},
+    [],
   ),
 
   /// Property to represent brightness of the displays which are controlled separately.
@@ -2082,6 +2177,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {},
     {},
+    [],
   ),
 
   /// Valet mode enabled
@@ -2110,6 +2206,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_CONTROL_VALET_MODE,
     },
     {CarPermissions.PERMISSION_CONTROL_VALET_MODE},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Head up display (HUD) enabled
@@ -2139,6 +2236,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_CONTROL_HEAD_UP_DISPLAY,
     },
     {CarPermissions.PERMISSION_CONTROL_HEAD_UP_DISPLAY},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Property to feed H/W input events to android.
@@ -2156,6 +2254,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {},
     {},
+    [],
   ),
 
   /// Door position.
@@ -2180,6 +2279,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_DOORS},
     {CarPermissions.PERMISSION_CONTROL_CAR_DOORS},
+    [],
   ),
 
   /// Door move.
@@ -2205,6 +2305,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_DOORS},
     {CarPermissions.PERMISSION_CONTROL_CAR_DOORS},
+    [],
   ),
 
   /// Door lock.
@@ -2220,6 +2321,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_DOORS},
     {CarPermissions.PERMISSION_CONTROL_CAR_DOORS},
+    [],
   ),
 
   /// Door child lock feature enabled.
@@ -2239,6 +2341,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_DOORS},
     {CarPermissions.PERMISSION_CONTROL_CAR_DOORS},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Mirror Z Position.
@@ -2264,6 +2367,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_MIRRORS},
     {CarPermissions.PERMISSION_CONTROL_CAR_MIRRORS},
+    [],
   ),
 
   /// Mirror Z Move.
@@ -2289,6 +2393,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_MIRRORS},
     {CarPermissions.PERMISSION_CONTROL_CAR_MIRRORS},
+    [],
   ),
 
   /// Mirror Y Position.
@@ -2314,6 +2419,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_MIRRORS},
     {CarPermissions.PERMISSION_CONTROL_CAR_MIRRORS},
+    [],
   ),
 
   /// Mirror Y Move.
@@ -2339,6 +2445,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_MIRRORS},
     {CarPermissions.PERMISSION_CONTROL_CAR_MIRRORS},
+    [],
   ),
 
   /// Mirror Lock.
@@ -2354,6 +2461,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_MIRRORS},
     {CarPermissions.PERMISSION_CONTROL_CAR_MIRRORS},
+    [],
   ),
 
   /// Mirror Fold.
@@ -2367,6 +2475,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_MIRRORS},
     {CarPermissions.PERMISSION_CONTROL_CAR_MIRRORS},
+    [],
   ),
 
   /// Represents property for the Mirror Auto Fold feature.
@@ -2389,6 +2498,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_MIRRORS},
     {CarPermissions.PERMISSION_CONTROL_CAR_MIRRORS},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Represents property for the Mirror Auto Tilt feature.
@@ -2409,6 +2519,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_MIRRORS},
     {CarPermissions.PERMISSION_CONTROL_CAR_MIRRORS},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Property that represents the current position of the glove box door.
@@ -2440,6 +2551,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_GLOVE_BOX},
     {CarPermissions.PERMISSION_CONTROL_GLOVE_BOX},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Lock or unlock the glove box.
@@ -2462,6 +2574,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_GLOVE_BOX},
     {CarPermissions.PERMISSION_CONTROL_GLOVE_BOX},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Seat memory select.
@@ -2481,6 +2594,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {},
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
+    [],
   ),
 
   /// Seat memory set.
@@ -2500,6 +2614,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {},
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
+    [],
   ),
 
   /// Seatbelt buckled.
@@ -2515,6 +2630,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
+    [],
   ),
 
   /// Seatbelt height position.
@@ -2539,6 +2655,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
+    [],
   ),
 
   /// Seatbelt height move.
@@ -2565,6 +2682,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
+    [],
   ),
 
   /// Seat fore/aft position.
@@ -2589,6 +2707,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
+    [],
   ),
 
   /// Seat fore/aft move.
@@ -2616,6 +2735,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
+    [],
   ),
 
   /// Seat backrest angle 1 position.
@@ -2642,6 +2762,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
+    [],
   ),
 
   /// Seat backrest angle 1 move.
@@ -2671,6 +2792,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
+    [],
   ),
 
   /// Seat backrest angle 2 position.
@@ -2697,6 +2819,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
+    [],
   ),
 
   /// Seat backrest angle 2 move.
@@ -2728,6 +2851,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
+    [],
   ),
 
   /// Seat height position.
@@ -2752,6 +2876,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
+    [],
   ),
 
   /// Seat height move.
@@ -2777,6 +2902,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
+    [],
   ),
 
   /// Seat depth position.
@@ -2803,6 +2929,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
+    [],
   ),
 
   /// Seat depth move.
@@ -2830,6 +2957,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
+    [],
   ),
 
   /// Seat tilt position.
@@ -2856,6 +2984,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
+    [],
   ),
 
   /// Seat tilt move.
@@ -2883,6 +3012,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
+    [],
   ),
 
   /// Lumber fore/aft position.
@@ -2907,6 +3037,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
+    [],
   ),
 
   /// Lumbar fore/aft move.
@@ -2933,6 +3064,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
+    [],
   ),
 
   /// Lumbar side support position.
@@ -2957,6 +3089,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
+    [],
   ),
 
   /// Lumbar side support move.
@@ -2983,6 +3116,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
+    [],
   ),
 
   /// Headrest height position.
@@ -3004,6 +3138,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {},
     {},
+    [],
   ),
 
   /// Headrest height position.
@@ -3031,6 +3166,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
+    [],
   ),
 
   /// Headrest height move.
@@ -3056,6 +3192,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
+    [],
   ),
 
   /// Headrest angle position.
@@ -3080,6 +3217,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
+    [],
   ),
 
   /// Headrest angle move.
@@ -3105,6 +3243,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
+    [],
   ),
 
   /// Headrest fore/aft position.
@@ -3129,6 +3268,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
+    [],
   ),
 
   /// Headrest fore/aft move.
@@ -3155,6 +3295,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
+    [],
   ),
 
   /// Represents property for state of the footwell lights.
@@ -3184,6 +3325,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_READ_INTERIOR_LIGHTS},
     {},
+    [],
   ),
 
   /// Represents property for switch of the footwell lights.
@@ -3212,6 +3354,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_INTERIOR_LIGHTS},
     {CarPermissions.PERMISSION_CONTROL_INTERIOR_LIGHTS},
+    [],
   ),
 
   /// Represents property for Seat easy access feature.
@@ -3232,6 +3375,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Represents feature to enable/disable a seat's ability to deploy airbag(s) when triggered
@@ -3253,6 +3397,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_AIRBAGS},
     {CarPermissions.PERMISSION_CONTROL_CAR_AIRBAGS},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// State of deployment for seat airbags.
@@ -3284,6 +3429,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_READ_CAR_AIRBAGS},
     {},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Represents property for seat’s hipside (bottom cushion’s side) support position.
@@ -3311,6 +3457,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Represents property for movement direction and speed of seat cushion side support.
@@ -3340,6 +3487,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Represents property for seat’s lumbar support vertical position.
@@ -3367,6 +3515,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Represents property for vertical movement direction and speed of seat lumbar support.
@@ -3395,6 +3544,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Represents property that indicates the current walk-in position of the seat.
@@ -3423,6 +3573,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
     {CarPermissions.PERMISSION_CONTROL_CAR_SEATS},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Seat belt pretensioner deployed.
@@ -3450,6 +3601,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_READ_CAR_SEAT_BELTS},
     {},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Seat Occupancy.
@@ -3470,6 +3622,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_CONTROL_CAR_SEATS,
     },
     {},
+    ['FLAG_VEHICLE_PROPERTY_25Q2_3P_PERMISSIONS'],
   ),
 
   /// Window Position.
@@ -3498,6 +3651,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_WINDOWS},
     {CarPermissions.PERMISSION_CONTROL_CAR_WINDOWS},
+    [],
   ),
 
   /// Window Move.
@@ -3525,6 +3679,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_WINDOWS},
     {CarPermissions.PERMISSION_CONTROL_CAR_WINDOWS},
+    [],
   ),
 
   /// Window Child Lock.
@@ -3540,6 +3695,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_CAR_WINDOWS},
     {CarPermissions.PERMISSION_CONTROL_CAR_WINDOWS},
+    [],
   ),
 
   /// Windshield wipers period (milliseconds).
@@ -3565,6 +3721,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_READ_WINDSHIELD_WIPERS},
     {},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Windshield wipers state.
@@ -3603,6 +3760,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_READ_WINDSHIELD_WIPERS,
     },
     {},
+    ['FLAG_VEHICLE_PROPERTY_25Q2_3P_PERMISSIONS'],
   ),
 
   /// Windshield wipers switch.
@@ -3639,6 +3797,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_CONTROL_WINDSHIELD_WIPERS,
     },
     {CarPermissions.PERMISSION_CONTROL_WINDSHIELD_WIPERS},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Steering wheel depth position.
@@ -3666,6 +3825,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_STEERING_WHEEL},
     {CarPermissions.PERMISSION_CONTROL_STEERING_WHEEL},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Steering wheel depth movement.
@@ -3696,6 +3856,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_STEERING_WHEEL},
     {CarPermissions.PERMISSION_CONTROL_STEERING_WHEEL},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Steering wheel height position.
@@ -3723,6 +3884,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_STEERING_WHEEL},
     {CarPermissions.PERMISSION_CONTROL_STEERING_WHEEL},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Steering wheel height movement.
@@ -3752,6 +3914,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_STEERING_WHEEL},
     {CarPermissions.PERMISSION_CONTROL_STEERING_WHEEL},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Steering wheel theft lock feature enabled.
@@ -3772,6 +3935,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_STEERING_WHEEL},
     {CarPermissions.PERMISSION_CONTROL_STEERING_WHEEL},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Steering wheel locked.
@@ -3791,6 +3955,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_STEERING_WHEEL},
     {CarPermissions.PERMISSION_CONTROL_STEERING_WHEEL},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Steering wheel easy access feature enabled.
@@ -3811,6 +3976,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_STEERING_WHEEL},
     {CarPermissions.PERMISSION_CONTROL_STEERING_WHEEL},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Vehicle Maps Service (VMS) message.
@@ -3829,6 +3995,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {},
     {},
+    [],
   ),
 
   /// Characterization of inputs used for computing location.
@@ -3858,6 +4025,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {},
     {},
+    [],
   ),
 
   /// Static data for the position of each ultrasonic sensor installed on the vehicle.
@@ -3887,6 +4055,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_READ_ULTRASONICS_SENSOR_DATA},
     {},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Static data for the orientation of each ultrasonic sensor installed on the vehicle.
@@ -3920,6 +4089,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_READ_ULTRASONICS_SENSOR_DATA},
     {},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Static data for the field of view of each ultrasonic sensor in degrees.
@@ -3949,6 +4119,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_READ_ULTRASONICS_SENSOR_DATA},
     {},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Static data for the detection range of each ultrasonic sensor in millimeters.
@@ -3974,6 +4145,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_READ_ULTRASONICS_SENSOR_DATA},
     {},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Static data for the supported ranges of each ultrasonic sensor in millimeters.
@@ -4025,6 +4197,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_READ_ULTRASONICS_SENSOR_DATA},
     {},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// The distance reading of the nearest detected object per sensor in millimeters.
@@ -4055,6 +4228,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_READ_ULTRASONICS_SENSOR_DATA},
     {},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// OBD2 Live Sensor Data.
@@ -4073,6 +4247,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {},
     {},
+    [],
   ),
 
   /// OBD2 Freeze Frame Sensor Data.
@@ -4091,6 +4266,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {},
     {},
+    [],
   ),
 
   /// OBD2 Freeze Frame Information.
@@ -4109,6 +4285,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {},
     {},
+    [],
   ),
 
   /// OBD2 Freeze Frame Clear.
@@ -4127,6 +4304,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {},
     {},
+    [],
   ),
 
   /// Headlights State.
@@ -4141,6 +4319,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_EXTERIOR_LIGHTS},
     {},
+    [],
   ),
 
   /// High beam lights state.
@@ -4155,6 +4334,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_EXTERIOR_LIGHTS},
     {},
+    [],
   ),
 
   /// Fog light state.
@@ -4190,6 +4370,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_EXTERIOR_LIGHTS},
     {},
+    [],
   ),
 
   /// Hazard light status.
@@ -4204,6 +4385,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_EXTERIOR_LIGHTS},
     {},
+    [],
   ),
 
   /// Headlight switch.
@@ -4217,6 +4399,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_EXTERIOR_LIGHTS},
     {CarPermissions.PERMISSION_CONTROL_EXTERIOR_LIGHTS},
+    [],
   ),
 
   /// High beam light switch.
@@ -4230,6 +4413,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_EXTERIOR_LIGHTS},
     {CarPermissions.PERMISSION_CONTROL_EXTERIOR_LIGHTS},
+    [],
   ),
 
   /// Fog light switch.
@@ -4266,6 +4450,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_EXTERIOR_LIGHTS},
     {CarPermissions.PERMISSION_CONTROL_EXTERIOR_LIGHTS},
+    [],
   ),
 
   /// Hazard light switch.
@@ -4279,6 +4464,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_EXTERIOR_LIGHTS},
     {CarPermissions.PERMISSION_CONTROL_EXTERIOR_LIGHTS},
+    [],
   ),
 
   /// Cabin lights.
@@ -4293,6 +4479,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_READ_INTERIOR_LIGHTS},
     {},
+    [],
   ),
 
   /// Cabin lights switch.
@@ -4306,6 +4493,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_INTERIOR_LIGHTS},
     {CarPermissions.PERMISSION_CONTROL_INTERIOR_LIGHTS},
+    [],
   ),
 
   /// Reading lights.
@@ -4320,6 +4508,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_READ_INTERIOR_LIGHTS},
     {},
+    [],
   ),
 
   /// Reading lights switch.
@@ -4333,6 +4522,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_INTERIOR_LIGHTS},
     {CarPermissions.PERMISSION_CONTROL_INTERIOR_LIGHTS},
+    [],
   ),
 
   /// Steering wheel lights state.
@@ -4362,6 +4552,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_READ_INTERIOR_LIGHTS},
     {},
+    [],
   ),
 
   /// Steering wheel lights switch.
@@ -4390,6 +4581,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_INTERIOR_LIGHTS},
     {CarPermissions.PERMISSION_CONTROL_INTERIOR_LIGHTS},
+    [],
   ),
 
   /// Property to get the initial settings for multi-user management (such as initial user).
@@ -4402,6 +4594,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.normal,
     {},
     {},
+    [],
   ),
 
   /// Property to switch user for multi-user management.
@@ -4414,6 +4607,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.normal,
     {},
     {},
+    [],
   ),
 
   /// Property to create a new user for multi-user management.
@@ -4426,6 +4620,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.normal,
     {},
     {},
+    [],
   ),
 
   /// Property to remove a new user for multi-user management.
@@ -4438,6 +4633,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.normal,
     {},
     {},
+    [],
   ),
 
   /// Property to get / set the user authentication types associated with an Android user.
@@ -4450,6 +4646,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.normal,
     {},
     {},
+    [],
   ),
 
   /// Property for VHAL to apply power policy.
@@ -4462,6 +4659,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {},
     {},
+    [],
   ),
 
   /// Property for VHAL to set the default power policies per power status transition.
@@ -4474,6 +4672,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {},
     {},
+    [],
   ),
 
   /// Property to report a new current power policy to VHAL.
@@ -4486,6 +4685,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.normal,
     {},
     {},
+    [],
   ),
 
   /// Property to report that car watchdog is alive.
@@ -4498,6 +4698,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.normal,
     {},
     {},
+    [],
   ),
 
   /// Property to report a process terminated by car watchdog.
@@ -4510,6 +4711,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.normal,
     {},
     {},
+    [],
   ),
 
   /// Property to signal a heartbeat from VHAL.
@@ -4522,6 +4724,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {},
     {},
+    [],
   ),
 
   /// Property to start the ClusterUI in cluster display.
@@ -4534,6 +4737,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {},
     {},
+    [],
   ),
 
   /// Property to change the state of the cluster display.
@@ -4546,6 +4750,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {},
     {},
+    [],
   ),
 
   /// Property to reports the current display and ClusterUI statue.
@@ -4558,6 +4763,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.normal,
     {},
     {},
+    [],
   ),
 
   /// Property to request to change the cluster display state to show some ClusterUI.
@@ -4570,6 +4776,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.normal,
     {},
     {},
+    [],
   ),
 
   /// Property to inform the current navigation state.
@@ -4582,6 +4789,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.normal,
     {},
     {},
+    [],
   ),
 
   /// Property to send the heartbeat signal to ClusterOS.
@@ -4594,6 +4802,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.normal,
     {},
     {},
+    [],
   ),
 
   /// Current date and time, encoded as Unix time.
@@ -4610,6 +4819,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {},
     {CarPermissions.PERMISSION_CAR_EPOCH_TIME},
+    [],
   ),
 
   /// Electronic Toll Collection card type.
@@ -4628,6 +4838,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_CAR_INFO},
     {},
+    [],
   ),
 
   /// Electronic Toll Collection card status.
@@ -4646,6 +4857,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_CAR_INFO},
     {},
+    [],
   ),
 
   /// Front fog lights state.
@@ -4662,6 +4874,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_EXTERIOR_LIGHTS},
     {},
+    [],
   ),
 
   /// Front fog lights switch.
@@ -4677,6 +4890,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_EXTERIOR_LIGHTS},
     {CarPermissions.PERMISSION_CONTROL_EXTERIOR_LIGHTS},
+    [],
   ),
 
   /// Rear fog lights state.
@@ -4693,6 +4907,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_EXTERIOR_LIGHTS},
     {},
+    [],
   ),
 
   /// Rear fog lights switch.
@@ -4708,6 +4923,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {CarPermissions.PERMISSION_CONTROL_EXTERIOR_LIGHTS},
     {CarPermissions.PERMISSION_CONTROL_EXTERIOR_LIGHTS},
+    [],
   ),
 
   /// EV charge current draw limit.
@@ -4729,6 +4945,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_CONTROL_CAR_ENERGY,
     },
     {CarPermissions.PERMISSION_CONTROL_CAR_ENERGY},
+    [],
   ),
 
   /// EV charge percent limit.
@@ -4759,6 +4976,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_CONTROL_CAR_ENERGY,
     },
     {CarPermissions.PERMISSION_CONTROL_CAR_ENERGY},
+    [],
   ),
 
   /// Charging state of the car.
@@ -4779,6 +4997,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_ENERGY},
     {},
+    [],
   ),
 
   /// Start or stop charging the EV battery.
@@ -4800,6 +5019,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_CONTROL_CAR_ENERGY,
     },
     {CarPermissions.PERMISSION_CONTROL_CAR_ENERGY},
+    [],
   ),
 
   /// Estimated charge time remaining in seconds.
@@ -4815,6 +5035,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_ENERGY},
     {},
+    [],
   ),
 
   /// Regenerative braking or one-pedal drive setting on the car.
@@ -4836,6 +5057,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_ENERGY},
     {},
+    [],
   ),
 
   /// Vehicle’s curb weight in kilograms.
@@ -4856,6 +5078,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_PRIVILEGED_CAR_INFO},
     {},
+    [],
   ),
 
   /// Indicates if there is a trailer present or not.
@@ -4873,6 +5096,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_PRIVILEGED_CAR_INFO},
     {},
+    [],
   ),
 
   /// EU's General security regulation compliance requirement.
@@ -4889,6 +5113,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_CAR_INFO},
     {},
+    [],
   ),
 
   /// Current state of vehicle autonomy.
@@ -4918,6 +5143,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_CAR_DRIVING_STATE,
     },
     {},
+    ['FLAG_VEHICLE_PROPERTY_25Q2_3P_PERMISSIONS'],
   ),
 
   /// Target state of vehicle autonomy.
@@ -4958,6 +5184,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_CAR_DRIVING_STATE},
     {},
+    ['FLAG_ANDROID_B_VEHICLE_PROPERTIES'],
   ),
 
   /// Enable or disable Automatic Emergency Braking (AEB).
@@ -4988,6 +5215,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_CONTROL_ADAS_SETTINGS,
     },
     {CarPermissions.PERMISSION_CONTROL_ADAS_SETTINGS},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Automatic Emergency Braking (AEB) state.
@@ -5020,6 +5248,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_READ_ADAS_STATES},
     {},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Enable or disable Forward Collision Warning (FCW).
@@ -5048,6 +5277,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_CONTROL_ADAS_SETTINGS,
     },
     {CarPermissions.PERMISSION_CONTROL_ADAS_SETTINGS},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Forward Collision Warning State (FCW) state.
@@ -5075,6 +5305,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_READ_ADAS_STATES},
     {},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Enable and disable Blind Spot Warning (BSW).
@@ -5104,6 +5335,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_CONTROL_ADAS_SETTINGS,
     },
     {CarPermissions.PERMISSION_CONTROL_ADAS_SETTINGS},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Blind Spot Warning (BSW) state.
@@ -5131,6 +5363,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_READ_ADAS_STATES},
     {},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Enable or disable Lane Departure Warning (LDW).
@@ -5160,6 +5393,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_CONTROL_ADAS_SETTINGS,
     },
     {CarPermissions.PERMISSION_CONTROL_ADAS_SETTINGS},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Lane Departure Warning (LDW) state.
@@ -5187,6 +5421,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_READ_ADAS_STATES},
     {},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Enable or disable Lane Keep Assist (LKA).
@@ -5220,6 +5455,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_CONTROL_ADAS_SETTINGS,
     },
     {CarPermissions.PERMISSION_CONTROL_ADAS_SETTINGS},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Lane Keep Assist (LKA) state.
@@ -5250,6 +5486,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_READ_ADAS_STATES},
     {},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Enable or disable Lane Centering Assist (LCA).
@@ -5284,6 +5521,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_CONTROL_ADAS_SETTINGS,
     },
     {CarPermissions.PERMISSION_CONTROL_ADAS_SETTINGS},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Lane Centering Assist (LCA) commands.
@@ -5320,6 +5558,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {},
     {CarPermissions.PERMISSION_CONTROL_ADAS_STATES},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Lane Centering Assist (LCA) state.
@@ -5350,6 +5589,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_READ_ADAS_STATES},
     {},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Enable or disable Emergency Lane Keep Assist (ELKA).
@@ -5380,6 +5620,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_CONTROL_ADAS_SETTINGS,
     },
     {CarPermissions.PERMISSION_CONTROL_ADAS_SETTINGS},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Emergency Lane Keep Assist (ELKA) state.
@@ -5409,6 +5650,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_READ_ADAS_STATES},
     {},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Enable or disable Cruise Control (CC).
@@ -5440,6 +5682,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_CONTROL_ADAS_SETTINGS,
     },
     {CarPermissions.PERMISSION_CONTROL_ADAS_SETTINGS},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Current type of Cruise Control (CC).
@@ -5480,6 +5723,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_CONTROL_ADAS_STATES,
     },
     {CarPermissions.PERMISSION_CONTROL_ADAS_STATES},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Current state of Cruise Control (CC).
@@ -5509,6 +5753,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_READ_ADAS_STATES},
     {},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Write Cruise Control (CC) commands.
@@ -5538,6 +5783,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.privileged,
     {},
     {CarPermissions.PERMISSION_CONTROL_ADAS_STATES},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Current target speed for Cruise Control (CC) in meters per second.
@@ -5568,6 +5814,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_READ_ADAS_STATES},
     {},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Current target time gap for Adaptive Cruise Control (ACC) or Predictive Cruise Control in
@@ -5604,6 +5851,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_CONTROL_ADAS_STATES,
     },
     {CarPermissions.PERMISSION_CONTROL_ADAS_STATES},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Measured distance from leading vehicle when using Adaptive Cruise Control (ACC) or Predictive
@@ -5637,6 +5885,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_READ_ADAS_STATES},
     {},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Enable or disable Hands On Detection (HOD).
@@ -5667,6 +5916,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS,
     },
     {CarPermissions.PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Hands On Detection (HOD) driver state.
@@ -5701,6 +5951,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_READ_DRIVER_MONITORING_STATES},
     {},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Hands On Detection (HOD) warning.
@@ -5733,6 +5984,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_READ_DRIVER_MONITORING_STATES},
     {},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Enable or disable driver drowsiness and attention monitoring.
@@ -5760,6 +6012,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS,
     },
     {CarPermissions.PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Driver drowsiness and attention level state.
@@ -5795,6 +6048,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_READ_DRIVER_MONITORING_STATES},
     {},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Enable or disable driver drowsiness and attention warnings.
@@ -5822,6 +6076,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS,
     },
     {CarPermissions.PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Driver drowsiness and attention warning.
@@ -5853,6 +6108,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_READ_DRIVER_MONITORING_STATES},
     {},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Enable or disable driver distraction monitoring.
@@ -5879,6 +6135,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS,
     },
     {CarPermissions.PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Driver distraction state.
@@ -5913,6 +6170,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_READ_DRIVER_MONITORING_STATES},
     {},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Enable or disable driver distraction warnings.
@@ -5939,6 +6197,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS,
     },
     {CarPermissions.PERMISSION_CONTROL_DRIVER_MONITORING_SETTINGS},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Driver distraction warning.
@@ -5970,6 +6229,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_READ_DRIVER_MONITORING_STATES},
     {},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Enable or disable Low Speed Collision Warning.
@@ -6002,6 +6262,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_CONTROL_ADAS_SETTINGS,
     },
     {CarPermissions.PERMISSION_CONTROL_ADAS_SETTINGS},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Low Speed Collision Warning State state.
@@ -6032,6 +6293,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_READ_ADAS_STATES},
     {},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Enable or disable Cross Traffic Monitoring.
@@ -6061,6 +6323,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_CONTROL_ADAS_SETTINGS,
     },
     {CarPermissions.PERMISSION_CONTROL_ADAS_SETTINGS},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Cross Traffic Monitoring Warning state.
@@ -6089,6 +6352,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_READ_ADAS_STATES},
     {},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Enable or disable Low Speed Automatic Emergency Braking.
@@ -6122,6 +6386,7 @@ enum VehicleProperty {
       CarPermissions.PERMISSION_CONTROL_ADAS_SETTINGS,
     },
     {CarPermissions.PERMISSION_CONTROL_ADAS_SETTINGS},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   ),
 
   /// Low Speed Automatic Emergency Braking state.
@@ -6155,6 +6420,7 @@ enum VehicleProperty {
     VehiclePropertyAccess.unavailable,
     {CarPermissions.PERMISSION_READ_ADAS_STATES},
     {},
+    ['FLAG_VEHICLE_PROPERTY_REMOVE_SYSTEM_API_TAGS'],
   );
 
   const VehicleProperty(
@@ -6163,6 +6429,7 @@ enum VehicleProperty {
     this.write,
     this.readPermissions,
     this.writePermissions,
+    this.flags,
   );
 
   final int id;
@@ -6174,4 +6441,6 @@ enum VehicleProperty {
   final Set<CarPermissions> readPermissions;
 
   final Set<CarPermissions> writePermissions;
+
+  final List<String> flags;
 }

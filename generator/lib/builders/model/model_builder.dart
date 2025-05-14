@@ -106,6 +106,10 @@ class VehicleModleBuilder {
                                 if (perm != "ACCESS_FINE_LOCATION")
                                   refer("CarPermissions.$perm"),
                             ]),
+                            literalList([
+                              for (final flag in props.flags)
+                                literalString(flag),
+                            ]),
                           ],
                         ]),
                 ),
@@ -147,6 +151,12 @@ class VehicleModleBuilder {
                                 ..name = "writePermissions"
                                 ..toThis = true,
                         ),
+                        Parameter(
+                          (p) =>
+                              p
+                                ..name = "flags"
+                                ..toThis = true,
+                        ),
                       ]),
               ),
             ])
@@ -184,6 +194,13 @@ class VehicleModleBuilder {
                     f
                       ..name = "writePermissions"
                       ..type = refer("Set<CarPermissions>")
+                      ..modifier = FieldModifier.final$,
+              ),
+              Field(
+                (f) =>
+                    f
+                      ..name = "flags"
+                      ..type = refer("List<String>")
                       ..modifier = FieldModifier.final$,
               ),
             ]),
