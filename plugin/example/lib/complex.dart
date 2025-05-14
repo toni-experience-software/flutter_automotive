@@ -19,6 +19,13 @@ class _MyAppState extends State<MyApp> {
 
   final Map<VehicleProperty, dynamic> _propertyValues = {};
   final Map<CarPermissions, bool> _permissionStatus = {};
+  bool _allGranted = false;
+
+  @override
+  void initState() {
+    super.initState();
+    checkAllPermissions();
+  }
 
   Future<void> getProperty(VehicleProperty prop) async {
     try {
@@ -57,6 +64,37 @@ class _MyAppState extends State<MyApp> {
     return true;
   }
 
+  Future<void> requestAllPermissions() async {
+    final permissions = {
+      for (final prop in VehicleProperty.values)
+        for (final perm in prop.readPermissions)
+          if (perm.privileged == false) perm,
+    };
+    for (final permission in permissions) {
+      if (_permissionStatus[permission] == true) {
+        continue;
+      } else {
+        await _plugin.requestPermission(permission);
+      }
+    }
+    checkAllPermissions();
+  }
+
+  Future<void> checkAllPermissions() async {
+    final permissions = {
+      for (final prop in VehicleProperty.values)
+        for (final perm in prop.readPermissions)
+          if (perm.privileged == false) perm,
+    };
+    bool all = true;
+    for (final permission in permissions) {
+      final granted = await _plugin.isPermissionGranted(permission);
+      setState(() => _permissionStatus[permission] = granted);
+      all = all && granted;
+    }
+    setState(() => _allGranted = all);
+  }
+
   @override
   Widget build(BuildContext context) {
     final normalProps = [
@@ -65,7 +103,18 @@ class _MyAppState extends State<MyApp> {
     ];
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: const Text('flutter_automotive example app')),
+        appBar: AppBar(
+          title: const Text('flutter_automotive example app'),
+          actions: [
+            TextButton(
+              onPressed: requestAllPermissions,
+              child: Text(switch (_allGranted) {
+                true => "All granted",
+                false => "Request Permissions",
+              }),
+            ),
+          ],
+        ),
         body: GridView.count(
           crossAxisCount: 3,
           childAspectRatio: 2,
@@ -76,9 +125,6 @@ class _MyAppState extends State<MyApp> {
                 value: _propertyValues[prop],
                 permissions: getNormalPermissions(prop),
                 onTap: () async {
-                  if (allPermissionsGranted(prop) == false) {
-                    await getPermission(prop);
-                  }
                   if (allPermissionsGranted(prop)) {
                     await getProperty(prop);
                   }
