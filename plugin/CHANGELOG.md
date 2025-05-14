@@ -1,3 +1,8 @@
+## 0.0.6
+
+* Fix `CarPermissions` permission names
+* Add `flags` to `VehicleProperty` enum
+
 ## 0.0.5
 
 * Add `privileged` field to `CarPermissions` enum
